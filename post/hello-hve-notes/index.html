@@ -8,9 +8,15 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<link rel="shortcut icon" href="xiaofei123.top//favicon.ico">
-<link rel="stylesheet" href="xiaofei123.top//styles/main.css">
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -26,8 +32,8 @@
       <div class="sidebar" :class="{ 'full-height': menuVisible }">
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
-      <a class="site-title-container" href="xiaofei123.top/">
-        <img src="xiaofei123.top//images/avatar.png" class="site-logo">
+      <a class="site-title-container" href="https://wangxf133.github.io">
+        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
         <h1 class="site-title">xiaofei</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -79,7 +85,7 @@
             <h2 class="post-title">Hello Hve Notes</h2>
             <div class="post-date">2018-12-12</div>
             
-              <div class="feature-container" style="background-image: url('xiaofei123.top//post-images/hello-hve-notes.png')">
+              <div class="feature-container" style="background-image: url('https://wangxf133.github.io/post-images/hello-hve-notes.png')">
               </div>
             
             <div class="post-content">
@@ -104,7 +110,7 @@
             
               <div class="tag-container">
                 
-                  <a href="xiaofei123.top//tag/hvenotes" class="tag">
+                  <a href="https://wangxf133.github.io/tag/hvenotes" class="tag">
                     HveNotes
                   </a>
                 
@@ -112,6 +118,12 @@
             
             
 
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
             
 
           </div>
@@ -136,6 +148,29 @@ var app = new Vue({
 })
 
 </script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '5debd0dd15fc74854e71',
+        clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+        repo: 'wangxf133.github.io',
+        owner: 'wangxf133',
+        admin: ['wangxf133'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 
