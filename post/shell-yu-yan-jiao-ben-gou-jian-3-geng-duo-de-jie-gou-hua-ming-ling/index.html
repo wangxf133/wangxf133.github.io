@@ -1,79 +1,90 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>shell语言脚本构建3-更多的结构化命令 | xiaofei</title>
+<meta name="description" content="东北师范大学-在读博士">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://wangxf133.github.io">
-  <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="80px" height="80px">
-  </a>
-  <h1 class="site-title">
-    xiaofei
-  </h1>
-  <p class="site-description">
-    东北师范大学-在读博士
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wangxf133.github.io">
+        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
+        <h1 class="site-title">xiaofei</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      东北师范大学-在读博士
+    </div>
+    <div class="site-footer">
+      Powered by Hve Notes
+    </div>
   </div>
 </div>
 
-      
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              shell语言脚本构建3-更多的结构化命令
-            </h2>
-            <div class="post-info">
-              <time class="post-time">
-                · 2019-03-27 ·
-              </time>
-              
-                <a href="https://wangxf133.github.io/tag/cykUzrlw2" class="post-tags">
-                  # 脚本文件
-                </a>
-              
-                <a href="https://wangxf133.github.io/tag/PvD-ng_cF" class="post-tags">
-                  # shell语言
-                </a>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">shell语言脚本构建3-更多的结构化命令</h2>
+            <div class="post-date">2019-03-27</div>
+            
             <div class="post-content">
               <!--More-->
 
@@ -1107,57 +1118,86 @@ tim:x:1004:1004:Timothy Bresnahan:/home/tim:/bin/bash
 <p>下一节将会讨论如何和shell脚本用户交互。shell脚本通常并不完全是自成一体的。它们需要在运行时被提供某些外部数据。下一章将讨论各种可用来向shell脚本提供实时数据的方法。 </p>
 
             </div>
-          </article>
+            
+              <div class="tag-container">
+                
+                  <a href="https://wangxf133.github.io/tag/cykUzrlw2" class="tag">
+                    脚本文件
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/PvD-ng_cF" class="tag">
+                    shell语言
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-2-shi-yong-jie-gou-hua-ming-ling">
+                  <h3 class="post-title">
+                    shell语言脚本构建2-使用结构化命令
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
         </div>
-    
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-2-shi-yong-jie-gou-hua-ming-ling">
-              <h3 class="post-title">
-                shell语言脚本构建2-使用结构化命令
-              </h3>
-            </a>
-          </div>  
-        
-
-        
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<div id="gitalk-container"></div>
-
-<script>
-
-  var gitalk = new Gitalk({
-    clientID: '5debd0dd15fc74854e71',
-    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
-    repo: 'wangxf133.github.io',
-    owner: 'wangxf133',
-    admin: ['wangxf133'],
-    id: location.pathname,      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
-</script>
-
-          
-
-          
-        
-    
-        <div class="site-footer">
-  Powered by Hve Notes
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
       </div>
     </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '5debd0dd15fc74854e71',
+        clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+        repo: 'wangxf133.github.io',
+        owner: 'wangxf133',
+        admin: ['wangxf133'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
   </body>
 </html>

@@ -1,83 +1,90 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>(构建个人博客第二篇)hexo_config_yml_set | xiaofei</title>
+<meta name="description" content="东北师范大学-在读博士">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://wangxf133.github.io">
-  <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="80px" height="80px">
-  </a>
-  <h1 class="site-title">
-    xiaofei
-  </h1>
-  <p class="site-description">
-    东北师范大学-在读博士
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wangxf133.github.io">
+        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
+        <h1 class="site-title">xiaofei</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      东北师范大学-在读博士
+    </div>
+    <div class="site-footer">
+      Powered by Hve Notes
+    </div>
   </div>
 </div>
 
-      
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              (构建个人博客第二篇)hexo_config_yml_set
-            </h2>
-            <div class="post-info">
-              <time class="post-time">
-                · 2019-03-27 ·
-              </time>
-              
-                <a href="https://wangxf133.github.io/tag/X18mylG5_" class="post-tags">
-                  # Themes
-                </a>
-              
-                <a href="https://wangxf133.github.io/tag/vwoRVO2Sd" class="post-tags">
-                  # hexo
-                </a>
-              
-                <a href="https://wangxf133.github.io/tag/o8fsYfj4R" class="post-tags">
-                  # blog
-                </a>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">(构建个人博客第二篇)hexo_config_yml_set</h2>
+            <div class="post-date">2019-03-27</div>
+            
             <div class="post-content">
               <!--more-->
 
@@ -249,57 +256,90 @@ deploy:
    ## 如只想索引文章，可设置为post
    #field: all</code></pre>
             </div>
-          </article>
+            
+              <div class="tag-container">
+                
+                  <a href="https://wangxf133.github.io/tag/X18mylG5_" class="tag">
+                    Themes
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/vwoRVO2Sd" class="tag">
+                    hexo
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/o8fsYfj4R" class="tag">
+                    blog
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-yi-pian-yong-hexogithub-da-jian-mian-fei-ge-ren-bo-ke-xiang-xi-jiao-cheng">
+                  <h3 class="post-title">
+                    (构建个人博客第一篇)用hexo+github搭建免费个人博客详细教程
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
         </div>
-    
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-yi-pian-yong-hexogithub-da-jian-mian-fei-ge-ren-bo-ke-xiang-xi-jiao-cheng">
-              <h3 class="post-title">
-                (构建个人博客第一篇)用hexo+github搭建免费个人博客详细教程
-              </h3>
-            </a>
-          </div>  
-        
-
-        
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<div id="gitalk-container"></div>
-
-<script>
-
-  var gitalk = new Gitalk({
-    clientID: '5debd0dd15fc74854e71',
-    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
-    repo: 'wangxf133.github.io',
-    owner: 'wangxf133',
-    admin: ['wangxf133'],
-    id: location.pathname,      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
-</script>
-
-          
-
-          
-        
-    
-        <div class="site-footer">
-  Powered by Hve Notes
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
       </div>
     </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '5debd0dd15fc74854e71',
+        clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+        repo: 'wangxf133.github.io',
+        owner: 'wangxf133',
+        admin: ['wangxf133'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
   </body>
 </html>

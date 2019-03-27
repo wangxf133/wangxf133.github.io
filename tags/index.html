@@ -1,155 +1,189 @@
+<!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>xiaofei</title>
+    <meta charset="utf-8" >
+
+<title>标签列表 | xiaofei</title>
+<meta name="description" content="东北师范大学-在读博士">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://wangxf133.github.io">
-  <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="80px" height="80px">
-  </a>
-  <h1 class="site-title">
-    xiaofei
-  </h1>
-  <p class="site-description">
-    东北师范大学-在读博士
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wangxf133.github.io">
+        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
+        <h1 class="site-title">xiaofei</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      东北师范大学-在读博士
+    </div>
+    <div class="site-footer">
+      Powered by Hve Notes
+    </div>
   </div>
 </div>
 
 
-        <div class="tags-container">
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/ovnnE52Bd">ggplot2</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/aiZkRmWBa">主题设置</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/fS-UqDGwf">详细参数</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/6iQrV6R7j">R</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/C1YHz8Eqm">配置文件</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/JDZBXA3No">Circos</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/We7V91z05">基因组</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/A3h6Jlq6p">iwgsc</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/jOhsegpai">小麦</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/cykUzrlw2">脚本文件</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/PvD-ng_cF">shell语言</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/gkCUFXxT1">统计基础</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/JNSPoGdBU">统计学</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/Dz5lYxdVx">StatQuest</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/AlmdaiUZE">DESeq2</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/VWu5Tyyx-">RNA-seq</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/ANs9W6M5C">Bioconductor</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/YGungpbx0">proteomics</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/AjyIGPhWv">蛋白组</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/yVJYzfVh7">ggsignif</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/REanBVc4V">显著性绘制工具</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/m29Zf0LCY">R系列</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/pL2GYYN0e">统计学习</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/GK8vdhtkl">置换检验</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/p2fMPam8D">画图</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/uyiySPsgI">Gene_density</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/ycuDIRf0A">pepline</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/d7UQHOaSj">snakemake</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/c7TZoHjAr">流程软件</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/IgAIZc71w">蛋白家族和亚家族分类</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/hqGgnkDg_">interproscan</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/ROxmRxPnV">panther</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/6xnZzetAz">差异表达分析</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/yKGbdQCyx">DESeq</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/SE-r0vN0o">plot</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/5lV_OSn0h">Volcano</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/X18mylG5_">Themes</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/vwoRVO2Sd">hexo</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/o8fsYfj4R">blog</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/g74uW9lGY">github</a>
-          
-            <a class="tag" href="https://wangxf133.github.io/tag/hvenotes">HveNotes</a>
-          
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="tag-list-title">标签列表</h2>
+          <div class="tags-container">
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/ovnnE52Bd">ggplot2</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/aiZkRmWBa">主题设置</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/fS-UqDGwf">详细参数</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/6iQrV6R7j">R</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/C1YHz8Eqm">配置文件</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/JDZBXA3No">Circos</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/We7V91z05">基因组</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/A3h6Jlq6p">iwgsc</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/jOhsegpai">小麦</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/cykUzrlw2">脚本文件</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/PvD-ng_cF">shell语言</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/gkCUFXxT1">统计基础</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/JNSPoGdBU">统计学</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/Dz5lYxdVx">StatQuest</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/AlmdaiUZE">DESeq2</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/VWu5Tyyx-">RNA-seq</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/ANs9W6M5C">Bioconductor</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/YGungpbx0">proteomics</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/AjyIGPhWv">蛋白组</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/yVJYzfVh7">ggsignif</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/REanBVc4V">显著性绘制工具</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/m29Zf0LCY">R系列</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/pL2GYYN0e">统计学习</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/GK8vdhtkl">置换检验</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/p2fMPam8D">画图</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/uyiySPsgI">Gene_density</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/ycuDIRf0A">pepline</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/d7UQHOaSj">snakemake</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/c7TZoHjAr">流程软件</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/IgAIZc71w">蛋白家族和亚家族分类</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/hqGgnkDg_">interproscan</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/ROxmRxPnV">panther</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/6xnZzetAz">差异表达分析</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/yKGbdQCyx">DESeq</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/SE-r0vN0o">plot</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/5lV_OSn0h">Volcano</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/X18mylG5_">Themes</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/vwoRVO2Sd">hexo</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/o8fsYfj4R">blog</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/g74uW9lGY">github</a>
+            
+              <a class="tag" href="https://wangxf133.github.io/tag/hvenotes">HveNotes</a>
+            
+          </div>
         </div>
-
-        <div class="site-footer">
-  Powered by Hve Notes
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
       </div>
     </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
   </body>
 </html>

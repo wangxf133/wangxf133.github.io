@@ -1,83 +1,90 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>interproscan的安装及使用 | xiaofei</title>
+<meta name="description" content="东北师范大学-在读博士">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://wangxf133.github.io">
-  <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="80px" height="80px">
-  </a>
-  <h1 class="site-title">
-    xiaofei
-  </h1>
-  <p class="site-description">
-    东北师范大学-在读博士
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wangxf133.github.io">
+        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
+        <h1 class="site-title">xiaofei</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      东北师范大学-在读博士
+    </div>
+    <div class="site-footer">
+      Powered by Hve Notes
+    </div>
   </div>
 </div>
 
-      
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              interproscan的安装及使用
-            </h2>
-            <div class="post-info">
-              <time class="post-time">
-                · 2019-03-27 ·
-              </time>
-              
-                <a href="https://wangxf133.github.io/tag/IgAIZc71w" class="post-tags">
-                  # 蛋白家族和亚家族分类
-                </a>
-              
-                <a href="https://wangxf133.github.io/tag/hqGgnkDg_" class="post-tags">
-                  # interproscan
-                </a>
-              
-                <a href="https://wangxf133.github.io/tag/ROxmRxPnV" class="post-tags">
-                  # panther
-                </a>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">interproscan的安装及使用</h2>
+            <div class="post-date">2019-03-27</div>
+            
             <div class="post-content">
               <!--more-->
 <h1 id="简介">简介</h1><p>Interpro是一个数据库，它里面有蛋白功能，蛋白家族等信息。而Interproscan就是可以将你的蛋白序列跟这个这个数据比对，从而给你的序列功能注释。 Interproscan5新增了一些功能Phobius用来预测跨膜和信号肽可以把结果map到上传的数据上寻找蛋白可能的生物学代谢途径新的输出格式XML和GFF3.0提升了图形界面</p>
@@ -243,57 +250,90 @@ export EMBOSS_DATA=bin/nucleotide
 </code></pre><p>参考资料： 官网：<a href="https://github.com/ebi-pf-team/interproscan">https://github.com/ebi-pf-team/interproscan</a></p>
 
             </div>
-          </article>
+            
+              <div class="tag-container">
+                
+                  <a href="https://wangxf133.github.io/tag/IgAIZc71w" class="tag">
+                    蛋白家族和亚家族分类
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/hqGgnkDg_" class="tag">
+                    interproscan
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/ROxmRxPnV" class="tag">
+                    panther
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wangxf133.github.io/post/r_deseq_-chai-yi-biao-da-fen-xi-_by_fei">
+                  <h3 class="post-title">
+                    R_DESeq_差异表达分析_by_fei
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
         </div>
-    
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://wangxf133.github.io/post/r_deseq_-chai-yi-biao-da-fen-xi-_by_fei">
-              <h3 class="post-title">
-                R_DESeq_差异表达分析_by_fei
-              </h3>
-            </a>
-          </div>  
-        
-
-        
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<div id="gitalk-container"></div>
-
-<script>
-
-  var gitalk = new Gitalk({
-    clientID: '5debd0dd15fc74854e71',
-    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
-    repo: 'wangxf133.github.io',
-    owner: 'wangxf133',
-    admin: ['wangxf133'],
-    id: location.pathname,      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
-</script>
-
-          
-
-          
-        
-    
-        <div class="site-footer">
-  Powered by Hve Notes
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
       </div>
     </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '5debd0dd15fc74854e71',
+        clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+        repo: 'wangxf133.github.io',
+        owner: 'wangxf133',
+        admin: ['wangxf133'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
   </body>
 </html>
