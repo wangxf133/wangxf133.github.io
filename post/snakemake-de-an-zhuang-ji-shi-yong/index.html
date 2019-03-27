@@ -51,12 +51,6 @@
         </a>
       
     
-      
-        <a href="/post/member" class="menu">
-          成员
-        </a>
-      
-    
   </div>
 </div>
 
@@ -85,9 +79,9 @@
               
             </div>
             <div class="post-content">
-              <h5 id="snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。">snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。</h5><p>这里为大家提供snakemake工作流管理软件。Snakemake是用Python3写的一个工具，模仿makefile的格式（makefile就是我们安装软件 make make install时，使用的各种编译规则，不明白也没关系），处理流程中各步骤的依赖关系，这样就知道哪一步分析先运行，哪一步后运行，各个分析步骤就形成了一个有向无环图（DAG，就是GO分析里面的DOG喽），引用文档里面的一个图：</p>
+              <!--more-->
+<h5 id="snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。">snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。</h5><p>这里为大家提供snakemake工作流管理软件。Snakemake是用Python3写的一个工具，模仿makefile的格式（makefile就是我们安装软件 make make install时，使用的各种编译规则，不明白也没关系），处理流程中各步骤的依赖关系，这样就知道哪一步分析先运行，哪一步后运行，各个分析步骤就形成了一个有向无环图（DAG，就是GO分析里面的DOG喽），引用文档里面的一个图：</p>
 <p>官网文档：<a href="http://snakemake.readthedocs.io/en/latest/index.html">http://snakemake.readthedocs.io/en/latest/index.html</a></p>
-<!--more-->
 <h1 id="一、从一个简单的例子开始">一、从一个简单的例子开始</h1><h3 id="1.安装snakemake">1.安装snakemake</h3><p>安装snakemake的方法有多种，snakemake官方推荐的是conda，安装方法如下：</p>
 <pre><code>conda install -c bioconda snakemake</code></pre><p>试试 snakemake -h看看安装成功没有？</p>
 <h3 id="2 使用说明">2 使用说明</h3><h5 id="2.1 一个简单的snakemake脚本">2.1 一个简单的snakemake脚本</h5><p>虽然snakemake广泛的应用于生物信息方面的流程编写，但是snakemake的应用并不局限于编写生物信息学的流程，这里以一个简单的合并文件的例子开始介绍snakemake的简单使用。</p>

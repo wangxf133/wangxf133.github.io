@@ -51,12 +51,6 @@
         </a>
       
     
-      
-        <a href="/post/member" class="menu">
-          成员
-        </a>
-      
-    
   </div>
 </div>
 
@@ -87,9 +81,7 @@
       </div>
       
       <div class="post-abstract">
-        <h2 id="前言">前言</h2><p>这是StatQuest视频教程的第8-12个。</p>
-<p>第8个视频的内容为标准差，标准误，第9个视频是柱状图与饼状图；第10个视频是对数转换以及对数的运算，这个非常简单；第11个视频为置信区间；第12个视频内容为The Standard Error（标准错误）</p>
-
+        
       </di>
     </article>
   
@@ -117,8 +109,7 @@
       </div>
       
       <div class="post-abstract">
-        <h2 id="前言">前言</h2><p>这是StatQuest视频教程的第6、7个。</p>
-
+        
       </di>
     </article>
   
@@ -146,8 +137,7 @@
       </div>
       
       <div class="post-abstract">
-        <h2 id="前言">前言</h2><p>这个系列的笔记是StatQuest视频的学习笔记，此篇笔记是基础知识，视频教程的1-5。</p>
-
+        
       </di>
     </article>
   
@@ -179,9 +169,7 @@
       </div>
       
       <div class="post-abstract">
-        <p>DESeq2和EdgeR可用于做基因差异表达分析，主要也是用于RNA-Seq数据，同样也可以处理类似的ChIP-Seq,shRNA以及质谱数据。</p>
-<p>这两个都属于R包，其相同点在于都是对count data数据进行处理，都是基于负二项分布模型。因此会发现，用两者处理同一组数据，最后在相同阈值下筛选出的大部分基因都是一样的，但是有一部分不同应该是由于其估计离散度的不同方法所导致的。</p>
-
+        
       </di>
     </article>
   
@@ -213,8 +201,7 @@
       </div>
       
       <div class="post-abstract">
-        <p>这篇主要简单的记录下如何基于bioconductor的R包对蛋白组质谱数据进行分析。在看到这篇biocondutor官网文档<a href="http://master.bioconductor.org/packages/release/workflows/html/proteomics.html">Mass spectrometry and proteomics data analysis</a>之前，我一直以为质谱数据的分析过程就是用一些商业化软件或者开源软件将谱图转化为肽段/蛋白的表达谱，由于蛋白组应用未如NGS数据那般广泛及热门，所以就未去搜索过是否能用R包来对质谱数据进行一定程度的分析。</p>
-
+        
       </di>
     </article>
   
@@ -242,8 +229,7 @@
       </div>
       
       <div class="post-abstract">
-        <p>最近在逛<a href="https://zhuanlan.zhihu.com/EasyCharts-R">R语言数据分析与可视化</a>是发现了有个ggpubr包可以绘制箱线图的显著性标记，感觉蛮有用的，然后就在网上搜了下显著性标记相关资料，发现除了ggpubr包外，发现一个ggsignif包！查了下原来这个包是专门配套ggplot2来给图添加显著性标记的，所以收藏并使用了下</p>
-
+        
       </di>
     </article>
   
@@ -271,9 +257,7 @@
       </div>
       
       <div class="post-abstract">
-        <p>我们一般平时较为常用的检验要属有参检验，但是其要求样本必须满足近似正态，无离群点，数据量大等要求；而有些时候其实很难都满足以上前提条件，则这时需要使用无参检验，其只关注数据的秩，但是无参检验有时也无法处理一些样本数较少的情况，这时则可以使用置换检验</p>
-<p>置换检验，是Fisher提出的一种基于大量计算（computationally intensive），利用样本数据的随机排列（置换检验的核心思想，故名Permutation test），进行统计推断的方法。因其对总体分布自由，特别适合用于总体分布未知的小样本数据，以及一些常规方法难以使用的假设检验情况。</p>
-
+        
       </di>
     </article>
   
@@ -301,8 +285,7 @@
       </div>
       
       <div class="post-abstract">
-        <p>基因密度热图</p>
-
+        
       </di>
     </article>
   
@@ -330,9 +313,7 @@
       </div>
       
       <div class="post-abstract">
-        <h5 id="snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。">snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。</h5><p>这里为大家提供snakemake工作流管理软件。Snakemake是用Python3写的一个工具，模仿makefile的格式（makefile就是我们安装软件 make make install时，使用的各种编译规则，不明白也没关系），处理流程中各步骤的依赖关系，这样就知道哪一步分析先运行，哪一步后运行，各个分析步骤就形成了一个有向无环图（DAG，就是GO分析里面的DOG喽），引用文档里面的一个图：</p>
-<p>官网文档：<a href="http://snakemake.readthedocs.io/en/latest/index.html">http://snakemake.readthedocs.io/en/latest/index.html</a></p>
-
+        
       </di>
     </article>
   
@@ -360,8 +341,7 @@
       </div>
       
       <div class="post-abstract">
-        <h1 id="简介">简介</h1><p>Interpro是一个数据库，它里面有蛋白功能，蛋白家族等信息。而Interproscan就是可以将你的蛋白序列跟这个这个数据比对，从而给你的序列功能注释。 Interproscan5新增了一些功能Phobius用来预测跨膜和信号肽可以把结果map到上传的数据上寻找蛋白可能的生物学代谢途径新的输出格式XML和GFF3.0提升了图形界面</p>
-
+        
       </di>
     </article>
   

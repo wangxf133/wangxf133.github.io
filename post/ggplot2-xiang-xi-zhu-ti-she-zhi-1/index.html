@@ -51,12 +51,6 @@
         </a>
       
     
-      
-        <a href="/post/member" class="menu">
-          成员
-        </a>
-      
-    
   </div>
 </div>
 
@@ -92,28 +86,25 @@
               <!--more-->
 
 <p>参考文章： <a href="http://www.rpubs.com/lihaoyi/156592">http://www.rpubs.com/lihaoyi/156592</a></p>
-<pre><code class="language-R"># install.packages(&#39;ggplot2&#39;) 安装ggplot2包
+<pre><code># install.packages(&#39;ggplot2&#39;) 安装ggplot2包
 
 # install.packages(&#39;gcookbook&#39;) 安装gcookbook包
 library(ggplot2)  #加载ggplot2包
-library(gcookbook)  #加载本书的数据包</code></pre>
-<h1 id="主题theme参数设置">主题theme参数设置</h1><p>改变字体类型、大小，图例、坐标轴、背景等各种元素，可通过theme()函数来完成</p>
-<pre><code class="language-R">library(ggplot2)
+library(gcookbook)  #加载本书的数据包</code></pre><h1 id="主题theme参数设置">主题theme参数设置</h1><p>改变字体类型、大小，图例、坐标轴、背景等各种元素，可通过theme()函数来完成</p>
+<pre><code>library(ggplot2)
 library(grid)  #为了使用unit函数
 p0 &lt;- ggplot(data = mpg, aes(x = displ, fill = factor(cyl))) + geom_bar(colour = 1, 
     binwidth = 0.2) + labs(title = &quot;plot title&quot;)
-p0  #基础图</code></pre>
-<p><img src="https://s1.ax2x.com/2018/08/24/5DrG0z.png" alt="5DrG0z.png"></p>
+p0  #基础图</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrG0z.png" alt="5DrG0z.png"></p>
 <h2 id="图片区参数设置">图片区参数设置</h2><ul>
 <li>plot.background： 图片区背景设置</li>
 <li>plot.title： 图片标题设置</li>
 <li>plot.margin： 图片区边缘距离设置</li>
 </ul>
 <p>将图片区背景填充色设置为lightblue，边框颜色设置为黑色，宽度设置为3，线型设置为虚线，图标题的字体颜色为黑色，粗体，字体大小30，顶部对齐，同时设置图边沿距离</p>
-<pre><code class="language-R">p0 + theme(plot.background = element_rect(colour = &quot;black&quot;, size = 3, linetype = 4, 
+<pre><code>p0 + theme(plot.background = element_rect(colour = &quot;black&quot;, size = 3, linetype = 4, 
     fill = &quot;lightblue&quot;), plot.title = element_text(colour = &quot;black&quot;, face = &quot;bold&quot;, 
-    size = 30, vjust = 1), plot.margin = unit(c(0.2, 0.2, 0.2, 0.2), &quot;inches&quot;))</code></pre>
-<p><img src="https://s1.ax2x.com/2018/08/24/5Dru6u.png" alt="5Dru6u.png"></p>
+    size = 30, vjust = 1), plot.margin = unit(c(0.2, 0.2, 0.2, 0.2), &quot;inches&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Dru6u.png" alt="5Dru6u.png"></p>
 <h2 id="绘图区（轴线围城的区域）参数设置">绘图区（轴线围城的区域）参数设置</h2><ul>
 <li>panel.background： 绘图区背景色，colour可以设置边框颜色，fill为填充色</li>
 <li>panel.border： 绘图区边框</li>
@@ -126,11 +117,9 @@ p0  #基础图</code></pre>
 <li>panel.grid.minor.y： y轴次要网格线</li>
 </ul>
 <pre><code>p0</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrJ59.png" alt="5DrJ59.png"></p>
-<pre><code class="language-R">p0 + theme(panel.background = element_rect(fill = &quot;lightblue&quot;))  #将图片区的背景色设置为lightblue</code></pre>
-<p><img src="https://s1.ax2x.com/2018/08/24/5DrZMA.png" alt="5DrZMA.png"></p>
-<pre><code class="language-R">p0 + theme(panel.background = element_rect(fill = &quot;lightblue&quot;, colour = &quot;red&quot;, 
-    size = 3))  #将图片区的背景色设置为lightblue，边框颜色为红色，边框宽度为3</code></pre>
-<p><img src="https://s1.ax2x.com/2018/08/24/5DrheO.png" alt="5DrheO.png"></p>
+<pre><code>p0 + theme(panel.background = element_rect(fill = &quot;lightblue&quot;))  #将图片区的背景色设置为lightblue</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrZMA.png" alt="5DrZMA.png"></p>
+<pre><code>p0 + theme(panel.background = element_rect(fill = &quot;lightblue&quot;, colour = &quot;red&quot;, 
+    size = 3))  #将图片区的背景色设置为lightblue，边框颜色为红色，边框宽度为3</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrheO.png" alt="5DrheO.png"></p>
 <h2 id="坐标轴参数设置">坐标轴参数设置</h2><ul>
 <li>axis.title： 轴标题</li>
 <li>axis.title.x： x轴标题</li>
@@ -148,7 +137,7 @@ p0  #基础图</code></pre>
 <li>axis.line.y： y轴线</li>
 </ul>
 <pre><code>p0</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrvRq.png" alt="5DrvRq.png"></p>
-<pre><code class="language-R">axis_theme&lt;-theme(
+<pre><code>axis_theme&lt;-theme(
   axis.title=element_text(
     #family=NULL,
     face = &quot;bold&quot;, #字体(&quot;plain&quot;, &quot;italic&quot;, &quot;bold&quot;, &quot;bold.italic&quot;)
@@ -177,8 +166,7 @@ p0  #基础图</code></pre>
   axis.line.x=element_line(colour=&quot;blue&quot;),#设置x轴线，优先于axis.line
   axis.line.y=element_line(colour=&quot;orange&quot;))#类似axis.line.x
 
-p0+axis_theme</code></pre>
-<p><img src="https://s1.ax2x.com/2018/08/24/5DrP0e.png" alt="5DrP0e.png"></p>
+p0+axis_theme</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrP0e.png" alt="5DrP0e.png"></p>
 <h2 id="图例参数设置">图例参数设置</h2><ul>
 <li>legend.background： 图例背景色</li>
 <li>legend.margin： 图例边界</li>
@@ -196,7 +184,7 @@ p0+axis_theme</code></pre>
 <li>legend.box： 有多个图例时的排列方式</li>
 </ul>
 <pre><code>p0</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Draad.png" alt="5Draad.png"></p>
-<pre><code class="language-R">legend_theme&lt;-theme(
+<pre><code>legend_theme&lt;-theme(
   legend.background=element_rect(
     colour=NA,#图例边框颜色
     fill=&quot;lightblue&quot;),#图例背景填充色
@@ -217,8 +205,7 @@ p0+axis_theme</code></pre>
   legend.box.just=&quot;top&quot;#多图例的居中方式
 )
 
-p0+legend_theme</code></pre>
-<p><img src="https://s1.ax2x.com/2018/08/24/5DrcSR.png" alt="5DrcSR.png"></p>
+p0+legend_theme</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrcSR.png" alt="5DrcSR.png"></p>
 
             </div>
           </article>
