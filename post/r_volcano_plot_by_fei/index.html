@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>R_Volcano_plot_by_fei | xiaofei</title>
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://wangxf133.github.io">
+  <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="80px" height="80px">
+  </a>
+  <h1 class="site-title">
+    xiaofei
+  </h1>
+  <p class="site-description">
+    东北师范大学-老博士一枚
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+      
+        <a href="/member" class="menu">
+          成员
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              R_Volcano_plot_by_fei
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-03-27 ·
+              </time>
+              
+                <a href="https://wangxf133.github.io/tag/m29Zf0LCY" class="post-tags">
+                  # R系列
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/SE-r0vN0o" class="post-tags">
+                  # plot
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/5lV_OSn0h" class="post-tags">
+                  # Volcano
+                </a>
+              
+            </div>
+            <div class="post-content">
+              <p>火山图的具体代码</p>
+<!--more-->
+<h1 id="1.安装">1.安装</h1><pre><code>install.packages(&quot;ggplot2&quot;)
+library(ggplot2)</code></pre><h1 id="2.设置工作路径">2.设置工作路径</h1><p>...</p>
+<h1 id="3.读取数据">3.读取数据</h1><pre><code>data &lt;- read.table(&quot;ETWvsTD265(116vs117)_vs.txt&quot;,sep=&quot;\t&quot;,header=TRUE,row.names=1)
+head(data)</code></pre><p>其实主要的那几行在就行</p>
+<p>“geneid”<br>“比值”<br>“p-value”<br> “q-value”<br>等就行，<br>别的其实都不需要</p>
+<p>自己的原始数据<br><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi1qbqiwlj21400k8q88.jpg" alt="原始数据"></p>
+<h1 id="4.数据处理">4.数据处理</h1><pre><code>data$fac=as.factor((data$ratio_116vs117 &gt; 1.2 | data$ratio_116vs117 &lt; 0.8333)&amp;data$qvalue_116vs117 &lt; 0.05)
+data$fac</code></pre><h1 id="5.简单绘图">5.简单绘图</h1><pre><code>ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= fac))+geom_point()</code></pre><p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi1utk8xmj20v60m4q3y.jpg" alt="简单绘图"></p>
+<h1 id="6.标记significant(从0列开始，正是因为附在后面，前面还多加了一列fac，所以是第15列)">6.标记significant(从0列开始，正是因为附在后面，前面还多加了一列fac，所以是第15列)</h1><pre><code>data$significant &lt;- &quot;no&quot;
+up_row &lt;- which(data$ratio_116vs117 &gt; 1.2 &amp; data$qvalue_116vs117 &lt; 0.05)
+data[up_row,15] &lt;- &quot;up&quot;
+
+down_row &lt;- which(data$ratio_116vs117 &lt; 0.8333 &amp; data$qvalue_116vs117 &lt; 0.05)
+data[down_row,15] &lt;- &quot;down&quot;
+
+data$significant</code></pre><h1 id="7.绘图——区分significant---up and down">7.绘图——区分significant---up and down</h1><pre><code>ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= significant))+geom_point()</code></pre><p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi214ympej20v60m43zj.jpg" alt="区分significant"></p>
+<h1 id="8.美化一下">8.美化一下</h1><pre><code>ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= significant)) + geom_point() + scale_color_manual(values = c(&quot;goldenrod1&quot;,&quot;lightgrey&quot;,&quot;firebrick2&quot;)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),legend.key=element_blank())
+</code></pre><p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi26s1bz0j20v60m4wfh.jpg" alt="美化后的"></p>
+<h1 id="9.生成图片和需要的文件">9.生成图片和需要的文件</h1><pre><code class="language-R">png(file = &quot;ETWvsTD265(116vs117)_volcano_significant.png&quot;)
+
+ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= significant)) + geom_point() + scale_color_manual(values = c(&quot;goldenrod1&quot;,&quot;lightgrey&quot;,&quot;firebrick2&quot;)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),legend.key=element_blank())
+
+
+dev.off()
+
+write.table(data,file=&quot;ETWvsTD265(116vs117)_volcano_significant.txt&quot;,sep=&quot;\t&quot;)
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-liu-pian-material-zhu-ti-an-zhuang-he-pei-zhi-xiang-qing">
+              <h3 class="post-title">
+                (构建个人博客第六篇)Material-主题安装和配置详情
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  Powered by Hve Notes
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

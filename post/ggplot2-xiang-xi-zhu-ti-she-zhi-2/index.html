@@ -1,0 +1,258 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ggplot2详细主题设置(2) | xiaofei</title>
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://wangxf133.github.io">
+  <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="80px" height="80px">
+  </a>
+  <h1 class="site-title">
+    xiaofei
+  </h1>
+  <p class="site-description">
+    东北师范大学-老博士一枚
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+      
+        <a href="/member" class="menu">
+          成员
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              ggplot2详细主题设置(2)
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-03-27 ·
+              </time>
+              
+                <a href="https://wangxf133.github.io/tag/ovnnE52Bd" class="post-tags">
+                  # ggplot2
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/aiZkRmWBa" class="post-tags">
+                  # 主题设置
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/fS-UqDGwf" class="post-tags">
+                  # 详细参数
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/6iQrV6R7j" class="post-tags">
+                  # R
+                </a>
+              
+            </div>
+            <div class="post-content">
+              <p><strong>theme()</strong>,本文将专门讲解一下。凡是与数据无关的图形设置可以归为主题类，ggplot2中主题设置十分多，根本不可能讲解完，只能稍微讲点皮毛，灵活运用才是关键，本文只是总体上略作介绍。正如R语言大神Hadley Wickham所讲的，ggplot2只是提供了一个平台，可以根据自己的需要无限创造。理论上来讲，只要能想到的图形，ggplot2都能实现。</p>
+<!--more-->
+
+<p>参考文章： <a href="http://ytlogos.coding.me/2017/06/25/ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98%EF%BC%88theme%EF%BC%89%E8%AE%BE%E7%BD%AE/">http://ytlogos.coding.me/2017/06/25/ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98%EF%BC%88theme%EF%BC%89%E8%AE%BE%E7%BD%AE/</a></p>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrEJY.png" alt="5DrEJY.png"></p>
+<pre><code class="language-R">library(ggplot2)
+#我们先来看看ggplot2默认的主题设置函数theme_gray()的源代码
+theme_gray#函数名不加括号可获得函数源代码
+## function (base_size = 11, base_family = &quot;&quot;) 
+## {
+## half_line &lt;- base_size/2
+## theme(line = element_line(colour = &quot;black&quot;, size = 0.5, linetype = 1, 
+## lineend = &quot;butt&quot;), rect = element_rect(fill = &quot;white&quot;, 
+## colour = &quot;black&quot;, size = 0.5, linetype = 1), text = element_text(family = base_family, 
+## face = &quot;plain&quot;, colour = &quot;black&quot;, size = base_size, lineheight = 0.9, 
+## hjust = 0.5, vjust = 0.5, angle = 0, margin = margin(), 
+## debug = FALSE), axis.line = element_blank(), axis.line.x = NULL, 
+## axis.line.y = NULL, axis.text = element_text(size = rel(0.8),
+## colour = &quot;grey30&quot;), axis.text.x = element_text(margin = margin(t = 0.8 * 
+## half_line/2), vjust = 1), axis.text.x.top = element_text(margin = margin(b = 0.8 * ## half_line/2), vjust = 0), axis.text.y = element_text(margin = margin(r = 0.8 * 
+## half_line/2), hjust = 1), axis.text.y.right = element_text(margin = margin(l = 0.8 * ## half_line/2), hjust = 0), axis.ticks = element_line(colour = &quot;grey20&quot;), 
+## axis.ticks.length = unit(half_line/2, &quot;pt&quot;), axis.title.x = element_text(margin = margin(t = half_line), 
+## vjust = 1), axis.title.x.top = element_text(margin = margin(b = half_line), 
+## vjust = 0), axis.title.y = element_text(angle = 90, 
+## margin = margin(r = half_line), vjust = 1), axis.title.y.right = element_text(angle = -90, 
+## margin = margin(l = half_line), vjust = 0), legend.background = element_rect(colour = NA), 
+## legend.spacing = unit(0.4, &quot;cm&quot;), legend.spacing.x = NULL, 
+## legend.spacing.y = NULL, legend.margin = margin(0.2, 
+## 0.2, 0.2, 0.2, &quot;cm&quot;), legend.key = element_rect(fill = &quot;grey95&quot;, 
+## colour = &quot;white&quot;), legend.key.size = unit(1.2, &quot;lines&quot;), 
+## legend.key.height = NULL, legend.key.width = NULL, legend.text = element_text(size = rel(0.8)), 
+## legend.text.align = NULL, legend.title = element_text(hjust = 0), 
+## legend.title.align = NULL, legend.position = &quot;right&quot;, 
+## legend.direction = NULL, legend.justification = &quot;center&quot;, 
+## legend.box = NULL, legend.box.margin = margin(0, 0, 0, 
+## 0, &quot;cm&quot;), legend.box.background = element_blank(),
+## legend.box.spacing = unit(0.4, &quot;cm&quot;), panel.background = element_rect(fill = &quot;grey92&quot;, 
+## colour = NA), panel.border = element_blank(), panel.grid.major = element_line(colour = &quot;white&quot;), 
+## panel.grid.minor = element_line(colour = &quot;white&quot;, size = 0.25), 
+## panel.spacing = unit(half_line, &quot;pt&quot;), panel.spacing.x = NULL, 
+## panel.spacing.y = NULL, panel.ontop = FALSE, strip.background = element_rect(fill = &quot;grey85&quot;, 
+## colour = NA), strip.text = element_text(colour = &quot;grey10&quot;, 
+## size = rel(0.8)), strip.text.x = element_text(margin = margin(t = half_line, 
+## b = half_line)), strip.text.y = element_text(angle = -90, 
+## margin = margin(l = half_line, r = half_line)), strip.placement = &quot;inside&quot;, 
+## strip.placement.x = NULL, strip.placement.y = NULL, strip.switch.pad.grid = unit(0.1, 
+## &quot;cm&quot;), strip.switch.pad.wrap = unit(0.1, &quot;cm&quot;), plot.background = element_rect(colour = &quot;white&quot;), 
+## plot.title = element_text(size = rel(1.2), hjust = 0, 
+## vjust = 1, margin = margin(b = half_line * 1.2)), 
+## plot.subtitle = element_text(size = rel(0.9), hjust = 0, 
+## vjust = 1, margin = margin(b = half_line * 0.9)),
+## plot.caption = element_text(size = rel(0.9), hjust = 1, 
+## vjust = 1, margin = margin(t = half_line * 0.9)),
+## plot.margin = margin(half_line, half_line, half_line, 
+## half_line), complete = TRUE)
+## }
+## &lt;environment: namespace:ggplot2&gt;</code></pre>
+<p>可以看出，源代码主要是theme()函数，设置也很简单：theme(..., complete = FALSE),但是其内含的参数则十分多。</p>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrL6i.png" alt="5DrL6i.png"><br><img src="https://s1.ax2x.com/2018/08/24/5DrU5y.png" alt="5DrU5y.png"></p>
+<p>几乎所有元素在theme()里都使用element_line，element_rect，element_text和element_blank函数设置. 下面就举例稍微讲解一下</p>
+<pre><code class="language-R">#利用数据集mtcars演示head(mtcars)
+#先创建p图层
+p&lt;- ggplot(data=mtcars, aes(x=wt, y=mpg))+
+geom_point(aes(color=factor(cyl)))#先试试图例修改
+p+theme(legend.position = &quot;none&quot;)#无图例</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrKOX.png" alt="5DrKOX.png"></p>
+<pre><code>p+theme(legend.position = &quot;bottom&quot;)#图例在底部</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Dr6QB.png" alt="5Dr6QB.png"></p>
+<p>#也可以自定义</p>
+<pre><code>p+theme(legend.position = c(0.5, 0.7))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrIa6.png" alt="5DrIa6.png"></p>
+<pre><code>#为图例加边界
+p+theme(legend.background = element_rect(color=&quot;red&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrNfp.png" alt="5DrNfp.png"></p>
+<pre><code>#或者为图例中的每个元素进行设置，如加边界
+p+theme(legend.key =element_rect(color=&quot;red&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrlX3.png" alt="5DrlX3.png"></p>
+<pre><code>#进行填充
+p+theme(legend.key = element_rect(fill=&quot;yellow&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Dr8JK.png" alt="5Dr8JK.png"></p>
+<pre><code>#图例内容字体大小、颜色、角度等设置
+p+theme(legend.text = element_text(size=25, color=&quot;darkred&quot;, angle=45))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrSIG.png" alt="5DrSIG.png"></p>
+<pre><code>#为图例标题设置字体、颜色、大小等
+p+theme(legend.title = element_text(face=&quot;italic&quot;, size=25, color=&quot;red&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Dri5n.png" alt="5Dri5n.png"></p>
+<p>接下来是坐标以及网格等的自定义</p>
+<pre><code class="language-R">#修改背景颜色
+p+theme(panel.background = element_rect(fill=&quot;black&quot;))</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrxOE.png" alt="5DrxOE.png"></p>
+<pre><code class="language-R">#修改边界线类型、颜色
+p+theme(panel.border = element_rect(linetype = &quot;dashed&quot;, color=&quot;red&quot;))</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5Dr2UQ.png" alt="5Dr2UQ.png"></p>
+<pre><code>#修改网格线p+theme(panel.grid.major = element_line(color=&quot;blue&quot;, size= 3))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Dr7g2.png" alt="5Dr7g2.png"></p>
+<pre><code>p+theme(panel.grid.minor = element_line(linetype = &quot;dotted&quot;, color=&quot;red&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrgQa.png" alt="5DrgQa.png"></p>
+<blockquote>
+<p>还可以修改x、y轴等，这里懒得讲了，有兴趣的可以自己捣鼓捣鼓</p>
+</blockquote>
+<p>了解theme之后就可以自己定义自己的主题，以后作图就直接像格式刷一样就行</p>
+<pre><code class="language-R">
+#下面是我比较常用的主题，画图时刷一下就行了
+windowsFonts(CA=windowsFont(&quot;Calibri&quot;))
+mytheme &lt;- theme_bw()+
+theme(legend.position = &#39;top&#39;, panel.border = element_blank(), 
+panel.grid.major = element_line(linetype = &#39;dashed&#39;), panel.grid.minor = 
+element_blank(), legend.text = element_text(size=9,color=&#39;#003087&#39;,family = &quot;CA&quot;), 
+plot.title = element_text(size=15,color=&quot;#003087&quot;,family = &quot;CA&quot;), legend.key = 
+element_blank(), axis.text = element_text(size=10,color=&#39;#003087&#39;,family = &quot;CA&quot;), 
+strip.text = element_text(size=12,color=&quot;#EF0808&quot;,family = &quot;CA&quot;), 
+strip.background = element_blank())
+pie_theme &lt;- mytheme+
+theme(axis.text = element_blank(), axis.ticks = element_blank(), axis.title = 
+element_blank(), panel.grid.major = element_blank())
+myline_blue &lt;- geom_line(color=&quot;#085A9C&quot;, size=2)
+myline_red &lt;- geom_line(color=&quot;#EF0808&quot;,size=2)
+myarea &lt;- geom_area(color=NA,fill=&quot;#003087&quot;,alpha=0.2)
+mypoint &lt;- geom_point(size=3,shape=21,color=&quot;#003087&quot;,fill=&quot;white&quot;)
+mybar &lt;- geom_bar(fill=&quot;#0C8DC4&quot;,stat = &quot;identity&quot;)
+mycolor_3 &lt;- scale_fill_manual(values = c(&quot;#085A9C&quot;,&quot;#EF0808&quot;,&quot;#526373&quot;))
+mycolor_7 &lt;- scale_fill_manual(values=c (&quot;#085A9C&quot;,&quot;#EF0808&quot;,&quot;#526373&quot;,&quot;#FFFFE7&quot;,&quot;#FF9418&quot;,&quot;#219431&quot;,&quot;#9C52AD&quot;))
+mycolor_line_7 &lt;- scale_color_manual(values=c (&quot;#085A9C&quot;,&quot;#EF0808&quot;,&quot;#526373&quot;,&quot;#FFFFE7&quot;,&quot;#FF9418&quot;,&quot;#219431&quot;,&quot;#9C52AD&quot;))</code></pre>
+<pre><code class="language-R">#可以来刷一刷#随便建个数据集
+x &lt;-rep(1:5, each = 3)
+y &lt;-rep(c(&#39;A&#39;,&#39;B&#39;,&#39;C&#39;),times = 5)
+set.seed(1111)
+z &lt;-round(runif(min = 10, max = 30, n = 15))
+df &lt;-data.frame(x = x, y = y, z = z)
+head(df)
+##   x   y   z
+## 1 1   A   19
+## 2 1   B   18
+## 3 1   C   28
+## 4 2   A   13
+## 5 2   B   25
+## 6 2   C   30
+#柱形图
+(p1 &lt;- ggplot(data=df, aes(x=factor(x), y=z, fill=y))+
+geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;)+
+ggtitle(&quot;自定义主题theme并应用实践&quot;))+
+xlab(&quot;随便定义了个x&quot;)+ylab(&quot;随机数&quot;)</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrwXh.png" alt="5DrwXh.png"></p>
+<pre><code>p1+mytheme</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DC3ZH.png" alt="5DC3ZH.png"></p>
+<pre><code>p1+mytheme+mycolor_7</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DC5IN.png" alt="5DC5IN.png"></p>
+<p>还有线图、饼图等有兴趣的也可以自己刷一刷，你会发现ggplot2的魅力所在就是它拥有无穷的可能性。</p>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-1">
+              <h3 class="post-title">
+                ggplot2详细主题设置(1)
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  Powered by Hve Notes
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

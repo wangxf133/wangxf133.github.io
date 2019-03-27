@@ -1,0 +1,251 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ggplot2详细主题设置(1) | xiaofei</title>
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://wangxf133.github.io">
+  <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="80px" height="80px">
+  </a>
+  <h1 class="site-title">
+    xiaofei
+  </h1>
+  <p class="site-description">
+    东北师范大学-老博士一枚
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+      
+        <a href="/member" class="menu">
+          成员
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              ggplot2详细主题设置(1)
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-03-27 ·
+              </time>
+              
+                <a href="https://wangxf133.github.io/tag/ovnnE52Bd" class="post-tags">
+                  # ggplot2
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/aiZkRmWBa" class="post-tags">
+                  # 主题设置
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/fS-UqDGwf" class="post-tags">
+                  # 详细参数
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/6iQrV6R7j" class="post-tags">
+                  # R
+                </a>
+              
+            </div>
+            <div class="post-content">
+              <!--more-->
+
+<p>参考文章： <a href="http://www.rpubs.com/lihaoyi/156592">http://www.rpubs.com/lihaoyi/156592</a></p>
+<pre><code class="language-R"># install.packages(&#39;ggplot2&#39;) 安装ggplot2包
+
+# install.packages(&#39;gcookbook&#39;) 安装gcookbook包
+library(ggplot2)  #加载ggplot2包
+library(gcookbook)  #加载本书的数据包</code></pre>
+<h1 id="主题theme参数设置">主题theme参数设置</h1><p>改变字体类型、大小，图例、坐标轴、背景等各种元素，可通过theme()函数来完成</p>
+<pre><code class="language-R">library(ggplot2)
+library(grid)  #为了使用unit函数
+p0 &lt;- ggplot(data = mpg, aes(x = displ, fill = factor(cyl))) + geom_bar(colour = 1, 
+    binwidth = 0.2) + labs(title = &quot;plot title&quot;)
+p0  #基础图</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrG0z.png" alt="5DrG0z.png"></p>
+<h2 id="图片区参数设置">图片区参数设置</h2><ul>
+<li>plot.background： 图片区背景设置</li>
+<li>plot.title： 图片标题设置</li>
+<li>plot.margin： 图片区边缘距离设置</li>
+</ul>
+<p>将图片区背景填充色设置为lightblue，边框颜色设置为黑色，宽度设置为3，线型设置为虚线，图标题的字体颜色为黑色，粗体，字体大小30，顶部对齐，同时设置图边沿距离</p>
+<pre><code class="language-R">p0 + theme(plot.background = element_rect(colour = &quot;black&quot;, size = 3, linetype = 4, 
+    fill = &quot;lightblue&quot;), plot.title = element_text(colour = &quot;black&quot;, face = &quot;bold&quot;, 
+    size = 30, vjust = 1), plot.margin = unit(c(0.2, 0.2, 0.2, 0.2), &quot;inches&quot;))</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5Dru6u.png" alt="5Dru6u.png"></p>
+<h2 id="绘图区（轴线围城的区域）参数设置">绘图区（轴线围城的区域）参数设置</h2><ul>
+<li>panel.background： 绘图区背景色，colour可以设置边框颜色，fill为填充色</li>
+<li>panel.border： 绘图区边框</li>
+<li>panel.grid： 网格线</li>
+<li>panel.grid.major： 主要网格线</li>
+<li>panel.grid.minor： 次要网格线</li>
+<li>panel.grid.major.x： x轴主要网格线</li>
+<li>panel.grid.major.y： y轴主要网格线</li>
+<li>panel.grid.minor.x： x轴次要网格线</li>
+<li>panel.grid.minor.y： y轴次要网格线</li>
+</ul>
+<pre><code>p0</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrJ59.png" alt="5DrJ59.png"></p>
+<pre><code class="language-R">p0 + theme(panel.background = element_rect(fill = &quot;lightblue&quot;))  #将图片区的背景色设置为lightblue</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrZMA.png" alt="5DrZMA.png"></p>
+<pre><code class="language-R">p0 + theme(panel.background = element_rect(fill = &quot;lightblue&quot;, colour = &quot;red&quot;, 
+    size = 3))  #将图片区的背景色设置为lightblue，边框颜色为红色，边框宽度为3</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrheO.png" alt="5DrheO.png"></p>
+<h2 id="坐标轴参数设置">坐标轴参数设置</h2><ul>
+<li>axis.title： 轴标题</li>
+<li>axis.title.x： x轴标题</li>
+<li>axis.title.y： y轴标题</li>
+<li>axis.text： 轴刻度值</li>
+<li>axis.text.x： x轴刻度值</li>
+<li>axis.text.y： y轴刻度值</li>
+<li>axis.ticks： 轴刻度线</li>
+<li>axis.ticks.x： x轴刻度线</li>
+<li>axis.ticks.y： y轴刻度线</li>
+<li>axis.ticks.length： 轴刻度线长度，负值向里</li>
+<li>axis.ticks.margin： 轴刻度线与轴刻度值的距离</li>
+<li>axis.line： 轴线</li>
+<li>axis.line.x： x轴线</li>
+<li>axis.line.y： y轴线</li>
+</ul>
+<pre><code>p0</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrvRq.png" alt="5DrvRq.png"></p>
+<pre><code class="language-R">axis_theme&lt;-theme(
+  axis.title=element_text(
+    #family=NULL,
+    face = &quot;bold&quot;, #字体(&quot;plain&quot;, &quot;italic&quot;, &quot;bold&quot;, &quot;bold.italic&quot;)
+    colour = &quot;red&quot;, #字体颜色
+    size = 25,#字体大小
+    hjust = .5, #调整轴标题1：纵轴靠上，横轴靠右；0.5居中；0：纵轴靠下，横轴靠左
+    vjust = .5, #1：靠图边框；0靠近轴线；.5居中
+    angle = 0 #为什么只对横轴标题有作用？
+ ),
+  axis.title.x=element_text(colour=&quot;blue&quot;),#x轴标题设置，优先级高于axis.title
+  axis.title.y=element_text(colour=&quot;orange&quot;),#同上
+  axis.text=element_text(colour=&quot;red&quot;),#设置坐标轴刻度数字
+  axis.text.x=element_text(colour=&quot;blue&quot;),#优先级高于aixis.text
+  axis.text.y=element_text(colour=&quot;orange&quot;),#同上
+  axis.ticks=element_line(#坐标轴刻度线的设置
+    colour=&quot;red&quot;,
+    size=.5,
+    linetype=1,
+    lineend=1),
+  axis.ticks.x=element_line(colour=&quot;blue&quot;),#优先级高于axis.ticks
+  axis.ticks.y=element_line(colour=&quot;orange&quot;),#同上
+  axis.ticks.length=unit(.4,&quot;lines&quot;),#设置刻度线的高度
+  axis.ticks.margin=unit(.4,&quot;cm&quot;),#设置刻度数字与刻度线的距离
+  axis.line=element_line(#设置轴线
+    colour=&quot;red&quot;),
+  axis.line.x=element_line(colour=&quot;blue&quot;),#设置x轴线，优先于axis.line
+  axis.line.y=element_line(colour=&quot;orange&quot;))#类似axis.line.x
+
+p0+axis_theme</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrP0e.png" alt="5DrP0e.png"></p>
+<h2 id="图例参数设置">图例参数设置</h2><ul>
+<li>legend.background： 图例背景色</li>
+<li>legend.margin： 图例边界</li>
+<li>legend.key： 图例分类标识底部背景颜色</li>
+<li>legend.key.size： 图例标识大小</li>
+<li>legend.key.height： 图例标识的高度</li>
+<li>legend.key.width： 图例标识的宽度</li>
+<li>legend.text： 图例分类标签</li>
+<li>legend.text.align： 图例分类标签对齐方式</li>
+<li>legend.title： 图例标题</li>
+<li>legend.title.align： 图例标题的对齐方式</li>
+<li>legend.position： 图例位置</li>
+<li>legend.direction： 图例类别排列方向</li>
+<li>legend.justification： 图例位置的偏移调整</li>
+<li>legend.box： 有多个图例时的排列方式</li>
+</ul>
+<pre><code>p0</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Draad.png" alt="5Draad.png"></p>
+<pre><code class="language-R">legend_theme&lt;-theme(
+  legend.background=element_rect(
+    colour=NA,#图例边框颜色
+    fill=&quot;lightblue&quot;),#图例背景填充色
+  legend.margin=unit(.2,&quot;inches&quot;),#图例与图片区边缘的距离
+  legend.key=element_rect(fill=&quot;yellow&quot;),
+  legend.key.size=unit(.2,&quot;inches&quot;),#图例分类符号的大小
+  legend.key.height=unit(.5,&quot;inches&quot;),#图例分类符号高度
+  legend.key.width=unit(.5,&quot;inches&quot;),#图例符号的宽度
+  legend.text=element_text(colour=&quot;red&quot;,size=20),#图例分类标签设置
+  legend.text.align=0,#0左，1右，0.5居中， 图例分类标签的对齐方式
+  legend.title=element_text(colour=&quot;blue&quot;,size=20),#图例标题设置
+  legend.title.align=1,#图例标题对齐方式
+  legend.position=c(0.6,.7),#&quot;none&quot;,&quot;left&quot;,&quot;right&quot;,&quot;bottom&quot;,&quot;top&quot;,or 
+  # two-element numeric vector,(0,0)-(1,1)
+  legend.direction=&quot;horizontal&quot;,#&quot;vertical&quot; 图例排列方向
+  legend.justification=c(.4,.4),#&quot;center&quot; or two-element numeric vector
+  legend.box=&quot;vertical&quot;,#&quot;horizontal&quot;,对图例的排列方式
+  legend.box.just=&quot;top&quot;#多图例的居中方式
+)
+
+p0+legend_theme</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrcSR.png" alt="5DrcSR.png"></p>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://wangxf133.github.io/post/circos-pei-zhi-wen-jian">
+              <h3 class="post-title">
+                Circos配置文件
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  Powered by Hve Notes
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

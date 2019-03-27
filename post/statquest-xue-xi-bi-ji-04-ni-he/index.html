@@ -1,0 +1,253 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>StatQuest学习笔记04——拟合 | xiaofei</title>
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://wangxf133.github.io">
+  <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="80px" height="80px">
+  </a>
+  <h1 class="site-title">
+    xiaofei
+  </h1>
+  <p class="site-description">
+    东北师范大学-老博士一枚
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+      
+        <a href="/member" class="menu">
+          成员
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              StatQuest学习笔记04——拟合
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-03-27 ·
+              </time>
+              
+                <a href="https://wangxf133.github.io/tag/gkCUFXxT1" class="post-tags">
+                  # 统计基础
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/JNSPoGdBU" class="post-tags">
+                  # 统计学
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/Dz5lYxdVx" class="post-tags">
+                  # StatQuest
+                </a>
+              
+            </div>
+            <div class="post-content">
+              <h2 id="前言">前言</h2><p>这篇笔记是StatQuest视频的第13到第15，文件13内容是拟合度；文件14是内容是线性回归；文件15是局部加权最小二乘法。</p>
+<!--More-->
+
+<hr>
+<p>在这篇笔记中，我们需要弄清楚几个问题：</p>
+<ul>
+<li>什么是相关系数（correlation，简称为R），相关系数的值有什么意义？</li>
+<li>我们为什么关注R的平方？</li>
+<li>最小二乘法的原理．</li>
+</ul>
+<h2 id="第1个案例：r的平方">第1个案例：R的平方</h2><p>先看一个案例，下图是小鼠的体重与小鼠编号的散点图，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/I88BACB2C7.png?imageslim" alt=""></p>
+<p>红色的是点是小鼠的体重，黑色的横线是平均值。x轴上是小鼠的编号，如果我们要查看这组数据的变异（variation），我们就把每只小鼠的体重减去平均值，然后再平方，再加起来（这个在统计学上叫离均差平方和，英文是sum of squares of deviations from mean），用数学公式就是下面的这个样子：</p>
+<blockquote>
+<p>离均差平方和(SS - sum of squares of deviation from mean)是统计学中度量离散趋势的重要指标之一，SS越大说明总体的变异程度越大，说明数据离散程度越大。<br>它的计算方式是计算每个观测值与均值的差，将其平方后相加。可以看出，离均差平方和与方差之间的关系，只要对离均差平方和再除以向本的数量，就会得到方差。</p>
+</blockquote>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/Hj239BG5DE.png?imageslim" alt=""></p>
+<p>此时我们再找一种方法绘制这个散点图，此时将x轴坐标改为小鼠的大小，y轴还是小鼠的体重，此时散点图就是下图这个样子：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/D9bfjL9i7g.png?imageslim" alt=""></p>
+<p>此时，它的平均值还是不变的，还是如下图的样子：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/7bmGhLBi4J.png?imageslim" alt=""></p>
+<p>从这个图上，我们直观上可以看出，小鼠的体重貌似是随着小鼠的大小而增加的（这个很好理解，不解释）。此时，我们可以再想一下，我们是否能够通过小鼠的大小来预测它的体重？我们画一条线，大致符合这些数据点的分布，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/Hd2jFhEd2l.png?imageslim" alt=""></p>
+<p>此时，如果我们已知一个小鼠的大小（size），我们就能够根据这条直线大致知道这个小鼠的体重。但是此时有个问题，这条直接是否能够比平均值代表这批小鼠的大小与体重的关系？其实是可以的，我们有个指标，就是R的平方，它能判断某条直线是否代表了小鼠的大小和体重的关系，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/F4aD1GFGBE.png?imageslim" alt=""></p>
+<p>此时我们可以计算这个直线与均值的差异，其实就是计算R2<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/AKlI1J7Jke.png?imageslim" alt=""></p>
+<p>通过计算，var(mean)=32,Var(line)=6，根据公式，R2R2如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/GFLkH7010k.png?imageslim" alt=""></p>
+<p>注：R2在统计学上叫决定系数（determination coefficient），它反映了因变量的变异能够被模型（纳入的自变量）所解释的比例，也就是模型解释的变异占总变异的比例，此案例中，这条直线能够解释81%的体重与大小的关系。</p>
+<p>这个案例中讲的情况我们在用BCA测蛋白浓度法时经常使用，x轴是吸光度，y轴是蛋白含量，通过做曲线，找出吸光度与蛋白浓度的关系，曲线做得好，R的平方能达到0.99，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/E05A82dC09.png?imageslim" alt=""></p>
+<h2 id="第2个案例">第2个案例</h2><p>再看一个案例，在这个案例中，x轴是小鼠嗅岩石所花的时间（我不太清楚这是什么实验，照字面翻译了），y轴是小鼠的体重，它的散点图以及计算的R平方如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/AD9j5DJ4c5.png?imageslim" alt=""></p>
+<p>结果显示，R的平方是6%，它也就是说小鼠嗅岩石所花的时间与小鼠的体重关系不大，这条蓝色只能解释6%的变异。</p>
+<h2 id="r平方的意义">R平方的意义</h2><p>因此，我们在做某条直线来表示两个变量之间的关系时，如果R的平方是0.9，那么我们可以说，<strong>这条直接可以解释这两个变量90%的变异</strong>。如果是0.01，那么我们可以说，这条直接只能解释这两个变量1%的变异，也就是说这两个变量没什么关系。<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/910Bd7Cgak.png?imageslim" alt=""></p>
+<p>R与R的平方</p>
+<p>那么什么是R，什么是R的平方呢？什么时候使用这两个参数？看下图的解释：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/78KEgaKB9J.png?imageslim" alt=""></p>
+<p>通过情况，评估一个直线的好坏，都是看R平方的，它直接代表了变异，更好解释直线的拟合好坏，而不是看R（很多统计软件中也都是这样）。例如一个直线的R是0.7，另外一个是0.5，那么转换为R的平方，肯定是前者比后者要好，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/4B22cJ13Fh.png?imageslim" alt=""></p>
+<p>但R的平方也有局限，就是R的平方都是正值，没有负值，它不代表两个变量的具体关系，也就是说，这两个变量是正相关（一个增加，另外一个也增加），还是负相关（一个增加，另外一个减少），此时就要看R了，R是正值，表示正相关，R是负值，表示负相关。</p>
+<p>结论就是，R的平方表示直线的拟合程度，R表示了两个变量变化的关系。</p>
+<h2 id="线性回归">线性回归</h2><p>先看一个场景，下图是某个散点图：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/2a53hIiL2J.png?imageslim" alt=""></p>
+<p>此时我们要绘制一条直线来代表这些点，这些直线可以有多条，就像下面的这些直线一样：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/DJIKHe7aLC.png?imageslim" alt=""></p>
+<p>但此时有个问题：哪一条直线最合适？<br>问题解决思路如下：<br>第一，假如我们先随便找条直接，例如y=3.5这条直线，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/0JE9m2bal5.png?imageslim" alt=""></p>
+<p>我们可以计算这些点与这条直线的接近程序，例如第一个点（x1,y1），如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/gI7lG006j2.png?imageslim" alt=""></p>
+<p>那么第2个点的距离就是这个样子：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/f1F3dF4ijH.png?imageslim" alt=""><br>再接着，计算第3个，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/3C19h8gAAH.png?imageslim" alt=""></p>
+<p>还有第4个点：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/9c527i8590.png?imageslim" alt=""></p>
+<p>这第4个点与前面3个点不太一样，因为，b-y4是一个负值，第5个点也是如下：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/C23lIeDkG8.png?imageslim" alt=""></p>
+<p>第4个点与第5个点和前面的点不太一样，因为前面的b-y1，b-y2，b-y3都是正值，那么最终计算这些点与这个条直接的距离总和时，会相互抵消，为了避免这个问题，可以将所有的数值平方，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/cfkahca5D4.png?imageslim" alt=""></p>
+<p>此时，计算一下这些值的平方，数值为24.62，这个数值在统计学上叫残差平方和（sum of squared residuals，简称SSE)，残差（residual）指的是实际数据与拟合曲线的差值平方的和，这个值越小，表示实际的数值离拟合曲线的距离越小，也就是越能代表这些真实的数据，求出的这条曲线的方程的过程叫线性回归（Linear regression）<br>此时，我们再换条曲线试试，就是把上面的这条曲线旋转一下，再计算一下SSE，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/fcglJic4Bd.png?imageslim" alt=""></p>
+<p>它的SSE是18.72，貌似比第一曲线更好，再旋转一下看看：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/7A5CI3h038.png?imageslim" alt=""></p>
+<p>它的SSE是14.05，貌似更好，再旋转一下试试：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/2h8fH1gh8j.png?imageslim" alt=""></p>
+<p>这个SSE是31.71，貌似就比较差了。此时我们再看一下常规的曲线方程，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/m2kEF7kaem.png?imageslim" alt=""></p>
+<p>其中，a代表这条曲线的斜率，b代表截矩。我们要寻找最佳的拟合曲线必然是SSE最小的那条。而在统计学中，我们经常把下面的公式叫做残差平方和，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/B5IBG15h4l.png?imageslim" alt=""></p>
+<p>由于我们寻找这条曲线（寻找这条曲线，其实就是寻找这条曲线的斜率与截矩）的方法是通过寻找最小的SSE这个原理实现的，因此，这种求直线的方法就叫做最小二乘法（Least squares）（为什么这种方法的中文译名与英语差异这么大？因为平方在中国古代的数学中就叫二乘，因此这种方法就翻译成了最小二乘法），如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/JDmgEJ3HBl.png?imageslim" alt=""></p>
+<p>如果我们将上面的这些曲线以及旋转后的曲线的SSE绘制出来，我们就会得到下面的这个图形：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/HBiI9JEALI.png?imageslim" alt=""></p>
+<p>x轴上是各种曲线的形状（它们拥有不同的斜率与截矩），y轴是SSE。上面的散点图的本质其实也是一条曲线（数学上的曲线包括弯曲的线与直线，它是点运动的集合），如何找到最佳拟合的曲线（这条曲线指提原始数据的拟合曲线）呢，就是对曲线（这里的曲线指的上图的这条曲线，也就是不同斜率和截矩下的各种曲线的SSE的集合）求导（derivative），那么导数为0时，也就是SSE最小（导数的推导与意义可以参见高中数学），如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/IlaCmBLlL0.png?imageslim" alt=""></p>
+<p>过程如下：<br>先看第一个点：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/60f84gccKJ.png?imageslim" alt=""></p>
+<p>再看第二个点：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/8IaamD6I56.png?imageslim" alt=""></p>
+<p>第三个点：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/1bHhicc2Da.png?imageslim" alt=""></p>
+<p>在第三个点处的导数斜率为0（这点很重要），还有这些点：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/dgi53mCaee.png?imageslim" alt=""></p>
+<p>再回头看第3个点：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/iaa56BhjLi.png?imageslim" alt=""></p>
+<p>我们只需要记住，在对原始数据进行拟合时，曲线的旋转代表了不同的斜率a和截矩b。</p>
+<p>在计算最佳的拟合曲线时，我们还使用一种三维坐标系（x轴是斜率，y辆是截矩，z值是SSE），如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/h661AB8AB2.png?imageslim" alt=""></p>
+<p>那么如果我们选定一个截矩，然后绘制不同斜率对应的SSE，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/388D924jFa.png?imageslim" alt=""></p>
+<p>接着，我们按照同样的方法绘制大量不同截矩与斜率的曲线对应的SSE，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/k9f3kclAIG.png?imageslim" alt=""></p>
+<p>然后计算这些曲线的斜率与截矩的导数，然后找出导数为0时的斜率与截矩。这种方法的计算过程通常是由计算机完成的。最终求出的线性回归方程如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/68cK9g8L4G.png?imageslim" alt=""></p>
+<h2 id="局部线性回归">局部线性回归</h2><p>现在我看一个散点图，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180606/L0iI9gf5kk.png?imageslim" alt=""></p>
+<p>我们如果对这散点进行拟合，困难貌似比较大，因为这些散点图不可能用一个方程表示的直线进行拟合。因此，我们为了拟合这种散点图，就要换一种方法，这种方法的核心思想是：</p>
+<p>第一，将这些散点通过一个滑动的窗口将它们分成更小的部分，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/2754EGKj3D.png?imageslim" alt=""></p>
+<p>第二，在每个滑动窗口中，对这一小部分数据进行拟合，求出它的线性回归方向，此时，就跟线性回归一样了，最终再把这些线性回归方程汇总起来，其本质我觉得就是微积分的思想，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/2im7m9Il3g.png?imageslim" alt=""></p>
+<p>下面是具体的思维过程，上面的散点图有点复杂，我们先看一个比较简单的散点图，我们把下面的散点图以x轴的5个单位为基本单位进行窗口的划分，那么第一个滑动窗口中含有5个数据点，就是图中绿色方框圈起来的部分，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/Hi5di4l7Aa.png?imageslim" alt=""></p>
+<p>此时，我们把这个方框中的第一个点称为这个窗口的焦点（focal point），如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/D4HI84ab12.png?imageslim" alt=""><br>在第一个滑动窗口的这5个点中，第2个点就是最接近焦点的点，它距离焦点是1个单位，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/8hDacHf4Hk.png?imageslim" alt=""></p>
+<p>第3个点就是第2个最接近焦点的点，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/iEBja97flL.png?imageslim" alt=""></p>
+<p>同理，还有第3个，第4个最接近焦点的点，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/IB930je8bl.png?imageslim" alt=""></p>
+<p>此时，我们对这5个点做一个“加权最小二乘”（weighted least squares），离焦点最近的点它的权重（weight）就大（权重可以理解为影响拟合曲线的影响力），如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/f8mB03iJ4f.png?imageslim" alt=""></p>
+<p>由上述描述可知，焦点的权重最大，而其余点的权重与其跟焦点的距离成反比，最远的点（也就是上图中4号点）权重最小，此时，我们先做一个普通的最小二乘法线性回归，此时的回归并不考虑各个点的权重，它的曲线如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/7K4mKbHBJa.png?imageslim" alt=""></p>
+<p>我们再做一个加权后的线性回归，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/6Lkc9Je5g7.png?imageslim" alt=""></p>
+<p>从图中可以知，最后一个点的权重小，它对于这线曲线的斜率影响不大，并不会把斜率拉高，此时我就对这5个数据点有了一条拟合曲线，此时，我们把第1个点（也就是上图黑色的点）的x轴坐标代入这个拟合的曲线方程，求出一个新的点的坐标，这个新的点的坐标就是我们最终要拟合的曲线上的点，就是下图的红叉所在位置（虽然这个红叉在图片上与第1个点重合，但它们不是一个点），如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/ckL3L8f6HJ.png?imageslim" alt=""></p>
+<p>我们再继续。此时我们把第2个点当作是焦点，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/lDfA33l186.png?imageslim" alt=""></p>
+<p>这个滑动窗口中还是含有原来的4个点，但是离焦点最近的点的已经变成了2个，它们离焦点是1个单位，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/BgKfBdCHiH.png?imageslim" alt=""></p>
+<p>接着，离焦点次近一点的是离焦点有2个单位的点，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/KGaial5089.png?imageslim" alt=""></p>
+<p>最远的点，是距离焦点有3个单位的点，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/iBJj3FEl1m.png?imageslim" alt=""></p>
+<p>此时，我们使用加权最小二乘法时，焦点权重最大，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/faL4m0i9L7.png?imageslim" alt=""></p>
+<p>两边的两个点权重次之，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/f5Dc4il0m7.png?imageslim" alt=""></p>
+<p>最远的点，权重最小，此时我们画出拟合曲线，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/B6f5D80Kjm.png?imageslim" alt=""></p>
+<p>此时，我们利用这个方程求出最终要拟合曲线上的点（这个点的x轴坐标与上面第2个点的x轴坐标一样，但y轴坐标不一样），因此，这个红叉所在点（虽然图片上看上去这个红叉是与第2个点重合，其实是不是重合的）是我们最终要拟合的曲线上的第2个点，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/9ieKF2IlFb.png?imageslim" alt=""></p>
+<p>此时，我们再研究第3个点，将它当成焦点，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/G31G6e8hii.png?imageslim" alt=""></p>
+<p>方法如同第1个点和第2个点一样，以第3个点为焦点拟合的曲线如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/DaGKkifCj7.png?imageslim" alt=""></p>
+<p>其中，红叉的地方，就是我们最终要拟合的曲线上的点，接着，我们看第4个点，如果第4个点是焦点的话，此时有点不太一样，这个滑动窗口与前面第1，2，3个点的窗口都有所不同（1，2，3个点的窗口其实是一样的，因为距离它们最近的5个点都相同），而第4个点的话，离它最近的4个点（一个窗口一共是5个点），并不包括第1个点，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/I2K851gC1H.png?imageslim" alt=""></p>
+<p>离第4个点最近的两个点在它的两边，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/Fd52hD8FhJ.png?imageslim" alt=""></p>
+<p>其次，离它次近的两个点是稍远一点的，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/0EHHhC7h7L.png?imageslim" alt=""><br>从图上可知，我们划分窗口宽度的时候，只考虑x轴，并不考虑y轴。此时，我们采用加权最小二乘法进行拟合，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/3jfdDA4b2C.png?imageslim" alt=""></p>
+<p>然后，根据这条曲线，计算我们最终要拟合曲线上的点，它的求法是将第4个点的x轴坐标代入上面的曲线方程，求出这个拟合曲线上的点，如下所示（此时的这个点与第4个点并不重合，只是x轴坐标一样）：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/25GhCh0dfF.png?imageslim" alt=""></p>
+<p>此时，我们再看一下我们前面求出的新的点，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/kEL3LDjl2m.png?imageslim" alt=""></p>
+<p>按照这个方法，我们划出一个窗口，然后求出这个窗口中的拟合曲线，然后计算这个窗口中焦点对应的最终拟合曲线上的新的点，最终，求出的所有新的点如下图中的红叉所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/L9ddJi9mf5.png?imageslim" alt=""></p>
+<p>从下面的图我们可知，黑色椭圆中的这些点是被最上面的点拉上去了，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/e3IL99dLg9.png?imageslim" alt=""></p>
+<p>而最上面的这个点就是个离群点（outliner），为了避免这个点对整体拟合效果的影响，我们需要根据这个点距离原始点和新生成点的距离，对这个点额外添加一个权重，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/e102G9aG6J.png?imageslim" alt=""></p>
+<p>从上面的图还可以知道，大括号标中的点的权重比较低，因为原始点与新生成的点距离比较远。而下面的这个点权重更低，因为它离得更远，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/8LiGDcHKHB.png?imageslim" alt=""></p>
+<p>根据新生成的点与原始点之间的距离，我们可以计算出新的权重，这样我们此时就有了两组权重，<br>第一组就是基于每个窗口中，每个点距离焦点距离的原始权重，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/KgAkeA274i.png?imageslim" alt=""></p>
+<p>第二组就是基于原始点与新生成点的距离的权重，如下所示：<br>根据这些权重调整了原始点与新生成点的位置后，我们就可以看到“新-新”的点（new-new point），从下图中的第4个点和第5个点就能明显看出来，它们之间的距离缩短了，如下所示，利用这些调整后的点绘制曲线，就会显得更加光滑。</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/Bh0A3adHCH.png?imageslim" alt=""></p>
+<p>我们把所有的点都进行调整，我们就会得到一个完美，平滑的回归曲线，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/10HH8A1kEL.png?imageslim" alt=""></p>
+<p>不过，这个调整过程要不断地进行几次才能得到理想的平滑曲线，以下就是最终得到的曲线：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/1cAB3l9K6d.png?imageslim" alt=""></p>
+<p>另外的思考</p>
+<p>我们试想一下，在第1个窗口中，我们采用回归曲线是直线，其实它也可以做成抛物线，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/m01AKA5Bbi.png?imageslim" alt=""></p>
+<p>我们先看一个案例，还是最初的散点图：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/A6AllAK8FG.png?imageslim" alt=""></p>
+<p>下图的黑色曲线是在每一步都采用了加权最小二乘法得到的曲线，蓝色曲线是在每一步都采用了抛物线进行拟合的曲线：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/J7lbh4a9l2.png?imageslim" alt=""></p>
+<p>从图中我们可以看到，貌似划线的拟合效果更好。在而R语言中，如果只想拟合为常规的这种直线，可以采用<strong>lowess()函数</strong>，如果想要拟合为抛物线(或直线??)，可以采用<strong>loess()函数</strong>，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/a9elCdCeI9.png?imageslim" alt=""></p>
+<p>在Ｒ中，使用loess()函数还能绘制出曲线的置信区间，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/aDH2Lb7cem.png?imageslim" alt=""></p>
+<p>关于滑动窗口的设置取决于用户自身，滑动窗口的划分可以按照精确的单位进行划分，也可以按照百分比来进行划分，下图我认为是使用了5%这个比例来进行划分的（从图上大概可以看出来，5%的比例范围内，这个曲线是直线）：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/FAbeGjJ88h.png?imageslim" alt=""></p>
+<p>下图的蓝色拟合曲线是使用了总数据点的三分之一进行窗口划分的：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/d72h86EFj5.png?imageslim" alt=""></p>
+<p>下图的红色曲线是使用了R语言中loess()这个函数的默认值进行拟合的，而它的默认值是75%的数据点，如下所示：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/E16gaHkf5D.png?imageslim" alt=""></p>
+<p>关于权重<br>计算权重的公式仅仅是出于数学上的考虑，并没有考虑它们的生物学或物理学上的意义。</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/Hb8GjCGj0g.png?imageslim" alt=""></p>
+<p>下图的左图是考虑了每个数据点距离x轴的距离后计算的权重，下图的右图是考虑了原始数据点与新生成数据点的距离后计算的权重：</p>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/Cg0b0h8I0h.png?imageslim" alt=""></p>
+<p>下图左图是对这两种权重进行比较，我们可以发现，这两种权重有一些微妙的差别，而右图表示的是另外的一种权重函数（右图没听清楚原视频中说的是什么意思，有空翻一下书再来补充）：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180607/LaIeacaadC.png?imageslim" alt=""></p>
+<p>参考：<a href="http://rvdsd.top/2018/06/04/BioStatistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-StatQuest%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B004-%E6%8B%9F%E5%90%88/">http://rvdsd.top/2018/06/04/BioStatistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-StatQuest%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B004-%E6%8B%9F%E5%90%88/</a></p>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-03-biao-zhun-chai-biao-zhun-yu-zhi-xin-qu-jian">
+              <h3 class="post-title">
+                StatQuest学习笔记03——标准差、标准与置信区间
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  Powered by Hve Notes
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

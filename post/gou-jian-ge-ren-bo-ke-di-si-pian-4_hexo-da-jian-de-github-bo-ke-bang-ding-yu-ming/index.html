@@ -1,0 +1,135 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>(构建个人博客第四篇)4_hexo搭建的Github博客绑定域名 | xiaofei</title>
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://wangxf133.github.io">
+  <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="80px" height="80px">
+  </a>
+  <h1 class="site-title">
+    xiaofei
+  </h1>
+  <p class="site-description">
+    东北师范大学-老博士一枚
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+      
+        <a href="/member" class="menu">
+          成员
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              (构建个人博客第四篇)4_hexo搭建的Github博客绑定域名
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-03-27 ·
+              </time>
+              
+                <a href="https://wangxf133.github.io/tag/vwoRVO2Sd" class="post-tags">
+                  # hexo
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/o8fsYfj4R" class="post-tags">
+                  # blog
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/g74uW9lGY" class="post-tags">
+                  # github
+                </a>
+              
+            </div>
+            <div class="post-content">
+              <p>hexo搭建的Github博客绑定域名</p>
+<!--more-->
+<h1 id="hexo搭建的github博客绑定域名">hexo搭建的Github博客绑定域名</h1><p>前几天使用hexo搭建了Github博客，感觉像拥有了自己的小窝一样，很有成就感。但是看着博客的域名是二级域名，总有一种寄人篱下的感觉，为了让这个小窝看起来更加正式，我在阿里云上买了一个域名，打算将博客绑定自己的域名。其实Github博客绑定域名很简单，但是查找了网上的教程，发现基本上都是文字描述，在具体操作过程中存在歧义，导致我个人走了一些弯路，如今用图文描述的方式记录下来，帮助新人们一步走通。</p>
+<p>购买域名<br>本人在阿里云网站购买的域名，因此本教程以阿里云为例子，进入阿里云域名注册页面。<br>我买的是xiaofei123.top</p>
+<p>域名解析<br>购买域名后，我们登录进入阿里云官网的控制台，在域名列表中可查看自己购买的域名：<br><img src="https://s2.ax1x.com/2019/03/27/AdE71U.png" alt="AdE71U.png"></p>
+<p>点击对应域名的”解析”<br><img src="https://s2.ax1x.com/2019/03/27/AdEHcF.png" alt="AdEHcF.png"></p>
+<p>记录类型选A或CNAME，A记录的记录值就是ip地址，github(官方文档)提供了两个IP地址，192.30.252.153和192.30.252.154，这两个IP地址为github的服务器地址，两个都要填上，解析记录设置两个www和@，线路就默认就行了，CNAME记录值填你的github博客网址<br><img src="https://s2.ax1x.com/2019/03/27/AdEbX4.png" alt="AdEbX4.png"></p>
+<p>这些全部设置完成后，此时你并不能要申请的域名访问你的博客。接着你需要做的是在hexo根目录的source文件夹里创建CNAME文件，不带任何后缀，里面添加你的域名信息，如：activeblog.xin。实践证明如果此时你填写的是<a href="http://www.activeblog.xin%E9%82%A3%E4%B9%88%E4%BB%A5%E5%90%8E%E4%BD%A0%E5%8F%AA%E8%83%BD%E7%94%A8www.activeblog.xin%E8%AE%BF%E9%97%AE%EF%BC%8C%E8%80%8C%E5%A6%82%E6%9E%9C%E4%BD%A0%E5%A1%AB%E5%86%99%E7%9A%84%E6%98%AFactiveblog.xin%E3%80%82%E9%82%A3%E4%B9%88%E7%94%A8www.activeblog.xin%E5%92%8Cactiveblog.xin%E8%AE%BF%E9%97%AE%E9%83%BD%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%9A%84%E3%80%82%E9%87%8D%E6%96%B0%E6%B8%85%E7%90%86hexo,%E5%B9%B6%E5%8F%91%E5%B8%83%E5%8D%B3%E5%8F%AF%E7%94%A8%E6%96%B0%E7%9A%84%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE%E3%80%82">www.activeblog.xin那么以后你只能用www.activeblog.xin访问，而如果你填写的是activeblog.xin。那么用www.activeblog.xin和activeblog.xin访问都是可以的。重新清理hexo,并发布即可用新的域名访问。</a><br><img src="https://s2.ax1x.com/2019/03/27/AdELnJ.png" alt="AdELnJ.png"></p>
+<pre><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code></pre><p>那么现在把你本地的Hexo生成一下在提交到Github pages上吧（生成和提交简写命令hexo d -g），然后打开你的浏览器输入你购买的域名尝试吧。</p>
+<p>有时候会报这样的错误<br><img src="https://s2.ax1x.com/2019/03/27/AdVFnH.png" alt="AdVFnH.png"></p>
+<p>原因分析：</p>
+<p>CRLF -- Carriage-Return Line-Feed 回车换行</p>
+<p>就是回车(CR, ASCII 13, \r) 换行(LF, ASCII 10, \n)。</p>
+<p>这两个ACSII字符不会在屏幕有任何输出，但在Windows中广泛使用来标识一行的结束。而在Linux/UNIX系统中只有换行符。</p>
+<p>也就是说在windows中的换行符为 CRLF， 而在linux下的换行符为：LF</p>
+<p>使用git来生成一个rails工程后，文件中的换行符为LF， 当执行git add .时，系统提示：LF 将被转换成 CRLF</p>
+<p>解决方法：</p>
+<pre><code>git config --gobal core.autocrlf false</code></pre><h1 id="备份一些东西">备份一些东西</h1><p><img src="https://s2.ax1x.com/2019/03/27/AdVkBd.png" alt="AdVkBd.png"></p>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-san-pian-theme_yilia_config_yml_set">
+              <h3 class="post-title">
+                (构建个人博客第三篇)theme_yilia_config_yml_set
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  Powered by Hve Notes
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

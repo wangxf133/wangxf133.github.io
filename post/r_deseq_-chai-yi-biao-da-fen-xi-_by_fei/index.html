@@ -1,0 +1,248 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>R_DESeq_差异表达分析_by_fei | xiaofei</title>
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://wangxf133.github.io">
+  <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="80px" height="80px">
+  </a>
+  <h1 class="site-title">
+    xiaofei
+  </h1>
+  <p class="site-description">
+    东北师范大学-老博士一枚
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+      
+        <a href="/member" class="menu">
+          成员
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              R_DESeq_差异表达分析_by_fei
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-03-27 ·
+              </time>
+              
+                <a href="https://wangxf133.github.io/tag/6xnZzetAz" class="post-tags">
+                  # 差异表达分析
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/yKGbdQCyx" class="post-tags">
+                  # DESeq
+                </a>
+              
+                <a href="https://wangxf133.github.io/tag/m29Zf0LCY" class="post-tags">
+                  # R系列
+                </a>
+              
+            </div>
+            <div class="post-content">
+              <h1 id="简介">简介</h1><p>DESeq是一个差异表达分析的R包，它支持无重复、部分有重复、都有重复的数据的分析<br>官方文档在：<br><a href="http://www.bioconductor.org/packages/release/bioc/html/DESeq.html">DESeq官网</a>。</p>
+<!--more-->
+<h1 id="安装">安装</h1><pre><code>source(&quot;https://bioconductor.org/biocLite.R&quot;)
+biocLite(&quot;DESeq&quot;)</code></pre><p>设定工作区间</p>
+<pre><code>setwd(&quot;D:/data_huada/01.RNA_seq/05.DEseq&quot;)
+library(&quot;DESeq&quot;)</code></pre><h1 id="输入文件">输入文件</h1><p>是对count data数据进行处理，是基于负二项分布模型。根据htseq-count得到的count data数据</p>
+<p>这个是得到的最原始的数据，需要我们将他们合并到一起<br><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpq8l6ur79j21bl0q8n2c.jpg" alt="1"></p>
+<p>用到那两个重复我们就将其合并在一起<br>这里我们用的是ETW和TD265（一个有重复，一个没重复，所以只能选择DESeq使用了,还有EBseq也可以使用）<br><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpq8nhvyb7j20lu0pr78o.jpg" alt="2"></p>
+<h1 id="使用方法（这里只是单因素分析）">使用方法（这里只是单因素分析）</h1><h2 id="都有重复的数据">都有重复的数据</h2><h5 id="1. 读入数据">1. 读入数据</h5><p>DESeq和DESeq 只支持整数，所以要是用别的软件来call count的话需要取整</p>
+<pre><code class="language-R">pasillaCountTable = read.table(&quot;ETW_and_TTR13.txt&quot;,sep=&quot;\t&quot;,header=TRUE,row.names=1)
+head(pasillaCountTable)</code></pre>
+<h5 id="2. 对样品条件进行设定，设置分组信息">2. 对样品条件进行设定，设置分组信息</h5><pre><code>###没有元数据的数据是没有用的，元数据可以分为三组，分别是样本(行)，特征(列)和整个实验的信息。
+###首先需要样本的描述信息，data.frame的列表示各种信息，行表示7个样本。
+pasillaDesign = data.frame(row.names = colnames(pasillaCountTable),
+                           condition = c(&quot;ETW&quot;,&quot;ETW&quot;,&quot;TTR13&quot;,&quot;TTR13&quot;),
+                           libType = c(&quot;paired-end&quot;,&quot;paired-end&quot;,&quot;paired-end&quot;,&quot;paired-end&quot;))
+
+pasillaDesign
+
+
+#####这边简单地使用R代码进行设定，通常情况是从扩展表中读取这些数据。为了分析这些样本，我们需要解释single-end和paired-end的方法，这边首先简单的分析paired-end样本。
+pairedSamples = pasillaDesign$libType == &quot;paired-end&quot;
+countTable = pasillaCountTable[ , pairedSamples ]
+condition = pasillaDesign$condition[ pairedSamples ]
+condition
+
+## 对于自己的数据，可以简单的创建因子。
+## &gt; #not run
+## &gt; condition = factor( c( &quot;untreated&quot;, &quot;untreated&quot;, &quot;treated&quot;, &quot;treated&quot; ) )
+
+
+我们现在举例CountDataSet，DESeq包的核心数据结构
+cds = newCountDataSet( countTable, condition )
+</code></pre><h5 id="3. 标准化">3. 标准化</h5><p>函数estimateSizeFactors估计统计数据的大小因子</p>
+<pre><code>cds = estimateSizeFactors( cds )
+sizeFactors( cds )</code></pre><p>如果统计数据的每列除以这列的大小因子，这样统计值就变成同一规模，使它们具有可比性。函数counts可以做这个计算。</p>
+<pre><code>head( counts( cds, normalized=TRUE ) )</code></pre><h5 id="4. 方差估计">4. 方差估计</h5><p>DESeq推断依靠估计典型的数据间的方差和平均关系，或者等效的离差和均值。离差可以理解为生物变异系数的平方。估计离差可以使用以下命令</p>
+<pre><code>cds = estimateDispersions( cds )</code></pre><p>函数estimateDispersions做了三步，首先估计每条基因的离差，然后，通过估计匹配一条曲线，最后，每个基因分配一个离差，从每条基因估计值和匹配值选一个。为了让用户知道中间过程，fitInfo对象被储存下来。</p>
+<pre><code> str( fitInfo(cds) )</code></pre><p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fruv0rvumwj20fe03ogms.jpg" alt="![]()"></p>
+<p>函数 plotDispEsts可以画出每条基因的估计值和平均正常统计值的关系。</p>
+<pre><code>plotDispEsts( cds )</code></pre><p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fruv3dvzjdj20b806gt9j.jpg" alt=""><br>图1 经验的(黑点)和匹配的(红线)离差值与平均正常统计值的关系图</p>
+<p>在任何情况下，可以被子序列测试使用的离差值被存储在cds的特征数据集里。</p>
+<pre><code>&gt; head( fData(cds) )</code></pre><h5 id="5. inference: calling differential expression(这里其实应该是 ttr13/etw 的比值)">5. Inference: Calling differential expression(这里其实应该是 TTR13/ETW 的比值)</h5><pre><code>res = nbinomTest( cds,  &quot;ETW&quot;, &quot;TTR13&quot; )
+plotMA(res)</code></pre><p>各列表示的是：</p>
+<ul>
+<li>id：                 feature identier</li>
+<li>baseMean：         mean normalised counts, averaged over all samples from both conditions</li>
+<li>baseMeanA：         mean normalised counts from condition A</li>
+<li>baseMeanB：        mean normalised counts from condition B</li>
+<li>foldChange：         fold change from condition A to B</li>
+<li>log2FoldChange：     the logarithm (to basis 2) of the fold change</li>
+<li>pval：             pvalue for the statistical signicance of this change</li>
+<li>padj：     pvalue adjusted for multiple testing with the Benjamini-Hochberg procedure (see the R functionp.adjust), which controls false discovery rate (FDR)</li>
+</ul>
+<p>我们首先画log2折叠变换和平均正常统计量的关系，红色的点表示在10%FDR的基因。</p>
+<pre><code>&gt; plotMA(res)</code></pre><h5 id="6. 根据fold change 和 q-value来筛选差异表达基因（选择了两个筛选标准）">6. 根据Fold change 和 Q-value来筛选差异表达基因（选择了两个筛选标准）</h5><pre><code>res$significant_ne_1 &lt;- &quot;no&quot;
+
+up_row1 &lt;- which(res$foldChange &gt; 1 &amp; res$padj &lt; 0.05)
+res[up_row1,9] &lt;- &quot;up&quot;
+
+down_row1 &lt;- which(res$foldChange &lt; 1 &amp; res$padj &lt; 0.05)
+res[down_row1,9] &lt;- &quot;down&quot;
+
+res$significant_ne_1.2 &lt;- &quot;no&quot;
+
+up_row2 &lt;- which(res$foldChange &gt; 100 &amp; res$padj &lt; 0.05)
+res[up_row2,10] &lt;- &quot;up&quot;
+
+down_row2 &lt;- which(res$foldChange &lt; 0.01 &amp; res$padj &lt; 0.05)
+res[down_row2,10] &lt;- &quot;down&quot;
+
+write.table(res,file=&quot;TD265vsETW_significant.txt&quot;,sep=&quot;\t&quot;)</code></pre><h2 id="部分有重复的数据">部分有重复的数据</h2><p>如果只有一种条件的基因有重复，而另一种条件下没有重复。那么只有复制的条件的可以用来估计离差。</p>
+<pre><code>pasillaCountTable = read.table(&quot;ETW_and_TD265.txt&quot;,sep=&quot;\t&quot;,header=TRUE,row.names=1)
+head(pasillaCountTable)
+
+pasillaDesign = data.frame(row.names = colnames(pasillaCountTable),
+                           condition = c(&quot;ETW&quot;,&quot;ETW&quot;,&quot;TD265&quot;),
+                           libType = c(&quot;paired-end&quot;,&quot;paired-end&quot;,&quot;paired-end&quot;))
+
+
+pairedSamples = pasillaDesign$libType == &quot;paired-end&quot;
+countTable = pasillaCountTable[ , pairedSamples ]
+condition = pasillaDesign$condition[ pairedSamples ]
+
+cds = newCountDataSet( countTable, condition )
+
+
+cds = estimateSizeFactors( cds )
+sizeFactors( cds )
+##pData( cds )
+##head( counts( cds, normalized=TRUE ) )
+
+cds = estimateDispersions( cds )
+
+res = nbinomTest(cds,&quot;ETW&quot;,&quot;TD265&quot;)
+plotMA(res)
+head(res)</code></pre><h2 id="没有重复的数据">没有重复的数据</h2><p>DESeq包可以在没有复制的情况分析方法如下。</p>
+<pre><code>cds2 = cds[ ,c( &quot;untreated3&quot;, &quot;treated3&quot; ) ]
+cds2 = estimateDispersions( cds2, method=&quot;blind&quot;, sharingMode=&quot;fit-only&quot; )
+res2 = nbinomTest( cds2, &quot;untreated&quot;, &quot;treated&quot; )
+plotMA(res2)
+</code></pre><ul>
+<li>附: p value adjusted for multiple testing with the Benjamini-Hochberg procedure (see the R function<br>p.adjust), which controls false discovery rate (FDR)</li>
+</ul>
+<h1 id="网站找到的类似的分析流程（分别是无重复、部分有重复、都有重复的数据的分析）">网站找到的类似的分析流程（分别是无重复、部分有重复、都有重复的数据的分析）</h1><p>DESeq这个R包主要针对count data，其数据来源可以是RNA-Seq或者其他高通量测序数据。类似地，对于CHIP-Seq数据或者质谱肽段数据也是使用的。</p>
+<p>由于DESeq是一个R包，因此使用它需要一点点R基础语法。</p>
+<p>1.<br>首先需要读入一个数据框，列代表每个sample，行代表每个gene</p>
+<pre><code>database_all &lt;- read.table(file = &quot;readcount&quot;, sep = &quot;\t&quot;, header = T, row.names = 1)
+database &lt;- database_all[,1:6]</code></pre><p>这里主要对于两两比较的数据，因此我取了数据的前6列，分别是两组样品，每组3个生物学重复</p>
+<p>2.<br>设定分组信息，也就是样本分组的名称</p>
+<pre><code>type &lt;- factor(c(rep(&quot;LC_1&quot;,3), rep(&quot;LC_2&quot;,3)))</code></pre><p>我这里是样品1是LC_1，样品2是LC_2</p>
+<p>3.<br>由于DESeq包要求接下来的count data必须要整数型，因此我们需要对数据进行取整,然后将数据database和分组信息type读入到cds对象中</p>
+<pre><code>database &lt;- round(as.matrix(database))
+cds &lt;- newCountDataSet(database,type)</code></pre><p>4.<br>接下里对于不同类型的数据要进行不同的处理，可以粗略分为有生物学重复数据、有部分生物学重复数据以及无生物学重复数据</p>
+<p>4.1 有生物学重复</p>
+<pre><code>cds &lt;- estimateSizeFactors(cds)
+cds &lt;- estimateDispersions(cds)
+res &lt;- nbinomTest(cds,&quot;LC_1&quot;,&quot;LC_2&quot;)</code></pre><p>其通过estimate the dispersion并对count data进行标准化，然后得到每个gene做T test检验</p>
+<p>4.2 对于部分样品有生物学重复</p>
+<pre><code>cds &lt;- estimateSizeFactors(cds)
+cds &lt;- estimateDispersions(cds)
+res &lt;- nbinomTest(cds,&quot;LC_1&quot;,&quot;LC_2&quot;)</code></pre><p>其步骤跟有上述的一样的，DESeq会根据有生物学重复的样品来estimate the dispersion，当然要保证unreplicated condition does not have larger variation than the replicated one</p>
+<p>4.3 对于没有生物学重复</p>
+<pre><code>cds &lt;- estimateDispersions(cds, method=&quot;blind&quot;, sharingMode=&quot;fit-only&quot; )
+res &lt;- nbinomTest(cds,&quot;LC_1&quot;,&quot;LC_2&quot;)</code></pre><p>注意参数method=”blind” 和 sharingMode=”fit-only”即可</p>
+<p>5.<br>最后就是查看符合阈值的差异基因有多少个即可，然后将结果输出到csv文件中方便查看</p>
+<pre><code>table(res$padj &lt;0.05)
+res &lt;- res[order(res$padj),]
+sum(res$padj&lt;=0.01,na.rm = T)
+write.csv(resdata,file = &quot;LC_1_vs_LC_2_DESeq.csv&quot;)</code></pre><p>6.<br>Summary<br>DESeq在前几年的文章中经常被使用，但是现在有了其升级版DESeq2，后者相比前者对于犯第一类错误卡的并不是那么严格了，所以在同样的padj的阈值下，筛选到的差异基因的数目也会多一点。</p>
+<p>并且上述中，我都只使用nbinomTest来获得由显著差异的gene，其实DESeq包还提供了其他检验方法，比如nbinomGLMTest函数，具体可以查看DESeq文档，还有其他对应对因素分析的使用方法。</p>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://wangxf133.github.io/post/r_volcano_plot_by_fei">
+              <h3 class="post-title">
+                R_Volcano_plot_by_fei
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  Powered by Hve Notes
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
