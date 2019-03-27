@@ -1,15 +1,12 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>shell语言脚本构建5-呈现数据与结果输出 | xiaofei</title>
 <meta name="description" content="东北师范大学-在读博士">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
@@ -25,87 +22,71 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
   </head>
   <body>
     <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://wangxf133.github.io">
-        <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://wangxf133.github.io">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wangxf133.github.io">
+        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
         <h1 class="site-title">xiaofei</h1>
       </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+    <div>
       
         
-          <a href="/" class="menu purple-link">
+          <a href="/" class="site-nav">
             首页
           </a>
         
       
         
-          <a href="/archives" class="menu purple-link">
+          <a href="/archives" class="site-nav">
             归档
           </a>
         
       
         
-          <a href="/tags" class="menu purple-link">
+          <a href="/tags" class="site-nav">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="menu purple-link">
+          <a href="/post/about" class="site-nav">
             关于
           </a>
         
       
     </div>
   </div>
-</transition>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      东北师范大学-在读博士
+    </div>
+    <div class="site-footer">
+      Powered by Hve Notes
+    </div>
+  </div>
+</div>
 
 
-      <div class="content-container">
-        <div class="post-detail">
-          <h2 class="post-title">shell语言脚本构建5-呈现数据与结果输出</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-27</span>
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">shell语言脚本构建5-呈现数据与结果输出</h2>
+            <div class="post-date">2019-03-27</div>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://wangxf133.github.io/tag/cykUzrlw2">
-                    脚本文件
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/PvD-ng_cF">
-                    shell语言
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <!--more-->
+            <div class="post-content">
+              <!--more-->
 
 
 <p>到目前为止，本系列出现的脚本都是通过将数据打印在屏幕上或将数据重定向到文件中来显示信息。本文将会展开这个主题，演示如何将脚本的输出重定向到Linux系统的不同位置。</p>
@@ -668,36 +649,50 @@ $ </code></pre>
 <li>tee命令便于将输出同时发送给标准输出和日志文件。这样就可以在显示器上显示脚本的消息的同时，又能将它们保存在日志文件中。 </li>
 </ul>
 
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://wangxf133.github.io/tag/cykUzrlw2" class="tag">
+                    脚本文件
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/PvD-ng_cF" class="tag">
+                    shell语言
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-4-chu-li-yong-hu-shu-ru">
+                  <h3 class="post-title">
+                    shell语言脚本构建4-处理用户输入
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
           </div>
+
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-4-chu-li-yong-hu-shu-ru">
-              <h3 class="post-title">
-                下一篇：shell语言脚本构建4-处理用户输入
-              </h3>
-            </a>
-          </div>
-          
       </div>
-
-      
-        
-          <div id="gitalk-container"></div>
-        
-
-        
-      
-
-      <div class="site-footer">
-  <div class="slogan">东北师范大学-在读博士</div>
-  Powered by Hve Notes
-</div>
-
-
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
 

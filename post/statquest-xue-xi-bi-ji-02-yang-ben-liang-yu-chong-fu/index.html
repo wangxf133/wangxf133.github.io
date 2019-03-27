@@ -1,15 +1,12 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>StatQuest学习笔记02——样本量与重复 | xiaofei</title>
 <meta name="description" content="东北师范大学-在读博士">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
@@ -25,94 +22,71 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
   </head>
   <body>
     <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://wangxf133.github.io">
-        <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://wangxf133.github.io">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wangxf133.github.io">
+        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
         <h1 class="site-title">xiaofei</h1>
       </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+    <div>
       
         
-          <a href="/" class="menu purple-link">
+          <a href="/" class="site-nav">
             首页
           </a>
         
       
         
-          <a href="/archives" class="menu purple-link">
+          <a href="/archives" class="site-nav">
             归档
           </a>
         
       
         
-          <a href="/tags" class="menu purple-link">
+          <a href="/tags" class="site-nav">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="menu purple-link">
+          <a href="/post/about" class="site-nav">
             关于
           </a>
         
       
     </div>
   </div>
-</transition>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      东北师范大学-在读博士
+    </div>
+    <div class="site-footer">
+      Powered by Hve Notes
+    </div>
+  </div>
+</div>
 
 
-      <div class="content-container">
-        <div class="post-detail">
-          <h2 class="post-title">StatQuest学习笔记02——样本量与重复</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-27</span>
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">StatQuest学习笔记02——样本量与重复</h2>
+            <div class="post-date">2019-03-27</div>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://wangxf133.github.io/tag/gkCUFXxT1">
-                    统计基础
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/JNSPoGdBU">
-                    统计学
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/Dz5lYxdVx">
-                    StatQuest
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <!--more-->
+            <div class="post-content">
+              <!--more-->
 
 <h2 id="前言">前言</h2><p>这是StatQuest视频教程的第6、7个。</p>
 <h2 id="技术重复">技术重复</h2><p>现在考虑一个场景，我们要对一批人进行采血，并对这些血样进行基因表达的分析。此时我们先对A进行采血，A的血样我们会检测3次，这3次就叫技术重复（technical replicates），因为我们是对同一个样品进行了测序，研究其基因表达谱，这其实类似于我们做RT-qPCR中的复孔（RT-qPCR我们通常对同一个样本的同一个基因做3个复孔）。</p>
@@ -156,36 +130,54 @@
 <li><a href="http://rvdsd.top/2018/06/02/BioStatistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-StatQuest%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B002-%E6%A0%B7%E6%9C%AC%E9%87%8F%E4%B8%8E%E9%87%8D%E5%A4%8D/">http://rvdsd.top/2018/06/02/BioStatistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-StatQuest%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B002-%E6%A0%B7%E6%9C%AC%E9%87%8F%E4%B8%8E%E9%87%8D%E5%A4%8D/</a></li>
 </ul>
 
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://wangxf133.github.io/tag/gkCUFXxT1" class="tag">
+                    统计基础
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/JNSPoGdBU" class="tag">
+                    统计学
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/Dz5lYxdVx" class="tag">
+                    StatQuest
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-01-tong-ji-xue-fen-bu-ji-chou-yang">
+                  <h3 class="post-title">
+                    StatQuest学习笔记01——统计学分布及抽样
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
           </div>
+
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-01-tong-ji-xue-fen-bu-ji-chou-yang">
-              <h3 class="post-title">
-                下一篇：StatQuest学习笔记01——统计学分布及抽样
-              </h3>
-            </a>
-          </div>
-          
       </div>
-
-      
-        
-          <div id="gitalk-container"></div>
-        
-
-        
-      
-
-      <div class="site-footer">
-  <div class="slogan">东北师范大学-在读博士</div>
-  Powered by Hve Notes
-</div>
-
-
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
 

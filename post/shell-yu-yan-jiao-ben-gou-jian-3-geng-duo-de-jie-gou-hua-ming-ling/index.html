@@ -1,15 +1,12 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>shell语言脚本构建3-更多的结构化命令 | xiaofei</title>
 <meta name="description" content="东北师范大学-在读博士">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
@@ -25,87 +22,71 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
   </head>
   <body>
     <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://wangxf133.github.io">
-        <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://wangxf133.github.io">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wangxf133.github.io">
+        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
         <h1 class="site-title">xiaofei</h1>
       </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+    <div>
       
         
-          <a href="/" class="menu purple-link">
+          <a href="/" class="site-nav">
             首页
           </a>
         
       
         
-          <a href="/archives" class="menu purple-link">
+          <a href="/archives" class="site-nav">
             归档
           </a>
         
       
         
-          <a href="/tags" class="menu purple-link">
+          <a href="/tags" class="site-nav">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="menu purple-link">
+          <a href="/post/about" class="site-nav">
             关于
           </a>
         
       
     </div>
   </div>
-</transition>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      东北师范大学-在读博士
+    </div>
+    <div class="site-footer">
+      Powered by Hve Notes
+    </div>
+  </div>
+</div>
 
 
-      <div class="content-container">
-        <div class="post-detail">
-          <h2 class="post-title">shell语言脚本构建3-更多的结构化命令</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-27</span>
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">shell语言脚本构建3-更多的结构化命令</h2>
+            <div class="post-date">2019-03-27</div>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://wangxf133.github.io/tag/cykUzrlw2">
-                    脚本文件
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/PvD-ng_cF">
-                    shell语言
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <!--More-->
+            <div class="post-content">
+              <!--More-->
 
 <p>继续学习能够控制shell脚本流程的结构化命令。了解如何重复一些过程和命令，也就是循环执行一组命令直至达到了某个特定条件。本节将会讨论和演示bash shell的循环命令for、while和until。 </p>
 <h2 id="1.for命令">1.for命令</h2><p>重复执行一系列命令在编程中很常见。通常你需要重复一组命令直至达到某个特定条件，比如处理某个目录下的所有文件、系统上的所有用户或是某个文本文件中的所有行。 </p>
@@ -1136,36 +1117,50 @@ tim:x:1004:1004:Timothy Bresnahan:/home/tim:/bin/bash
 <p>bash shell还允许使用标准的命令重定向和管道来改变循环的输出。你可以使用重定向来将循环的输出重定向到一个文件或是另一个命令。这就为控制shell脚本执行提供了丰富的功能。 </p>
 <p>下一节将会讨论如何和shell脚本用户交互。shell脚本通常并不完全是自成一体的。它们需要在运行时被提供某些外部数据。下一章将讨论各种可用来向shell脚本提供实时数据的方法。 </p>
 
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://wangxf133.github.io/tag/cykUzrlw2" class="tag">
+                    脚本文件
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/PvD-ng_cF" class="tag">
+                    shell语言
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-2-shi-yong-jie-gou-hua-ming-ling">
+                  <h3 class="post-title">
+                    shell语言脚本构建2-使用结构化命令
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
           </div>
+
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-2-shi-yong-jie-gou-hua-ming-ling">
-              <h3 class="post-title">
-                下一篇：shell语言脚本构建2-使用结构化命令
-              </h3>
-            </a>
-          </div>
-          
       </div>
-
-      
-        
-          <div id="gitalk-container"></div>
-        
-
-        
-      
-
-      <div class="site-footer">
-  <div class="slogan">东北师范大学-在读博士</div>
-  Powered by Hve Notes
-</div>
-
-
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
 

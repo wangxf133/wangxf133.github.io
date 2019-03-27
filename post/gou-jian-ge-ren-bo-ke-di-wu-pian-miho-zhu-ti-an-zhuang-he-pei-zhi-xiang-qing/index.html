@@ -1,15 +1,12 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>(构建个人博客第五篇)MiHo-主题安装和配置详情 | xiaofei</title>
 <meta name="description" content="东北师范大学-在读博士">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
@@ -25,94 +22,71 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
   </head>
   <body>
     <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://wangxf133.github.io">
-        <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://wangxf133.github.io">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wangxf133.github.io">
+        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
         <h1 class="site-title">xiaofei</h1>
       </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+    <div>
       
         
-          <a href="/" class="menu purple-link">
+          <a href="/" class="site-nav">
             首页
           </a>
         
       
         
-          <a href="/archives" class="menu purple-link">
+          <a href="/archives" class="site-nav">
             归档
           </a>
         
       
         
-          <a href="/tags" class="menu purple-link">
+          <a href="/tags" class="site-nav">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="menu purple-link">
+          <a href="/post/about" class="site-nav">
             关于
           </a>
         
       
     </div>
   </div>
-</transition>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      东北师范大学-在读博士
+    </div>
+    <div class="site-footer">
+      Powered by Hve Notes
+    </div>
+  </div>
+</div>
 
 
-      <div class="content-container">
-        <div class="post-detail">
-          <h2 class="post-title">(构建个人博客第五篇)MiHo-主题安装和配置详情</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-27</span>
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">(构建个人博客第五篇)MiHo-主题安装和配置详情</h2>
+            <div class="post-date">2019-03-27</div>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://wangxf133.github.io/tag/X18mylG5_">
-                    Themes
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/vwoRVO2Sd">
-                    hexo
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/o8fsYfj4R">
-                    blog
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <!-- more -->
+            <div class="post-content">
+              <!-- more -->
 
 <p>MiHo-主题安装和配置详情</p>
 <h1 id="一. 主题简介">一. 主题简介</h1><p>MiHo 是一款单栏响应式的<a href="https://blog.minhow.com/2017/08/01/blog/installation-configuration/#3-3-jsonContent%E9%85%8D%E7%BD%AE">Hexo主题</a>；基于 Hexo 3.0+ 制作，兼容移动端浏览；主题的代码托管在GitHub上，欢迎Star和Fork；如遇到问题或发表建议，可以提Issues，也可以在博客中留言给我。</p>
@@ -300,36 +274,54 @@ cover_picture: /images/banner.jpg
 <pre><code>hexo new page about</code></pre><p>然后编辑source/about/index.md文件即可，可以参考我写好的<a href="https://github.com/WongMinHo/hexo-theme-miho/blob/master/_source/about/index.md">about</a>页面。</p>
 <h2 id="4.9 打赏">4.9 打赏</h2><p>支持微信和支付宝打赏，修改wechat和alipay两个图片路径配置即可，支持全局开启打赏或指定文章开启打赏功能，详情查看配置文件。</p>
 
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://wangxf133.github.io/tag/X18mylG5_" class="tag">
+                    Themes
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/vwoRVO2Sd" class="tag">
+                    hexo
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/o8fsYfj4R" class="tag">
+                    blog
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-si-pian-4_hexo-da-jian-de-github-bo-ke-bang-ding-yu-ming">
+                  <h3 class="post-title">
+                    (构建个人博客第四篇)4_hexo搭建的Github博客绑定域名
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
           </div>
+
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-si-pian-4_hexo-da-jian-de-github-bo-ke-bang-ding-yu-ming">
-              <h3 class="post-title">
-                下一篇：(构建个人博客第四篇)4_hexo搭建的Github博客绑定域名
-              </h3>
-            </a>
-          </div>
-          
       </div>
-
-      
-        
-          <div id="gitalk-container"></div>
-        
-
-        
-      
-
-      <div class="site-footer">
-  <div class="slogan">东北师范大学-在读博士</div>
-  Powered by Hve Notes
-</div>
-
-
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
 

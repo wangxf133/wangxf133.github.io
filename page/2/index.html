@@ -1,14 +1,12 @@
-
+<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>xiaofei</title>
 <meta name="description" content="东北师范大学-在读博士">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
@@ -18,499 +16,258 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
   </head>
   <body>
     <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://wangxf133.github.io">
-        <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://wangxf133.github.io">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wangxf133.github.io">
+        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
         <h1 class="site-title">xiaofei</h1>
       </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+    <div>
       
         
-          <a href="/" class="menu purple-link">
+          <a href="/" class="site-nav">
             首页
           </a>
         
       
         
-          <a href="/archives" class="menu purple-link">
+          <a href="/archives" class="site-nav">
             归档
           </a>
         
       
         
-          <a href="/tags" class="menu purple-link">
+          <a href="/tags" class="site-nav">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="menu purple-link">
+          <a href="/post/about" class="site-nav">
             关于
           </a>
         
       
     </div>
   </div>
-</transition>
-
-
-      <div class="content-container">
-        
-        
-<section class="post-item">
-    <div class="content">
-      <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-03-biao-zhun-chai-biao-zhun-yu-zhi-xin-qu-jian">
-        <h2 class="post-title">StatQuest学习笔记03——标准差、标准与置信区间</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-03-27</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://wangxf133.github.io/tag/gkCUFXxT1">
-                统计基础
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/JNSPoGdBU">
-                统计学
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/Dz5lYxdVx">
-                StatQuest
-                
-              </a>
-            
-          </span>
-        
-      </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      东北师范大学-在读博士
     </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-02-yang-ben-liang-yu-chong-fu">
-        <h2 class="post-title">StatQuest学习笔记02——样本量与重复</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-03-27</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://wangxf133.github.io/tag/gkCUFXxT1">
-                统计基础
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/JNSPoGdBU">
-                统计学
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/Dz5lYxdVx">
-                StatQuest
-                
-              </a>
-            
-          </span>
-        
-      </div>
+    <div class="site-footer">
+      Powered by Hve Notes
     </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-01-tong-ji-xue-fen-bu-ji-chou-yang">
-        <h2 class="post-title">StatQuest学习笔记01——统计学分布及抽样</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-03-27</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://wangxf133.github.io/tag/gkCUFXxT1">
-                统计基础
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/JNSPoGdBU">
-                统计学
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/Dz5lYxdVx">
-                StatQuest
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://wangxf133.github.io/post/r_deseq2-chai-yi-ji-yin-fen-xi">
-        <h2 class="post-title">R_DESeq2差异基因分析</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-03-27</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://wangxf133.github.io/tag/AlmdaiUZE">
-                DESeq2
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/VWu5Tyyx-">
-                RNA-seq
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/6iQrV6R7j">
-                R
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/ANs9W6M5C">
-                Bioconductor
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://wangxf133.github.io/post/bioconductor-de-zhi-pu-dan-bai-zu-xue-shu-ju-fen-xi">
-        <h2 class="post-title">Bioconductor的质谱蛋白组学数据分析</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-03-27</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://wangxf133.github.io/tag/6iQrV6R7j">
-                R
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/ANs9W6M5C">
-                Bioconductor
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/YGungpbx0">
-                proteomics
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/AjyIGPhWv">
-                蛋白组
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://wangxf133.github.io/post/r-zuo-tu-xian-zhu-xing-hui-zhi-gong-ju-ggsignif">
-        <h2 class="post-title">R作图 显著性绘制工具-ggsignif</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-03-27</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://wangxf133.github.io/tag/yVJYzfVh7">
-                ggsignif
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/REanBVc4V">
-                显著性绘制工具
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/m29Zf0LCY">
-                R系列
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://wangxf133.github.io/post/zhi-huan-jian-yan-permutation-test">
-        <h2 class="post-title">置换检验(Permutation Test)</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-03-27</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://wangxf133.github.io/tag/pL2GYYN0e">
-                统计学习
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/GK8vdhtkl">
-                置换检验
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/m29Zf0LCY">
-                R系列
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://wangxf133.github.io/post/r_gene_density">
-        <h2 class="post-title">R_Gene_density</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-03-27</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://wangxf133.github.io/tag/p2fMPam8D">
-                画图
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/uyiySPsgI">
-                Gene_density
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/m29Zf0LCY">
-                R系列
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://wangxf133.github.io/post/snakemake-de-an-zhuang-ji-shi-yong">
-        <h2 class="post-title">snakemake的安装及使用</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-03-27</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://wangxf133.github.io/tag/ycuDIRf0A">
-                pepline
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/d7UQHOaSj">
-                snakemake
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/c7TZoHjAr">
-                流程软件
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://wangxf133.github.io/post/interproscan-de-an-zhuang-ji-shi-yong">
-        <h2 class="post-title">interproscan的安装及使用</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-03-27</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://wangxf133.github.io/tag/IgAIZc71w">
-                蛋白家族和亚家族分类
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/hqGgnkDg_">
-                interproscan
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://wangxf133.github.io/tag/ROxmRxPnV">
-                panther
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
+  </div>
+</div>
 
 
-<div class="pagination-container">
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://wangxf133.github.io/post/snakemake-de-an-zhuang-ji-shi-yong">
+                  <h2 class="post-title">snakemake的安装及使用</h2>
+                </a>
+                <div class="post-date">
+                  2019-03-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://wangxf133.github.io/post/interproscan-de-an-zhuang-ji-shi-yong">
+                  <h2 class="post-title">interproscan的安装及使用</h2>
+                </a>
+                <div class="post-date">
+                  2019-03-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://wangxf133.github.io/post/r_deseq_-chai-yi-biao-da-fen-xi-_by_fei">
+                  <h2 class="post-title">R_DESeq_差异表达分析_by_fei</h2>
+                </a>
+                <div class="post-date">
+                  2019-03-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://wangxf133.github.io/post/r_volcano_plot_by_fei">
+                  <h2 class="post-title">R_Volcano_plot_by_fei</h2>
+                </a>
+                <div class="post-date">
+                  2019-03-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-liu-pian-material-zhu-ti-an-zhuang-he-pei-zhi-xiang-qing">
+                  <h2 class="post-title">(构建个人博客第六篇)Material-主题安装和配置详情</h2>
+                </a>
+                <div class="post-date">
+                  2019-03-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-wu-pian-miho-zhu-ti-an-zhuang-he-pei-zhi-xiang-qing">
+                  <h2 class="post-title">(构建个人博客第五篇)MiHo-主题安装和配置详情</h2>
+                </a>
+                <div class="post-date">
+                  2019-03-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-si-pian-4_hexo-da-jian-de-github-bo-ke-bang-ding-yu-ming">
+                  <h2 class="post-title">(构建个人博客第四篇)4_hexo搭建的Github博客绑定域名</h2>
+                </a>
+                <div class="post-date">
+                  2019-03-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-san-pian-theme_yilia_config_yml_set">
+                  <h2 class="post-title">(构建个人博客第三篇)theme_yilia_config_yml_set</h2>
+                </a>
+                <div class="post-date">
+                  2019-03-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-er-pian-hexo_config_yml_set">
+                  <h2 class="post-title">(构建个人博客第二篇)hexo_config_yml_set</h2>
+                </a>
+                <div class="post-date">
+                  2019-03-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-yi-pian-yong-hexogithub-da-jian-mian-fei-ge-ren-bo-ke-xiang-xi-jiao-cheng">
+                  <h2 class="post-title">(构建个人博客第一篇)用hexo+github搭建免费个人博客详细教程</h2>
+                </a>
+                <div class="post-date">
+                  2019-03-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-yi-pian-yong-hexogithub-da-jian-mian-fei-ge-ren-bo-ke-xiang-xi-jiao-cheng">
+                  <div class="feature-container" style="background-image: url('https://wangxf133.github.io/post-images/gou-jian-ge-ren-bo-ke-di-yi-pian-yong-hexogithub-da-jian-mian-fei-ge-ren-bo-ke-xiang-xi-jiao-cheng.jpg')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://wangxf133.github.io/post/hello-hve-notes">
+                  <h2 class="post-title">Hello Hve Notes</h2>
+                </a>
+                <div class="post-date">
+                  2018-12-12
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://wangxf133.github.io/post/hello-hve-notes">
+                  <div class="feature-container" style="background-image: url('https://wangxf133.github.io/post-images/hello-hve-notes.png')">
+                  </div>
+                </a>
+              
+            </article>
+          
+
+          <div class="pagination-container">
   
     <a href="https://wangxf133.github.io/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
   
   
-    <a href="https://wangxf133.github.io/page/3/" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
-  
 </div>
 
-
+        </div>
       </div>
-
-      <div class="site-footer">
-  <div class="slogan">东北师范大学-在读博士</div>
-  Powered by Hve Notes
-</div>
-
-
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
 
