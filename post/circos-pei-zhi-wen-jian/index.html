@@ -1,12 +1,15 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>Circos配置文件 | xiaofei</title>
 <meta name="description" content="东北师范大学-在读博士">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
@@ -22,71 +25,94 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://wangxf133.github.io">
-        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://wangxf133.github.io">
+        <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://wangxf133.github.io">
         <h1 class="site-title">xiaofei</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="site-nav">
+          <a href="/post/about" class="menu purple-link">
             关于
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="site-description">
-      东北师范大学-在读博士
-    </div>
-    <div class="site-footer">
-      Powered by Hve Notes
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">Circos配置文件</h2>
-            <div class="post-date">2019-03-27</div>
+      <div class="content-container">
+        <div class="post-detail">
+          <h2 class="post-title">Circos配置文件</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-03-27</span>
             
-            <div class="post-content">
-              <!--more-->
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://wangxf133.github.io/tag/C1YHz8Eqm">
+                    配置文件
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/JDZBXA3No">
+                    Circos
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/We7V91z05">
+                    基因组
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <!--more-->
 
 <p> 主要参考博客：<a href="http://ytlogos.coding.me/">http://ytlogos.coding.me/</a></p>
 <h1 id="circos的配置文件准备">Circos的配置文件准备</h1><p>Circos的使用主要通过输入一个配置文件，改配置文件的主要内容以各种区块表示，大区块中可以包含小区快。区块中以”变量=值”的方式来进行参数的设定：</p>
@@ -473,54 +499,36 @@ $ mv data data.bak
 $ mv circos-tutorials-0.66/data/ ./</code></pre><p>所有文件包括配置文件、数据文件等放置于当前目录文件夹中，运行circos绘图</p>
 <pre><code>$ ./bin/circos -conf circos.conf</code></pre><p>这篇文章主要来自于<a href="http://ytlogos.coding.me/2018/07/20/Circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/#more">Circos配置文件</a>和<a href="https://www.plob.org/article/8424.html">Circos的安装和简单使用</a>,可以说是十分详细了。当然最好的文档还是官方提供的<a href="http://circos.ca/">文档Circos</a>。</p>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://wangxf133.github.io/tag/C1YHz8Eqm" class="tag">
-                    配置文件
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/JDZBXA3No" class="tag">
-                    Circos
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/We7V91z05" class="tag">
-                    基因组
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://wangxf133.github.io/post/science-chong-bang-orli-shi-13-nian-liu-bei-ti-xiao-mai-ji-yin-zu-tu-pu-zhong-wan-cheng-xiang-xi-jie-du">
-                  <h3 class="post-title">
-                    Science重磅|历时13年六倍体小麦基因组图谱终完成（详细解读）
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-                <div id="gitalk-container" data-aos="fade-in"></div>
-              
-
-              
-            
-
           </div>
-
         </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://wangxf133.github.io/post/science-chong-bang-orli-shi-13-nian-liu-bei-ti-xiao-mai-ji-yin-zu-tu-pu-zhong-wan-cheng-xiang-xi-jie-du">
+              <h3 class="post-title">
+                下一篇：Science重磅|历时13年六倍体小麦基因组图谱终完成（详细解读）
+              </h3>
+            </a>
+          </div>
+          
       </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">东北师范大学-在读博士</div>
+  Powered by Hve Notes
+</div>
+
+
     </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
+    <script type="application/javascript">
 
 hljs.initHighlightingOnLoad()
 

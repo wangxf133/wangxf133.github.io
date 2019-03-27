@@ -1,12 +1,15 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>Science重磅|历时13年六倍体小麦基因组图谱终完成（详细解读） | xiaofei</title>
 <meta name="description" content="东北师范大学-在读博士">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
@@ -22,71 +25,94 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://wangxf133.github.io">
-        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://wangxf133.github.io">
+        <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://wangxf133.github.io">
         <h1 class="site-title">xiaofei</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="site-nav">
+          <a href="/post/about" class="menu purple-link">
             关于
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="site-description">
-      东北师范大学-在读博士
-    </div>
-    <div class="site-footer">
-      Powered by Hve Notes
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">Science重磅|历时13年六倍体小麦基因组图谱终完成（详细解读）</h2>
-            <div class="post-date">2019-03-27</div>
+      <div class="content-container">
+        <div class="post-detail">
+          <h2 class="post-title">Science重磅|历时13年六倍体小麦基因组图谱终完成（详细解读）</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-03-27</span>
             
-            <div class="post-content">
-               <!--more-->
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://wangxf133.github.io/tag/A3h6Jlq6p">
+                    iwgsc
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/We7V91z05">
+                    基因组
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/jOhsegpai">
+                    小麦
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+             <!--more-->
 
 <p>转自 生新人发表的<a href="https://mp.weixin.qq.com/s?__biz=MzA5NjU5NjQ4MA==&amp;mid=2651160081&amp;idx=1&amp;sn=2bc94fcce9b3c939110448b99f710c3a&amp;chksm=8b5c797ebc2bf06847d02884e19b0281752a796dc8df1897c5f7cae78e0eeef25a36eb58bb1a&amp;mpshare=1&amp;scene=23&amp;srcid=0817my25QXeITXGASjxPCXwz#rd">Science重磅|历时13年六倍体小麦基因组图谱终完成（详细解读）</a></p>
 <p> 2018年8月17日Science杂志在线刊发题为“Shifting the limits in wheat research and breeding using a fully annotated reference genome”的研究论文，相比于2014年7月发布的草图序列，该版本序列组装指标明显提升，基因组序列由原先的10.2Gb上升到14.5Gb，Scaffold N50提升到22.8Mb。该研究论文是在国际小麦基因组测序联盟（International Wheat Genome Sequencing Consortium，IWGSC）协作下完成的，西北农林科技大学旱区作物逆境生物学国家重点实验室的宋卫宁教授团队作为中国唯一参与并承担实质性研究工作的团队，完成了其中7DL染色体物理图谱构建及序列图谱破译工作。</p>
@@ -185,54 +211,36 @@
 <hr>
 <p><a href="http://note.youdao.com/noteshare?id=260623028fc72ab9492f5289cfcd4f12&amp;sub=ABC82BFDA35F40DAA3D7C004438A404A">以前自己下载的路径</a></p>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://wangxf133.github.io/tag/A3h6Jlq6p" class="tag">
-                    iwgsc
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/We7V91z05" class="tag">
-                    基因组
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/jOhsegpai" class="tag">
-                    小麦
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-5-cheng-xian-shu-ju-yu-jie-guo-shu-chu">
-                  <h3 class="post-title">
-                    shell语言脚本构建5-呈现数据与结果输出
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-                <div id="gitalk-container" data-aos="fade-in"></div>
-              
-
-              
-            
-
           </div>
-
         </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-5-cheng-xian-shu-ju-yu-jie-guo-shu-chu">
+              <h3 class="post-title">
+                下一篇：shell语言脚本构建5-呈现数据与结果输出
+              </h3>
+            </a>
+          </div>
+          
       </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">东北师范大学-在读博士</div>
+  Powered by Hve Notes
+</div>
+
+
     </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
+    <script type="application/javascript">
 
 hljs.initHighlightingOnLoad()
 

@@ -1,12 +1,15 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>(构建个人博客第一篇)用hexo+github搭建免费个人博客详细教程 | xiaofei</title>
 <meta name="description" content="东北师范大学-在读博士">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
@@ -22,74 +25,94 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://wangxf133.github.io">
-        <img src="https://wangxf133.github.io/images/avatar.png" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://wangxf133.github.io">
+        <img class="avatar" src="https://wangxf133.github.io/images/avatar.png" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://wangxf133.github.io">
         <h1 class="site-title">xiaofei</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="site-nav">
+          <a href="/post/about" class="menu purple-link">
             关于
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="site-description">
-      东北师范大学-在读博士
-    </div>
-    <div class="site-footer">
-      Powered by Hve Notes
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">(构建个人博客第一篇)用hexo+github搭建免费个人博客详细教程</h2>
-            <div class="post-date">2019-03-27</div>
+      <div class="content-container">
+        <div class="post-detail">
+          <h2 class="post-title">(构建个人博客第一篇)用hexo+github搭建免费个人博客详细教程</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-03-27</span>
             
-              <div class="feature-container" style="background-image: url('https://wangxf133.github.io/post-images/gou-jian-ge-ren-bo-ke-di-yi-pian-yong-hexogithub-da-jian-mian-fei-ge-ren-bo-ke-xiang-xi-jiao-cheng.jpg')">
-              </div>
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://wangxf133.github.io/tag/vwoRVO2Sd">
+                    hexo
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/o8fsYfj4R">
+                    blog
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://wangxf133.github.io/tag/g74uW9lGY">
+                    github
+                    
+                  </a>
+                
+              </span>
             
-            <div class="post-content">
-              <!--more-->
+          </div>
+          <div class="post-content">
+            <!--more-->
 
 <p>用hexo+github搭建免费个人博客详细教程</p>
 <h1 id="1. 创建github 域名和空间">1. 创建Github 域名和空间</h1><h2 id="1.1注册">1.1注册</h2><p>首先你需要注册一个Github账号，已有的可以下翻去1.2 创建仓库，注意username，这会影响到你的域名，你的域名将会是 username.github.io ，所以认真的取个名字吧。</p>
@@ -175,54 +198,36 @@ description: 附加一段文章摘要，字数最好在140字以内，会出现�
 <pre><code>{% asset_img fig1_1517553836_17724.jpg fig1 %}</code></pre><pre><code>{% asset_img 插入的照片.jpg 图片的说明 %}</code></pre><p>注意： xxxx是这个md文件的名字，也是同名文件夹的名字。只需要有文件夹名字即可，不需要有什么绝对路径。你想引入的图片就只需要放入xxxx这个文件夹内就好了，很像引用相对路径。</p>
 <p>5 最后检查一下，hexo g生成页面后，进入public\2017\02\26\index.html文件中查看相关字段，可以发现，html标签内的语句是<code>&lt;img src=&quot;2017/02/26/xxxx/图片名.jpg&quot;&gt;</code>，而不是<code>&lt;img src=&quot;xxxx/图片名.jpg&gt;</code>。这很重要，关乎你的网页是否可以真正加载你想插入的图片。</p>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://wangxf133.github.io/tag/vwoRVO2Sd" class="tag">
-                    hexo
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/o8fsYfj4R" class="tag">
-                    blog
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/g74uW9lGY" class="tag">
-                    github
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://wangxf133.github.io/post/hello-hve-notes">
-                  <h3 class="post-title">
-                    Hello Hve Notes
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-                <div id="gitalk-container" data-aos="fade-in"></div>
-              
-
-              
-            
-
           </div>
-
         </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://wangxf133.github.io/post/hello-hve-notes">
+              <h3 class="post-title">
+                下一篇：Hello Hve Notes
+              </h3>
+            </a>
+          </div>
+          
       </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">东北师范大学-在读博士</div>
+  Powered by Hve Notes
+</div>
+
+
     </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
+    <script type="application/javascript">
 
 hljs.initHighlightingOnLoad()
 
