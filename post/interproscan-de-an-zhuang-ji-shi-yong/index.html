@@ -87,38 +87,58 @@
             
             <div class="post-content">
               <!--more-->
-<h1 id="简介">简介</h1><p>Interpro是一个数据库，它里面有蛋白功能，蛋白家族等信息。而Interproscan就是可以将你的蛋白序列跟这个这个数据比对，从而给你的序列功能注释。 Interproscan5新增了一些功能Phobius用来预测跨膜和信号肽可以把结果map到上传的数据上寻找蛋白可能的生物学代谢途径新的输出格式XML和GFF3.0提升了图形界面</p>
-<p>参考博客<br><a href="http://qinqianshan.com/interproscan-installation-and-usage">http://qinqianshan.com/interproscan-installation-and-usage</a><br><a href="http://blog.sina.com.cn/s/blog_670445240101khmr.html">http://blog.sina.com.cn/s/blog_670445240101khmr.html</a><br><a href="http://blog.sina.com.cn/s/blog_670445240101iy3d.html">http://blog.sina.com.cn/s/blog_670445240101iy3d.html</a></p>
-<h1 id="配置要求">配置要求</h1><p>至少2 cores and 4 GB of RAM, 这样才能同时分析5 – 10 sequences</p>
+<h1 id="简介">简介</h1>
+<p>Interpro是一个数据库，它里面有蛋白功能，蛋白家族等信息。而Interproscan就是可以将你的蛋白序列跟这个这个数据比对，从而给你的序列功能注释。 Interproscan5新增了一些功能Phobius用来预测跨膜和信号肽可以把结果map到上传的数据上寻找蛋白可能的生物学代谢途径新的输出格式XML和GFF3.0提升了图形界面</p>
+<p>参考博客
+http://qinqianshan.com/interproscan-installation-and-usage
+http://blog.sina.com.cn/s/blog_670445240101khmr.html
+http://blog.sina.com.cn/s/blog_670445240101iy3d.html</p>
+<h1 id="配置要求">配置要求</h1>
+<p>至少2 cores and 4 GB of RAM, 这样才能同时分析5 – 10 sequences</p>
 <p>软件要求: Linux, 32 bit or 64 bit (64 bit recommended). Perl (default on most Linux distributions) Oracle’s Java JDK/JRE version 6u4 and higher (which also includes Java 7) Environment variables set JAVA_HOME should point to the location of the JVM $JAVA_HOME/bin should be added to the CLASSPATH</p>
-<h4 id="查看自己的配置文件等">查看自己的配置文件等</h4><p>1.系统配置</p>
+<h4 id="查看自己的配置文件等">查看自己的配置文件等</h4>
+<p>1.系统配置</p>
 <pre><code>xiaofei@DESKTOP-U55QOF8:~$ uname -a
 Linux DESKTOP-U55QOF8 4.4.0-43-Microsoft #1-Microsoft Wed Dec 31 14:42:53 PST 2014 x86_64 x86_64 x86_64 GNU/Linux
-</code></pre><p>其中x86_64代表64 Bit，如果是686代表的是32 Bit</p>
+
+</code></pre>
+<p>其中x86_64代表64 Bit，如果是686代表的是32 Bit</p>
 <p>2.perl版本</p>
 <pre><code>xiaofei@DESKTOP-U55QOF8:~$ perl -version
 
 This is perl 5, version 22, subversion 0 (v5.22.0) built for x86_64-linux-thread-multi
-</code></pre><p>3.java的版本</p>
+
+</code></pre>
+<p>3.java的版本</p>
 <pre><code>sam@sam-Precision-WorkStation-T7500[sam] java -version                              [
 java version &quot;1.8.0_171&quot;
 Java(TM) SE Runtime Environment (build 1.8.0_171-b11)
 Java HotSpot(TM) 64-Bit Server VM (build 25.171-b11, mixed mode)
     现在仅仅支持 version1.6 or 1.7
 (这里是建议用Oracle  JDK ，如果你的是OpenJDK。可以根据我之前的博客中安装java: http://blog.sina.com.cn/s/blog_670445240101iy3d.html)
-</code></pre><p>**我的就是openjava版本，所以需要安装Oracle JDK 按照上述博客里的方法安装（不成功），下面是安装的具体流程（自己以前琢磨出来的），新版本的interproscan支持 version1.8，所以我们下载1.8 的版本</p>
+
+</code></pre>
+<p>**我的就是openjava版本，所以需要安装Oracle JDK 按照上述博客里的方法安装（不成功），下面是安装的具体流程（自己以前琢磨出来的），新版本的interproscan支持 version1.8，所以我们下载1.8 的版本</p>
 <p>3.1 Oracle JDK 1.8 安装方法 3.1.1 下载软件</p>
 <pre><code>下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html（官网的是1.8版本的）
-</code></pre><p>3.2 将软件上传到服务器</p>
+
+</code></pre>
+<p>3.2 将软件上传到服务器</p>
 <pre><code>将jdk-8u171-linux-x64.tar.gz上传到服务器任一位置上
-</code></pre><p>3.3 登录Linux，切换到root用户</p>
+
+</code></pre>
+<p>3.3 登录Linux，切换到root用户</p>
 <pre><code> sudo -i 不需要root密码直接切换成root（需要当前用户密码）
-</code></pre><p>3.4 将软件压缩包转移到 /usr/lib 并最终解压</p>
+
+</code></pre>
+<p>3.4 将软件压缩包转移到 /usr/lib 并最终解压</p>
 <pre><code>将  jdk-8u171-linux-x64.tar.gz  移动到 /usr/lib 中
 cp ***/jdk-8u171-linux-x64.tar.gz /usr/lib
 并解压文件
 tar -xzvf jdk-8u171-linux-x64.tar.gz
-</code></pre><p>3.5 编辑环境变量 然后在/etc/profile 编辑加上如下</p>
+
+</code></pre>
+<p>3.5 编辑环境变量 然后在/etc/profile 编辑加上如下</p>
 <pre><code># set Java environment
 JAVA_HOME=/usr/lib/jdk1.8.0_171
 PATH=$JAVA_HOME/bin:$PATH
@@ -126,15 +146,20 @@ CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 export JAVA_HOME
 export PATH
 export CLASSPATH
-</code></pre><p>3.1.6 最终</p>
+
+</code></pre>
+<p>3.1.6 最终</p>
 <pre><code>再source /etc/profile
 测试是否安装成功:Java -version 测试成功
 注意以上都是root用户进行的，有超级权限
-</code></pre><p><strong>有个问题是 需要每次都source /etc/profile 才能运行成功</strong> 不算解决的解决方法1： 在root 用户下的.bashrc中同样添加上面的那段代码。 个人用户的.bashrc中同样加入上段代码</p>
+
+</code></pre>
+<p><strong>有个问题是 需要每次都source /etc/profile 才能运行成功</strong> 不算解决的解决方法1： 在root 用户下的.bashrc中同样添加上面的那段代码。 个人用户的.bashrc中同样加入上段代码</p>
 <p>不算解决的解决方法2： 在root 用户下的.bashrc中同样添加 source /etc/profile 个人用户的.bashrc中同样加入 source /etc/profile</p>
 <p>解决方法3 在第六步后面加上 update-alternatives --install /usr/bin/java java /usr/lib/jdk1.8.0_161/bin/java 300 这样就安装好这个jre了，然而可能系统中有多个jre，那么系统究竟判断用那一个来作为默认的jre呢，就需要使用如下的命令来配置： sudo update-alternatives --config java</p>
 <p>然后根据提示选择jre就可以了，(这里只有一个)： 至此，jre安装完毕！</p>
-<h1 id="安装interproscan5">安装interproscan5</h1><p>1、获得InterProScan software core(针对我的64位机)</p>
+<h1 id="安装interproscan5">安装interproscan5</h1>
+<p>1、获得InterProScan software core(针对我的64位机)</p>
 <pre><code>mkdir interproscan;
 cd interproscan;
 wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.28-67.0/interproscan-5.28-67.0-64-bit.tar.gz
@@ -154,7 +179,9 @@ tar -pxvzf interproscan-5.28-67.0-64-bit.tar.gz
  # v = verbosely list the files processed
  # z = filter the archive through gzip
  # f = use archive file
-</code></pre><p>2、安装Panther Models</p>
+
+</code></pre>
+<p>2、安装Panther Models</p>
 <pre><code>下载Panther Models到刚解压缩的文件的子目录/data下面
  cd /mnt/e/Interproscan/interproscan-5.28-67.0/data
  wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-8.1.tar.gz
@@ -166,7 +193,9 @@ tar -pxvzf interproscan-5.28-67.0-64-bit.tar.gz
  tar -pxvzf panther-data-8.1.tar.gz
  如果想把这个放在其他的文件的话，可以修改[InterProScan5 home]/interproscan.properties 文件，改下面的东西
  panther.models.dir.8.1=PATH_TO/panther/8.1/model
-</code></pre><p>3、使用Pre-calculated Match Lookup 服务器</p>
+
+</code></pre>
+<p>3、使用Pre-calculated Match Lookup 服务器</p>
 <pre><code>The pre-calculated match lookup网页服务器能够提供超过3千万蛋白序列的比对，包括所有的UniProtKB蛋白序列.
 InterProScan 5使用这个服务器能够加速本地服务器的速度。
 这是这个版本的特低昂要想使用这个服务器的话，需要电脑能上网：http://www.ebi.ac.uk to use it.
@@ -174,8 +203,17 @@ InterProScan 5使用这个服务器能够加速本地服务器的速度。
 或者关掉这个功能关掉这个功能的时候，你可以在命令行加入-dp 或者修改interproscan.properties
 在前面加一个#注释掉即可
  precalculated.match.lookup.service.url=http://www.ebi.ac.uk/interpro/match-lookup
-</code></pre><h1 id="使用interproscan">使用interproscan</h1><p>可以运行其提供的例子： ./interproscan.sh -i test_proteins.fasta -f tsv 会得到tsv格式的结果，里面包含了很多数据库Gene3d, PIRSF，PRINTS,PANTHER,SUPERFAMILY,PFAM,TIGERFAM等比对的结果。</p>
-<h2 id="报错解决方法">报错解决方法</h2><p>注意读报错内容<br>1.需要在Python2.7的环境下进行<br>2.还会遇到一些rpsblast的报错<br>参考网站 <a href="https://github.com/ebi-pf-team/interproscan/issues/44">https://github.com/ebi-pf-team/interproscan/issues/44</a><br><a href="https://qiita.com/okuman/items/73bebfd711d3f955c167">https://qiita.com/okuman/items/73bebfd711d3f955c167</a><br>目前的一个解决方法：</p>
+
+</code></pre>
+<h1 id="使用interproscan">使用interproscan</h1>
+<p>可以运行其提供的例子： ./interproscan.sh -i test_proteins.fasta -f tsv 会得到tsv格式的结果，里面包含了很多数据库Gene3d, PIRSF，PRINTS,PANTHER,SUPERFAMILY,PFAM,TIGERFAM等比对的结果。</p>
+<h2 id="报错解决方法">报错解决方法</h2>
+<p>注意读报错内容
+1.需要在Python2.7的环境下进行
+2.还会遇到一些rpsblast的报错
+参考网站 <a href="https://github.com/ebi-pf-team/interproscan/issues/44">https://github.com/ebi-pf-team/interproscan/issues/44</a>
+<a href="https://qiita.com/okuman/items/73bebfd711d3f955c167">https://qiita.com/okuman/items/73bebfd711d3f955c167</a>
+目前的一个解决方法：</p>
 <pre><code>I had the same error using Ubuntu 16.04. I was able to get it running by downloading a fresh copy of precompiled blast and copy rpsblast to the binary folder in interproscan.
 
 wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.6.0/ncbi-blast-2.6.0+-x64-linux.tar.gz
@@ -186,7 +224,9 @@ cp bin/blast/ncbi-blast-2.6.0+/rpsblast bin/blast/ncbi-blast-2.6.0+/rpsblast.bak
 
 # copy the new version to the binary folder
 cp ncbi-blast-2.6.0+/bin/rpsblast bin/blast/ncbi-blast-2.6.0+/rpsblast
-</code></pre><p>参数说明</p>
+
+</code></pre>
+<p>参数说明</p>
 <pre><code>-appl 单独分析，没有这个的话，所有的结果都将呈现
  指定数据库，可以不加数据库的版本
  ./interproscan.sh -appl PfamA -i /path/to/sequences.fasta
@@ -214,11 +254,17 @@ cp ncbi-blast-2.6.0+/bin/rpsblast bin/blast/ncbi-blast-2.6.0+/rpsblast
  -pa 开启可能的代谢注释
  -T 默认的临时文件在/tmp,这个是可以设置临时文件的位置
  -t 输入序列的类型。默认的是蛋白， 可以为dna或者为rna
-</code></pre><p><strong>自己使用的代码：</strong></p>
+
+</code></pre>
+<p><strong>自己使用的代码：</strong></p>
 <pre><code>./interproscan.sh -appl PANTHER-12.0 -i all_protein.fasta –o ./ –goterms –iprlookup –pa -f xml
-</code></pre><p>把输出地址和文件都写清楚，不知道咋了，不然无法写入</p>
+
+</code></pre>
+<p>把输出地址和文件都写清楚，不知道咋了，不然无法写入</p>
 <pre><code>./interproscan.sh -i test_proteins.fasta -o ./test_proteins.xml -goterms -iprlookup -pa -f xml
-</code></pre><p>涉及到的数据库：</p>
+
+</code></pre>
+<p>涉及到的数据库：</p>
 <p>可以直接用的。</p>
 <p>TIGRFAM-XX.X : TIGRFAMs基于隐马尔可夫模型的蛋白家族库</p>
 <p>ProDom-XXXX.X: ProDom 是由UniProt Knowledge Database自动生成的蛋白域家族。</p>
@@ -243,11 +289,17 @@ cp ncbi-blast-2.6.0+/bin/rpsblast bin/blast/ncbi-blast-2.6.0+/rpsblast
 <pre><code>*set environment variables for getorf
 export EMBOSS_ACDROOT=bin/nucleotide
 export EMBOSS_DATA=bin/nucleotide
-</code></pre><p>如果输入的是核酸序列，在运行命令的时候需要加入-t这个参数</p>
+
+</code></pre>
+<p>如果输入的是核酸序列，在运行命令的时候需要加入-t这个参数</p>
 <pre><code>./interproscan.sh -t n -i /path/to/nucleic_acid_sequences.fasta
-</code></pre><p>格式转换 可以将xml转化为其他的格式，注意哦，仅仅是转化xml格式</p>
+
+</code></pre>
+<p>格式转换 可以将xml转化为其他的格式，注意哦，仅仅是转化xml格式</p>
 <pre><code>./interproscan.sh -mode convert -f tsv,gff3,svg -i /path/to/impact.xml -o /path/to/output_file_basename
-</code></pre><p>参考资料： 官网：<a href="https://github.com/ebi-pf-team/interproscan">https://github.com/ebi-pf-team/interproscan</a></p>
+
+</code></pre>
+<p>参考资料： 官网：<a href="https://github.com/ebi-pf-team/interproscan">https://github.com/ebi-pf-team/interproscan</a></p>
 
             </div>
             

@@ -87,22 +87,40 @@
             
             <div class="post-content">
               <!-- more -->
-
 <p>MiHo-主题安装和配置详情</p>
-<h1 id="一. 主题简介">一. 主题简介</h1><p>MiHo 是一款单栏响应式的<a href="https://blog.minhow.com/2017/08/01/blog/installation-configuration/#3-3-jsonContent%E9%85%8D%E7%BD%AE">Hexo主题</a>；基于 Hexo 3.0+ 制作，兼容移动端浏览；主题的代码托管在GitHub上，欢迎Star和Fork；如遇到问题或发表建议，可以提Issues，也可以在博客中留言给我。</p>
-<h1 id="二. 安装">二. 安装</h1><h2 id="2.1 安装主题">2.1 安装主题</h2><pre><code>$ git clone https://github.com/WongMinHo/hexo-theme-miho.git themes/miho</code></pre><p>MiHo 主题需要Hexo 3.0或以上版本，请先升级。</p>
-<h2 id="2.2 更新">2.2 更新</h2><pre><code>cd themes/miho
-git pull</code></pre><h2 id="2.3 依赖安装">2.3 依赖安装</h2><p>如下依赖如果已经安装，请看配置介绍</p>
+<h1 id="一-主题简介">一. 主题简介</h1>
+<p>MiHo 是一款单栏响应式的<a href="https://blog.minhow.com/2017/08/01/blog/installation-configuration/#3-3-jsonContent%E9%85%8D%E7%BD%AE">Hexo主题</a>；基于 Hexo 3.0+ 制作，兼容移动端浏览；主题的代码托管在GitHub上，欢迎Star和Fork；如遇到问题或发表建议，可以提Issues，也可以在博客中留言给我。</p>
+<h1 id="二-安装">二. 安装</h1>
+<h2 id="21-安装主题">2.1 安装主题</h2>
+<pre><code>$ git clone https://github.com/WongMinHo/hexo-theme-miho.git themes/miho
+</code></pre>
+<p>MiHo 主题需要Hexo 3.0或以上版本，请先升级。</p>
+<h2 id="22-更新">2.2 更新</h2>
+<pre><code>cd themes/miho
+git pull
+</code></pre>
+<h2 id="23-依赖安装">2.3 依赖安装</h2>
+<p>如下依赖如果已经安装，请看配置介绍</p>
 <p>Json-content</p>
 <p>生成站点文章静态数据，用于站内搜索。</p>
-<pre><code>npm install hexo-generator-json-content --save</code></pre><h1 id="三. 站点配置">三. 站点配置</h1><p>站点配置文件_config.yml在hexo根目录下</p>
-<h2 id="3.1 启用主题">3.1 启用主题</h2><pre><code>theme: miho</code></pre><h2 id="3.2 网站基本配置">3.2 网站基本配置</h2><p>以下配置是站点的全局配置，更多配置，请<a href="https://hexo.io/zh-cn/docs/configuration.html">查看</a></p>
-<pre><code>title: MinHow&#39;s Blog
+<pre><code>npm install hexo-generator-json-content --save
+</code></pre>
+<h1 id="三-站点配置">三. 站点配置</h1>
+<p>站点配置文件_config.yml在hexo根目录下</p>
+<h2 id="31-启用主题">3.1 启用主题</h2>
+<pre><code>theme: miho
+</code></pre>
+<h2 id="32-网站基本配置">3.2 网站基本配置</h2>
+<p>以下配置是站点的全局配置，更多配置，请<a href="https://hexo.io/zh-cn/docs/configuration.html">查看</a></p>
+<pre><code>title: MinHow's Blog
 subtitle: 网站副标题
 description: 专注 WEB 开发的技术博客
 author: MinHow
 language: 网站使用的语言
-timezone: 网站时区</code></pre><h2 id="3.3 jsoncontent配置">3.3 jsonContent配置</h2><p>详细的配置请查看<a href="https://github.com/alexbruno/hexo-generator-json-content">hexo-generator-json-content</a></p>
+timezone: 网站时区
+</code></pre>
+<h2 id="33-jsoncontent配置">3.3 jsonContent配置</h2>
+<p>详细的配置请查看<a href="https://github.com/alexbruno/hexo-generator-json-content">hexo-generator-json-content</a></p>
 <pre><code class="language-json">jsonContent:
   meta: false
   pages: false
@@ -120,18 +138,21 @@ timezone: 网站时区</code></pre><h2 id="3.3 jsoncontent配置">3.3 jsonConten
     permalink: false
     excerpt: false
     categories: false
-    tags: false</code></pre>
-<h1 id="四. 主题配置">四. 主题配置</h1><p>编辑主题配置文件，themes/miho/_config.yml</p>
-<h2 id="4.1 属性">4.1 属性</h2><p>下面将介绍几个比较重要的配置。</p>
+    tags: false
+</code></pre>
+<h1 id="四-主题配置">四. 主题配置</h1>
+<p>编辑主题配置文件，themes/miho/_config.yml</p>
+<h2 id="41-属性">4.1 属性</h2>
+<p>下面将介绍几个比较重要的配置。</p>
 <pre><code># hexo-theme-miho
 # https://github.com/wongminho/hexo-theme-miho
 # Favicon of your site | 网站icon
 favicon: /favicon.ico
 # Header
 # Keywords of your site | 网站关键字
-keywords: MinHow,MinHow&#39;s Blog
+keywords: MinHow,MinHow's Blog
 # Head headline | 头部标题
-header_title: MinHow&#39;s Blog
+header_title: MinHow's Blog
 # Head description | 头部描述
 header_description: 一个专注 WEB 开发的技术博客
 # Link to your logo | logo地址
@@ -207,10 +228,10 @@ share: true
 # Style customization | 样式定制
 style:
   # Main color tone | 主色调
-  main_color: &#39;#0cc&#39;
+  main_color: '#0cc'
 # Reward | 打赏
 reward:
-  # 0-close, 1-All articles are rewarding, 2-Article&#39;s md file has reward:true attribute, only reward
+  # 0-close, 1-All articles are rewarding, 2-Article's md file has reward:true attribute, only reward
   # 0-关闭, 1-所有文章均有打赏, 2-文章的md文件里有reward:true属性，才有打赏
   status: 1
   # 标题
@@ -241,23 +262,41 @@ access_counter:
   site_uv: 总访客数：
   site_pv: 总访问量：
 # Copyright Information | 版权信息
-copyright: 2017 MinHow</code></pre><h2 id="4.2 文章封面图">4.2 文章封面图</h2><p>文章默认封面图，尺寸：350*150，当文章基本配置没有cover_picture时才显示。</p>
-<pre><code>cover_picture: images/banner.jpg</code></pre><h2 id="4.3 开启背景粒子">4.3 开启背景粒子</h2><p>是否开启背景粒子</p>
-<pre><code>open_bg_particle: true</code></pre><h2 id="4.4 开启主页及头部动画">4.4 开启主页及头部动画</h2><p>是否开启主页及头部动画。</p>
-<pre><code>open_animation: true</code></pre><h2 id="4.5 评论">4.5 评论</h2><p>支持畅言、友言、disqus。</p>
+copyright: 2017 MinHow
+</code></pre>
+<h2 id="42-文章封面图">4.2 文章封面图</h2>
+<p>文章默认封面图，尺寸：350*150，当文章基本配置没有cover_picture时才显示。</p>
+<pre><code>cover_picture: images/banner.jpg
+</code></pre>
+<h2 id="43-开启背景粒子">4.3 开启背景粒子</h2>
+<p>是否开启背景粒子</p>
+<pre><code>open_bg_particle: true
+</code></pre>
+<h2 id="44-开启主页及头部动画">4.4 开启主页及头部动画</h2>
+<p>是否开启主页及头部动画。</p>
+<pre><code>open_animation: true
+</code></pre>
+<h2 id="45-评论">4.5 评论</h2>
+<p>支持畅言、友言、disqus。</p>
 <pre><code># 畅言，输入appid和appkey
 changyan_appid: false
 changyan_appkey: false
 # 友言，输入id
 youyan_id: false
 # disqus
-disqus: false</code></pre><h2 id="4.6 数据统计">4.6 数据统计</h2><pre><code>支持站长、百度、google三种数据统计，正确填写配置信息即可。
+disqus: false
+</code></pre>
+<h2 id="46-数据统计">4.6 数据统计</h2>
+<pre><code>支持站长、百度、google三种数据统计，正确填写配置信息即可。
 # 站长分析，输入站点id
 cnzz_analytics: false
 # 百度分析，输入key值
 baidu_analytics: false
 # google分析
-google_analytics: false</code></pre><h2 id="4.7 文章基本配置">4.7 文章基本配置</h2><pre><code>title: Hello World
+google_analytics: false
+</code></pre>
+<h2 id="47-文章基本配置">4.7 文章基本配置</h2>
+<pre><code>title: Hello World
 date: 2017-06-18
 categories: First
 author: MinHow
@@ -267,12 +306,19 @@ tags:
 cover_picture: /images/banner.jpg
 ---
  MinHow-This is a summary
-&lt;!-- more --&gt;</code></pre><p>可以参考[blog]的写法。</p>
+&lt;!-- more --&gt;
+</code></pre>
+<p>可以参考[blog]的写法。</p>
 <p>说明：</p>
-<p>需要注意tags和摘要的写法，不然首页不能正确显示标签和摘要；<br>cover_picture文章封面图，不填默认显示_config.yml配置的图片。</p>
-<h2 id="4.8 创建 about 页面">4.8 创建 about 页面</h2><p>在 Hexo 目录执行如下命令：</p>
-<pre><code>hexo new page about</code></pre><p>然后编辑source/about/index.md文件即可，可以参考我写好的<a href="https://github.com/WongMinHo/hexo-theme-miho/blob/master/_source/about/index.md">about</a>页面。</p>
-<h2 id="4.9 打赏">4.9 打赏</h2><p>支持微信和支付宝打赏，修改wechat和alipay两个图片路径配置即可，支持全局开启打赏或指定文章开启打赏功能，详情查看配置文件。</p>
+<p>需要注意tags和摘要的写法，不然首页不能正确显示标签和摘要；
+cover_picture文章封面图，不填默认显示_config.yml配置的图片。</p>
+<h2 id="48-创建-about-页面">4.8 创建 about 页面</h2>
+<p>在 Hexo 目录执行如下命令：</p>
+<pre><code>hexo new page about
+</code></pre>
+<p>然后编辑source/about/index.md文件即可，可以参考我写好的<a href="https://github.com/WongMinHo/hexo-theme-miho/blob/master/_source/about/index.md">about</a>页面。</p>
+<h2 id="49-打赏">4.9 打赏</h2>
+<p>支持微信和支付宝打赏，修改wechat和alipay两个图片路径配置即可，支持全局开启打赏或指定文章开启打赏功能，详情查看配置文件。</p>
 
             </div>
             

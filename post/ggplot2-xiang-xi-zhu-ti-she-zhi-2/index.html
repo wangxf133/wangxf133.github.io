@@ -87,7 +87,6 @@
             
             <div class="post-content">
               <!--more-->
-
 <p><strong>theme()</strong>,本文将专门讲解一下。凡是与数据无关的图形设置可以归为主题类，ggplot2中主题设置十分多，根本不可能讲解完，只能稍微讲点皮毛，灵活运用才是关键，本文只是总体上略作介绍。正如R语言大神Hadley Wickham所讲的，ggplot2只是提供了一个平台，可以根据自己的需要无限创造。理论上来讲，只要能想到的图形，ggplot2都能实现。</p>
 <p>参考文章： <a href="http://ytlogos.coding.me/2017/06/25/ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98%EF%BC%88theme%EF%BC%89%E8%AE%BE%E7%BD%AE/">Logos的博客</a></p>
 <p><img src="https://s1.ax2x.com/2018/08/24/5DrEJY.png" alt="5DrEJY.png"></p>
@@ -142,34 +141,61 @@ theme_gray#函数名不加括号可获得函数源代码
 ## plot.margin = margin(half_line, half_line, half_line, 
 ## half_line), complete = TRUE)
 ## }
-## &lt;environment: namespace:ggplot2&gt;</code></pre><p>可以看出，源代码主要是theme()函数，设置也很简单：theme(..., complete = FALSE),但是其内含的参数则十分多。</p>
-<p><img src="https://s1.ax2x.com/2018/08/24/5DrL6i.png" alt="5DrL6i.png"><br><img src="https://s1.ax2x.com/2018/08/24/5DrU5y.png" alt="5DrU5y.png"></p>
+## &lt;environment: namespace:ggplot2&gt;
+</code></pre>
+<p>可以看出，源代码主要是theme()函数，设置也很简单：theme(..., complete = FALSE),但是其内含的参数则十分多。</p>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrL6i.png" alt="5DrL6i.png">
+<img src="https://s1.ax2x.com/2018/08/24/5DrU5y.png" alt="5DrU5y.png"></p>
 <p>几乎所有元素在theme()里都使用element_line，element_rect，element_text和element_blank函数设置. 下面就举例稍微讲解一下</p>
 <pre><code>#利用数据集mtcars演示head(mtcars)
 #先创建p图层
 p&lt;- ggplot(data=mtcars, aes(x=wt, y=mpg))+
 geom_point(aes(color=factor(cyl)))#先试试图例修改
-p+theme(legend.position = &quot;none&quot;)#无图例</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrKOX.png" alt="5DrKOX.png"></p>
-<pre><code>p+theme(legend.position = &quot;bottom&quot;)#图例在底部</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Dr6QB.png" alt="5Dr6QB.png"></p>
+p+theme(legend.position = &quot;none&quot;)#无图例
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrKOX.png" alt="5DrKOX.png"></p>
+<pre><code>p+theme(legend.position = &quot;bottom&quot;)#图例在底部
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5Dr6QB.png" alt="5Dr6QB.png"></p>
 <p>#也可以自定义</p>
-<pre><code>p+theme(legend.position = c(0.5, 0.7))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrIa6.png" alt="5DrIa6.png"></p>
+<pre><code>p+theme(legend.position = c(0.5, 0.7))
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrIa6.png" alt="5DrIa6.png"></p>
 <pre><code>#为图例加边界
-p+theme(legend.background = element_rect(color=&quot;red&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrNfp.png" alt="5DrNfp.png"></p>
+p+theme(legend.background = element_rect(color=&quot;red&quot;))
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrNfp.png" alt="5DrNfp.png"></p>
 <pre><code>#或者为图例中的每个元素进行设置，如加边界
-p+theme(legend.key =element_rect(color=&quot;red&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrlX3.png" alt="5DrlX3.png"></p>
+p+theme(legend.key =element_rect(color=&quot;red&quot;))
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrlX3.png" alt="5DrlX3.png"></p>
 <pre><code>#进行填充
-p+theme(legend.key = element_rect(fill=&quot;yellow&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Dr8JK.png" alt="5Dr8JK.png"></p>
+p+theme(legend.key = element_rect(fill=&quot;yellow&quot;))
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5Dr8JK.png" alt="5Dr8JK.png"></p>
 <pre><code>#图例内容字体大小、颜色、角度等设置
-p+theme(legend.text = element_text(size=25, color=&quot;darkred&quot;, angle=45))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrSIG.png" alt="5DrSIG.png"></p>
+p+theme(legend.text = element_text(size=25, color=&quot;darkred&quot;, angle=45))
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrSIG.png" alt="5DrSIG.png"></p>
 <pre><code>#为图例标题设置字体、颜色、大小等
-p+theme(legend.title = element_text(face=&quot;italic&quot;, size=25, color=&quot;red&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Dri5n.png" alt="5Dri5n.png"></p>
+p+theme(legend.title = element_text(face=&quot;italic&quot;, size=25, color=&quot;red&quot;))
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5Dri5n.png" alt="5Dri5n.png"></p>
 <p>接下来是坐标以及网格等的自定义</p>
 <pre><code>#修改背景颜色
-p+theme(panel.background = element_rect(fill=&quot;black&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrxOE.png" alt="5DrxOE.png"></p>
+p+theme(panel.background = element_rect(fill=&quot;black&quot;))
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrxOE.png" alt="5DrxOE.png"></p>
 <pre><code>#修改边界线类型、颜色
-p+theme(panel.border = element_rect(linetype = &quot;dashed&quot;, color=&quot;red&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Dr2UQ.png" alt="5Dr2UQ.png"></p>
-<pre><code>#修改网格线p+theme(panel.grid.major = element_line(color=&quot;blue&quot;, size= 3))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5Dr7g2.png" alt="5Dr7g2.png"></p>
-<pre><code>p+theme(panel.grid.minor = element_line(linetype = &quot;dotted&quot;, color=&quot;red&quot;))</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrgQa.png" alt="5DrgQa.png"></p>
+p+theme(panel.border = element_rect(linetype = &quot;dashed&quot;, color=&quot;red&quot;))
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5Dr2UQ.png" alt="5Dr2UQ.png"></p>
+<pre><code>#修改网格线p+theme(panel.grid.major = element_line(color=&quot;blue&quot;, size= 3))
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5Dr7g2.png" alt="5Dr7g2.png"></p>
+<pre><code>p+theme(panel.grid.minor = element_line(linetype = &quot;dotted&quot;, color=&quot;red&quot;))
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrgQa.png" alt="5DrgQa.png"></p>
 <blockquote>
 <p>还可以修改x、y轴等，这里懒得讲了，有兴趣的可以自己捣鼓捣鼓</p>
 </blockquote>
@@ -178,11 +204,11 @@ p+theme(panel.border = element_rect(linetype = &quot;dashed&quot;, color=&quot;r
 #下面是我比较常用的主题，画图时刷一下就行了
 windowsFonts(CA=windowsFont(&quot;Calibri&quot;))
 mytheme &lt;- theme_bw()+
-theme(legend.position = &#39;top&#39;, panel.border = element_blank(), 
-panel.grid.major = element_line(linetype = &#39;dashed&#39;), panel.grid.minor = 
-element_blank(), legend.text = element_text(size=9,color=&#39;#003087&#39;,family = &quot;CA&quot;), 
+theme(legend.position = 'top', panel.border = element_blank(), 
+panel.grid.major = element_line(linetype = 'dashed'), panel.grid.minor = 
+element_blank(), legend.text = element_text(size=9,color='#003087',family = &quot;CA&quot;), 
 plot.title = element_text(size=15,color=&quot;#003087&quot;,family = &quot;CA&quot;), legend.key = 
-element_blank(), axis.text = element_text(size=10,color=&#39;#003087&#39;,family = &quot;CA&quot;), 
+element_blank(), axis.text = element_text(size=10,color='#003087',family = &quot;CA&quot;), 
 strip.text = element_text(size=12,color=&quot;#EF0808&quot;,family = &quot;CA&quot;), 
 strip.background = element_blank())
 pie_theme &lt;- mytheme+
@@ -195,9 +221,11 @@ mypoint &lt;- geom_point(size=3,shape=21,color=&quot;#003087&quot;,fill=&quot;wh
 mybar &lt;- geom_bar(fill=&quot;#0C8DC4&quot;,stat = &quot;identity&quot;)
 mycolor_3 &lt;- scale_fill_manual(values = c(&quot;#085A9C&quot;,&quot;#EF0808&quot;,&quot;#526373&quot;))
 mycolor_7 &lt;- scale_fill_manual(values=c (&quot;#085A9C&quot;,&quot;#EF0808&quot;,&quot;#526373&quot;,&quot;#FFFFE7&quot;,&quot;#FF9418&quot;,&quot;#219431&quot;,&quot;#9C52AD&quot;))
-mycolor_line_7 &lt;- scale_color_manual(values=c (&quot;#085A9C&quot;,&quot;#EF0808&quot;,&quot;#526373&quot;,&quot;#FFFFE7&quot;,&quot;#FF9418&quot;,&quot;#219431&quot;,&quot;#9C52AD&quot;))</code></pre><pre><code>#可以来刷一刷#随便建个数据集
+mycolor_line_7 &lt;- scale_color_manual(values=c (&quot;#085A9C&quot;,&quot;#EF0808&quot;,&quot;#526373&quot;,&quot;#FFFFE7&quot;,&quot;#FF9418&quot;,&quot;#219431&quot;,&quot;#9C52AD&quot;))
+</code></pre>
+<pre><code>#可以来刷一刷#随便建个数据集
 x &lt;-rep(1:5, each = 3)
-y &lt;-rep(c(&#39;A&#39;,&#39;B&#39;,&#39;C&#39;),times = 5)
+y &lt;-rep(c('A','B','C'),times = 5)
 set.seed(1111)
 z &lt;-round(runif(min = 10, max = 30, n = 15))
 df &lt;-data.frame(x = x, y = y, z = z)
@@ -213,9 +241,15 @@ head(df)
 (p1 &lt;- ggplot(data=df, aes(x=factor(x), y=z, fill=y))+
 geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;)+
 ggtitle(&quot;自定义主题theme并应用实践&quot;))+
-xlab(&quot;随便定义了个x&quot;)+ylab(&quot;随机数&quot;)</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DrwXh.png" alt="5DrwXh.png"></p>
-<pre><code>p1+mytheme</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DC3ZH.png" alt="5DC3ZH.png"></p>
-<pre><code>p1+mytheme+mycolor_7</code></pre><p><img src="https://s1.ax2x.com/2018/08/24/5DC5IN.png" alt="5DC5IN.png"></p>
+xlab(&quot;随便定义了个x&quot;)+ylab(&quot;随机数&quot;)
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DrwXh.png" alt="5DrwXh.png"></p>
+<pre><code>p1+mytheme
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DC3ZH.png" alt="5DC3ZH.png"></p>
+<pre><code>p1+mytheme+mycolor_7
+</code></pre>
+<p><img src="https://s1.ax2x.com/2018/08/24/5DC5IN.png" alt="5DC5IN.png"></p>
 <p>还有线图、饼图等有兴趣的也可以自己刷一刷，你会发现ggplot2的魅力所在就是它拥有无穷的可能性。</p>
 
             </div>

@@ -87,54 +87,72 @@
             
             <div class="post-content">
               <!--more-->
-
 <p>最近在逛<a href="https://zhuanlan.zhihu.com/EasyCharts-R">R语言数据分析与可视化</a>是发现了有个ggpubr包可以绘制箱线图的显著性标记，感觉蛮有用的，然后就在网上搜了下显著性标记相关资料，发现除了ggpubr包外，发现一个ggsignif包！查了下原来这个包是专门配套ggplot2来给图添加显著性标记的，所以收藏并使用了下</p>
-<p>包的使用示例即说明可以参看Github链接：<a href="https://github.com/const-ae/ggsignif">https://github.com/const-ae/ggsignif</a></p>
+<p>包的使用示例即说明可以参看Github链接：https://github.com/const-ae/ggsignif</p>
 <p>还有一个公众号也对这包的使用进行了介绍：<a href="https://mp.weixin.qq.com/s?__biz=MzI3Mzc1MzczMA==&amp;mid=2247484318&amp;idx=1&amp;sn=aeeb47d5f0cc6ce0971032f4709393ef&amp;chksm=eb1f3073dc68b9651aa3fe1fed06db66ade6231c5f9790868ffcf680e76f67e329e04f823da3&amp;scene=21">神奇小工具丨ggplot绘图显著性添加工具—ggsignif</a></p>
-<p>下面是我对这个包的初步使用<br>具体函数的参数使用可以看ggsignif包的<a href="https://cran.r-project.org/web/packages/ggsignif/ggsignif.pdf">文档</a></p>
+<p>下面是我对这个包的初步使用
+具体函数的参数使用可以看ggsignif包的<a href="https://cran.r-project.org/web/packages/ggsignif/ggsignif.pdf">文档</a></p>
 <p>先下载使用数据，这里就拿TCGA数据来练练手，当然不是常规的去官网下载数据啦，而是使用RTCGA包，然后利用RTCGA.mRNA包里的各个样本的表达数据，先加载会用到的包</p>
 <pre><code>library(RTCGA)
 library(RTCGA.mRNA)
 library(dplyr)
 library(ggplot2)
-library(ggsignif)</code></pre><p>获取乳腺癌的表达谱数据，并挑取RCA1,BRCA2,TP53三个基因在各个样本中的表达数据作为测试数据</p>
+library(ggsignif)
+</code></pre>
+<p>获取乳腺癌的表达谱数据，并挑取RCA1,BRCA2,TP53三个基因在各个样本中的表达数据作为测试数据</p>
 <pre><code>exprSet &lt;- BRCA.mRNA %&gt;% as_tibble()
 data &lt;- select(exprSet, BRCA1,BRCA2,TP53) %&gt;% stack()
-colnames(data) &lt;- c(&quot;values&quot;, &quot;sample&quot;)</code></pre><p>绘制个箱线图瞧瞧</p>
+colnames(data) &lt;- c(&quot;values&quot;, &quot;sample&quot;)
+</code></pre>
+<p>绘制个箱线图瞧瞧</p>
 <pre><code>p &lt;- ggplot(data, aes(x = sample, y = values)) +
   geom_boxplot() +
   theme_classic()
-p</code></pre><p><img src="https://i0.wp.com/om4gsk38a.bkt.clouddn.com/ggsignif_boxplot1.png?w=600" alt=""></p>
+p
+</code></pre>
+<p><img src="https://i0.wp.com/om4gsk38a.bkt.clouddn.com/ggsignif_boxplot1.png?w=600" alt=""></p>
 <p>然后使用ggsignif包绘制有显著性标记的箱线图，先设定比较组，并选择差异分析的统计学方法，绘图</p>
 <pre><code>p &lt;- ggplot(data, aes(x = sample, y = values)) +
   geom_boxplot() +
   theme_classic() +
   geom_signif(comparisons = compared_list, test = wilcox.test, step_increase = 0.2)
-p</code></pre><p><img src="https://i0.wp.com/om4gsk38a.bkt.clouddn.com/ggsignif_boxplot2.png?w=600" alt=""><br>如果像一些图上并不是显示p值，而是显示<strong>*，那么可以再添加</strong>map_signif_level**参数</p>
+p
+</code></pre>
+<p><img src="https://i0.wp.com/om4gsk38a.bkt.clouddn.com/ggsignif_boxplot2.png?w=600" alt="">
+如果像一些图上并不是显示p值，而是显示***，那么可以再添加<strong>map_signif_level</strong>参数</p>
 <pre><code>p &lt;- ggplot(data, aes(x = sample, y = values)) +
   geom_boxplot() +
   theme_classic() +
   geom_signif(comparisons = compared_list, test = wilcox.test, step_increase = 0.2, map_signif_level = T)
-p</code></pre><p><img src="https://i0.wp.com/om4gsk38a.bkt.clouddn.com/ggsignif_boxplot3.png?w=600" alt=""></p>
+p
+</code></pre>
+<p><img src="https://i0.wp.com/om4gsk38a.bkt.clouddn.com/ggsignif_boxplot3.png?w=600" alt=""></p>
 <p>如果并不想标注p值，而是想标注认为设定的数字或者字符，那么设定<strong>annotation</strong>参数以及搭配其他一些定位参数，如下</p>
 <pre><code>p &lt;- ggplot(data, aes(x = sample, y = values)) +
   geom_boxplot() +
   theme_classic() +
   geom_signif(annotations = c(&quot;First&quot;, &quot;Second&quot;), y_position = c(2.5, 3.5), xmin = c(1,2), xmax = c(2,3))
-p</code></pre><p><img src="https://i2.wp.com/om4gsk38a.bkt.clouddn.com/ggsignif_boxplot4.png?w=600" alt=""></p>
-<p>虽然网上介绍的ggsignif包都是对boxplot进行操作的，但是作者并没有说局限于箱线图（小提琴图）等，说明还支持其他ggplot2的图，所以我也对柱状图尝试了下<br>先生成一个测试数据框</p>
+p
+</code></pre>
+<p><img src="https://i2.wp.com/om4gsk38a.bkt.clouddn.com/ggsignif_boxplot4.png?w=600" alt=""></p>
+<p>虽然网上介绍的ggsignif包都是对boxplot进行操作的，但是作者并没有说局限于箱线图（小提琴图）等，说明还支持其他ggplot2的图，所以我也对柱状图尝试了下
+先生成一个测试数据框</p>
 <pre><code>df &lt;- data.frame(state = rep(c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;), 2),
              value = c(1:5,3:7),
              group = c(rep(&quot;one&quot;, 5), rep(&quot;two&quot;, 5))
-             )</code></pre><p>当然我们需要知道的是柱状图是不能求显著性的，但是还可以用来跟上图一样的人为标注以示说明，如下</p>
+             )
+</code></pre>
+<p>当然我们需要知道的是柱状图是不能求显著性的，但是还可以用来跟上图一样的人为标注以示说明，如下</p>
 <pre><code>p &lt;- ggplot(df, aes(x = state, y = value, fill = group)) +
   geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) +
   theme_classic() +
   geom_signif(annotations = c(0.001, &quot;***&quot;), y_position = c(4,5), xmin = c(0.75, 1.75), xmax = c(1.25, 2.25),
               tip_length = c(c(0.2, 0.05),c(0.2, 0.05)), vjust = -1)
-p</code></pre><p><img src="https://i1.wp.com/om4gsk38a.bkt.clouddn.com/ggsignif_boxplot5.png?w=600" alt=""></p>
+p
+</code></pre>
+<p><img src="https://i1.wp.com/om4gsk38a.bkt.clouddn.com/ggsignif_boxplot5.png?w=600" alt=""></p>
 <p>以上是对ggsignif包的简单尝试，这个ggplot2插件真心不错</p>
-<p>本文出自于 <a href="http://www.bioinfo-scrounger.com/archives/403">http://www.bioinfo-scrounger.com/archives/403</a></p>
+<p>本文出自于 http://www.bioinfo-scrounger.com/archives/403</p>
 
             </div>
             

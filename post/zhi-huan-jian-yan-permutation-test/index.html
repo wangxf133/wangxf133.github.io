@@ -87,7 +87,6 @@
             
             <div class="post-content">
               <!--more-->
-
 <p>我们一般平时较为常用的检验要属有参检验，但是其要求样本必须满足近似正态，无离群点，数据量大等要求；而有些时候其实很难都满足以上前提条件，则这时需要使用无参检验，其只关注数据的秩，但是无参检验有时也无法处理一些样本数较少的情况，这时则可以使用置换检验</p>
 <p>置换检验，是Fisher提出的一种基于大量计算（computationally intensive），利用样本数据的随机排列（置换检验的核心思想，故名Permutation test），进行统计推断的方法。因其对总体分布自由，特别适合用于总体分布未知的小样本数据，以及一些常规方法难以使用的假设检验情况。</p>
 <p>置换检验的思路简单的说如下：</p>
@@ -102,7 +101,7 @@
 <li>置换检验和参数检验都计算了统计量，但是前者是跟置换观测数据后获得的经验分布进行比较，后者则是跟理论分布进行比较</li>
 </ol>
 </blockquote>
-<p>具体实例示范可参照文章 <a href="https://www.plob.org/article/3176.html">https://www.plob.org/article/3176.html</a></p>
+<p>具体实例示范可参照文章 https://www.plob.org/article/3176.html</p>
 <p>从上述可看出，置换检验的原假设很强：</p>
 <blockquote>
 <ul>
@@ -126,25 +125,30 @@
 <li>两个数值变量独立吗？</li>
 <li>两个类别型变量独立吗？</li>
 </ul>
-<p>总是其提供了相对于经典统计检验的置换检验函数，具体函数的使用可参考书籍R语言实战或者文章 <a href="https://blog.csdn.net/wukong1981/article/details/72820049">https://blog.csdn.net/wukong1981/article/details/72820049</a></p>
+<p>总是其提供了相对于经典统计检验的置换检验函数，具体函数的使用可参考书籍R语言实战或者文章 https://blog.csdn.net/wukong1981/article/details/72820049</p>
 <p>而还有一个lmPerm包则可用来处理线性模型的置换检验，如对传统的lm和aov()而修改的置换检验版lmp()和aovp</p>
-<p>以上内容本文参考 <a href="http://www.bioinfo-scrounger.com/archives/564">http://www.bioinfo-scrounger.com/archives/564</a></p>
+<p>以上内容本文参考 http://www.bioinfo-scrounger.com/archives/564</p>
 <p>R语言——置换检验</p>
 <ol>
-<li>定义<br>置换检验(Permutation Tests)也称为随机试验，属于统计显著性检验的一种，基于假设检验，以原假设为条件，假定二组没有差别，由此将二组样本合并，从中以无放回方式进行抽样，分别归入两个组再计算统计量，反复进行由此得到置换分布（构造新的经验分布），在此基础上进行显著性检验推断是否拒绝原假设。例如：如果要判断两个样本集是否来源于同一分布，那么原假设就是二者来自于同一分布，所以如果将两个样本集进行顺序上的置换，多次重新做无放回抽样后，对分布的参数统计量的估计与置换前的统计量估计应保持大致相同（“大致”的程度则通过P值来说明）。置换检验是一种不同于Bootstrap的重采样方法，不同之处在于置换检验再抽样过程中是无放回抽样。</li>
+<li>定义
+置换检验(Permutation Tests)也称为随机试验，属于统计显著性检验的一种，基于假设检验，以原假设为条件，假定二组没有差别，由此将二组样本合并，从中以无放回方式进行抽样，分别归入两个组再计算统计量，反复进行由此得到置换分布（构造新的经验分布），在此基础上进行显著性检验推断是否拒绝原假设。例如：如果要判断两个样本集是否来源于同一分布，那么原假设就是二者来自于同一分布，所以如果将两个样本集进行顺序上的置换，多次重新做无放回抽样后，对分布的参数统计量的估计与置换前的统计量估计应保持大致相同（“大致”的程度则通过P值来说明）。置换检验是一种不同于Bootstrap的重采样方法，不同之处在于置换检验再抽样过程中是无放回抽样。</li>
 </ol>
 <p>这里引用<a href="https://cosx.org/">统计之都</a>上关于<a href="https://cosx.org/tags/%E7%BD%AE%E6%8D%A2%E6%A3%80%E9%AA%8C/">置换检验</a>的一段解释：</p>
 <blockquote>
 <p>置换检验的场景是，一次试验中，我们为试验单元随机分配不同的处理（treatment），假设这里只有两种处理水平A和B，我们想知道两种处理在试验单元的某项指标上是否有显著差异。逻辑是这样：假设处理毫无效果，那么某一个试验对象的指标将不受处理影响，不管我们给老鼠嗑的是A药还是B药，结果都一样，那么我们可以把处理的标签随机打乱（某些A、B随机互换），打乱后A组和B组的差异<strong>不应该</strong>会和原来的<strong>差异很不一样</strong>（因为药不管用嘛），否则，我们恐怕得说，药还是管用的。就这样，我们随机打乱标签很多次，形成一个“人工生成”的AB差异分布（因为我们生成了很多个差异值），看原来的差异在这个分布的什么位置上，如果在很靠近尾巴的位置上，那么就认为P值很小。</p>
 </blockquote>
 <ol start="2">
-<li>置换分布<br>对置换检验熟悉的人是否有想过，好像我们一直没谈到什么分布的假设，那这个概率值（P值）是从哪里生出来的？</li>
+<li>置换分布
+对置换检验熟悉的人是否有想过，好像我们一直没谈到什么分布的假设，那这个概率值（P值）是从哪里生出来的？</li>
 </ol>
 <p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq43dgycaj20mt0j4tc9.jpg" alt="置换分布"></p>
 <ol start="3">
-<li><p>一般步骤<br><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq44k53cyj20i2083dgr.jpg" alt="一般步骤"></p>
+<li>
+<p>一般步骤
+<img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq44k53cyj20i2083dgr.jpg" alt="一般步骤"></p>
 </li>
-<li><p>实例</p>
+<li>
+<p>实例</p>
 </li>
 </ol>
 <p>下面通过一个例子来说明Permutation Tests的计算过程</p>
@@ -156,7 +160,9 @@ x &lt;- sort(as.vector(weight[feed == &quot;soybean&quot;]))
 y &lt;- sort(as.vector(weight[feed == &quot;linseed&quot;]))
 detach(chickwts)
 print(x)
-print(y)</code></pre><p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq47ug8k9j20rv06etba.jpg" alt=""></p>
+print(y)
+</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq47ug8k9j20rv06etba.jpg" alt=""></p>
 <p>接下来我们采用置换检验来判断大豆与亚麻籽两种种子重量是否一致，R代码如下：</p>
 <pre><code>#对x和y进行t检验
 t0 &lt;- t.test(x,y)$p.value
@@ -181,9 +187,11 @@ sprintf(&quot;随机变量X和Y的T检验结果为%g,置换检验的P-value为%g
 
 hist(unlist(reps), main=&quot;置换检验&quot;, freq=FALSE, xlab=&quot;T (p)&quot;,
      breaks = &quot;scott&quot;)
-points(t0, 0, cex=1, pch=16)</code></pre><p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq48jc3qrj20qe0dtn3p.jpg" alt=""></p>
+points(t0, 0, cex=1, pch=16)
+</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq48jc3qrj20qe0dtn3p.jpg" alt=""></p>
 <p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq492145ij20q80lognk.jpg" alt=""></p>
-<p>此部分内容参考 <a href="http://www.hanlongfei.com/statistical%20computing%20with%20r/2014/12/23/permutationtest/">http://www.hanlongfei.com/statistical%20computing%20with%20r/2014/12/23/permutationtest/</a></p>
+<p>此部分内容参考 http://www.hanlongfei.com/statistical%20computing%20with%20r/2014/12/23/permutationtest/</p>
 
             </div>
             

@@ -87,11 +87,18 @@
             
             <div class="post-content">
               <!--more-->
-<h5 id="snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。">snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。</h5><p>这里为大家提供snakemake工作流管理软件。Snakemake是用Python3写的一个工具，模仿makefile的格式（makefile就是我们安装软件 make make install时，使用的各种编译规则，不明白也没关系），处理流程中各步骤的依赖关系，这样就知道哪一步分析先运行，哪一步后运行，各个分析步骤就形成了一个有向无环图（DAG，就是GO分析里面的DOG喽），引用文档里面的一个图：</p>
-<p>官网文档：<a href="http://snakemake.readthedocs.io/en/latest/index.html">http://snakemake.readthedocs.io/en/latest/index.html</a></p>
-<h1 id="一、从一个简单的例子开始">一、从一个简单的例子开始</h1><h3 id="1.安装snakemake">1.安装snakemake</h3><p>安装snakemake的方法有多种，snakemake官方推荐的是conda，安装方法如下：</p>
-<pre><code>conda install -c bioconda snakemake</code></pre><p>试试 snakemake -h看看安装成功没有？</p>
-<h3 id="2 使用说明">2 使用说明</h3><h5 id="2.1 一个简单的snakemake脚本">2.1 一个简单的snakemake脚本</h5><p>虽然snakemake广泛的应用于生物信息方面的流程编写，但是snakemake的应用并不局限于编写生物信息学的流程，这里以一个简单的合并文件的例子开始介绍snakemake的简单使用。</p>
+<h5 id="snakemake是一个用来编写任务流程的工具用python编写的因此其执行的流程脚本也比较通俗易懂易于理解">snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。</h5>
+<p>这里为大家提供snakemake工作流管理软件。Snakemake是用Python3写的一个工具，模仿makefile的格式（makefile就是我们安装软件 make make install时，使用的各种编译规则，不明白也没关系），处理流程中各步骤的依赖关系，这样就知道哪一步分析先运行，哪一步后运行，各个分析步骤就形成了一个有向无环图（DAG，就是GO分析里面的DOG喽），引用文档里面的一个图：</p>
+<p>官网文档：http://snakemake.readthedocs.io/en/latest/index.html</p>
+<h1 id="一-从一个简单的例子开始">一、从一个简单的例子开始</h1>
+<h3 id="1安装snakemake">1.安装snakemake</h3>
+<p>安装snakemake的方法有多种，snakemake官方推荐的是conda，安装方法如下：</p>
+<pre><code>conda install -c bioconda snakemake
+</code></pre>
+<p>试试 snakemake -h看看安装成功没有？</p>
+<h3 id="2-使用说明">2 使用说明</h3>
+<h5 id="21-一个简单的snakemake脚本">2.1 一个简单的snakemake脚本</h5>
+<p>虽然snakemake广泛的应用于生物信息方面的流程编写，但是snakemake的应用并不局限于编写生物信息学的流程，这里以一个简单的合并文件的例子开始介绍snakemake的简单使用。</p>
 <pre><code>#首先我们建立两个文件
 $ echo &quot;Here is hello.&quot; &gt; hello.txt
 $ echo &quot;Here is world.&quot; &gt; world.txt
@@ -110,8 +117,11 @@ $ snakemake
 $ cat merge.txt
 Here is hello.
 Here is world.
-</code></pre><p>在上面的Snakefile脚本中，rule、input、output、shell、expand均为snakemake中的关键字或者命令。同时Snakefile中的每一个rule其实都可以看作是一个简单的shell脚本，通过Snakefile将多个rule组织在一起并按照我们定义的顺序来执行。另外，在output中的结果文件可以是未存在目录中的文件,这时会自动创建不存在的目录。</p>
-<h5 id="2.2 另一个snakemake脚本">2.2 另一个snakemake脚本</h5><p>这里参照文档中的一个例子进行说明。首先看看一个Snakefile的样子：</p>
+
+</code></pre>
+<p>在上面的Snakefile脚本中，rule、input、output、shell、expand均为snakemake中的关键字或者命令。同时Snakefile中的每一个rule其实都可以看作是一个简单的shell脚本，通过Snakefile将多个rule组织在一起并按照我们定义的顺序来执行。另外，在output中的结果文件可以是未存在目录中的文件,这时会自动创建不存在的目录。</p>
+<h5 id="22-另一个snakemake脚本">2.2 另一个snakemake脚本</h5>
+<p>这里参照文档中的一个例子进行说明。首先看看一个Snakefile的样子：</p>
 <pre><code>rule bwa_map:
     input:
         &quot;data/genome.fa&quot;,
@@ -119,10 +129,14 @@ Here is world.
     output:
         &quot;mapped_reads/A.bam&quot;
     shell:
-        &quot;bwa mem {input} | samtools view -Sb - &gt; {output}&quot;</code></pre><p>Skefile中只定义一个叫bwa_map的rule，rule里面分别写明了输入和输出文件，还有运行脚本的命令。在shell中用了{input}和{output}引用了输入和输出文件，对于下面打印出来的脚本，可以看到{input}里面有顺序的。</p>
+        &quot;bwa mem {input} | samtools view -Sb - &gt; {output}&quot;
+</code></pre>
+<p>Skefile中只定义一个叫bwa_map的rule，rule里面分别写明了输入和输出文件，还有运行脚本的命令。在shell中用了{input}和{output}引用了输入和输出文件，对于下面打印出来的脚本，可以看到{input}里面有顺序的。</p>
 <p>前面假装已经帮参考序列genome.fa建好了索引，这里直接使用 bwa就可以了。相关的数据文件已经保存到我的github上，大家直接下载使用就可以。</p>
 <pre><code>cd snakemake-tutorial
-snakemake -np</code></pre><p>这里不执行程序，而是把相关的脚本打印出来，同时还有任务统计信息：</p>
+snakemake -np
+</code></pre>
+<p>这里不执行程序，而是把相关的脚本打印出来，同时还有任务统计信息：</p>
 <pre><code>
 rule bwa_map:
     input: data/genome.fa, data/samples/A.fastq
@@ -131,9 +145,14 @@ rule bwa_map:
  Job counts:
     count   jobs
     1   bwa_map
-    1</code></pre><p>上面列出了rule中的input和output，最终执行的脚本以及任务的统计，这里只是简单的一个任务，只是简单说明了使用过程。</p>
-<h1 id="二、snakemake中的一些命令与规则">二、snakemake中的一些命令与规则</h1><h2 id="rule">rule</h2><p>rule是Snakefile中最主要的部分。如上面的例子所说，每一个rule定义了一系列pipe中的一步，每一个rule都可以当作一个shell脚本来处理，一般主要包括input、output、shell3个部分。同时还有许多上面没有列出来的用法：</p>
-<h5 id="1、rule all。不同于其他的rule，在rule all里面一般不会去定义要执行的命令，他一般用来定义最后的输出结果文件。除了rule all中定义的文件外最后输出结果不会保存任何中间文件。例如将上面的脚本改成如下文件则没有输出结果：">1、rule all。不同于其他的rule，在rule all里面一般不会去定义要执行的命令，他一般用来定义最后的输出结果文件。除了rule all中定义的文件外最后输出结果不会保存任何中间文件。例如将上面的脚本改成如下文件则没有输出结果：</h5><pre><code>rule all:
+    1
+</code></pre>
+<p>上面列出了rule中的input和output，最终执行的脚本以及任务的统计，这里只是简单的一个任务，只是简单说明了使用过程。</p>
+<h1 id="二-snakemake中的一些命令与规则">二、snakemake中的一些命令与规则</h1>
+<h2 id="rule">rule</h2>
+<p>rule是Snakefile中最主要的部分。如上面的例子所说，每一个rule定义了一系列pipe中的一步，每一个rule都可以当作一个shell脚本来处理，一般主要包括input、output、shell3个部分。同时还有许多上面没有列出来的用法：</p>
+<h5 id="1-rule-all-不同于其他的rule在rule-all里面一般不会去定义要执行的命令他一般用来定义最后的输出结果文件-除了rule-all中定义的文件外最后输出结果不会保存任何中间文件-例如将上面的脚本改成如下文件则没有输出结果">1、rule all。不同于其他的rule，在rule all里面一般不会去定义要执行的命令，他一般用来定义最后的输出结果文件。除了rule all中定义的文件外最后输出结果不会保存任何中间文件。例如将上面的脚本改成如下文件则没有输出结果：</h5>
+<pre><code>rule all:
     input:
          #&quot;merged.txt&quot;  取消注释后，则能正常输出文件
 rule concat:
@@ -143,7 +162,22 @@ rule concat:
         &quot;merge.txt&quot;
     shell:
         &quot;cat {input} &gt; {output}&quot;
-</code></pre><h5 id="2、wildcards。用来获取通配符匹配到的部分，例如对于通配符{dataset}/file.{group}.txt匹配到文件101/file.a.txt，则{wildcards.dataset}就是101，{wildcards.group}就是a。">2、wildcards。用来获取通配符匹配到的部分，例如对于通配符&quot;{dataset}/file.{group}.txt&quot;匹配到文件101/file.A.txt，则{wildcards.dataset}就是101，{wildcards.group}就是A。</h5><h5 id="3、threads。通过在rule里面指定threads参数来指定分配给程序的线程数，egthreads: 8。">3、threads。通过在rule里面指定threads参数来指定分配给程序的线程数，egthreads: 8。</h5><h5 id="4、resources。可用来指定程序运行的内存，eg. resources: mem_mb=800。">4、resources。可用来指定程序运行的内存，eg. resources: mem_mb=800。</h5><h5 id="5、message。使用message参数可以指定每运行到一个rule时，在终端中给出提示信息，eg.message: starting mapping ...。">5、message。使用message参数可以指定每运行到一个rule时，在终端中给出提示信息，eg.message: &quot;starting mapping ...&quot;。</h5><h5 id="6、priority。可用来指定程序运行的优先级，默认为0，eg.priority: 20。">6、priority。可用来指定程序运行的优先级，默认为0，eg.priority: 20。</h5><h5 id="7、log。用来指定生成的日志文件，eg.log: logs/concat.log。">7、log。用来指定生成的日志文件，eg.log: &quot;logs/concat.log&quot;。</h5><h5 id="8、params。指定程序运行的参数，eg.params: cat=-n,调用方法为{params.cat}。">8、params。指定程序运行的参数，eg.params: cat=&quot;-n&quot;,调用方法为{params.cat}。</h5><h5 id="9、run。在run的缩进区域里面可以输入并执行python代码。">9、run。在run的缩进区域里面可以输入并执行python代码。</h5><h5 id="10、scripts。用来执行指定脚本，eg.scripts: rm_dup.py">10、scripts。用来执行指定脚本，eg.scripts: &quot;rm_dup.py&quot;</h5><h5 id="11、temp。通过temp方法可以在所有rule运行完后删除指定的中间文件，eg.output: temp(f1.bam)。">11、temp。通过temp方法可以在所有rule运行完后删除指定的中间文件，eg.output: temp(&quot;f1.bam&quot;)。</h5><h5 id="12、protected。用来指定某些中间文件是需要保留的，eg.output: protected(f1.bam)。">12、protected。用来指定某些中间文件是需要保留的，eg.output: protected(&quot;f1.bam&quot;)。</h5><h5 id="13、ancient。重复运行执行某个snakefile时，snakemake会通过比较输入文件的时间戳是否更改(比原来的新)来决定是否重新执行程序生成文件，使用ancient方法可以强制使得结果文件一旦生成就不会再次重新生成覆盖，即便输入文件时间戳已经更新，eg.input: ancient(f1.fastq)。">13、ancient。重复运行执行某个Snakefile时，snakemake会通过比较输入文件的时间戳是否更改(比原来的新)来决定是否重新执行程序生成文件，使用ancient方法可以强制使得结果文件一旦生成就不会再次重新生成覆盖，即便输入文件时间戳已经更新，eg.input: ancient(&quot;f1.fastq&quot;)。</h5><h5 id="14、rule dependencies。可通过快捷方式指定前一个rule的输出文件为此rule的输入文件：">14、Rule Dependencies。可通过快捷方式指定前一个rule的输出文件为此rule的输入文件：</h5><pre><code>rule a:
+
+</code></pre>
+<h5 id="2-wildcards-用来获取通配符匹配到的部分例如对于通配符datasetfilegrouptxt匹配到文件101fileatxt则wildcardsdataset就是101wildcardsgroup就是a">2、wildcards。用来获取通配符匹配到的部分，例如对于通配符&quot;{dataset}/file.{group}.txt&quot;匹配到文件101/file.A.txt，则{wildcards.dataset}就是101，{wildcards.group}就是A。</h5>
+<h5 id="3-threads-通过在rule里面指定threads参数来指定分配给程序的线程数egthreads-8">3、threads。通过在rule里面指定threads参数来指定分配给程序的线程数，egthreads: 8。</h5>
+<h5 id="4-resources-可用来指定程序运行的内存eg-resources-mem_mb800">4、resources。可用来指定程序运行的内存，eg. resources: mem_mb=800。</h5>
+<h5 id="5-message-使用message参数可以指定每运行到一个rule时在终端中给出提示信息egmessage-starting-mapping">5、message。使用message参数可以指定每运行到一个rule时，在终端中给出提示信息，eg.message: &quot;starting mapping ...&quot;。</h5>
+<h5 id="6-priority-可用来指定程序运行的优先级默认为0egpriority-20">6、priority。可用来指定程序运行的优先级，默认为0，eg.priority: 20。</h5>
+<h5 id="7-log-用来指定生成的日志文件eglog-logsconcatlog">7、log。用来指定生成的日志文件，eg.log: &quot;logs/concat.log&quot;。</h5>
+<h5 id="8-params-指定程序运行的参数egparams-cat-n调用方法为paramscat">8、params。指定程序运行的参数，eg.params: cat=&quot;-n&quot;,调用方法为{params.cat}。</h5>
+<h5 id="9-run-在run的缩进区域里面可以输入并执行python代码">9、run。在run的缩进区域里面可以输入并执行python代码。</h5>
+<h5 id="10-scripts-用来执行指定脚本egscripts-rm_duppy">10、scripts。用来执行指定脚本，eg.scripts: &quot;rm_dup.py&quot;</h5>
+<h5 id="11-temp-通过temp方法可以在所有rule运行完后删除指定的中间文件egoutput-tempf1bam">11、temp。通过temp方法可以在所有rule运行完后删除指定的中间文件，eg.output: temp(&quot;f1.bam&quot;)。</h5>
+<h5 id="12-protected-用来指定某些中间文件是需要保留的egoutput-protectedf1bam">12、protected。用来指定某些中间文件是需要保留的，eg.output: protected(&quot;f1.bam&quot;)。</h5>
+<h5 id="13-ancient-重复运行执行某个snakefile时snakemake会通过比较输入文件的时间戳是否更改比原来的新来决定是否重新执行程序生成文件使用ancient方法可以强制使得结果文件一旦生成就不会再次重新生成覆盖即便输入文件时间戳已经更新eginput-ancientf1fastq">13、ancient。重复运行执行某个Snakefile时，snakemake会通过比较输入文件的时间戳是否更改(比原来的新)来决定是否重新执行程序生成文件，使用ancient方法可以强制使得结果文件一旦生成就不会再次重新生成覆盖，即便输入文件时间戳已经更新，eg.input: ancient(&quot;f1.fastq&quot;)。</h5>
+<h5 id="14-rule-dependencies-可通过快捷方式指定前一个rule的输出文件为此rule的输入文件">14、Rule Dependencies。可通过快捷方式指定前一个rule的输出文件为此rule的输入文件：</h5>
+<pre><code>rule a:
     input:  &quot;path/to/input&quot;
     output: &quot;path/to/output&quot;
     shell:  ...
@@ -152,69 +186,94 @@ rule b:
     input:  rules.a.output   #直接通过rules.a.output 指定rule a的输出
     output: &quot;path/to/output/of/b&quot;
     shell:  ...
-</code></pre><h5 id="15、report。使用snakemake定义的report函数可以方便的将结果嵌入到一个html文件中进行查看。">15、report。使用snakemake定义的report函数可以方便的将结果嵌入到一个HTML文件中进行查看。</h5><h2 id="configuration">configuration</h2><p>每计算一次数据都要重写一次Snakefile有时可能会显得有些繁琐，我们可以将那些改动写入配置文件，使用相同流程计算时，将输入文件的文件名写入配置文件然后通过Snakefile读入即可。</p>
+
+</code></pre>
+<h5 id="15-report-使用snakemake定义的report函数可以方便的将结果嵌入到一个html文件中进行查看">15、report。使用snakemake定义的report函数可以方便的将结果嵌入到一个HTML文件中进行查看。</h5>
+<h2 id="configuration">configuration</h2>
+<p>每计算一次数据都要重写一次Snakefile有时可能会显得有些繁琐，我们可以将那些改动写入配置文件，使用相同流程计算时，将输入文件的文件名写入配置文件然后通过Snakefile读入即可。</p>
 <p>配置文件有两种书写格式——json和yaml。在Snakefile中读入配置文件使用如下方式：</p>
 <pre><code>configfile: &quot;path/to/config.json&quot;
 configfile: &quot;path/to/config.yaml&quot;
 
 # 也可直接在执行snakemake命令时指定配置
-$ snakemake --config yourparam=1.5</code></pre><p>在shell命令中直接调用config文件中的内容的话，不需要引号，如config[a]而不是config[&quot;a&quot;]。</p>
-<h2 id="glob_wildcards的使用">glob_wildcards的使用</h2><p>在 fastq目录中一共有两组paired-end测序数据：</p>
+$ snakemake --config yourparam=1.5
+</code></pre>
+<p>在shell命令中直接调用config文件中的内容的话，不需要引号，如config[a]而不是config[&quot;a&quot;]。</p>
+<h2 id="glob_wildcards的使用">glob_wildcards的使用</h2>
+<p>在 fastq目录中一共有两组paired-end测序数据：</p>
 <pre><code>fastq
 ├── Sample1.R1.fastq.gz
 ├── Sample1.R2.fastq.gz
 ├── Sample2.R1.fastq.gz
-└── Sample2.R2.fastq.gz</code></pre><p>类似这种文件名存在一定规律的文件，Snakemake提供了类似bash里的通配符一样的功能，把匹配上的信息提取出来。Snakemake这里提供了 glob_wildcards这个函数来实现。</p>
+└── Sample2.R2.fastq.gz
+</code></pre>
+<p>类似这种文件名存在一定规律的文件，Snakemake提供了类似bash里的通配符一样的功能，把匹配上的信息提取出来。Snakemake这里提供了 glob_wildcards这个函数来实现。</p>
 <p>glob_wildcards可以接受一个或多个通配符表达式，类似 {pattern}，最后返回一个由list组成的tuple，所以如果只有一个变量的话，别忘了添加逗号（具体可以参考下面的例子）。还有一点就是 glob_wildcards不支持bash中用的通配符（ ?, *)。</p>
 <pre><code># Example 1
-(SAMPLE_LIST,) = glob_wildcards(&quot;fastq/{sample}.fastq&quot;)</code></pre><p>需要注意下SAMPLE_LIST后面的逗号。</p>
+(SAMPLE_LIST,) = glob_wildcards(&quot;fastq/{sample}.fastq&quot;)
+</code></pre>
+<p>需要注意下SAMPLE_LIST后面的逗号。</p>
 <pre><code># Example 2
-(genome_builds, samples, ...) = glob_wildcards(&quot;{pattern1}/{pattern2}.whatever&quot;)</code></pre><p>例子2说明，可以接收多个匹配模板。如果存在下面文件：</p>
+(genome_builds, samples, ...) = glob_wildcards(&quot;{pattern1}/{pattern2}.whatever&quot;)
+</code></pre>
+<p>例子2说明，可以接收多个匹配模板。如果存在下面文件：</p>
 <pre><code>grch37/A.bam
 grch37/B.bam
 grch38/A.bam
-grch38/B.bam</code></pre><p>那 (targets, samples) = glob_wildcards(&quot;{target}/{sample}.bam&quot;)返回的结果将是：</p>
-<pre><code>targets = [&#39;grch37&#39;, &#39;grch38&#39;]
-samples = [&#39;A&#39;, &#39;B&#39;]</code></pre><p>在上面的规则中，我们直接定义了 SAMPLES = [&#39;Sample1&#39;, &#39;Sample2&#39;]两个变量，现在尝试用通配符来自动匹配，文件 multi_inputs/snakefile2：</p>
+grch38/B.bam
+</code></pre>
+<p>那 (targets, samples) = glob_wildcards(&quot;{target}/{sample}.bam&quot;)返回的结果将是：</p>
+<pre><code>targets = ['grch37', 'grch38']
+samples = ['A', 'B']
+</code></pre>
+<p>在上面的规则中，我们直接定义了 SAMPLES = ['Sample1', 'Sample2']两个变量，现在尝试用通配符来自动匹配，文件 multi_inputs/snakefile2：</p>
 <pre><code>from os.path import join
 # Globals ---------------------------------------------------------------------
 # Full path to a FASTA file.
-GENOME = &#39;genome.fa&#39;
+GENOME = 'genome.fa'
 # A Snakemake regular expression matching the forward mate FASTQ files.
-SAMPLES, = glob_wildcards(join(&#39;fastq&#39;, &#39;{sample,Samp[^/]+}.R1.fastq.gz&#39;))
-# Patterns for the 1st mate and the 2nd mate using the &#39;sample&#39; wildcard.
-PATTERN_R1 = &#39;{sample}.R1.fastq.gz&#39;
-PATTERN_R2 = &#39;{sample}.R2.fastq.gz&#39;
+SAMPLES, = glob_wildcards(join('fastq', '{sample,Samp[^/]+}.R1.fastq.gz'))
+# Patterns for the 1st mate and the 2nd mate using the 'sample' wildcard.
+PATTERN_R1 = '{sample}.R1.fastq.gz'
+PATTERN_R2 = '{sample}.R2.fastq.gz'
 # Rules -----------------------------------------------------------------------
 rule all:
     input:
-        &#39;test2.txt&#39;
+        'test2.txt'
 rule quantify_genes:
     input:
         genome = GENOME,
-        r1 = join(&#39;fastq&#39;, PATTERN_R1),
-        r2 = join(&#39;fastq&#39;, PATTERN_R2)
+        r1 = join('fastq', PATTERN_R1),
+        r2 = join('fastq', PATTERN_R2)
     output:
-        &#39;{sample}.txt&#39;
+        '{sample}.txt'
     shell:
-        &#39;echo {input.genome} {input.r1} {input.r2} &gt; {output}&#39;
+        'echo {input.genome} {input.r1} {input.r2} &gt; {output}'
 rule collate_outputs:
     input:
-        expand(&#39;{sample}.txt&#39;, sample=SAMPLES)
+        expand('{sample}.txt', sample=SAMPLES)
     output:
-        &#39;test2.txt&#39;
+        'test2.txt'
     run:
-        with open(output[0], &#39;w&#39;) as out:
+        with open(output[0], 'w') as out:
             for i in input:
-                sample = i.split(&#39;.&#39;)[0]
+                sample = i.split('.')[0]
                 for line in open(i):
-                    out.write(sample + &#39; &#39; + line)</code></pre><p>上面的有几个需要注意的点：</p>
+                    out.write(sample + ' ' + line)
+</code></pre>
+<p>上面的有几个需要注意的点：</p>
 <p>1.将匹配的结果保存在 SAMPLES中，可是后面的使用上有 {sample}，还有 SAMPLES，可以看到 SAMPLES是不能直接作为输入输出的变量，需要借助 expand</p>
 <p>2.collate_outputs这块规则的后面运行程序是直接运行Python代码的，还可以运行R代码（<a href="http://pedagogix-tagc.univ-mrs.fr/courses/ABD/practical/snakemake/snake_intro.html">参考链接</a>）</p>
-<p>如果需要重新运行Snakemake的话，会先判断相关结果是否存在，而决定是否重新运行。也就是说，如果前面有部分流程中断，那重新运行，就会把一些中断流程中步骤重新运行。当然如果某个文件只生成了一半，也会当成运行成功的。这个时候可以用 --forcerules或 -R让Snakemake强制重新运行<br>如果想重新运行上面的流程，可以使用：</p>
-<pre><code>snakemake -R somerule</code></pre><p>如果想重新某一步，可以指定相应的rule名称:</p>
+<p>如果需要重新运行Snakemake的话，会先判断相关结果是否存在，而决定是否重新运行。也就是说，如果前面有部分流程中断，那重新运行，就会把一些中断流程中步骤重新运行。当然如果某个文件只生成了一半，也会当成运行成功的。这个时候可以用 --forcerules或 -R让Snakemake强制重新运行
+如果想重新运行上面的流程，可以使用：</p>
+<pre><code>snakemake -R somerule
+</code></pre>
+<p>如果想重新某一步，可以指定相应的rule名称:</p>
 <pre><code>snakemake -R all --snakefile snakefile2
-</code></pre><h1 id="三、snakemake的执行">三、snakemake的执行</h1><p>一般讲所有的参数配置写入Snakefile后直接在Snakefile所在路径执行snakemake命令即可开始执行流程任务。一些常用的参数：</p>
+
+</code></pre>
+<h1 id="三-snakemake的执行">三、snakemake的执行</h1>
+<p>一般讲所有的参数配置写入Snakefile后直接在Snakefile所在路径执行snakemake命令即可开始执行流程任务。一些常用的参数：</p>
 <pre><code>--snakefile, -s 指定Snakefile，否则是当前目录下的Snakefile
 --dryrun, -n  不真正执行，一般用来查看Snakefile是否有错
 --printshellcmds, -p   输出要执行的shell命令
@@ -234,31 +293,46 @@ snakemake --cluster &quot;qsub -V -cwd -q 节点队列&quot; -j 10
 # --local-cores N: 在每个集群中最多并行N核
 # --cluster-config/-u FILE: 集群配置文件
 
-</code></pre><h1 id="再有个较难的例子">再有个较难的例子</h1><h2 id="例子">例子</h2><p>前面说到如果有很多文件的话，用Snakemake处理也很方便，具体可以看下面这个例子，相关文件保存于 multi_inputs中，文件 snakefile：</p>
-<pre><code>SAMPLES = [&#39;Sample1&#39;, &#39;Sample2&#39;]
+
+</code></pre>
+<h1 id="再有个较难的例子">再有个较难的例子</h1>
+<h2 id="例子">例子</h2>
+<p>前面说到如果有很多文件的话，用Snakemake处理也很方便，具体可以看下面这个例子，相关文件保存于 multi_inputs中，文件 snakefile：</p>
+<pre><code>SAMPLES = ['Sample1', 'Sample2']
 rule all:
     input:
-        expand(&#39;{sample}.txt&#39;, sample=SAMPLES)
+        expand('{sample}.txt', sample=SAMPLES)
 rule quantify_genes:
     input:
-        genome = &#39;genome.fa&#39;,
-        r1 = &#39;fastq/{sample}.R1.fastq.gz&#39;,
-        r2 = &#39;fastq/{sample}.R2.fastq.gz&#39;
+        genome = 'genome.fa',
+        r1 = 'fastq/{sample}.R1.fastq.gz',
+        r2 = 'fastq/{sample}.R2.fastq.gz'
     output:
-        &#39;{sample}.txt&#39;
+        '{sample}.txt'
     shell:
-        &#39;echo {input.genome} {input.r1} {input.r2} &gt; {output}&#39;</code></pre><p>上面一共有 <strong>all</strong>和 <strong>quantify_genes</strong>两个rule，可以看到前面 <strong>all</strong>这个rule其实里面没什么具体的执行过程，只是提供一个输入文件，而这个输入文件是后面 <strong>quantify_genes</strong>的输出文件，这样通过输入和输出文件，把两个规则的前后关系理清了，Snakemake也知道应该先进行 <strong>quantify_genes</strong>再进行 <strong>all</strong>。根据上面的规则，我们可以尝试从最终结果逆推回去：</p>
-<h5 id="1、首先在snakefile最前面写了一个samples的列表，里面保存了2个样品名">1、首先在snakefile最前面写了一个SAMPLES的列表，里面保存了2个样品名</h5><h5 id="2、all中需要输入文件，这个文件列表由表达式 expand('{sample}.txt', sample=samples)生成， expand的用法可以参考下面，这里最终生成的结果是 [sample1.txt, sample2.txt]两个文件">2、all中需要输入文件，这个文件列表由表达式 expand(&#39;{sample}.txt&#39;, sample=SAMPLES)生成， expand的用法可以参考下面，这里最终生成的结果是 [Sample1.txt, Sample2.txt]两个文件</h5><h5 id="3、如果 all中两个输入文件不存在的话，snakemake还会从其他rule里面进行查找，看看有没有其他输出文件匹配这两个文件。刚好在 quantify_genes中的输出文件就是这两个文件，snakemake目前把考虑 quantify_genes中的具体内容">3、如果 all中两个输入文件不存在的话，Snakemake还会从其他rule里面进行查找，看看有没有其他输出文件匹配这两个文件。刚好在 quantify_genes中的输出文件就是这两个文件，Snakemake目前把考虑 quantify_genes中的具体内容</h5><h5 id="4、在 quantify_genes中要想生成最终两个文件，还需要考虑自己需要哪些输入文件，刚好这里也定义了输入文件信息，这里定义输入文件的格式与上面的还不一样，采用了键值对的形式进行设置，而且在后面使用的时候，也是采用了类似python属性调用的形式（或者使用索引也是可以的 input[0]，但可读性不好），里面的{sample}变量应该和前面 all中的{sample}来源不一样，snakemake会根据 fastq目录中存在的文件进行匹配，匹配的最终也会得到 ['sample1', 'sample2-，最后的shell执行过程也只是很简单的 echo语句">4、在 quantify_genes中要想生成最终两个文件，还需要考虑自己需要哪些输入文件，刚好这里也定义了输入文件信息，这里定义输入文件的格式与上面的还不一样，采用了键值对的形式进行设置，而且在后面使用的时候，也是采用了类似Python属性调用的形式（或者使用索引也是可以的 input[0]，但可读性不好），里面的{sample}变量应该和前面 all中的{sample}来源不一样，Snakemake会根据 fastq目录中存在的文件进行匹配，匹配的最终也会得到 [&#39;Sample1&#39;, &#39;Sample2&#39;]，最后的shell执行过程也只是很简单的 echo语句</h5><p>上面的例子只是简单说明了不同rule之间是怎么进行联系，确定先后的运行顺序，其实就是很简单的一个脚本，偏偏写这么复杂，其实Snakefile应该有更简单的方法，读者学习后，可以想想要怎么写会更加方便。</p>
+        'echo {input.genome} {input.r1} {input.r2} &gt; {output}'
+</code></pre>
+<p>上面一共有 <strong>all</strong>和 <strong>quantify_genes</strong>两个rule，可以看到前面 <strong>all</strong>这个rule其实里面没什么具体的执行过程，只是提供一个输入文件，而这个输入文件是后面 <strong>quantify_genes</strong>的输出文件，这样通过输入和输出文件，把两个规则的前后关系理清了，Snakemake也知道应该先进行 <strong>quantify_genes</strong>再进行 <strong>all</strong>。根据上面的规则，我们可以尝试从最终结果逆推回去：</p>
+<h5 id="1-首先在snakefile最前面写了一个samples的列表里面保存了2个样品名">1、首先在snakefile最前面写了一个SAMPLES的列表，里面保存了2个样品名</h5>
+<h5 id="2-all中需要输入文件这个文件列表由表达式-expandsampletxt-samplesamples生成-expand的用法可以参考下面这里最终生成的结果是-sample1txt-sample2txt两个文件">2、all中需要输入文件，这个文件列表由表达式 expand('{sample}.txt', sample=SAMPLES)生成， expand的用法可以参考下面，这里最终生成的结果是 [Sample1.txt, Sample2.txt]两个文件</h5>
+<h5 id="3-如果-all中两个输入文件不存在的话snakemake还会从其他rule里面进行查找看看有没有其他输出文件匹配这两个文件-刚好在-quantify_genes中的输出文件就是这两个文件snakemake目前把考虑-quantify_genes中的具体内容">3、如果 all中两个输入文件不存在的话，Snakemake还会从其他rule里面进行查找，看看有没有其他输出文件匹配这两个文件。刚好在 quantify_genes中的输出文件就是这两个文件，Snakemake目前把考虑 quantify_genes中的具体内容</h5>
+<h5 id="4-在-quantify_genes中要想生成最终两个文件还需要考虑自己需要哪些输入文件刚好这里也定义了输入文件信息这里定义输入文件的格式与上面的还不一样采用了键值对的形式进行设置而且在后面使用的时候也是采用了类似python属性调用的形式或者使用索引也是可以的-input0但可读性不好里面的sample变量应该和前面-all中的sample来源不一样snakemake会根据-fastq目录中存在的文件进行匹配匹配的最终也会得到-sample1-sample2最后的shell执行过程也只是很简单的-echo语句">4、在 quantify_genes中要想生成最终两个文件，还需要考虑自己需要哪些输入文件，刚好这里也定义了输入文件信息，这里定义输入文件的格式与上面的还不一样，采用了键值对的形式进行设置，而且在后面使用的时候，也是采用了类似Python属性调用的形式（或者使用索引也是可以的 input[0]，但可读性不好），里面的{sample}变量应该和前面 all中的{sample}来源不一样，Snakemake会根据 fastq目录中存在的文件进行匹配，匹配的最终也会得到 ['Sample1', 'Sample2']，最后的shell执行过程也只是很简单的 echo语句</h5>
+<p>上面的例子只是简单说明了不同rule之间是怎么进行联系，确定先后的运行顺序，其实就是很简单的一个脚本，偏偏写这么复杂，其实Snakefile应该有更简单的方法，读者学习后，可以想想要怎么写会更加方便。</p>
 <p>例子中用到的 expand函数，可以方便地利用一些简单的列表和基本模板，得到文件列表，使用方法可以简单看下面这两个例子：</p>
 <pre><code>expand(&quot;sorted_reads/{sample}.bam&quot;, sample=SAMPLES)
 # [&quot;sorted_reads/A.bam&quot;, &quot;sorted_reads/B.bam&quot;]
 # 可以提供多个参数列表
-expand(&quot;sorted_reads/{sample}.{replicate}.bam&quot;, sample=SAMPLES, replicate=[0, 1])</code></pre><h1 id="视频笔记">视频笔记</h1><p>视频地址：<a href="https://www.bilibili.com/video/av15908415">https://www.bilibili.com/video/av15908415</a></p>
+expand(&quot;sorted_reads/{sample}.{replicate}.bam&quot;, sample=SAMPLES, replicate=[0, 1])
+</code></pre>
+<h1 id="视频笔记">视频笔记</h1>
+<p>视频地址：https://www.bilibili.com/video/av15908415</p>
 <ol>
-<li><p>Rules can use shell</p>
-<pre><code>python(run:) R(run:R())</code></pre></li>
-<li><p>wildcards.sample??</p>
-</li>
+<li>Rules can use shell</li>
+</ol>
+<pre><code>python(run:) R(run:R())
+</code></pre>
+<ol start="2">
+<li>wildcards.sample??</li>
 </ol>
 
             </div>

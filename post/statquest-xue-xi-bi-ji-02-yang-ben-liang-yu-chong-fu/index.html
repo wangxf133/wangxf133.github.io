@@ -87,47 +87,76 @@
             
             <div class="post-content">
               <!--more-->
-
-<h2 id="前言">前言</h2><p>这是StatQuest视频教程的第6、7个。</p>
-<h2 id="技术重复">技术重复</h2><p>现在考虑一个场景，我们要对一批人进行采血，并对这些血样进行基因表达的分析。此时我们先对A进行采血，A的血样我们会检测3次，这3次就叫技术重复（technical replicates），因为我们是对同一个样品进行了测序，研究其基因表达谱，这其实类似于我们做RT-qPCR中的复孔（RT-qPCR我们通常对同一个样本的同一个基因做3个复孔）。</p>
+<h2 id="前言">前言</h2>
+<p>这是StatQuest视频教程的第6、7个。</p>
+<h2 id="技术重复">技术重复</h2>
+<p>现在考虑一个场景，我们要对一批人进行采血，并对这些血样进行基因表达的分析。此时我们先对A进行采血，A的血样我们会检测3次，这3次就叫技术重复（technical replicates），因为我们是对同一个样品进行了测序，研究其基因表达谱，这其实类似于我们做RT-qPCR中的复孔（RT-qPCR我们通常对同一个样本的同一个基因做3个复孔）。</p>
 <p>做技术重复我们要解决的问题是：</p>
 <ul>
 <li>能够对一个人的基因表达谱进行更加精确地检测；</li>
-<li>能够评估一次实验数据是否精确，例如我们做了3次技术重复，这3次结果都非常接近，那么这批数据就非常可信，相反，如果这3次结果差异很大，那么这批数据就不太可信。通常来说，如果我们开发出了一种新的检测方法，3次技术重复是必不可少的。<br>再看下面的案例：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/lLemJgLbjm.png?imageslim" alt=""></li>
+<li>能够评估一次实验数据是否精确，例如我们做了3次技术重复，这3次结果都非常接近，那么这批数据就非常可信，相反，如果这3次结果差异很大，那么这批数据就不太可信。通常来说，如果我们开发出了一种新的检测方法，3次技术重复是必不可少的。
+再看下面的案例：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/lLemJgLbjm.png?imageslim" alt=""></li>
 </ul>
 <p>如果我们对<strong>同一个人</strong>采血，<strong>采血了3次</strong>，对这3次分别检测他的基因表达，这3次实验我们也认为是技术重复，<strong>因为此时研究的对象是同一个人</strong>。此时我们从这3次实验中可以获知一些方法之外的信息，因为这3次实验的差异（差异可能很小），可能与一些除了检测方法之外的因素有关。</p>
-<h2 id="生物学重复">生物学重复</h2><p>现在我们再看一种情况，此时有三个人，分别为A，B，C，我们分别取他们的血样，进行基因检验，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/fbg9f18jd4.png?imageslim" alt=""></p>
+<h2 id="生物学重复">生物学重复</h2>
+<p>现在我们再看一种情况，此时有三个人，分别为A，B，C，我们分别取他们的血样，进行基因检验，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/fbg9f18jd4.png?imageslim" alt=""></p>
 <p>这三个分别来自于A，B，C三个人（男性）的重复称为生物学重复，<strong>生物学重复主要是为了研究一类对象中的基因表达情况，这个一类对象可以是人类，或者是小鼠，或者是植物，或者是细胞系（cell lines）</strong>。这个实验主要是为了研究男性的基因表达情况，从这些数据中你不太可能知道女性的基因表达情况。如果我只想研究Y染色体的基因表达情况，这就是一个很好的实验。但是，如果我想研究整个人类（包括男性与女性）的基因表达情况，我还需要检测女性的基因表达情况，然后汇总起来分析。</p>
-<p>再来看一个情况。如果只检测A的基因表达情况，那么最终的结果只能说是研究了A的基因表达情况，而不是B或C的基因表达，如下所示：<br><img src="https://s1.ax2x.com/2018/07/30/53fu9q.png" alt="53fu9q.png"></p>
-<h2 id="技术重复和生物学重复的使用">技术重复和生物学重复的使用</h2><p>在实际运用过得中，可以联合使用生物学重复和技术重复，这主要取决于实验类型。有时候如果增加更多的生物学重复，就可以不用技术重复，如果看文献的话，我们经常看到，某实验检测了几十个某病毒的基因表达谱，这些数据通常就不做技术重复，另外，还有一些实验，例如使用的是细胞系，细胞系的样本之间通常差异很小，都是由一个克隆长出来的，因此细胞系的通常也不做技术重复，只做2个生物学重复就行（有的还是做3个生物学重复），如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/K3kf0BDmIb.png?imageslim" alt=""></p>
-<p>##　样本量（simple size）<br>试想以下场景：</p>
+<p>再来看一个情况。如果只检测A的基因表达情况，那么最终的结果只能说是研究了A的基因表达情况，而不是B或C的基因表达，如下所示：
+<img src="https://s1.ax2x.com/2018/07/30/53fu9q.png" alt="53fu9q.png"></p>
+<h2 id="技术重复和生物学重复的使用">技术重复和生物学重复的使用</h2>
+<p>在实际运用过得中，可以联合使用生物学重复和技术重复，这主要取决于实验类型。有时候如果增加更多的生物学重复，就可以不用技术重复，如果看文献的话，我们经常看到，某实验检测了几十个某病毒的基因表达谱，这些数据通常就不做技术重复，另外，还有一些实验，例如使用的是细胞系，细胞系的样本之间通常差异很小，都是由一个克隆长出来的，因此细胞系的通常也不做技术重复，只做2个生物学重复就行（有的还是做3个生物学重复），如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/K3kf0BDmIb.png?imageslim" alt=""></p>
+<p>##　样本量（simple size）
+试想以下场景：</p>
 <ul>
 <li>1.我们对蓝色男性的基因表达有兴趣；</li>
 <li>2.我们是一个小鼠遗传学家，我们可以把这个蓝色的对象视为一种特殊品系的小鼠，例如C57BL/6；</li>
 <li>3.我们对植物感兴趣，此时我们把这个蓝色的对象视为某个品种的树木。</li>
 </ul>
-<p>先看第一种场景：我们要对这三个蓝色男性（此时这个蓝色男性不再表示一个人，而是某个民族，例如汉族）进行采血，然后检测其基因表达，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/mFlbGm4Ccd.png?imageslim" alt=""><br>这样，我们就检测了3次汉族男性的基因表达情况，此时我们用N来表示样本数目，此时N=3。即使我们对每个血液样本检测了2次基因表达情况，如下所示，此时的样本数目仍然是3：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/G61Bj5BleL.png?imageslim" alt=""></p>
-<p>其中一个样本的2次检测就是技术重复，只是用于评估基因检测方法是否精确，它不会告诉我们这3个样本之间的差异。<strong>如果我们研究基因检测方法的精确性，那么我们就需要多进行几次技术重复</strong>，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/gh8JbCe82d.png?imageslim" alt=""><br>此时，N=4（这个4表示对一个样本做了4次技术重复，注意与前面的生物学重复进行区分），我们要注意，技术重复只是在描述一个方法时才有意义。</p>
-<h2 id="有效样品量（effective sample size）">有效样品量（effective sample size）</h2><p>此时我们看一种比较复杂的情况，现在我们要研究一些男性基因表达谱的常规特征，这个时候就需要检测多个不同的男性，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/agj0f7jEci.png?imageslim" alt=""></p>
-<p>在这个方案里，我们要检测除了蓝色男性之外的其他男性的基因表达情况，也就是说，我们要检测蓝色，黄色，绿色男性的基因表达情况，此时N=3。此到很好理解N=3，但是，如果蓝色是双胞胎，我们检测了这4个人的基因表达情况，也就是如下所示的情况，此时N值就不一定等于3了，如果说N值为4，也有点不太对劲，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/d7hBlk00JI.png?imageslim" alt=""></p>
-<p>事实上，此时N值是位于3到4之间的数字。双胞胎其实也是两个不同的的，独立的人，但他们的基因是高度相关的，至少与黄色，绿色人相比，这两个蓝色人的基因更加相似：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/baKAI2glCa.png?imageslim" alt=""><br>如果我们计算一下这对双胞胎的基因相关性（correlation），那么我们就能计算出有效的相样量（effective sample size）：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/md5dakKkAg.png?imageslim" alt=""><br>例如，如果我们计算出这对双胞胎的相关性是0.7（具体的计算过程先不要管），那么，有效的样本数就是如下所示的公式：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/30bH9h3bDc.png?imageslim" alt=""><br>代入公式，则为：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/Cec16i95ma.png?imageslim" alt=""></p>
-<p>因此，当这两个双胞胎高度相关时，他们就不能被视作是2个样本，而是1.18个样本：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/7h195jF6EB.png?imageslim" alt=""></p>
-<p>如果这对双胞胎之间的相关性很低，比如说是0.1，那么代入公式，有效样本量就如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/I0D41050F6.png?imageslim" alt=""></p>
+<p>先看第一种场景：我们要对这三个蓝色男性（此时这个蓝色男性不再表示一个人，而是某个民族，例如汉族）进行采血，然后检测其基因表达，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/mFlbGm4Ccd.png?imageslim" alt="">
+这样，我们就检测了3次汉族男性的基因表达情况，此时我们用N来表示样本数目，此时N=3。即使我们对每个血液样本检测了2次基因表达情况，如下所示，此时的样本数目仍然是3：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/G61Bj5BleL.png?imageslim" alt=""></p>
+<p>其中一个样本的2次检测就是技术重复，只是用于评估基因检测方法是否精确，它不会告诉我们这3个样本之间的差异。<strong>如果我们研究基因检测方法的精确性，那么我们就需要多进行几次技术重复</strong>，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180604/gh8JbCe82d.png?imageslim" alt="">
+此时，N=4（这个4表示对一个样本做了4次技术重复，注意与前面的生物学重复进行区分），我们要注意，技术重复只是在描述一个方法时才有意义。</p>
+<h2 id="有效样品量effective-sample-size">有效样品量（effective sample size）</h2>
+<p>此时我们看一种比较复杂的情况，现在我们要研究一些男性基因表达谱的常规特征，这个时候就需要检测多个不同的男性，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/agj0f7jEci.png?imageslim" alt=""></p>
+<p>在这个方案里，我们要检测除了蓝色男性之外的其他男性的基因表达情况，也就是说，我们要检测蓝色，黄色，绿色男性的基因表达情况，此时N=3。此到很好理解N=3，但是，如果蓝色是双胞胎，我们检测了这4个人的基因表达情况，也就是如下所示的情况，此时N值就不一定等于3了，如果说N值为4，也有点不太对劲，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/d7hBlk00JI.png?imageslim" alt=""></p>
+<p>事实上，此时N值是位于3到4之间的数字。双胞胎其实也是两个不同的的，独立的人，但他们的基因是高度相关的，至少与黄色，绿色人相比，这两个蓝色人的基因更加相似：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/baKAI2glCa.png?imageslim" alt="">
+如果我们计算一下这对双胞胎的基因相关性（correlation），那么我们就能计算出有效的相样量（effective sample size）：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/md5dakKkAg.png?imageslim" alt="">
+例如，如果我们计算出这对双胞胎的相关性是0.7（具体的计算过程先不要管），那么，有效的样本数就是如下所示的公式：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/30bH9h3bDc.png?imageslim" alt="">
+代入公式，则为：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/Cec16i95ma.png?imageslim" alt=""></p>
+<p>因此，当这两个双胞胎高度相关时，他们就不能被视作是2个样本，而是1.18个样本：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/7h195jF6EB.png?imageslim" alt=""></p>
+<p>如果这对双胞胎之间的相关性很低，比如说是0.1，那么代入公式，有效样本量就如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/I0D41050F6.png?imageslim" alt=""></p>
 <p>此时这两个双胞胎就相当于1.82个样本（这种算法很好理解，毕竟，如果两个人非常相似，就相当于是一个人了）。</p>
 <p>在实际情况中，有效样本数的计算更加复杂，不过基本思想是一致的，也就是说，如果样本之间高度相似，它们不能被视为一个样本。</p>
-<h2 id="总结">总结</h2><ul>
+<h2 id="总结">总结</h2>
+<ul>
 <li>技术重复用于评估方法的准确性。</li>
 <li>生物学重复用于评估其个物种的特性；</li>
 <li>涉及多个样本的时候，如果某两个样本比较相似，要考虑到有效的样本数。</li>
 </ul>
-<h2 id="另一个技术重复和生物学重复的学习（上述的解释有些绕，可能对于生物学重复和技术重复来时这个更好理解一些吧）">另一个技术重复和生物学重复的学习（上述的解释有些绕，可能对于生物学重复和技术重复来时这个更好理解一些吧）</h2><p>首先利用一张示意图对二者做一个简单介绍：<br><img src="https://static.plob.ybzhao.com/wp-content/uploads/2012/07/repeat.jpg" alt=""></p>
+<h2 id="另一个技术重复和生物学重复的学习上述的解释有些绕可能对于生物学重复和技术重复来时这个更好理解一些吧">另一个技术重复和生物学重复的学习（上述的解释有些绕，可能对于生物学重复和技术重复来时这个更好理解一些吧）</h2>
+<p>首先利用一张示意图对二者做一个简单介绍：
+<img src="https://static.plob.ybzhao.com/wp-content/uploads/2012/07/repeat.jpg" alt=""></p>
 <p>使用同一个抽提的RNA重复进行芯片杂交称为<strong>技术重复</strong>。取重复点的平均值，由于平均值与组分本身相比变异较小， 所得到的表达评价更可靠。由于抽提具有可重复的特点， 与生物学重复相比， 技术重复的测量变异程度较小。但是技术重复不是完全独立的，取平均值不能去除共有的系统偏差。重复分析来自同一个抽提物的RNA, 通过减少实验中的技术变异， 将对特定的样本产生高可信度的测量结果，但是并不能给出同一群体的另一个样本的任何信息。这就如同通过重复多次测量同一个男人和女人的身高，是无法得出男性和女性身高差异的结论一样。如果我们要预测并推测整个人群，测量几个不同的男人和几个不同的女人是必要的，即我们需要生物学重复。</p>
 <p><strong>生物学重复</strong>可以定义为使用来自不同抽提的RNA样本进行杂交，例如，同一来源独立制备的样本，或者不同来源的样本（不同的组织，或者一个细胞系的不同培养物）。对每一个RNA样本制备来说，只要抽提之后的步骤是独立进行的，那么分析测量就是独立的。当然，真正的生物学重复应使用独立的样本来源：例如平行培养的细胞或细胞株。虽然对于特定的基因，生物学重复的变异大于技术重复，但是由每一个独立样本引入的偏差通过取每一个测量的平均值几乎消除，因此生物学重复的实验结果易于广泛概括。通常， 生物学重复用于概括性结论的验证，技术重复用于减少这些结论的变异性。</p>
 <p>##　参考</p>
 <ul>
-<li><a href="https://www.plob.org/article/2596.html">https://www.plob.org/article/2596.html</a></li>
-<li><a href="https://www.zhihu.com/question/23668756">https://www.zhihu.com/question/23668756</a></li>
-<li><a href="http://rvdsd.top/2018/06/02/BioStatistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-StatQuest%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B002-%E6%A0%B7%E6%9C%AC%E9%87%8F%E4%B8%8E%E9%87%8D%E5%A4%8D/">http://rvdsd.top/2018/06/02/BioStatistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-StatQuest%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B002-%E6%A0%B7%E6%9C%AC%E9%87%8F%E4%B8%8E%E9%87%8D%E5%A4%8D/</a></li>
+<li>https://www.plob.org/article/2596.html</li>
+<li>https://www.zhihu.com/question/23668756</li>
+<li>http://rvdsd.top/2018/06/02/BioStatistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-StatQuest%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B002-%E6%A0%B7%E6%9C%AC%E9%87%8F%E4%B8%8E%E9%87%8D%E5%A4%8D/</li>
 </ul>
 
             </div>

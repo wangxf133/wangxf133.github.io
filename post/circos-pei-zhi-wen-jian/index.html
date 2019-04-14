@@ -87,9 +87,9 @@
             
             <div class="post-content">
               <!--more-->
-
-<p> 主要参考博客：<a href="http://ytlogos.coding.me/">http://ytlogos.coding.me/</a></p>
-<h1 id="circos的配置文件准备">Circos的配置文件准备</h1><p>Circos的使用主要通过输入一个配置文件，改配置文件的主要内容以各种区块表示，大区块中可以包含小区快。区块中以”变量=值”的方式来进行参数的设定：</p>
+<p>主要参考博客：http://ytlogos.coding.me/</p>
+<h1 id="circos的配置文件准备">Circos的配置文件准备</h1>
+<p>Circos的使用主要通过输入一个配置文件，改配置文件的主要内容以各种区块表示，大区块中可以包含小区快。区块中以”变量=值”的方式来进行参数的设定：</p>
 <pre><code>&lt;links&gt;
 &lt;link&gt;
   file = data/set1.txt
@@ -101,13 +101,24 @@
   color = red
   ...
 &lt;/link&gt;
-&lt;/links&gt;</code></pre><blockquote>
+&lt;/links&gt;
+</code></pre>
+<blockquote>
 <p>有些配置文件不需要改动，比如颜色、字体等，一般将这类信息保存到一个独立的配置文件中。只需要在主配置文件中声明包含这些独立的配置文件名及其路径，即表示使用这些配置信息。最常用的放置到主配置文件尾部的数行</p>
 </blockquote>
-<h2 id="设置生成的图片参数">设置生成的图片参数</h2><pre><code>&lt;image&gt;
+<h2 id="设置生成的图片参数">设置生成的图片参数</h2>
+<pre><code>&lt;image&gt;
 &lt;&lt;include etc/image.conf&gt;&gt;
-&lt;/image&gt;</code></pre><p>##设置颜色、字体、填充模式的配置信息、</p>
-<pre><code>&lt;&lt;include etc/colors_fonts_patterns.conf&gt;&gt;</code></pre><h2 id="系统与debug参数">系统与debug参数</h2><pre><code>&lt;&lt;include etc/housekeeping.conf&gt;&gt;</code></pre><h1 id="circos的使用参数">Circos的使用参数</h1><pre><code>-version
+&lt;/image&gt;
+</code></pre>
+<p>##设置颜色、字体、填充模式的配置信息、</p>
+<pre><code>&lt;&lt;include etc/colors_fonts_patterns.conf&gt;&gt;
+</code></pre>
+<h2 id="系统与debug参数">系统与debug参数</h2>
+<pre><code>&lt;&lt;include etc/housekeeping.conf&gt;&gt;
+</code></pre>
+<h1 id="circos的使用参数">Circos的使用参数</h1>
+<pre><code>-version
 查询Circos版本
 -modules
 检测perl模块
@@ -118,7 +129,11 @@
 -svg
 生成svg结果文件
 -nosvg
-不生成svg结果文件</code></pre><h1 id="circos配置文件详解">Circos配置文件详解</h1><h2 id="ideogram block显示染色体">ideogram block显示染色体</h2><p>将染色体在圈图上展示出来，代表每个染色体的图形，称为ideogram。将以下配置信息放入一个单独的配置文件中，命名为ideogram.conf</p>
+不生成svg结果文件
+</code></pre>
+<h1 id="circos配置文件详解">Circos配置文件详解</h1>
+<h2 id="ideogram-block显示染色体">ideogram block显示染色体</h2>
+<p>将染色体在圈图上展示出来，代表每个染色体的图形，称为ideogram。将以下配置信息放入一个单独的配置文件中，命名为ideogram.conf</p>
 <pre><code>&lt;ideogram&gt;
 ##设定ideogram之间的间隙
   &lt;spacing&gt;
@@ -147,7 +162,10 @@ label_font = default
 label_size = 40
 # 设定label的字体方向，yes是易于浏览的方向
 label_parallel = yes
-&lt;/ideogram&gt;</code></pre><h2 id="ticks block以刻度形式显示染色体大小">ticks block以刻度形式显示染色体大小</h2><p>将染色体的大小以刻度的形式在圈图上展示出来，将以下配置信息放入到一个独立的配置文件中，命名为ticks.conf</p>
+&lt;/ideogram&gt;
+</code></pre>
+<h2 id="ticks-block以刻度形式显示染色体大小">ticks block以刻度形式显示染色体大小</h2>
+<p>将染色体的大小以刻度的形式在圈图上展示出来，将以下配置信息放入到一个独立的配置文件中，命名为ticks.conf</p>
 <pre><code>#是否显示ticks
 show_ticks = yes
 #是否显示ticks的labels
@@ -161,7 +179,7 @@ radius = 1r
 color = black
 #设置ticks的厚度
 thickness = 2p
-#设置ticks&#39;label的值的计算，将改刻度对应的值*multiplier得到展示到圈图上的label值
+#设置ticks'label的值的计算，将改刻度对应的值*multiplier得到展示到圈图上的label值
 multiplier = 1e-6
 #label值的格式化方法，%d表示结果为整数；%f表示结果为浮点数；%.nf表示结果保留小数点后n位
 format = %d
@@ -175,15 +193,18 @@ size = 10p
 &lt;tick&gt;
 spacing = 25u
 size = 15p
-#由于设置的是大刻度，以下用于设置展示ticks&#39;label
+#由于设置的是大刻度，以下用于设置展示ticks'label
 show_label = yes
-#设置ticks&#39;label字体大小
+#设置ticks'label字体大小
 label_size= 20p
-#设置ticks&#39;label离ticks的距离
+#设置ticks'label离ticks的距离
 label_offset = 10p
 format = %d
 &lt;/tick&gt;
-&lt;/ticks&gt;</code></pre><h2 id="links block以曲线连接显示基因组内部之间的联系">links block以曲线连接显示基因组内部之间的联系</h2><p>基因组内部不同的序列区域之间有联系，将之使用线条进行连接，从而展示到圈图上，常见的是重复序列之间的连接，将以下配置信息放入到一个独立的配置文件中，命名为links.conf</p>
+&lt;/ticks&gt;
+</code></pre>
+<h2 id="links-block以曲线连接显示基因组内部之间的联系">links block以曲线连接显示基因组内部之间的联系</h2>
+<p>基因组内部不同的序列区域之间有联系，将之使用线条进行连接，从而展示到圈图上，常见的是重复序列之间的连接，将以下配置信息放入到一个独立的配置文件中，命名为links.conf</p>
 <pre><code>&lt;links&gt;
 &lt;link&gt;
 #指定link文件的路径，其文件格式为：
@@ -227,7 +248,10 @@ radius2 = 0.99r
 &lt;/rule&gt;
 &lt;/rules&gt;
 &lt;/link&gt;
-&lt;/links&gt;</code></pre><h2 id="plots block以直方图形式展示数据">plots block以直方图形式展示数据</h2><pre><code>&lt;plot&gt;
+&lt;/links&gt;
+</code></pre>
+<h2 id="plots-block以直方图形式展示数据">plots block以直方图形式展示数据</h2>
+<pre><code>&lt;plot&gt;
 #设定直方图
 type = histogram
 #数据文件路径，4列
@@ -308,7 +332,10 @@ color = green
 thickness = 2
 &lt;/axis&gt;
 &lt;/axes&gt;
-&lt;/plot&gt;</code></pre><h2 id="plots block以热图形式显示数据">plots block以热图形式显示数据</h2><p>基因组一个区域内有多组数据时，适合以热图的形式显示数据，比如基因表达量，将以下配置信息放入一个单独的配置文件中，命名为plots_heatmap.conf</p>
+&lt;/plot&gt;
+</code></pre>
+<h2 id="plots-block以热图形式显示数据">plots block以热图形式显示数据</h2>
+<p>基因组一个区域内有多组数据时，适合以热图的形式显示数据，比如基因表达量，将以下配置信息放入一个单独的配置文件中，命名为plots_heatmap.conf</p>
 <pre><code>&lt;plot&gt;
 #绘制heatmap
 type = haetmap
@@ -383,7 +410,10 @@ show = no
  show = no
  &lt;/rule&gt;
 &lt;/rules&gt;
-&lt;/plot&gt;</code></pre><h2 id="plots block以文本形式显示数据">plots block以文本形式显示数据</h2><p>若需要在圈图上显示基因名称，需要以文本形式展示，将以下配置信息放入到一个单独的配置文件中，命名为plots_text.conf</p>
+&lt;/plot&gt;
+</code></pre>
+<h2 id="plots-block以文本形式显示数据">plots block以文本形式显示数据</h2>
+<p>若需要在圈图上显示基因名称，需要以文本形式展示，将以下配置信息放入到一个单独的配置文件中，命名为plots_text.conf</p>
 <pre><code>&lt;plot&gt;
 #表示文字
 type = text
@@ -418,11 +448,17 @@ condition = var(value) =~ /b/i
 color = blue
 &lt;/rule&gt;
 &lt;/rules&gt;
-&lt;/plot&gt;</code></pre><h2 id="rules block放置常用的规则配置">rules block放置常用的规则配置</h2><p>上述配置文件中，很多track没有在1号染色体上展示，需要设置如下规则信息，将之写入到文件exclude.chrA01.rule中</p>
+&lt;/plot&gt;
+</code></pre>
+<h2 id="rules-block放置常用的规则配置">rules block放置常用的规则配置</h2>
+<p>上述配置文件中，很多track没有在1号染色体上展示，需要设置如下规则信息，将之写入到文件exclude.chrA01.rule中</p>
 <pre><code>&lt;rule&gt;
 condition = on(chrA01)
 show = no
-&lt;/rule&gt;</code></pre><h2 id="主配置文件">主配置文件</h2><p>在主配置文件circos.conf中，包含以上所有需要的配置文件信息，则可以会出所需要的track，此外，可以设置一些全局设置。</p>
+&lt;/rule&gt;
+</code></pre>
+<h2 id="主配置文件">主配置文件</h2>
+<p>在主配置文件circos.conf中，包含以上所有需要的配置文件信息，则可以会出所需要的track，此外，可以设置一些全局设置。</p>
 <pre><code>#指定染色体组型的文件，该文件有7列：
 #chr - ID LABEL START END COLOR
 #chr - chrA01 1 0 2154635789 chr1
@@ -465,13 +501,20 @@ chr4* = blue
 &lt;&lt;include etc/image.conf&gt;&gt;
 &lt;/image&gt;
 &lt;&lt;include etc/color_fonts_pattern.conf&gt;&gt;
-&lt;&lt;include etc/housekeeping.conf&gt;&gt;</code></pre><h2 id="使用circos命令绘图">使用Circos命令绘图</h2><p>先安装</p>
+&lt;&lt;include etc/housekeeping.conf&gt;&gt;
+</code></pre>
+<h2 id="使用circos命令绘图">使用Circos命令绘图</h2>
+<p>先安装</p>
 <pre><code>##第一步先去官网下载最新版本
 $ cd circos
 $ tar zxf circos-tutorials-0.66.tgz
 $ mv data data.bak
-$ mv circos-tutorials-0.66/data/ ./</code></pre><p>所有文件包括配置文件、数据文件等放置于当前目录文件夹中，运行circos绘图</p>
-<pre><code>$ ./bin/circos -conf circos.conf</code></pre><p>这篇文章主要来自于<a href="http://ytlogos.coding.me/2018/07/20/Circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/#more">Circos配置文件</a>和<a href="https://www.plob.org/article/8424.html">Circos的安装和简单使用</a>,可以说是十分详细了。当然最好的文档还是官方提供的<a href="http://circos.ca/">文档Circos</a>。</p>
+$ mv circos-tutorials-0.66/data/ ./
+</code></pre>
+<p>所有文件包括配置文件、数据文件等放置于当前目录文件夹中，运行circos绘图</p>
+<pre><code>$ ./bin/circos -conf circos.conf
+</code></pre>
+<p>这篇文章主要来自于<a href="http://ytlogos.coding.me/2018/07/20/Circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/#more">Circos配置文件</a>和<a href="https://www.plob.org/article/8424.html">Circos的安装和简单使用</a>,可以说是十分详细了。当然最好的文档还是官方提供的<a href="http://circos.ca/">文档Circos</a>。</p>
 
             </div>
             

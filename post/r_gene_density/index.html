@@ -87,13 +87,21 @@
             
             <div class="post-content">
               <!--more-->
-<h1 id="基因密度热图">基因密度热图</h1><h3 id="1.数据准备">1.数据准备</h3><p>两个文件<br>一个是基因长度文件(Osativa_gene-length.txt)<br><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fr1ys98954j20gk0oldi7.jpg" alt="基因长度"><br>另一个是染色体信息(Osativa_323_v7.0.fa.seqlengths.txt)<br><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fr1ytrm6mhj20ct08kmxq.jpg" alt="染色体信息"></p>
-<h3 id="2.r中的包进行安装">2.R中的包进行安装</h3><p>2.1 在RStudio中更新R的版本(要求在Gui中更新比较好)</p>
+<h1 id="基因密度热图">基因密度热图</h1>
+<h3 id="1数据准备">1.数据准备</h3>
+<p>两个文件
+一个是基因长度文件(Osativa_gene-length.txt)
+<img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fr1ys98954j20gk0oldi7.jpg" alt="基因长度">
+另一个是染色体信息(Osativa_323_v7.0.fa.seqlengths.txt)
+<img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fr1ytrm6mhj20ct08kmxq.jpg" alt="染色体信息"></p>
+<h3 id="2r中的包进行安装">2.R中的包进行安装</h3>
+<p>2.1 在RStudio中更新R的版本(要求在Gui中更新比较好)</p>
 <pre><code class="language-R">    install.packages(&quot;installr&quot;)
     install.packages(&quot;stringi&quot;)
     library(&quot;stringi&quot;)
     library(&quot;installr&quot;)
-    installr()</code></pre>
+    installr()
+</code></pre>
 <p>2.2 各种包的安装</p>
 <pre><code class="language-R">source(&quot;http://bioconductor.org/biocLite.R&quot;)
 biocLite(&quot;gtrellis&quot;)
@@ -108,35 +116,48 @@ library(&quot;circlize&quot;)
 
 source(&quot;https://bioconductor.org/biocLite.R&quot;)
 biocLite(&quot;ComplexHeatmap&quot;)
-library(&quot;ComplexHeatmap&quot;)</code></pre>
-<h3 id="3.设置工作区间及读取数据">3.设置工作区间及读取数据</h3><pre><code class="language-R">setwd(&quot;D:/R_lianxi/00.Gene_density&quot;)
-bed1&lt;-read.table(&quot;Osativa_323_v7.0.fa.seqlengths.txt&quot;,head=T,sep=&#39;\t&#39;)
-bed2&lt;-read.table(&quot;Osativa_gene-length.txt&quot;,head=T,sep=&#39;\t&#39;)</code></pre>
-<h3 id="4.计算基因密度">4.计算基因密度</h3><pre><code class="language-R">gene_density = genomicDensity(bed2,window.size = 1e6, n.window = NULL, overlap = TRUE)
-help(genomicDensity)</code></pre>
-<h3 id="5.颜色映射设置">5.颜色映射设置</h3><pre><code class="language-R">col_fun = colorRamp2(seq(0, max(gene_density[[4]]),length=11),rev(brewer.pal(11,&quot;RdYlBu&quot;)))
-cm = ColorMapping(col_fun = col_fun)</code></pre>
-<h3 id="6.绘图，添加图例（纵坐标的那些东西）">6.绘图，添加图例（纵坐标的那些东西）</h3><pre><code class="language-R">lgd = color_mapping_legend(cm, plot = TRUE, title = &quot;&quot;,color_bar=&quot;continuous&quot;)   ##图的标尺
+library(&quot;ComplexHeatmap&quot;)
+</code></pre>
+<h3 id="3设置工作区间及读取数据">3.设置工作区间及读取数据</h3>
+<pre><code class="language-R">setwd(&quot;D:/R_lianxi/00.Gene_density&quot;)
+bed1&lt;-read.table(&quot;Osativa_323_v7.0.fa.seqlengths.txt&quot;,head=T,sep='\t')
+bed2&lt;-read.table(&quot;Osativa_gene-length.txt&quot;,head=T,sep='\t')
+</code></pre>
+<h3 id="4计算基因密度">4.计算基因密度</h3>
+<pre><code class="language-R">gene_density = genomicDensity(bed2,window.size = 1e6, n.window = NULL, overlap = TRUE)
+help(genomicDensity)
+</code></pre>
+<h3 id="5颜色映射设置">5.颜色映射设置</h3>
+<pre><code class="language-R">col_fun = colorRamp2(seq(0, max(gene_density[[4]]),length=11),rev(brewer.pal(11,&quot;RdYlBu&quot;)))
+cm = ColorMapping(col_fun = col_fun)
+</code></pre>
+<h3 id="6绘图添加图例纵坐标的那些东西">6.绘图，添加图例（纵坐标的那些东西）</h3>
+<pre><code class="language-R">lgd = color_mapping_legend(cm, plot = TRUE, title = &quot;&quot;,color_bar=&quot;continuous&quot;)   ##图的标尺
 
 bed1$chr=factor(bed1$chr,levels = c(&quot;Chr1&quot;,&quot;Chr2&quot;,&quot;Chr3&quot;,&quot;Chr4&quot;,&quot;Chr5&quot;,&quot;Chr6&quot;,&quot;Chr7&quot;,&quot;Chr8&quot;,&quot;Chr9&quot;,&quot;Chr10&quot;,&quot;Chr11&quot;,&quot;Chr12&quot;))
 ##排序染色体排序，我们只需要调整这一列的数据就行
 
 gtrellis_layout(bed1,byrow = F,ncol = 1,xpadding = c(0.1, 0),gap = unit(2, &quot;mm&quot;),border = FALSE,asist_ticks=FALSE,track_axis = FALSE,legend=lgd)
 
-add_heatmap_track(gene_density, gene_density[[4]], fill = col_fun,track=1)</code></pre>
+add_heatmap_track(gene_density, gene_density[[4]], fill = col_fun,track=1)
+</code></pre>
 <p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fr2se2qovaj21hc0smmyg.jpg" alt="1"></p>
-<h3 id="7.画横坐标轴线，添加标签">7.画横坐标轴线，添加标签</h3><pre><code class="language-R">add_track(track = 1, clip = FALSE, panel_fun = function(gr) {
+<h3 id="7画横坐标轴线添加标签">7.画横坐标轴线，添加标签</h3>
+<pre><code class="language-R">add_track(track = 1, clip = FALSE, panel_fun = function(gr) {
   chr = get_cell_meta_data(&quot;name&quot;)
   if(chr == &quot;Chr12&quot;) {
     grid.lines(get_cell_meta_data(&quot;xlim&quot;), unit(c(0, 0), &quot;npc&quot;),
                default.units = &quot;native&quot;) }
   grid.text(chr,x =0.01, y = 0.38, just = c(&quot;left&quot;, &quot;bottom&quot;))
-})</code></pre>
+})
+</code></pre>
 <p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fr2shklmj5j20t90swjsp.jpg" alt="2"></p>
-<h3 id="8.如果不要线，只要标签">8.如果不要线，只要标签</h3><pre><code class="language-R">add_track(track = 1, clip = FALSE, panel_fun = function(gr) {
+<h3 id="8如果不要线只要标签">8.如果不要线，只要标签</h3>
+<pre><code class="language-R">add_track(track = 1, clip = FALSE, panel_fun = function(gr) {
   chr = get_cell_meta_data(&quot;name&quot;)
   grid.text(chr,x =0.01, y = 0.38, just = c(&quot;left&quot;, &quot;bottom&quot;))
-})</code></pre>
+})
+</code></pre>
 <p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fr2sizbaghj20tj0swmy9.jpg" alt="3"></p>
 
             </div>

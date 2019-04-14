@@ -87,17 +87,20 @@
             
             <div class="post-content">
               <!--more-->
-
 <p>DESeq2和EdgeR可用于做基因差异表达分析，主要也是用于RNA-Seq数据，同样也可以处理类似的ChIP-Seq,shRNA以及质谱数据。</p>
 <p>这两个都属于R包，其相同点在于都是对count data数据进行处理，都是基于负二项分布模型。因此会发现，用两者处理同一组数据，最后在相同阈值下筛选出的大部分基因都是一样的，但是有一部分不同应该是由于其估计离散度的不同方法所导致的。</p>
-<p>不同样品的测序量会有差异，最简单的标准化方式是计算<br>counts per million (CPM)，即原始reads count除以总reads数乘以1,000,000。</p>
+<p>不同样品的测序量会有差异，最简单的标准化方式是计算
+counts per million (CPM)，即原始reads count除以总reads数乘以1,000,000。</p>
 <p>这种计算方式的缺点是容易受到极高表达且在不同样品中存在差异表达的基因的影响；这些基因的打开或关闭会影响到细胞中总的分子数目，可能导致这些基因标准化之后就不存在表达差异了，而原本没有差异的基因标准化之后却有差异了。</p>
 <p>RPKM、FPKM和TPM是CPM按照基因或转录本长度归一化后的表达，也会受到这一影响。</p>
 <pre><code>calc_cpm &lt;- function (expr_mat, spikes = NULL){
   norm_factor &lt;- colSums(expr_mat[-spikes,])
   return(t(t(expr_mat)/norm_factor)) * 10^6
-}</code></pre><p>为了解决这一问题，研究者提出了其它的标准化方法。</p>
-<p><code>量化因子 (size factor, SF)</code>是由DESeq提出的。其方法是首先计算每个基因在所有样品中表达的几何平均值。每个细胞的量化因子(size<br>factor)是所有基因与其在所有样品中的表达值的几何平均值的比值的中位数。由于几何平均值的使用，只有在所有样品中表达都不为0的基因才能用来计算。这一方法又被称为 <code>RLE (relative log expression)</code>。</p>
+}
+</code></pre>
+<p>为了解决这一问题，研究者提出了其它的标准化方法。</p>
+<p><code>量化因子 (size factor, SF)</code>是由DESeq提出的。其方法是首先计算每个基因在所有样品中表达的几何平均值。每个细胞的量化因子(size
+factor)是所有基因与其在所有样品中的表达值的几何平均值的比值的中位数。由于几何平均值的使用，只有在所有样品中表达都不为0的基因才能用来计算。这一方法又被称为 <code>RLE (relative log expression)</code>。</p>
 <pre><code>calc_sf &lt;- function (expr_mat, spikes=NULL){
   geomeans &lt;- exp(rowMeans(log(expr_mat[-spikes,])))
   SF &lt;- function(cnts){
@@ -105,7 +108,9 @@
   }
   norm_factor &lt;- apply(expr_mat[-spikes,],2,SF)
   return(t(t(expr_mat)/norm_factor))
-}</code></pre><p><code>上四分位数 (upperquartile, UQ)</code>是样品中所有基因的表达除以处于上四分位数的基因的表达值。同时为了保证表达水平的相对稳定，计算得到的上四分位数值要除以所有样品中上四分位数值的中位数。</p>
+}
+</code></pre>
+<p><code>上四分位数 (upperquartile, UQ)</code>是样品中所有基因的表达除以处于上四分位数的基因的表达值。同时为了保证表达水平的相对稳定，计算得到的上四分位数值要除以所有样品中上四分位数值的中位数。</p>
 <pre><code>calc_uq &lt;- function (expr_mat, spikes=NULL){
   UQ &lt;- function(x) {
     quantile(x[x&gt;0],0.75)
@@ -113,11 +118,18 @@
   uq &lt;- unlist(apply(expr_mat[-spikes,],2,UQ))
   norm_factor &lt;- uq/median(uq)
   return(t(t(expr_mat)/norm_factor))
-}</code></pre><p>TMM是M-值的加权截尾均值。选定一个样品为参照，其它样品中基因的表达相对于参照样品中对应基因表达倍数的log2值定义为M-值。随后去除M-值中最高和最低的30%，剩下的M值计算加权平均值。每一个非参照样品的基因表达值都乘以计算出的TMM。这个方法假设大部分基因的表达是没有差异的。</p>
-<h1 id="deseq2 工作流程">DESeq2 工作流程</h1><h2 id="1.安装包 deseq2安装方法如下">1.安装包 DESeq2安装方法如下</h2><pre><code>source(&quot;https://bioconductor.org/biocLite.R&quot;)
-biocLite(&#39;BiocInstaller&#39;)
+}
+</code></pre>
+<p>TMM是M-值的加权截尾均值。选定一个样品为参照，其它样品中基因的表达相对于参照样品中对应基因表达倍数的log2值定义为M-值。随后去除M-值中最高和最低的30%，剩下的M值计算加权平均值。每一个非参照样品的基因表达值都乘以计算出的TMM。这个方法假设大部分基因的表达是没有差异的。</p>
+<h1 id="deseq2-工作流程">DESeq2 工作流程</h1>
+<h2 id="1安装包-deseq2安装方法如下">1.安装包 DESeq2安装方法如下</h2>
+<pre><code>source(&quot;https://bioconductor.org/biocLite.R&quot;)
+biocLite('BiocInstaller')
 biocLite(&quot;DESeq2&quot;)
-install.packages(c(&quot;gplots&quot;, &quot;amap&quot;, &quot;ggplot2&quot;))</code></pre><h2 id="2.加载包">2.加载包</h2><pre><code>library(DESeq2)
+install.packages(c(&quot;gplots&quot;, &quot;amap&quot;, &quot;ggplot2&quot;))
+</code></pre>
+<h2 id="2加载包">2.加载包</h2>
+<pre><code>library(DESeq2)
 
 ## Loading required package: S4Vectors
 
@@ -128,19 +140,19 @@ install.packages(c(&quot;gplots&quot;, &quot;amap&quot;, &quot;ggplot2&quot;))</
 ## Loading required package: parallel
 
 ##
-## Attaching package: &#39;BiocGenerics&#39;
+## Attaching package: 'BiocGenerics'
 
-## The following objects are masked from &#39;package:parallel&#39;:
+## The following objects are masked from 'package:parallel':
 ##
 ##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
 ##     clusterExport, clusterMap, parApply, parCapply, parLapply,
 ##     parLapplyLB, parRapply, parSapply, parSapplyLB
 
-## The following objects are masked from &#39;package:stats&#39;:
+## The following objects are masked from 'package:stats':
 ##
 ##     IQR, mad, sd, var, xtabs
 
-## The following objects are masked from &#39;package:base&#39;:
+## The following objects are masked from 'package:base':
 ##
 ##     anyDuplicated, append, as.data.frame, cbind, colMeans,
 ##     colnames, colSums, do.call, duplicated, eval, evalq, Filter,
@@ -151,9 +163,9 @@ install.packages(c(&quot;gplots&quot;, &quot;amap&quot;, &quot;ggplot2&quot;))</
 ##     tapply, union, unique, unsplit, which, which.max, which.min
 
 ##
-## Attaching package: &#39;S4Vectors&#39;
+## Attaching package: 'S4Vectors'
 
-## The following object is masked from &#39;package:base&#39;:
+## The following object is masked from 'package:base':
 ##
 ##     expand.grid
 
@@ -170,28 +182,28 @@ install.packages(c(&quot;gplots&quot;, &quot;amap&quot;, &quot;ggplot2&quot;))</
 ## Welcome to Bioconductor
 ##
 ##     Vignettes contain introductory material; view with
-##     &#39;browseVignettes()&#39;. To cite Bioconductor, see
-##     &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.
+##     'browseVignettes()'. To cite Bioconductor, see
+##     'citation(&quot;Biobase&quot;)', and for packages 'citation(&quot;pkgname&quot;)'.
 
 ## Loading required package: DelayedArray
 
 ## Loading required package: matrixStats
 
 ##
-## Attaching package: &#39;matrixStats&#39;
+## Attaching package: 'matrixStats'
 
-## The following objects are masked from &#39;package:Biobase&#39;:
+## The following objects are masked from 'package:Biobase':
 ##
 ##     anyMissing, rowMedians
 
 ##
-## Attaching package: &#39;DelayedArray&#39;
+## Attaching package: 'DelayedArray'
 
-## The following objects are masked from &#39;package:matrixStats&#39;:
+## The following objects are masked from 'package:matrixStats':
 ##
 ##     colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
 
-## The following object is masked from &#39;package:base&#39;:
+## The following object is masked from 'package:base':
 ##
 ##     apply
 
@@ -199,17 +211,17 @@ library(&quot;RColorBrewer&quot;)
 library(&quot;gplots&quot;)
 
 ##
-## Attaching package: &#39;gplots&#39;
+## Attaching package: 'gplots'
 
-## The following object is masked from &#39;package:IRanges&#39;:
+## The following object is masked from 'package:IRanges':
 ##
 ##     space
 
-## The following object is masked from &#39;package:S4Vectors&#39;:
+## The following object is masked from 'package:S4Vectors':
 ##
 ##     space
 
-## The following object is masked from &#39;package:stats&#39;:
+## The following object is masked from 'package:stats':
 ##
 ##     lowess
 
@@ -219,7 +231,10 @@ library(&quot;BiocParallel&quot;)
 
 # 多线程加速, 使用4个核
 # 如果你电脑性能强大，可以把这个数变大
-register(MulticoreParam(4))</code></pre><h2 id="3.读入数据">3.读入数据</h2><pre><code># 注意文件的位置，程序自己不知道文件在什么地方
+register(MulticoreParam(4))
+</code></pre>
+<h2 id="3读入数据">3.读入数据</h2>
+<pre><code># 注意文件的位置，程序自己不知道文件在什么地方
 # 如果只给文件名，不给路径，程序只会在当前目录查找文件
 # 若找不到，则会报错
 # 可以使用下面命令设置工作目录到文件所在目录
@@ -247,7 +262,9 @@ head(data)
 ## ENSG00000268903          0           2           0           3
 ## ENSG00000269981          0           2           0           0
 ## ENSG00000241860          3           2           0           2
-## ENSG00000279457         52          46          89          31</code></pre><pre><code># 分组信息1---这个是读入一个文件
+## ENSG00000279457         52          46          89          31
+</code></pre>
+<pre><code># 分组信息1---这个是读入一个文件
 sample &lt;- read.table(&quot;sampleFile_A4WT.txt&quot;, header=T, row.names=1, sep=&quot;\t&quot;)
 
 sample &lt;- sample[match(colnames(data), rownames(sample)),, drop=F]
@@ -260,7 +277,9 @@ sample_rowname
 # 分组信息2---这个是直接在代码中设定
 data &lt;- data
 conditions &lt;- factor(c(&quot;tre&quot;,&quot;tre&quot;,&quot;con&quot;,&quot;con&quot;))
-sample &lt;- data.frame(row.names=colnames(data), conditions)</code></pre><pre><code># 下面的可以忽略，如果没遇到错误不需要执行
+sample &lt;- data.frame(row.names=colnames(data), conditions)
+</code></pre>
+<pre><code># 下面的可以忽略，如果没遇到错误不需要执行
 # 目的是做因子转换
 sample &lt;- data.frame(lapply(sample, function(x) factor(x, levels=unique(x))))
 rownames(sample) &lt;- sample_rowname
@@ -270,8 +289,13 @@ sample
 #A4_1        tre
 #A4_3        tre
 #WT_1        con
-#WT_3        con</code></pre><h2 id="4.产生deseq数据集">4.产生DESeq数据集</h2><p>DESeq2包采用<code>DESeqDataSet</code>存储原始的<code>read count</code>和中间计算的统计量。</p>
-<p>每个<code>DESeqDataSet</code>对象都要有一个实验设计formula，用于对数据进行分组，以便计算表达值的离散度和估计表达倍数差异，通常格式为<code>~ batch + conditions</code><br>(为了方便后续计算，最为关注的分组信息放在最后一位)。<br><code>~在R里面用于构建公式对象，~左边为因变量，右边为自变量</code></p>
+#WT_3        con
+</code></pre>
+<h2 id="4产生deseq数据集">4.产生DESeq数据集</h2>
+<p>DESeq2包采用<code>DESeqDataSet</code>存储原始的<code>read count</code>和中间计算的统计量。</p>
+<p>每个<code>DESeqDataSet</code>对象都要有一个实验设计formula，用于对数据进行分组，以便计算表达值的离散度和估计表达倍数差异，通常格式为<code>~ batch + conditions</code>
+(为了方便后续计算，最为关注的分组信息放在最后一位)。
+<code>~在R里面用于构建公式对象，~左边为因变量，右边为自变量</code></p>
 <p>countData: 表达矩阵</p>
 <ul>
 <li>即下面代码中的countData，就是我们前面通过read count计算后并融合生成的矩阵，行为各个基因，列为各个样品，中间为计算reads或者fragment得到的整数。我们后面要用的是这个文件.</li>
@@ -283,101 +307,304 @@ sample
 <p>design: 实验设计信息，conditions必须是colData中的一列</p>
 <ul>
 <li>实验设计信息，conditions必须是colData中的一列</li>
-<li>上述代码中的design。 差异比较矩阵就是告诉差异分析函数是要从要分析哪些变量间的差异，简单说就是说明哪些是对照哪些是处理。<br>```<br>ddsFullCountTable &lt;- DESeqDataSetFromMatrix(countData = data,<pre><code>  colData = sample,  design= ~ conditions)</code></pre></li>
+<li>上述代码中的design。 差异比较矩阵就是告诉差异分析函数是要从要分析哪些变量间的差异，简单说就是说明哪些是对照哪些是处理。</li>
 </ul>
-<p>dds &lt;- DESeq(ddsFullCountTable)</p>
-<p>#使用DESeq函数进行估计离散度，然后进行标准的差异表达分析，得到res对象结果</p>
-<p>#相关说明： DESeq包含三步，estimation of size factors（estimateSizeFactors)， estimation of dispersion（estimateDispersons)， Negative Binomial GLM fitting and Wald statistics（nbinomWaldTest），可以分布运行，也可用一步到位，最后返回 results可用的DESeqDataSet对象。</p>
-<h2 id="estimating size factors">estimating size factors</h2><h2 id="estimating dispersions">estimating dispersions</h2><h2 id="gene-wise dispersion estimates">gene-wise dispersion estimates</h2><h2 id="mean-dispersion relationship">mean-dispersion relationship</h2><h2 id="final dispersion estimates">final dispersion estimates</h2><h2 id="fitting model and testing">fitting model and testing</h2><pre><code>
-## 5.获取标准化后的数据</code></pre><h1 id="?counts查看此函数功能">?counts查看此函数功能</h1><h1 id="normalized=t, 返回标准化的数据">normalized=T, 返回标准化的数据</h1><p>normalized_counts &lt;- counts(dds, normalized=TRUE)<br>head(normalized_counts)</p>
-<h1 id="a4_1       a4_3      wt_1       wt_3">A4_1       A4_3      WT_1       WT_3</h1><h1 id="at1g01010   48.78565   60.06335  70.30580   82.48226">AT1G01010   48.78565   60.06335  70.30580   82.48226</h1><h1 id="at1g01020  176.84798  222.64862 182.02462  173.69794">AT1G01020  176.84798  222.64862 182.02462  173.69794</h1><h1 id="at1g01040 1042.79325 1032.46826 947.68371 1011.13549">AT1G01040 1042.79325 1032.46826 947.68371 1011.13549</h1><h1 id="at1g01050  729.75200  645.16322 708.83660  693.82138">AT1G01050  729.75200  645.16322 708.83660  693.82138</h1><h1 id="at1g01060  294.74663  269.24950 302.41127  336.72170">AT1G01060  294.74663  269.24950 302.41127  336.72170</h1><pre><code>根据基因在不同的样本中表达变化的差异程度mad值对数据排序，差异越大的基因排位越前。</code></pre><p>normalized_counts_mad &lt;- apply(normalized_counts, 1, mad)<br>normalized_counts &lt;- normalized_counts[order(normalized_counts_mad, decreasing=T), ]</p>
-<h1 id="标准化后的数据输出">标准化后的数据输出</h1><p>write.table(normalized_counts, file=&quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.xls&quot;,<br>quote=F, sep=&quot;\t&quot;, row.names=T, col.names=T)</p>
-<h1 id="标准化后的数据输出">标准化后的数据输出</h1><p>write.table(normalized_counts, file=&quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.xls&quot;,<br>quote=F, sep=&quot;\t&quot;, row.names=T, col.names=T)</p>
-<h1 id="只在linux下能运行，目的是填补表格左上角内容">只在Linux下能运行，目的是填补表格左上角内容</h1><p>system(paste(&quot;sed -i &#39;1 s/^/ID\t/&#39;&quot;, &quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.xls&quot;))</p>
-<h1 id="log转换后的结果">log转换后的结果</h1><p>rld &lt;- rlog(dds, blind=FALSE)<br>rlogMat &lt;- assay(rld)<br>rlogMat &lt;- rlogMat[order(normalized_counts_mad, decreasing=T), ]</p>
-<p>write.table(rlogMat, file=&quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.rlog.xls&quot;,<br>quote=F, sep=&quot;\t&quot;, row.names=T, col.names=T)</p>
-<h1 id="只在linux下能运行，目的是填补表格左上角内容">只在Linux下能运行，目的是填补表格左上角内容</h1><p>system(paste(&quot;sed -i &#39;1 s/^/ID\t/&#39;&quot;, &quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.rlog.xls&quot;))</p>
-<pre><code>
-样品层级聚类分析，判断样品的相似性和组间组内差异</code></pre><h1 id="生成颜色">生成颜色</h1><p>hmcol &lt;- colorRampPalette(brewer.pal(9, &quot;GnBu&quot;))(100)</p>
-<h1 id="计算相关性pearson correlation">计算相关性pearson correlation</h1><p>pearson_cor &lt;- as.matrix(cor(rlogMat, method=&quot;pearson&quot;))</p>
-<h1 id="层级聚类">层级聚类</h1><p>hc &lt;- hcluster(t(rlogMat), method=&quot;pearson&quot;)</p>
-<h1 id="热图绘制">热图绘制</h1><h2 id="在命令行下运行时，需要去除下面开头的#号，把输出的图保存到文件中">在命令行下运行时，需要去除下面开头的#号，把输出的图保存到文件中</h2><h2 id="输出到文件时，dev.off()命令是关闭输出，从而完成图片的写入。如果不做这一步，则图片则不能写入，从而不能打开">输出到文件时，dev.off()命令是关闭输出，从而完成图片的写入。如果不做这一步，则图片则不能写入，从而不能打开</h2><h2 id="如果在rstudio或其它可视化界面时，可以直接把图输出到屏幕">如果在Rstudio或其它可视化界面时，可以直接把图输出到屏幕</h2><p>#pdf(&quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.rlog.pearson.pdf&quot;, pointsize=10)<br>heatmap.2(pearson_cor, Rowv=as.dendrogram(hc), symm=T, trace=&quot;none&quot;,<br>col=hmcol, margins=c(11,11), main=&quot;The pearson correlation of each<br>sample&quot;)</p>
-<pre><code>![](https://ws1.sinaimg.cn/large/734cbfa0ly1frwyg6p65oj20nl0h4dle.jpg)</code></pre><p>#dev.off()</p>
-<pre><code>样品PCA分析</code></pre><p>pca_data &lt;- plotPCA(rld, intgroup=c(&quot;conditions&quot;), returnData=T, ntop=5000)</p>
-<pre><code>
-## 6.差异基因分析
-</code></pre><h1 id="定义变量的好处是下面的代码就独立了">定义变量的好处是下面的代码就独立了</h1><h1 id="如果想比较不同的组，只需在这修改即可，后面代码都可以不动">如果想比较不同的组，只需在这修改即可，后面代码都可以不动</h1><p>sampleA = &quot;tre&quot;<br>sampleB = &quot;con&quot;</p>
-<pre><code>`results函数`提取差异基因分析结果，包含`log2 fold changes`,
-`p values`和`adjusted p values`.
-
-`constrast`用于指定比较的两组的信息，输出的log2FoldChange为`log2(SampleA/SampleB)` **(重要啊！！！)**。
-</code></pre><p>contrastV &lt;- c(&quot;conditions&quot;, sampleA, sampleB)<br>res &lt;- results(dds,  contrast=contrastV)<br>res<br>log2 fold change (MLE): conditions tre vs con<br>Wald test p-value: conditions tre vs con<br>DataFrame with 22852 rows and 6 columns<br>                  baseMean      log2FoldChange             lfcSE               stat            pvalue              padj<br>                 <numeric>           <numeric>         <numeric>          <numeric>         <numeric>         <numeric></p>
-<h2 id="at1g01010 65.4092660581971  -0.489358795511224 0.521216004216664 -0.938879066552613 0.347792838086431 0.999976236609269">AT1G01010 65.4092660581971  -0.489358795511224 0.521216004216664 -0.938879066552613 0.347792838086431 0.999976236609269</h2><h2 id="at1g01020 188.804788979982   0.167293274077293 0.362795264673978    0.4611230916358 0.644710295499361 0.999976236609269">AT1G01020 188.804788979982   0.167293274077293 0.362795264673978    0.4611230916358 0.644710295499361 0.999976236609269</h2><h2 id="at1g01030 35.9145116528229   0.127302421234151 0.672062276718896  0.189420572533336 0.849763201781784 0.999976236609269">AT1G01030 35.9145116528229   0.127302421234151 0.672062276718896  0.189420572533336 0.849763201781784 0.999976236609269</h2><h2 id="at1g01040 1008.52017973907  0.0833172912410816 0.240007179688198  0.347144995201069 0.728482391586173 0.999976236609269">AT1G01040 1008.52017973907  0.0833172912410816 0.240007179688198  0.347144995201069 0.728482391586173 0.999976236609269</h2><h2 id="at1g01050 694.393299169352 -0.0287852240886701 0.259768675170891 -0.110810990084673 0.911766230200056 0.999976236609269">AT1G01050 694.393299169352 -0.0287852240886701 0.259768675170891 -0.110810990084673 0.911766230200056 0.999976236609269</h2><h2 id="...                    ...                 ...               ...                ...               ...               ...">...                    ...                 ...               ...                ...               ...               ...</h2><h2 id="at5g67600 578.828536547001 -0.0573356586517927 0.289518404967545  -0.19803804410369  0.84301529826065 0.999976236609269">AT5G67600 578.828536547001 -0.0573356586517927 0.289518404967545  -0.19803804410369  0.84301529826065 0.999976236609269</h2><h2 id="at5g67610 265.008387291835   0.107651655525928 0.325292335215263  0.330938186584351 0.740691176896291 0.999976236609269">AT5G67610 265.008387291835   0.107651655525928 0.325292335215263  0.330938186584351 0.740691176896291 0.999976236609269</h2><h2 id="at5g67620 10.3580543313242  -0.914229542297002  1.14234019766374 -0.800312852656979 0.423529558307148 0.999976236609269">AT5G67620 10.3580543313242  -0.914229542297002  1.14234019766374 -0.800312852656979 0.423529558307148 0.999976236609269</h2><h2 id="at5g67630 300.480587343979  -0.362595118844209 0.397418243520207 -0.912376632820008  0.36157048603897 0.999976236609269">AT5G67630 300.480587343979  -0.362595118844209 0.397418243520207 -0.912376632820008  0.36157048603897 0.999976236609269</h2><h2 id="at5g67640  63.749399447105    0.46227365476905 0.536557711991677  0.861554394685917 0.388932776218197 0.999976236609269">AT5G67640  63.749399447105    0.46227365476905 0.536557711991677  0.861554394685917 0.388932776218197 0.999976236609269</h2><pre><code>给`DESeq2`的原始输出结果增加样品平均表达信息，使得结果更容易理解和解析。</code></pre><h1 id="获得第一组数据均值">获得第一组数据均值</h1><p>baseA &lt;- counts(dds, normalized=TRUE)[, colData(dds)$conditions == sampleA]</p>
-<p>if (is.vector(baseA)){<br>    baseMeanA &lt;- as.data.frame(baseA)<br>} else {<br>    baseMeanA &lt;- as.data.frame(rowMeans(baseA))<br>}<br>colnames(baseMeanA) &lt;- sampleA<br>head(baseMeanA)</p>
-<h1 id="tre">tre</h1><h1 id="at1g01010   54.42450">AT1G01010   54.42450</h1><h1 id="at1g01020  199.74830">AT1G01020  199.74830</h1><h1 id="at1g01030   37.50077">AT1G01030   37.50077</h1><h1 id="at1g01040 1037.63076">AT1G01040 1037.63076</h1><h1 id="at1g01050  687.45761">AT1G01050  687.45761</h1><h1 id="at1g01060  281.99806">AT1G01060  281.99806</h1><pre><code></code></pre><h1 id="获得第二组数据均值">获得第二组数据均值</h1><p>baseB &lt;- counts(dds, normalized=TRUE)[, colData(dds)$conditions == sampleB]<br>if (is.vector(baseB)){<br>        baseMeanB &lt;- as.data.frame(baseB)<br>} else {<br>        baseMeanB &lt;- as.data.frame(rowMeans(baseB))<br>}<br>colnames(baseMeanB) &lt;- sampleB<br>head(baseMeanB)</p>
-<h2 id="con">con</h2><h2 id="at1g01010  76.39403">AT1G01010  76.39403</h2><h2 id="at1g01020 177.86128">AT1G01020 177.86128</h2><h2 id="at1g01030  34.32825">AT1G01030  34.32825</h2><h2 id="at1g01040 979.40960">AT1G01040 979.40960</h2><h2 id="at1g01050 701.32899">AT1G01050 701.32899</h2><h2 id="at1g01060 319.56649">AT1G01060 319.56649</h2><pre><code></code></pre><h1 id="结果组合">结果组合</h1><p>res &lt;- cbind(baseMeanA, baseMeanB, as.data.frame(res))<br>head(res)</p>
-<p>##</p>
-<h2 id="tre       con   basemean      log2foldchange  lfcse      stat    pvalue      padj">tre       con   baseMean      log2FoldChange  lfcSE      stat    pvalue      padj</h2><h2 id="at1g01010   54.42450  76.39403   65.40927    -0.48935880 0.5212160 -0.9388791 0.3477928 0.9999762">AT1G01010   54.42450  76.39403   65.40927    -0.48935880 0.5212160 -0.9388791 0.3477928 0.9999762</h2><h2 id="at1g01020  199.74830 177.86128  188.80479     0.16729327 0.3627953  0.4611231 0.6447103 0.9999762">AT1G01020  199.74830 177.86128  188.80479     0.16729327 0.3627953  0.4611231 0.6447103 0.9999762</h2><h2 id="at1g01030   37.50077  34.32825   35.91451     0.12730242 0.6720623  0.1894206 0.8497632 0.9999762">AT1G01030   37.50077  34.32825   35.91451     0.12730242 0.6720623  0.1894206 0.8497632 0.9999762</h2><h2 id="at1g01040 1037.63076 979.40960 1008.52018     0.08331729 0.2400072  0.3471450 0.7284824 0.9999762">AT1G01040 1037.63076 979.40960 1008.52018     0.08331729 0.2400072  0.3471450 0.7284824 0.9999762</h2><h2 id="at1g01050  687.45761 701.32899  694.39330    -0.02878522 0.2597687 -0.1108110 0.9117662 0.9999762">AT1G01050  687.45761 701.32899  694.39330    -0.02878522 0.2597687 -0.1108110 0.9117662 0.9999762</h2><h2 id="at1g01060  281.99806 319.56649  300.78227    -0.18036321 0.3077631 -0.5860456 0.5578448 0.9999762">AT1G01060  281.99806 319.56649  300.78227    -0.18036321 0.3077631 -0.5860456 0.5578448 0.9999762</h2><pre><code></code></pre><h1 id="增加id信息">增加ID信息</h1><p>res &lt;- cbind(ID=rownames(res), as.data.frame(res))<br>res$baseMean &lt;- rowMeans(cbind(baseA, baseB))</p>
-<h1 id="校正后p-value为na的复制为1">校正后p-value为NA的复制为1</h1><p>res$padj[is.na(res$padj)] &lt;- 1</p>
-<h1 id="按pvalue排序, 把差异大的基因放前面">按pvalue排序, 把差异大的基因放前面</h1><p>res &lt;- res[order(res$pvalue),]<br>head(res)</p>
-<h2 id="id        tre         con  basemean log2foldchange     lfcse      stat       pvalue         padj">ID        tre         con  baseMean log2FoldChange     lfcSE      stat       pvalue         padj</h2><h2 id="at1g57750 at1g57750   28.16139 1003.180258  515.6708      -5.153560 0.3642816 -14.14719 1.943736e-45 3.752770e-41">AT1G57750 AT1G57750   28.16139 1003.180258  515.6708      -5.153560 0.3642816 -14.14719 1.943736e-45 3.752770e-41</h2><h2 id="at1g33760 at1g33760  639.33137    6.767155  323.0493       6.561945 0.5524517  11.87786 1.542626e-32 1.489174e-28">AT1G33760 AT1G33760  639.33137    6.767155  323.0493       6.561945 0.5524517  11.87786 1.542626e-32 1.489174e-28</h2><h2 id="at1g76650 at1g76650 4693.39043  165.804397 2429.5974       4.823094 0.4180847  11.53617 8.670392e-31 5.579975e-27">AT1G76650 AT1G76650 4693.39043  165.804397 2429.5974       4.823094 0.4180847  11.53617 8.670392e-31 5.579975e-27</h2><h2 id="at1g56660 at1g56660 6742.93138  311.088739 3527.0101       4.437947 0.3916322  11.33193 9.117706e-30 4.400889e-26">AT1G56660 AT1G56660 6742.93138  311.088739 3527.0101       4.437947 0.3916322  11.33193 9.117706e-30 4.400889e-26</h2><h2 id="at1g15010 at1g15010  488.46638   13.548882  251.0076       5.172803 0.4989248  10.36790 3.470615e-25 1.272240e-21">AT1G15010 AT1G15010  488.46638   13.548882  251.0076       5.172803 0.4989248  10.36790 3.470615e-25 1.272240e-21</h2><h2 id="at5g41750 at5g41750 2075.48402  350.421899 1212.9530       2.566263 0.2478179  10.35544 3.953716e-25 1.272240e-21">AT5G41750 AT5G41750 2075.48402  350.421899 1212.9530       2.566263 0.2478179  10.35544 3.953716e-25 1.272240e-21</h2><pre><code>整体分析结果输出到文件
-</code></pre><h1 id="生成文件名">生成文件名</h1><p>comp314 &lt;- paste(sampleA, &quot;_vs_&quot;, sampleB, sep=&quot;.&quot;)<br>file_base &lt;- paste(&quot;ehbio_trans.Count_matrix.xls.DESeq2&quot;, comp314, sep=&quot;.&quot;)<br>file_base1 &lt;- paste(file_base, &quot;results.xls&quot;, sep=&quot;.&quot;)<br>write.table(as.data.frame(res), file=file_base1, sep=&quot;\t&quot;, quote=F, row.names=F)</p>
-<pre><code>
-提取差异表达基因
-</code></pre><h1 id="差异基因筛选，padj  0.1">差异基因筛选，padj &lt; 0.1</h1><p>res_DEG &lt;- subset(res, res$padj&lt;0.1, select=c(&#39;ID&#39;, sampleA,<br>        sampleB, &#39;log2FoldChange&#39;, &#39;padj&#39;))</p>
-<h1 id="foldchang  1">foldchang &gt; 1</h1><p>res_DEG_up &lt;- subset(res_DEG, res_DEG$log2FoldChange&gt;=1)</p>
-<p>file &lt;- paste(&quot;ehbio_trans.Count_matrix.xls.DESeq2&quot;,sampleA,&quot;_higherThan_&quot;,sampleB,<br>        &#39;xls&#39;, sep=&quot;.&quot;)<br>write.table(as.data.frame(res_DEG_up), file=file, sep=&quot;\t&quot;, quote=F, row.names=F)</p>
-<p>res_DEG_down &lt;- subset(res_DEG, res_DEG$log2FoldChange&lt;=(-1)*1)</p>
-<p>file &lt;- paste(&quot;ehbio_trans.Count_matrix.xls.DESeq2&quot;,sampleA, &quot;_lowerThan_&quot;, sampleB,<br>        &#39;xls&#39;, sep=&quot;.&quot;)<br>write.table(as.data.frame(res_DEG_down), file=file, sep=&quot;\t&quot;, quote=F, row.names=F)</p>
-<h1 id="差异基因id">差异基因ID</h1><p>res_de_up_id = data.frame(ID=res_DEG_up$ID,<br>        type=paste(sampleA,&quot;_higherThan_&quot;, sampleB, sep=&quot;.&quot;))<br>res_de_dw_id = data.frame(ID=res_DEG_down$ID,<br>        type=paste(sampleA,&quot;_lowerThan_&quot;, sampleB, sep=&quot;.&quot;))<br>DEG_id = rbind(res_de_up_id, res_de_dw_id)</p>
-<p>file &lt;- &quot;ehbio_trans.Count_matrix.xls.DESeq2.all.DE&quot;<br>write.table(as.data.frame(DEG_id), file=file, sep=&quot;\t&quot;, quote=F, row.names=F, col.names=F)</p>
-<pre><code>
-绘制火山图</code></pre><h1 id="可以把前面生成的results.xls文件提交到www.ehbio.com/imagegp绘制火山图">可以把前面生成的results.xls文件提交到<a href="http://www.ehbio.com/ImageGP%E7%BB%98%E5%88%B6%E7%81%AB%E5%B1%B1%E5%9B%BE">www.ehbio.com/ImageGP绘制火山图</a></h1><h1 id="或者使用我们的s-plot https://github.com/tong-chen/s-plot">或者使用我们的s-plot <a href="https://github.com/Tong-Chen/s-plot">https://github.com/Tong-Chen/s-plot</a></h1><p>logCounts &lt;- log2(res$baseMean+1)<br>logFC &lt;- res$log2FoldChange<br>FDR &lt;- res$padj</p>
-<p>#png(filename=paste(file_base, &quot;Volcano.png&quot;, sep=&quot;.&quot;))<br>plot(logFC, -1<em>log10(FDR), col=ifelse(FDR&lt;=0.01, &quot;red&quot;, &quot;black&quot;),<br> xlab=&quot;logFC&quot;, ylab=&quot;-1</em>log1o(FDR)&quot;, main=&quot;Volcano plot&quot;, pch=&quot;.&quot;)</p>
-<p>#dev.off()</p>
-<pre><code>![](https://ws1.sinaimg.cn/large/734cbfa0ly1frwygx98ufj20nb0goq5d.jpg)
+<pre><code>ddsFullCountTable &lt;- DESeqDataSetFromMatrix(countData = data,
+        colData = sample,  design= ~ conditions)
 
 
-差异基因热图
-</code></pre><p>res_de_up_top20_id &lt;- as.vector(head(res_de_up$ID,20))<br>res_de_dw_top20_id &lt;- as.vector(head(res_de_dw$ID,20))</p>
-<p>red_de_top20 &lt;- c(res_de_up_top20_id, res_de_dw_top20_id)<br>red_de_top20</p>
-<h2 id="[1] ensg00000178695 ensg00000196517 ensg00000116584">[1] &quot;ENSG00000178695&quot; &quot;ENSG00000196517&quot; &quot;ENSG00000116584&quot;</h2><h2 id="[4] ensg00000144369 ensg00000276600 ensg00000108821">[4] &quot;ENSG00000144369&quot; &quot;ENSG00000276600&quot; &quot;ENSG00000108821&quot;</h2><h2 id="[7] ensg00000162692 ensg00000181467 ensg00000145777">[7] &quot;ENSG00000162692&quot; &quot;ENSG00000181467&quot; &quot;ENSG00000145777&quot;</h2><h2 id="[10] ensg00000163491 ensg00000183160 ensg00000172986">[10] &quot;ENSG00000163491&quot; &quot;ENSG00000183160&quot; &quot;ENSG00000172986&quot;</h2><h2 id="[13] ensg00000164484 ensg00000131389 ensg00000134253">[13] &quot;ENSG00000164484&quot; &quot;ENSG00000131389&quot; &quot;ENSG00000134253&quot;</h2><h2 id="[16] ensg00000124766 ensg00000227051 ensg00000146006">[16] &quot;ENSG00000124766&quot; &quot;ENSG00000227051&quot; &quot;ENSG00000146006&quot;</h2><h2 id="[19] ensg00000112837 ensg00000146592 ensg00000152583">[19] &quot;ENSG00000112837&quot; &quot;ENSG00000146592&quot; &quot;ENSG00000152583&quot;</h2><h2 id="[22] ensg00000148175 ensg00000179094 ensg00000134686">[22] &quot;ENSG00000148175&quot; &quot;ENSG00000179094&quot; &quot;ENSG00000134686&quot;</h2><h2 id="[25] ensg00000125148 ensg00000120129 ensg00000189221">[25] &quot;ENSG00000125148&quot; &quot;ENSG00000120129&quot; &quot;ENSG00000189221&quot;</h2><h2 id="[28] ensg00000109906 ensg00000101347 ensg00000162614">[28] &quot;ENSG00000109906&quot; &quot;ENSG00000101347&quot; &quot;ENSG00000162614&quot;</h2><h2 id="[31] ensg00000096060 ensg00000162616 ensg00000166741">[31] &quot;ENSG00000096060&quot; &quot;ENSG00000162616&quot; &quot;ENSG00000166741&quot;</h2><h2 id="[34] ensg00000183044 ensg00000164125 ensg00000198624">[34] &quot;ENSG00000183044&quot; &quot;ENSG00000164125&quot; &quot;ENSG00000198624&quot;</h2><h2 id="[37] ensg00000256235 ensg00000077684 ensg00000135821">[37] &quot;ENSG00000256235&quot; &quot;ENSG00000077684&quot; &quot;ENSG00000135821&quot;</h2><h2 id="[40] ensg00000164647">[40] &quot;ENSG00000164647&quot;</h2><h1 id="可以把矩阵存储，提交到www.ehbio.com/imagegp绘制火山图">可以把矩阵存储，提交到<a href="http://www.ehbio.com/ImageGP%E7%BB%98%E5%88%B6%E7%81%AB%E5%B1%B1%E5%9B%BE">www.ehbio.com/ImageGP绘制火山图</a></h1><h1 id="或者使用我们的s-plot https://github.com/tong-chen/s-plot">或者使用我们的s-plot <a href="https://github.com/Tong-Chen/s-plot">https://github.com/Tong-Chen/s-plot</a></h1><p>red_de_top20_expr &lt;- normalized_counts[rownames(normalized_counts) %in% red_de_top20,]<br>library(pheatmap)<br>pheatmap(red_de_top20_expr, cluster_row=T, scale=&quot;row&quot;, annotation_col=sample)</p>
-<pre><code>![](https://ws1.sinaimg.cn/large/734cbfa0ly1frwyiae8z7j20mb0pctoe.jpg)
+dds &lt;- DESeq(ddsFullCountTable)
+#使用DESeq函数进行估计离散度，然后进行标准的差异表达分析，得到res对象结果
+#相关说明： DESeq包含三步，estimation of size factors（estimateSizeFactors)， estimation of dispersion（estimateDispersons)， Negative Binomial GLM fitting and Wald statistics（nbinomWaldTest），可以分布运行，也可用一步到位，最后返回 results可用的DESeqDataSet对象。
 
-##  7.关于批次效应
+## estimating size factors
 
-见论坛讨论 http://www.ehbio.com/Esx/d/10-deseq2。
+## estimating dispersions
 
-每个DESeqDataSet对象都要有一个实验设计formula，用于对数据进行分组，以便计算表达值的离散度和估计表达倍数差异，通常格式为~ batch + conditions
-(为了方便后续计算，最为关注的分组信息放在最后一位)。
+## gene-wise dispersion estimates
 
-如果记录了样本的批次信息，或者其它需要抹除的信息可以定义在design参数中，在下游回归的分析中会根据design formula来估计batch effect的影响，并在下游分析时减去这个影响。这是处理batch effect的推荐方式。
+## mean-dispersion relationship
 
-在模型中考虑batch effect并没有在数据矩阵中移除bacth effect，如果下游处理时，确实有需要可以使用limma包的removeBatchEffect来处理。
+## final dispersion estimates
 
-countData: 表达矩阵
+## fitting model and testing
+</code></pre>
+<h2 id="5获取标准化后的数据">5.获取标准化后的数据</h2>
+<pre><code># ?counts查看此函数功能
+# normalized=T, 返回标准化的数据
+normalized_counts &lt;- counts(dds, normalized=TRUE)
+head(normalized_counts)
+#                 A4_1       A4_3      WT_1       WT_3
+# AT1G01010   48.78565   60.06335  70.30580   82.48226
+# AT1G01020  176.84798  222.64862 182.02462  173.69794
+# AT1G01040 1042.79325 1032.46826 947.68371 1011.13549
+# AT1G01050  729.75200  645.16322 708.83660  693.82138
+# AT1G01060  294.74663  269.24950 302.41127  336.72170
+</code></pre>
+<p>根据基因在不同的样本中表达变化的差异程度mad值对数据排序，差异越大的基因排位越前。</p>
+<pre><code>normalized_counts_mad &lt;- apply(normalized_counts, 1, mad)
+normalized_counts &lt;- normalized_counts[order(normalized_counts_mad, decreasing=T), ]
 
-colData: 样品分组信息表
 
-design: 实验设计信息，batch和conditions必须是colData中的一列
-</code></pre><p>ddsFullCountTable &lt;- DESeqDataSetFromMatrix(countData = data,<br>        colData = sample,  design= ~ batch + conditions)</p>
-<p>dds &lt;- DESeq(ddsFullCountTable)</p>
-<p>rld &lt;- rlog(dds, blind=FALSE)<br>rlogMat &lt;- assay(rld)<br>rlogMat &lt;- limma::removeBatchEffect(rlogMat, c(sample$batch))</p>
-<pre><code>Just to be clear, there’s an important difference between removing a batch effect and modelling a batch effect. Including the batch in your design formula will model the batch effect in the regression step, which means that the raw data are not modified (so the batch effect is not removed), but instead the regression will estimate the size of the batch effect and subtract it out when performing all other tests. In addition, the model’s residual degrees of freedom will be reduced appropriately to reflect the fact that some degrees of freedom were “spent” modelling the batch effects. This is the preferred approach for any method that is capable of using it (this includes DESeq2). You would only remove the batch effect (e.g. using limma’s removeBatchEffect function) if you were going to do some kind of downstream analysis that can’t model the batch effects, such as training a classifier.
+# 标准化后的数据输出
+write.table(normalized_counts, file=&quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.xls&quot;,
+quote=F, sep=&quot;\t&quot;, row.names=T, col.names=T)
 
-批次效应模拟</code></pre><p>#Make some simulated data with a batch effect:<br>dds &lt;- makeExampleDESeqDataSet(betaSD=1,interceptMean=10)<br>dds$batch &lt;- factor(rep(c(&quot;A&quot;,&quot;B&quot;),each=6))</p>
-<p>#VST, remove batch effect, then plotPCA:</p>
-<p>vsd &lt;- vst(dds)<br>plotPCA(vsd, &quot;batch&quot;)<br>```</p>
+# 标准化后的数据输出
+write.table(normalized_counts, file=&quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.xls&quot;,
+quote=F, sep=&quot;\t&quot;, row.names=T, col.names=T)
+
+# 只在Linux下能运行，目的是填补表格左上角内容
+system(paste(&quot;sed -i '1 s/^/ID\t/'&quot;, &quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.xls&quot;))
+
+# log转换后的结果
+rld &lt;- rlog(dds, blind=FALSE)
+rlogMat &lt;- assay(rld)
+rlogMat &lt;- rlogMat[order(normalized_counts_mad, decreasing=T), ]
+
+write.table(rlogMat, file=&quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.rlog.xls&quot;,
+quote=F, sep=&quot;\t&quot;, row.names=T, col.names=T)
+
+# 只在Linux下能运行，目的是填补表格左上角内容
+system(paste(&quot;sed -i '1 s/^/ID\t/'&quot;, &quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.rlog.xls&quot;))
+</code></pre>
+<p>样品层级聚类分析，判断样品的相似性和组间组内差异</p>
+<pre><code># 生成颜色
+hmcol &lt;- colorRampPalette(brewer.pal(9, &quot;GnBu&quot;))(100)
+
+# 计算相关性pearson correlation
+pearson_cor &lt;- as.matrix(cor(rlogMat, method=&quot;pearson&quot;))
+
+# 层级聚类
+hc &lt;- hcluster(t(rlogMat), method=&quot;pearson&quot;)
+
+# 热图绘制
+## 在命令行下运行时，需要去除下面开头的#号，把输出的图保存到文件中
+## 输出到文件时，dev.off()命令是关闭输出，从而完成图片的写入。如果不做这一步，则图片则不能写入，从而不能打开
+## 如果在Rstudio或其它可视化界面时，可以直接把图输出到屏幕
+#pdf(&quot;ehbio_trans.Count_matrix.xls.DESeq2.normalized.rlog.pearson.pdf&quot;, pointsize=10)
+heatmap.2(pearson_cor, Rowv=as.dendrogram(hc), symm=T, trace=&quot;none&quot;,
+col=hmcol, margins=c(11,11), main=&quot;The pearson correlation of each
+sample&quot;)
+</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frwyg6p65oj20nl0h4dle.jpg" alt=""></p>
+<pre><code>#dev.off()
+</code></pre>
+<p>样品PCA分析</p>
+<pre><code>pca_data &lt;- plotPCA(rld, intgroup=c(&quot;conditions&quot;), returnData=T, ntop=5000)
+</code></pre>
+<h2 id="6差异基因分析">6.差异基因分析</h2>
+<pre><code># 定义变量的好处是下面的代码就独立了
+# 如果想比较不同的组，只需在这修改即可，后面代码都可以不动
+sampleA = &quot;tre&quot;
+sampleB = &quot;con&quot;
+</code></pre>
+<p><code>results函数</code>提取差异基因分析结果，包含<code>log2 fold changes</code>,
+<code>p values</code>和<code>adjusted p values</code>.</p>
+<p><code>constrast</code>用于指定比较的两组的信息，输出的log2FoldChange为<code>log2(SampleA/SampleB)</code> <strong>(重要啊！！！)</strong>。</p>
+<pre><code>contrastV &lt;- c(&quot;conditions&quot;, sampleA, sampleB)
+res &lt;- results(dds,  contrast=contrastV)
+res
+log2 fold change (MLE): conditions tre vs con
+Wald test p-value: conditions tre vs con
+DataFrame with 22852 rows and 6 columns
+                  baseMean      log2FoldChange             lfcSE               stat            pvalue              padj
+                 &lt;numeric&gt;           &lt;numeric&gt;         &lt;numeric&gt;          &lt;numeric&gt;         &lt;numeric&gt;         &lt;numeric&gt;
+## AT1G01010 65.4092660581971  -0.489358795511224 0.521216004216664 -0.938879066552613 0.347792838086431 0.999976236609269
+## AT1G01020 188.804788979982   0.167293274077293 0.362795264673978    0.4611230916358 0.644710295499361 0.999976236609269
+## AT1G01030 35.9145116528229   0.127302421234151 0.672062276718896  0.189420572533336 0.849763201781784 0.999976236609269
+## AT1G01040 1008.52017973907  0.0833172912410816 0.240007179688198  0.347144995201069 0.728482391586173 0.999976236609269
+## AT1G01050 694.393299169352 -0.0287852240886701 0.259768675170891 -0.110810990084673 0.911766230200056 0.999976236609269
+## ...                    ...                 ...               ...                ...               ...               ...
+## AT5G67600 578.828536547001 -0.0573356586517927 0.289518404967545  -0.19803804410369  0.84301529826065 0.999976236609269
+## AT5G67610 265.008387291835   0.107651655525928 0.325292335215263  0.330938186584351 0.740691176896291 0.999976236609269
+## AT5G67620 10.3580543313242  -0.914229542297002  1.14234019766374 -0.800312852656979 0.423529558307148 0.999976236609269
+## AT5G67630 300.480587343979  -0.362595118844209 0.397418243520207 -0.912376632820008  0.36157048603897 0.999976236609269
+## AT5G67640  63.749399447105    0.46227365476905 0.536557711991677  0.861554394685917 0.388932776218197 0.999976236609269
+</code></pre>
+<p>给<code>DESeq2</code>的原始输出结果增加样品平均表达信息，使得结果更容易理解和解析。</p>
+<pre><code># 获得第一组数据均值
+baseA &lt;- counts(dds, normalized=TRUE)[, colData(dds)$conditions == sampleA]
+
+if (is.vector(baseA)){
+    baseMeanA &lt;- as.data.frame(baseA)
+} else {
+    baseMeanA &lt;- as.data.frame(rowMeans(baseA))
+}
+colnames(baseMeanA) &lt;- sampleA
+head(baseMeanA)
+
+#                 tre
+# AT1G01010   54.42450
+# AT1G01020  199.74830
+# AT1G01030   37.50077
+# AT1G01040 1037.63076
+# AT1G01050  687.45761
+# AT1G01060  281.99806
+</code></pre>
+<pre><code># 获得第二组数据均值
+baseB &lt;- counts(dds, normalized=TRUE)[, colData(dds)$conditions == sampleB]
+if (is.vector(baseB)){
+        baseMeanB &lt;- as.data.frame(baseB)
+} else {
+        baseMeanB &lt;- as.data.frame(rowMeans(baseB))
+}
+colnames(baseMeanB) &lt;- sampleB
+head(baseMeanB)
+
+##                  con
+##  AT1G01010  76.39403
+##  AT1G01020 177.86128
+##  AT1G01030  34.32825
+##  AT1G01040 979.40960
+##  AT1G01050 701.32899
+##  AT1G01060 319.56649
+</code></pre>
+<pre><code># 结果组合
+res &lt;- cbind(baseMeanA, baseMeanB, as.data.frame(res))
+head(res)
+##
+##                tre       con   baseMean      log2FoldChange  lfcSE      stat    pvalue      padj
+##  AT1G01010   54.42450  76.39403   65.40927    -0.48935880 0.5212160 -0.9388791 0.3477928 0.9999762
+##  AT1G01020  199.74830 177.86128  188.80479     0.16729327 0.3627953  0.4611231 0.6447103 0.9999762
+##  AT1G01030   37.50077  34.32825   35.91451     0.12730242 0.6720623  0.1894206 0.8497632 0.9999762
+##  AT1G01040 1037.63076 979.40960 1008.52018     0.08331729 0.2400072  0.3471450 0.7284824 0.9999762
+##  AT1G01050  687.45761 701.32899  694.39330    -0.02878522 0.2597687 -0.1108110 0.9117662 0.9999762
+##  AT1G01060  281.99806 319.56649  300.78227    -0.18036321 0.3077631 -0.5860456 0.5578448 0.9999762
+</code></pre>
+<pre><code># 增加ID信息
+res &lt;- cbind(ID=rownames(res), as.data.frame(res))
+res$baseMean &lt;- rowMeans(cbind(baseA, baseB))
+
+# 校正后p-value为NA的复制为1
+res$padj[is.na(res$padj)] &lt;- 1
+
+# 按pvalue排序, 把差异大的基因放前面
+res &lt;- res[order(res$pvalue),]
+head(res)
+##                    ID        tre         con  baseMean log2FoldChange     lfcSE      stat       pvalue         padj
+##   AT1G57750 AT1G57750   28.16139 1003.180258  515.6708      -5.153560 0.3642816 -14.14719 1.943736e-45 3.752770e-41
+##   AT1G33760 AT1G33760  639.33137    6.767155  323.0493       6.561945 0.5524517  11.87786 1.542626e-32 1.489174e-28
+##   AT1G76650 AT1G76650 4693.39043  165.804397 2429.5974       4.823094 0.4180847  11.53617 8.670392e-31 5.579975e-27
+##   AT1G56660 AT1G56660 6742.93138  311.088739 3527.0101       4.437947 0.3916322  11.33193 9.117706e-30 4.400889e-26
+##   AT1G15010 AT1G15010  488.46638   13.548882  251.0076       5.172803 0.4989248  10.36790 3.470615e-25 1.272240e-21
+##   AT5G41750 AT5G41750 2075.48402  350.421899 1212.9530       2.566263 0.2478179  10.35544 3.953716e-25 1.272240e-21
+</code></pre>
+<p>整体分析结果输出到文件</p>
+<pre><code># 生成文件名
+
+comp314 &lt;- paste(sampleA, &quot;_vs_&quot;, sampleB, sep=&quot;.&quot;)
+file_base &lt;- paste(&quot;ehbio_trans.Count_matrix.xls.DESeq2&quot;, comp314, sep=&quot;.&quot;)
+file_base1 &lt;- paste(file_base, &quot;results.xls&quot;, sep=&quot;.&quot;)
+write.table(as.data.frame(res), file=file_base1, sep=&quot;\t&quot;, quote=F, row.names=F)
+</code></pre>
+<p>提取差异表达基因</p>
+<pre><code># 差异基因筛选，padj &lt; 0.1
+res_DEG &lt;- subset(res, res$padj&lt;0.1, select=c('ID', sampleA,
+        sampleB, 'log2FoldChange', 'padj'))
+# foldchang &gt; 1
+res_DEG_up &lt;- subset(res_DEG, res_DEG$log2FoldChange&gt;=1)
+
+file &lt;- paste(&quot;ehbio_trans.Count_matrix.xls.DESeq2&quot;,sampleA,&quot;_higherThan_&quot;,sampleB,
+        'xls', sep=&quot;.&quot;)
+write.table(as.data.frame(res_DEG_up), file=file, sep=&quot;\t&quot;, quote=F, row.names=F)
+
+res_DEG_down &lt;- subset(res_DEG, res_DEG$log2FoldChange&lt;=(-1)*1)
+
+file &lt;- paste(&quot;ehbio_trans.Count_matrix.xls.DESeq2&quot;,sampleA, &quot;_lowerThan_&quot;, sampleB,
+        'xls', sep=&quot;.&quot;)
+write.table(as.data.frame(res_DEG_down), file=file, sep=&quot;\t&quot;, quote=F, row.names=F)
+
+# 差异基因ID
+res_de_up_id = data.frame(ID=res_DEG_up$ID,
+        type=paste(sampleA,&quot;_higherThan_&quot;, sampleB, sep=&quot;.&quot;))
+res_de_dw_id = data.frame(ID=res_DEG_down$ID,
+        type=paste(sampleA,&quot;_lowerThan_&quot;, sampleB, sep=&quot;.&quot;))
+DEG_id = rbind(res_de_up_id, res_de_dw_id)
+
+file &lt;- &quot;ehbio_trans.Count_matrix.xls.DESeq2.all.DE&quot;
+write.table(as.data.frame(DEG_id), file=file, sep=&quot;\t&quot;, quote=F, row.names=F, col.names=F)
+</code></pre>
+<p>绘制火山图</p>
+<pre><code># 可以把前面生成的results.xls文件提交到www.ehbio.com/ImageGP绘制火山图
+# 或者使用我们的s-plot https://github.com/Tong-Chen/s-plot
+logCounts &lt;- log2(res$baseMean+1)
+logFC &lt;- res$log2FoldChange
+FDR &lt;- res$padj
+#png(filename=paste(file_base, &quot;Volcano.png&quot;, sep=&quot;.&quot;))
+plot(logFC, -1*log10(FDR), col=ifelse(FDR&lt;=0.01, &quot;red&quot;, &quot;black&quot;),
+ xlab=&quot;logFC&quot;, ylab=&quot;-1*log1o(FDR)&quot;, main=&quot;Volcano plot&quot;, pch=&quot;.&quot;)
+#dev.off()
+</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frwygx98ufj20nb0goq5d.jpg" alt=""></p>
+<p>差异基因热图</p>
+<pre><code>res_de_up_top20_id &lt;- as.vector(head(res_de_up$ID,20))
+res_de_dw_top20_id &lt;- as.vector(head(res_de_dw$ID,20))
+
+red_de_top20 &lt;- c(res_de_up_top20_id, res_de_dw_top20_id)
+red_de_top20
+
+##  [1] &quot;ENSG00000178695&quot; &quot;ENSG00000196517&quot; &quot;ENSG00000116584&quot;
+##  [4] &quot;ENSG00000144369&quot; &quot;ENSG00000276600&quot; &quot;ENSG00000108821&quot;
+##  [7] &quot;ENSG00000162692&quot; &quot;ENSG00000181467&quot; &quot;ENSG00000145777&quot;
+## [10] &quot;ENSG00000163491&quot; &quot;ENSG00000183160&quot; &quot;ENSG00000172986&quot;
+## [13] &quot;ENSG00000164484&quot; &quot;ENSG00000131389&quot; &quot;ENSG00000134253&quot;
+## [16] &quot;ENSG00000124766&quot; &quot;ENSG00000227051&quot; &quot;ENSG00000146006&quot;
+## [19] &quot;ENSG00000112837&quot; &quot;ENSG00000146592&quot; &quot;ENSG00000152583&quot;
+## [22] &quot;ENSG00000148175&quot; &quot;ENSG00000179094&quot; &quot;ENSG00000134686&quot;
+## [25] &quot;ENSG00000125148&quot; &quot;ENSG00000120129&quot; &quot;ENSG00000189221&quot;
+## [28] &quot;ENSG00000109906&quot; &quot;ENSG00000101347&quot; &quot;ENSG00000162614&quot;
+## [31] &quot;ENSG00000096060&quot; &quot;ENSG00000162616&quot; &quot;ENSG00000166741&quot;
+## [34] &quot;ENSG00000183044&quot; &quot;ENSG00000164125&quot; &quot;ENSG00000198624&quot;
+## [37] &quot;ENSG00000256235&quot; &quot;ENSG00000077684&quot; &quot;ENSG00000135821&quot;
+## [40] &quot;ENSG00000164647&quot;
+
+# 可以把矩阵存储，提交到www.ehbio.com/ImageGP绘制火山图
+# 或者使用我们的s-plot https://github.com/Tong-Chen/s-plot
+red_de_top20_expr &lt;- normalized_counts[rownames(normalized_counts) %in% red_de_top20,]
+library(pheatmap)
+pheatmap(red_de_top20_expr, cluster_row=T, scale=&quot;row&quot;, annotation_col=sample)
+</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frwyiae8z7j20mb0pctoe.jpg" alt=""></p>
+<h2 id="7关于批次效应">7.关于批次效应</h2>
+<p>见论坛讨论 http://www.ehbio.com/Esx/d/10-deseq2。</p>
+<p>每个DESeqDataSet对象都要有一个实验设计formula，用于对数据进行分组，以便计算表达值的离散度和估计表达倍数差异，通常格式为~ batch + conditions
+(为了方便后续计算，最为关注的分组信息放在最后一位)。</p>
+<p>如果记录了样本的批次信息，或者其它需要抹除的信息可以定义在design参数中，在下游回归的分析中会根据design formula来估计batch effect的影响，并在下游分析时减去这个影响。这是处理batch effect的推荐方式。</p>
+<p>在模型中考虑batch effect并没有在数据矩阵中移除bacth effect，如果下游处理时，确实有需要可以使用limma包的removeBatchEffect来处理。</p>
+<p>countData: 表达矩阵</p>
+<p>colData: 样品分组信息表</p>
+<p>design: 实验设计信息，batch和conditions必须是colData中的一列</p>
+<pre><code>ddsFullCountTable &lt;- DESeqDataSetFromMatrix(countData = data,
+        colData = sample,  design= ~ batch + conditions)
+
+dds &lt;- DESeq(ddsFullCountTable)
+
+rld &lt;- rlog(dds, blind=FALSE)
+rlogMat &lt;- assay(rld)
+rlogMat &lt;- limma::removeBatchEffect(rlogMat, c(sample$batch))
+</code></pre>
+<p>Just to be clear, there’s an important difference between removing a batch effect and modelling a batch effect. Including the batch in your design formula will model the batch effect in the regression step, which means that the raw data are not modified (so the batch effect is not removed), but instead the regression will estimate the size of the batch effect and subtract it out when performing all other tests. In addition, the model’s residual degrees of freedom will be reduced appropriately to reflect the fact that some degrees of freedom were “spent” modelling the batch effects. This is the preferred approach for any method that is capable of using it (this includes DESeq2). You would only remove the batch effect (e.g. using limma’s removeBatchEffect function) if you were going to do some kind of downstream analysis that can’t model the batch effects, such as training a classifier.</p>
+<p>批次效应模拟</p>
+<pre><code>#Make some simulated data with a batch effect:
+dds &lt;- makeExampleDESeqDataSet(betaSD=1,interceptMean=10)
+dds$batch &lt;- factor(rep(c(&quot;A&quot;,&quot;B&quot;),each=6))
+
+#VST, remove batch effect, then plotPCA:
+
+vsd &lt;- vst(dds)
+plotPCA(vsd, &quot;batch&quot;)
+</code></pre>
 <p>参考：</p>
 <ul>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzI5MTcwNjA4NQ==&amp;mid=2247485368&amp;idx=1&amp;sn=12b20487e9014ce2e69f01d3efbc6ce8&amp;chksm=ec0dc232db7a4b248530e117a86053a9149d9ede5258326e04a4ab375f6858853c2e4c06d07d&amp;mpshare=1&amp;scene=23&amp;srcid=0530Jk9L86jUiDQixEk1Znbh#rd">生信宝典</a></li>
-<li><a href="https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html</a></li>
-<li><a href="http://dx.doi.org/10.1186/s13059-014-0550-8">http://dx.doi.org/10.1186/s13059-014-0550-8</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/31952724">https://zhuanlan.zhihu.com/p/31952724</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/32668252">https://zhuanlan.zhihu.com/p/32668252</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/34812206">https://zhuanlan.zhihu.com/p/34812206</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/30350531">https://zhuanlan.zhihu.com/p/30350531</a></li>
-<li><a href="http://www.bioinfo-scrounger.com/archives/113">http://www.bioinfo-scrounger.com/archives/113</a></li>
+<li>https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html</li>
+<li>http://dx.doi.org/10.1186/s13059-014-0550-8</li>
+<li>https://zhuanlan.zhihu.com/p/31952724</li>
+<li>https://zhuanlan.zhihu.com/p/32668252</li>
+<li>https://zhuanlan.zhihu.com/p/34812206</li>
+<li>https://zhuanlan.zhihu.com/p/30350531</li>
+<li>http://www.bioinfo-scrounger.com/archives/113</li>
 </ul>
 
             </div>

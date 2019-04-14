@@ -87,52 +87,93 @@
             
             <div class="post-content">
               <!--more-->
-<h2 id="前言">前言</h2><p>这是StatQuest视频教程的第8-12个。</p>
+<h2 id="前言">前言</h2>
+<p>这是StatQuest视频教程的第8-12个。</p>
 <p>第8个视频的内容为标准差，标准误，第9个视频是柱状图与饼状图；第10个视频是对数转换以及对数的运算，这个非常简单；第11个视频为置信区间；第12个视频内容为The Standard Error（标准错误）</p>
-<h2 id="标准差与标准误">标准差与标准误</h2><p>看下面的案例，这5个点是5只小鼠的体重，其中红色竖线是均值，红色横线就是标准差（standard deviation），它表示的是数据的分布情况，如下所示：</p>
+<h2 id="标准差与标准误">标准差与标准误</h2>
+<p>看下面的案例，这5个点是5只小鼠的体重，其中红色竖线是均值，红色横线就是标准差（standard deviation），它表示的是数据的分布情况，如下所示：</p>
 <p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/BCF6eHaj20.png?imageslim" alt=""></p>
 <blockquote>
-<p><strong>标准差（Standard Deviation）</strong>，在概率统计中最常使用作为统计分布程度（statistical dispersion）上的测量。标准差定义是总体各单位标准值与其平均数离差平方的算术平均数的平方根。它反映组内个体间的离散程度。测量到分布程度的结果，原则上具有两种性质：<br>为非负数值， 与测量资料具有相同单位。一个总量的标准差或一个随机变量的标准差，及一个子集合样品数的标准差之间，有所差别。<br>标准计算公式：<br>假设有一组数值X₁,X₂,X₃,......Xn（皆为实数），<strong>其平均值（算术平均值）为μ</strong>，公式如图<br>标准差也被称为标准偏差，或者实验标准差，公式为 <img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D150/sign=49a3c31e8f1001e94a3c100a880f7b06/d058ccbf6c81800af3b703f9b33533fa838b47f3.jpg" alt=""><br>简单来说，标准差是一组数据平均值分散程度的一种度量。一个较大的标准差，代表大部分数值和其平均值之间差异较大；一个较小的标准差，代表这些数值较接近平均值。<br>例如，两组数的集合 {0,5,9,14} 和 {5,6,8,9} 其平均值都是 7 ，但第二个集合具有较小的标准差。<br>标准差可以当作不确定性的一种测量。例如在物理科学中，做重复性测量时，测量数值集合的标准差代表这些测量的精确度。当要决定测量值是否符合预测值，测量值的标准差占有决定性重要角色：如果测量平均值与预测值相差太远（同时与标准差数值做比较），则认为测量值与预测值互相矛盾。这很容易理解，因为如果测量值都落在一定数值范围之外，可以合理推论预测值是否正确。<br>例如，A、B两组各有6位学生参加同一次语文测验，A组的分数为95、85、75、65、55、45，B组的分数为73、72、71、69、68、67。这两组的平均数都是70，但A组的标准差约为17.08分，B组的标准差约为2.16分，说明A组学生之间的差距要比B组学生之间的差距大得多。<br>如是总体（即估算总体方差），根号内除以n（对应excel函数：STDEVP）；<br>如是抽样（即估算样本方差），根号内除以（n-1）（对应excel函数：STDEV）；<br><strong>因为我们大量接触的是样本，所以普遍使用根号内除以（n-1）</strong><br>公式意义：所有数减去其平均值的平方和，所得结果除以该组数之个数（或个数减一，即变异数），再把所得值开根号，所得之数就是这组数据的标准差。</p>
+<p><strong>标准差（Standard Deviation）</strong>，在概率统计中最常使用作为统计分布程度（statistical dispersion）上的测量。标准差定义是总体各单位标准值与其平均数离差平方的算术平均数的平方根。它反映组内个体间的离散程度。测量到分布程度的结果，原则上具有两种性质：
+为非负数值， 与测量资料具有相同单位。一个总量的标准差或一个随机变量的标准差，及一个子集合样品数的标准差之间，有所差别。
+标准计算公式：
+假设有一组数值X₁,X₂,X₃,......Xn（皆为实数），<strong>其平均值（算术平均值）为μ</strong>，公式如图
+标准差也被称为标准偏差，或者实验标准差，公式为 <img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D150/sign=49a3c31e8f1001e94a3c100a880f7b06/d058ccbf6c81800af3b703f9b33533fa838b47f3.jpg" alt="">
+简单来说，标准差是一组数据平均值分散程度的一种度量。一个较大的标准差，代表大部分数值和其平均值之间差异较大；一个较小的标准差，代表这些数值较接近平均值。
+例如，两组数的集合 {0,5,9,14} 和 {5,6,8,9} 其平均值都是 7 ，但第二个集合具有较小的标准差。
+标准差可以当作不确定性的一种测量。例如在物理科学中，做重复性测量时，测量数值集合的标准差代表这些测量的精确度。当要决定测量值是否符合预测值，测量值的标准差占有决定性重要角色：如果测量平均值与预测值相差太远（同时与标准差数值做比较），则认为测量值与预测值互相矛盾。这很容易理解，因为如果测量值都落在一定数值范围之外，可以合理推论预测值是否正确。
+例如，A、B两组各有6位学生参加同一次语文测验，A组的分数为95、85、75、65、55、45，B组的分数为73、72、71、69、68、67。这两组的平均数都是70，但A组的标准差约为17.08分，B组的标准差约为2.16分，说明A组学生之间的差距要比B组学生之间的差距大得多。
+如是总体（即估算总体方差），根号内除以n（对应excel函数：STDEVP）；
+如是抽样（即估算样本方差），根号内除以（n-1）（对应excel函数：STDEV）；
+<strong>因为我们大量接触的是样本，所以普遍使用根号内除以（n-1）</strong>
+公式意义：所有数减去其平均值的平方和，所得结果除以该组数之个数（或个数减一，即变异数），再把所得值开根号，所得之数就是这组数据的标准差。</p>
 </blockquote>
-<p>接着，我们在5个时间点，又分别测量了这5只小鼠的体重，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/EEEFheLeLe.png?imageslim" alt=""></p>
-<p>我们分别计算一下这5次检测的均值与标准差，就是下图中竖线与横线所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/am7ieAacGG.png?imageslim" alt=""></p>
-<p>此时，将这5次测量数据的均值放到一起，计算这些均值的均值与标准差，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/jI2LD0blBe.png?imageslim" alt=""></p>
+<p>接着，我们在5个时间点，又分别测量了这5只小鼠的体重，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/EEEFheLeLe.png?imageslim" alt=""></p>
+<p>我们分别计算一下这5次检测的均值与标准差，就是下图中竖线与横线所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/am7ieAacGG.png?imageslim" alt=""></p>
+<p>此时，将这5次测量数据的均值放到一起，计算这些均值的均值与标准差，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/jI2LD0blBe.png?imageslim" alt=""></p>
 <p>此时，我们称这个均值的标准差为标准误（The Standard Error,SE，有的书会称为SEM）。</p>
-<h2 id="标准差与标准误的区分">标准差与标准误的区分</h2><ul>
-<li><p><strong>标准差</strong><br>标准差研究一次测量中，数据的变异程度，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/4ikdCf83fI.png?imageslim" alt=""></p>
+<h2 id="标准差与标准误的区分">标准差与标准误的区分</h2>
+<ul>
+<li>
+<p><strong>标准差</strong>
+标准差研究一次测量中，数据的变异程度，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/4ikdCf83fI.png?imageslim" alt=""></p>
 </li>
-<li><p><strong>标准误</strong><br>标准误研究的是多次测量的变异程度，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/ic1e8AI204.png?imageslim" alt=""></p>
+<li>
+<p><strong>标准误</strong>
+标准误研究的是多次测量的变异程度，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/ic1e8AI204.png?imageslim" alt=""></p>
 </li>
 </ul>
-<h2 id="标准误的估算">标准误的估算</h2><p>对于标准误比较让人糊涂的地方在于，虽然标准误研究的是多次测量的变异，但是，一次的检测数据也能估算出标准误（其实就是标准差除以样本数的平方根）。因此，如果你只有一次检测的数据，也是能够画出标准误的曲线的（在GraphPad中就能发现这种绘图方法）。<br>但是，多数情况下，绘图中经常出现的是标准差，而不是标准误（虽然标准误很好看），因为图形展示的通常是你的测量数据，而不是研究几次测量数据的变异。</p>
-<h2 id="饼状图与柱状图">饼状图与柱状图</h2><p>这两种图的用途很好区分，从形状上就能看出，饼状图通常是研究不同成分在整体中的比例，柱状图通常是研究不同成分自身的数据，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/45Fc3Fdm5I.png?imageslim" alt=""></p>
-<p>如果是两组数据，只看柱状图不太容易看出它们整体中各种成分的差异，如果是饼状图就很容易看出来了，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/0f892mC7jF.png?imageslim" alt=""></p>
-<h2 id="对数">对数</h2><p>先看一组数据，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/1A0BFa043J.png?imageslim" alt=""></p>
-<p>在上图中，左边数轴上是0到8，而这些数字可以写成2的指数幂形式，这样的话，1就是2的0次方，2是2的1次方，4是2的2次方，相应的的5，6，7都可以这么写，只是它们的指数不是整数，这样的话，我们将这个数轴转换一下，让这些数字的指数作为数轴上的数字，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/5ecG44194D.png?imageslim" alt=""></p>
+<h2 id="标准误的估算">标准误的估算</h2>
+<p>对于标准误比较让人糊涂的地方在于，虽然标准误研究的是多次测量的变异，但是，一次的检测数据也能估算出标准误（其实就是标准差除以样本数的平方根）。因此，如果你只有一次检测的数据，也是能够画出标准误的曲线的（在GraphPad中就能发现这种绘图方法）。
+但是，多数情况下，绘图中经常出现的是标准差，而不是标准误（虽然标准误很好看），因为图形展示的通常是你的测量数据，而不是研究几次测量数据的变异。</p>
+<h2 id="饼状图与柱状图">饼状图与柱状图</h2>
+<p>这两种图的用途很好区分，从形状上就能看出，饼状图通常是研究不同成分在整体中的比例，柱状图通常是研究不同成分自身的数据，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/45Fc3Fdm5I.png?imageslim" alt=""></p>
+<p>如果是两组数据，只看柱状图不太容易看出它们整体中各种成分的差异，如果是饼状图就很容易看出来了，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/0f892mC7jF.png?imageslim" alt=""></p>
+<h2 id="对数">对数</h2>
+<p>先看一组数据，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/1A0BFa043J.png?imageslim" alt=""></p>
+<p>在上图中，左边数轴上是0到8，而这些数字可以写成2的指数幂形式，这样的话，1就是2的0次方，2是2的1次方，4是2的2次方，相应的的5，6，7都可以这么写，只是它们的指数不是整数，这样的话，我们将这个数轴转换一下，让这些数字的指数作为数轴上的数字，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/5ecG44194D.png?imageslim" alt=""></p>
 <p>从上图可知，使用了一个对数log转换，将原始数字转换成了以2为底的对数形式。</p>
-<p>在生物学中，RT-qPCR的数据基本上都是以2为底的对数的形式展现的，我们经常看到RT-qPCR的数值不是整数，这也好理解，因为PCR的扩增效率不可能是100%（如果是100%，则肯定是整数）。<br>在qPCR的数据处理中，通常使用的是几何均数。几何均数是对各变量值的连乘积开项数次方根。<br> 另外，在对转录组数据进行分析时，也通常使用对数，对于差异基因的结果，通常也是对数表示的，正数表示基因表达上调，反之，下调。</p>
-<h2 id="置信区间（confidence intervals）">置信区间（confidence intervals）</h2><p>先看一个场景，下图是我们检测了一批雌性小鼠（12只）的体重，其中红色竖线是这次数据的均值：</p>
+<p>在生物学中，RT-qPCR的数据基本上都是以2为底的对数的形式展现的，我们经常看到RT-qPCR的数值不是整数，这也好理解，因为PCR的扩增效率不可能是100%（如果是100%，则肯定是整数）。
+在qPCR的数据处理中，通常使用的是几何均数。几何均数是对各变量值的连乘积开项数次方根。
+另外，在对转录组数据进行分析时，也通常使用对数，对于差异基因的结果，通常也是对数表示的，正数表示基因表达上调，反之，下调。</p>
+<h2 id="置信区间confidence-intervals">置信区间（confidence intervals）</h2>
+<p>先看一个场景，下图是我们检测了一批雌性小鼠（12只）的体重，其中红色竖线是这次数据的均值：</p>
 <p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/89hkG8j5kb.png?imageslim" alt=""></p>
-<p>此时，我们从这批小鼠中自举（bootstrap）一些样本，例如我们随机选取12只（肯定有重复挑中的小鼠，这个没有关系），如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/lG74dJm6jh.png?imageslim" alt=""></p>
+<p>此时，我们从这批小鼠中自举（bootstrap）一些样本，例如我们随机选取12只（肯定有重复挑中的小鼠，这个没有关系），如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/lG74dJm6jh.png?imageslim" alt=""></p>
 <p>关于自举：</p>
 <blockquote>
-<p>自举的思想：<br>   从给定训练集中有放回的均匀抽样，也就是说，每当选中一个样本，它等可能地被再次选中并被再次添加到训练集中。从初始样本重复随机替换抽样，生成一个或一系列待检验统计量的经验分布。 无需假设一个特定的理论分布，便可生成统计量的置信区间，并能检验统计假设。</p>
+<p>自举的思想：
+从给定训练集中有放回的均匀抽样，也就是说，每当选中一个样本，它等可能地被再次选中并被再次添加到训练集中。从初始样本重复随机替换抽样，生成一个或一系列待检验统计量的经验分布。 无需假设一个特定的理论分布，便可生成统计量的置信区间，并能检验统计假设。</p>
 </blockquote>
 <p>自举后，计算这次抽样的均数，然后再自举，再算均数，这个过程持续很多次（大于1000次），计算出的均数如下所示：</p>
 <p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/b45IGE8k1E.png?imageslim" alt=""></p>
-<p>此时我们计算置信区间，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/Illf8bdDE2.png?imageslim" alt=""></p>
+<p>此时我们计算置信区间，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/Illf8bdDE2.png?imageslim" alt=""></p>
 <p>这个95%的置信区间就是指，它覆盖了这次自举所有数据的95%均值范围。由于这个置信区间覆盖了95%的均值，那么我们就知道，均数在这个区间之外的概率是不到5%（0.05只是一个界限）。那也就是说，任何在这个区间之外的数字的概率p值是小于0.05的（也就是说有显著意义）。</p>
-<h2 id="置信区间的用处">置信区间的用处</h2><p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/iGbemGdE30.png?imageslim" alt=""></p>
+<h2 id="置信区间的用处">置信区间的用处</h2>
+<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/iGbemGdE30.png?imageslim" alt=""></p>
 <p>先看置信区间的示意图：</p>
 <p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/Cm49lc46b1.png?imageslim" alt=""></p>
 <p>均值是对“真实”值的估计（真实值是无法知道的，只能通过不断地测量一步一步接近）。</p>
 <p>它有95%的可能落在95%的置信区间内，下图的绿色椭圆的范围是在95%的置信区间之外，它的最右边是20，我们可以发现，在这个绿色椭圆之内也有一个均值（是通过自举法计算的），也就是说这个均值落在了这个绿色的椭圆之内，那么均值落在它里面的概率是多少？这个概率我们通常用p值来表示。从图形上可以看出来，这个绿色椭圆的范围是在95%的置信区间之外，因此我们就可以推断出此时p值是小于0.05的（这只是一种非常粗糙的推断，具体的推导过程可以看相关的数学书），因此我们就可以下结论：“真实”值出现在95%区间以外的概率不到5%（也就是说p值小于0.05时有统计学意义）。</p>
 <p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/KhHLl4jgJB.png?imageslim" alt=""></p>
-<h2 id="两个数据集的比较">两个数据集的比较</h2><p>再看一个案例，下图是雌性小鼠与在雄性小鼠体重的测量结果，如下所示：<br><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/AIibFKF7jL.png?imageslim" alt=""></p>
+<h2 id="两个数据集的比较">两个数据集的比较</h2>
+<p>再看一个案例，下图是雌性小鼠与在雄性小鼠体重的测量结果，如下所示：
+<img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/AIibFKF7jL.png?imageslim" alt=""></p>
 <p>其中，上图的黑色横线表示的是各自的95%置信区间。从图片上我们就可以直接看出，这两组数据的95%置信区间并不重复，它是有统计学意义的，也就是说我们可以直接看出来p值是小于0.05的（在实际运用中不可以这么做，还是要通过t检验进行计算）。但是，如果它们的95%置信区间有部分重合，就像下面的这个样子：</p>
 <p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/bB89CE917d.png?imageslim" alt=""></p>
 <p>此时就要进行t检验了。</p>
-<p>参考： <a href="http://rvdsd.top/2018/06/03/BioStatistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-StatQuest%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B003-%E6%A0%87%E5%87%86%E5%B7%AE%E3%80%81%E6%A0%87%E5%87%86%E4%B8%8E%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4/">http://rvdsd.top/2018/06/03/BioStatistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-StatQuest%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B003-%E6%A0%87%E5%87%86%E5%B7%AE%E3%80%81%E6%A0%87%E5%87%86%E4%B8%8E%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4/</a></p>
+<p>参考： http://rvdsd.top/2018/06/03/BioStatistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-StatQuest%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B003-%E6%A0%87%E5%87%86%E5%B7%AE%E3%80%81%E6%A0%87%E5%87%86%E4%B8%8E%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4/</p>
 
             </div>
             

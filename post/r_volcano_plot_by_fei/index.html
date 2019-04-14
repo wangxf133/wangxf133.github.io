@@ -87,29 +87,57 @@
             
             <div class="post-content">
               <!--more-->
-
 <p>火山图的具体代码</p>
-<h1 id="1.安装">1.安装</h1><pre><code>install.packages(&quot;ggplot2&quot;)
-library(ggplot2)</code></pre><h1 id="2.设置工作路径">2.设置工作路径</h1><p>...</p>
-<h1 id="3.读取数据">3.读取数据</h1><pre><code>data &lt;- read.table(&quot;ETWvsTD265(116vs117)_vs.txt&quot;,sep=&quot;\t&quot;,header=TRUE,row.names=1)
-head(data)</code></pre><p>其实主要的那几行在就行</p>
-<p>“geneid”<br>“比值”<br>“p-value”<br> “q-value”<br>等就行，<br>别的其实都不需要</p>
-<p>自己的原始数据<br><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi1qbqiwlj21400k8q88.jpg" alt="原始数据"></p>
-<h1 id="4.数据处理">4.数据处理</h1><pre><code>data$fac=as.factor((data$ratio_116vs117 &gt; 1.2 | data$ratio_116vs117 &lt; 0.8333)&amp;data$qvalue_116vs117 &lt; 0.05)
-data$fac</code></pre><h1 id="5.简单绘图">5.简单绘图</h1><pre><code>ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= fac))+geom_point()</code></pre><p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi1utk8xmj20v60m4q3y.jpg" alt="简单绘图"></p>
-<h1 id="6.标记significant(从0列开始，正是因为附在后面，前面还多加了一列fac，所以是第15列)">6.标记significant(从0列开始，正是因为附在后面，前面还多加了一列fac，所以是第15列)</h1><pre><code>data$significant &lt;- &quot;no&quot;
+<h1 id="1安装">1.安装</h1>
+<pre><code>install.packages(&quot;ggplot2&quot;)
+library(ggplot2)
+</code></pre>
+<h1 id="2设置工作路径">2.设置工作路径</h1>
+<p>...</p>
+<h1 id="3读取数据">3.读取数据</h1>
+<pre><code>data &lt;- read.table(&quot;ETWvsTD265(116vs117)_vs.txt&quot;,sep=&quot;\t&quot;,header=TRUE,row.names=1)
+head(data)
+</code></pre>
+<p>其实主要的那几行在就行</p>
+<p>“geneid”
+“比值”
+“p-value”
+“q-value”
+等就行，
+别的其实都不需要</p>
+<p>自己的原始数据
+<img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi1qbqiwlj21400k8q88.jpg" alt="原始数据"></p>
+<h1 id="4数据处理">4.数据处理</h1>
+<pre><code>data$fac=as.factor((data$ratio_116vs117 &gt; 1.2 | data$ratio_116vs117 &lt; 0.8333)&amp;data$qvalue_116vs117 &lt; 0.05)
+data$fac
+</code></pre>
+<h1 id="5简单绘图">5.简单绘图</h1>
+<pre><code>ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= fac))+geom_point()
+</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi1utk8xmj20v60m4q3y.jpg" alt="简单绘图"></p>
+<h1 id="6标记significant从0列开始正是因为附在后面前面还多加了一列fac所以是第15列">6.标记significant(从0列开始，正是因为附在后面，前面还多加了一列fac，所以是第15列)</h1>
+<pre><code>data$significant &lt;- &quot;no&quot;
 up_row &lt;- which(data$ratio_116vs117 &gt; 1.2 &amp; data$qvalue_116vs117 &lt; 0.05)
 data[up_row,15] &lt;- &quot;up&quot;
 
 down_row &lt;- which(data$ratio_116vs117 &lt; 0.8333 &amp; data$qvalue_116vs117 &lt; 0.05)
 data[down_row,15] &lt;- &quot;down&quot;
 
-data$significant</code></pre><h1 id="7.绘图——区分significant---up and down">7.绘图——区分significant---up and down</h1><pre><code>ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= significant))+geom_point()</code></pre><p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi214ympej20v60m43zj.jpg" alt="区分significant"></p>
-<h1 id="8.美化一下">8.美化一下</h1><pre><code>ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= significant)) + geom_point() + scale_color_manual(values = c(&quot;goldenrod1&quot;,&quot;lightgrey&quot;,&quot;firebrick2&quot;)) +
+data$significant
+</code></pre>
+<h1 id="7绘图区分significant-up-and-down">7.绘图——区分significant---up and down</h1>
+<pre><code>ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= significant))+geom_point()
+</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi214ympej20v60m43zj.jpg" alt="区分significant"></p>
+<h1 id="8美化一下">8.美化一下</h1>
+<pre><code>ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= significant)) + geom_point() + scale_color_manual(values = c(&quot;goldenrod1&quot;,&quot;lightgrey&quot;,&quot;firebrick2&quot;)) +
   theme_bw() +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),legend.key=element_blank())
-</code></pre><p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi26s1bz0j20v60m4wfh.jpg" alt="美化后的"></p>
-<h1 id="9.生成图片和需要的文件">9.生成图片和需要的文件</h1><pre><code class="language-R">png(file = &quot;ETWvsTD265(116vs117)_volcano_significant.png&quot;)
+
+</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1fpi26s1bz0j20v60m4wfh.jpg" alt="美化后的"></p>
+<h1 id="9生成图片和需要的文件">9.生成图片和需要的文件</h1>
+<pre><code class="language-R">png(file = &quot;ETWvsTD265(116vs117)_volcano_significant.png&quot;)
 
 ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= significant)) + geom_point() + scale_color_manual(values = c(&quot;goldenrod1&quot;,&quot;lightgrey&quot;,&quot;firebrick2&quot;)) +
   theme_bw() +
@@ -119,6 +147,7 @@ ggplot(data,aes(x=log2(ratio_116vs117) , y=-log10(qvalue_116vs117) , color= sign
 dev.off()
 
 write.table(data,file=&quot;ETWvsTD265(116vs117)_volcano_significant.txt&quot;,sep=&quot;\t&quot;)
+
 </code></pre>
 
             </div>
