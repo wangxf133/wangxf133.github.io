@@ -1,0 +1,548 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>想知道柚子的滋味，你就要亲口尝一尝</title>
+<meta name="description" content="东北师范大学-在读博士" />
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1563879475099">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://wangxf133.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://wangxf133.github.io/images/avatar.png?v=1563879475099" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">想知道柚子的滋味，你就要亲口尝一尝</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AA%E5%91%BD%E4%BB%A4">1.使用多个命令</a></li>
+<li><a href="#2%E5%88%9B%E5%BB%BAshell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6">2.创建shell脚本文件</a></li>
+<li><a href="#3%E6%98%BE%E7%A4%BA%E6%B6%88%E6%81%AF">3.显示消息</a></li>
+<li><a href="#4%E4%BD%BF%E7%94%A8%E5%8F%98%E9%87%8F">4.使用变量</a><br>
+*
+<ul>
+<li><a href="#41-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">4.1 环境变量</a></li>
+<li><a href="#42-%E7%94%A8%E6%88%B7%E5%8F%98%E9%87%8F">4.2 用户变量</a></li>
+<li><a href="#43-%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2">4.3 命令替换</a></li>
+</ul>
+</li>
+<li><a href="#5%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA">5.重定向输入和输出</a><br>
+*
+<ul>
+<li><a href="#51%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91">5.1输出重定向</a></li>
+<li><a href="#52%E8%BE%93%E5%85%A5%E9%87%8D%E5%AE%9A%E5%90%91">5.2输入重定向</a></li>
+</ul>
+</li>
+<li><a href="#6%E7%AE%A1%E9%81%93">6.管道</a></li>
+<li><a href="#7%E6%89%A7%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97">7.执行数学运算</a><br>
+*
+<ul>
+<li><a href="#71-expr%E5%91%BD%E4%BB%A4">7.1 expr命令</a></li>
+<li><a href="#72-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%8B%AC%E5%8F%B7">7.2 使用方括号</a></li>
+<li><a href="#73-%E6%B5%AE%E7%82%B9%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">7.3 浮点解决方案</a></li>
+</ul>
+</li>
+<li><a href="#8%E9%80%80%E5%87%BA%E8%84%9A%E6%9C%AC">8.退出脚本</a></li>
+<li><a href="#9%E5%B0%8F%E7%BB%93">9.小结</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by Gridea</div>
+    <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">shell语言脚本构建1-shell构建基本脚本</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-27 / 4 min read
+        </div>
+        
+        <div class="post-content yue">
+          <!-- more -->
+<h2 id="1使用多个命令">1.使用多个命令</h2>
+<p>shell允许只使用一步就将多个命令串联起来使用。如果要两个命令一起运行，可在同一提示行输入他们，<strong>用分号分隔开 ；</strong></p>
+<pre><code>[xiaofei@DESKTOP-U55QOF8 ~]$date ; pwd
+Sat Aug  4 15:51:12 DST 2018
+/home/xiaofei
+</code></pre>
+<p>但是每次运行的时候都必须在命令提示符下输入整个命令。这样比较麻烦，所以我们可以将命令合并成一个简单的文本文件。要使用这些命令的时候，我只需要简单的运行这个文本文件。</p>
+<h2 id="2创建shell脚本文件">2.创建shell脚本文件</h2>
+<p>在创建shell脚本文件时，必须在文件的第一行指定要使用的shell。其格式为：</p>
+<pre><code class="language-shell">#!/bin/bash
+</code></pre>
+<p>在通常的shell脚本中，井号（#）用作注释行。shell并不会处理shell脚本中的注释行。然而，shell脚本文件的第一行是个例外，#后面的惊叹号会告诉shell用哪个shell来运行脚本（是的，你可以使用bash shell，同时还可以使用另一个shell来运行你的脚本）。</p>
+<p>在指定了shell之后，就可以在文件的每一行中输入命令，然后加一个回车符。</p>
+<pre><code class="language-shell">#!/bin/bash
+# 注释信息
+date
+pwd
+</code></pre>
+<p>得到结果(有些时候可能会报错，可能是sh文件没有权限，需要用chmof 修改权限)</p>
+<pre><code class="language-shell">[xiaofei@DESKTOP-U55QOF8 shell]$sh 1.sh
+Sun Aug  5 12:43:56 DST 2018
+/mnt/d/shell
+[xiaofei@DESKTOP-U55QOF8 shell]$./1.sh
+Sun Aug  5 12:44:25 DST 2018
+/mnt/d/shell
+</code></pre>
+<h2 id="3显示消息">3.显示消息</h2>
+<p>大多数shell命令都会产生自己的输出，这些输出会显示在脚本所运行的控制台显示器上。很多时候，你可能想要添加自己的文本消息来告诉脚本用户脚本正在做什么。可以通过echo命令来实现这一点。如果在echo命令后面加上了一个字符串，该命令就能显示出这个文本字符串。</p>
+<pre><code class="language-shell">$ echo This is a test 
+This is a test 
+</code></pre>
+<p>注意，默认情况下，不需要使用引号将要显示的文本字符串划定出来。但有时在字符串中出现引号的话就比较麻烦了。</p>
+<pre><code class="language-shell">$ echo Let's see if this'll work 
+Lets see if thisll work
+</code></pre>
+<p>echo命令可用单引号或双引号来划定文本字符串。如果在字符串中用到了它们，你需要在文本中使用其中一种引号，而用另外一种来将字符串划定起来。</p>
+<pre><code class="language-sh">$ echo &quot;This is a test to see if you're paying attention&quot; 
+This is a test to see if you're paying attention 
+$ echo 'Rich says &quot;scripting is easy&quot;.' 
+Rich says &quot;scripting is easy&quot;. 
+</code></pre>
+<p>所有的引号都可以正常输出了。<br>
+可以将echo语句添加到shell脚本中任何需要显示额外信息的地方。</p>
+<pre><code class="language-sh">#!/bin/bash
+# 注释信息
+
+echo The time and pwd are:
+date
+echo &quot;where's file location:&quot;
+pwd
+</code></pre>
+<p>当运行这个脚本时，它会产生如下输出。</p>
+<pre><code class="language-sh">[xiaofei@DESKTOP-U55QOF8 shell]$sh 1.sh
+
+The time and pwd are:
+Sun Aug  5 12:55:22 DST 2018
+where's file location:
+/mnt/d/shell
+</code></pre>
+<p>但如果想把文本字符串和命令输出显示在同一行中，该怎么办呢？可以用echo语句的-n参数。只要将第一个echo语句改成这样就行(用处暂不太大)：</p>
+<pre><code class="language-sh">echo -n &quot;The time and date are: &quot; 
+</code></pre>
+<p>需要在字符串的两侧使用引号，<strong>保证要显示的字符串尾部有一个空格</strong>。命令输出将会在紧接着字符串结束的地方出现。现在的输出会是这样：</p>
+<pre><code class="language-sh">$ ./test1 
+The time and date are: Mon Feb 21 15:42:23 EST 2014 
+Let's see who's logged into the system: 
+Christine tty2         2014-02-21 15:26 
+Samantha tty3         2014-02-21 15:26 
+Timothy  tty1         2014-02-21 15:26 
+user     tty7         2014-02-19 14:03 (:0) 
+user     pts/0        2014-02-21 15:21 (:0.0) 
+</code></pre>
+<h2 id="4使用变量">4.使用变量</h2>
+<p>运行shell脚本中的单个命令自然有用，但这有其自身的限制。通常你会需要在shell命令使用其他数据来处理信息。这可以通过变量来实现。变量允许你临时性地将信息存储在shell脚本中，以便和脚本中的其他命令一起使用。本节将介绍如何在shell脚本中使用变量。</p>
+<h4 id="41-环境变量">4.1 环境变量</h4>
+<p>在脚本中，你可以在环境变量名称之前加上美元符（$）来使用这些环境变量。下面的脚本演示了这种用法。</p>
+<pre><code class="language-sh">#!/bin/bash
+# 注释信息
+
+echo &quot;User info for userid: $USER&quot;
+echo UID: $UID
+echo HOME: $HOME
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>U</mi><mi>S</mi><mi>E</mi><mi>R</mi><mi mathvariant="normal">、</mi></mrow><annotation encoding="application/x-tex">USER、</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord cjk_fallback">、</span></span></span></span>UID和$HOME环境变量用来显示已登录用户的有关信息。脚本输出如下：</p>
+<pre><code class="language-sh">[xiaofei@DESKTOP-U55QOF8 shell]$sh 2.sh
+User info for userid: xiaofei
+UID:
+HOME: /home/xiaofei
+</code></pre>
+<p>注意，echo命令中的环境变量会在脚本运行时替换成当前值。另外，在第一个字符串中可以将$USER系统变量放置到双引号中，而shell依然能够知道我们的意图。但采用这种方法也有一个问题。看看下面这个例子会怎么样。</p>
+<pre><code class="language-sh">$ echo &quot;The cost of the item is $15&quot; 
+The cost of the item is 5 
+</code></pre>
+<p>显然这不是我们想要的。只要脚本在引号中出现美元符，它就会以为你在引用一个变量。在这个例子中，脚本会尝试显示变量$1（但并未定义），再显示数字5。要显示美元符，你必须在它前面放置一个反斜线。</p>
+<pre><code class="language-sh">$ echo &quot;The cost of the item is \$15&quot; 
+The cost of the item is $15 
+</code></pre>
+<p>看起来好多了。反斜线允许shell脚本将美元符解读为实际的美元符，而不是变量。</p>
+<h4 id="42-用户变量">4.2 用户变量</h4>
+<p>除了环境变量，shell脚本还允许在脚本中定义和使用自己的变量。定义变量允许临时存储数据并在整个脚本中使用，从而使shell脚本看起来更像一个真正的计算机程序。</p>
+<p>用户变量可以是任何由字母、数字或下划线组成的文本字符串，长度不超过20个。用户变量区分大小写，所以变量Var1和变量var1是不同的。<br>
+使用等号将值赋给用户变量。在变量、等号和值之间不能出现空格。<br>
+赋值例子：</p>
+<pre><code>var1=10 
+var2=-57 
+var3=testing 
+var4=&quot;still more testing&quot; 
+</code></pre>
+<p>shell脚本会自动决定变量值的数据类型。在脚本的整个生命周期里，shell脚本中定义的变量会一直保持着它们的值，但在shell脚本结束时会被删除掉。<br>
+与系统变量类似，用户变量可通过美元符引用。</p>
+<pre><code class="language-sh">$ cat test3.sh
+#!/bin/bash 
+# testing variables 
+days=10 
+guest=&quot;Katie&quot; 
+echo &quot;$guest checked in $days days ago&quot; 
+days=5 
+guest=&quot;Jessica&quot; 
+echo &quot;$guest checked in $days days ago&quot;
+</code></pre>
+<p>运行脚本会有如下输出。</p>
+<pre><code class="language-sh">[xiaofei@DESKTOP-U55QOF8 shell]$sh test3.sh
+Katie checked in 10 days ago
+Jessica checked in 5 days ago
+</code></pre>
+<p>变量每次被引用时，都会输出当前赋给它的值。重要的是要记住，引用一个变量值时需要使用美元符，而引用变量来对其进行赋值时则不要使用美元符。通过一个例子你就能明白意思。</p>
+<pre><code class="language-sh">$ cat test4.sh
+#!/bin/bash 
+# assigning a variable value to another variable 
+ 
+value1=10 
+value2=$value1 
+echo The resulting value is $value2
+</code></pre>
+<p>在赋值语句中使用value1变量的值时，仍然必须用美元符。这段代码产生如下输出。</p>
+<pre><code>$sh test4.sh 
+The resulting value is 10 
+</code></pre>
+<p>要是忘了用美元符，使得value2的赋值行变成了这样：</p>
+<pre><code>value2=value1 
+</code></pre>
+<p>那你会得到如下输出：</p>
+<pre><code>$sh test4.sh 
+The resulting value is value1 
+</code></pre>
+<p>没有美元符，shell会将变量名解释成普通的文本字符串，通常这并不是你想要的结果。</p>
+<h4 id="43-命令替换">4.3 命令替换</h4>
+<p>shell脚本中最有用的特性之一就是可以从命令输出中提取信息，并将其赋给变量。把输出赋给变量之后，就可以随意在脚本中使用了。这个特性在处理脚本数据时尤为方便。</p>
+<p>有两种方法可以将命令输出赋给变量：</p>
+<ul>
+<li>反引号字符 (`)</li>
+<li>$() 格式</li>
+</ul>
+<p>要注意反引号字符，这可不是用于字符串的那个普通的单引号字符。由于在shell脚本之外很少用到，你可能甚至都不知道在键盘什么地方能找到这个字符。但你必须慢慢熟悉它，因为这是许多shell脚本中的重要组件。提示：在美式键盘上，它通常和波浪线（~）位于同一键位。</p>
+<p>命令替换允许你将shell命令的输出赋给变量。尽管这看起来并不那么重要，但它却是脚本编程中的一个主要组成部分。</p>
+<p>要么用一对反引号把整个命令行命令围起来：</p>
+<pre><code class="language-sh">testing='date' 
+</code></pre>
+<p>要么使用$()格式：</p>
+<pre><code class="language-sh">testing=$(date)
+</code></pre>
+<p>shell会运行命令替换符号中的命令，并将其输出赋给变量testing。注意，赋值等号和命令替换字符之间没有空格。这里有个使用普通的shell命令输出创建变量的例子。</p>
+<pre><code class="language-sh">$ cat test5.sh 
+#!/bin/bash 
+testing=$(date) 
+echo &quot;The date and time are: &quot; $testing
+</code></pre>
+<p>变量testing获得了date命令的输出，然后使用echo语句显示出它的值。运行这个shell脚本生成如下输出。</p>
+<pre><code class="language-sh">$sh test5.sh
+The date and time are:  Mon Aug 6 15:05:40 DST 2018
+</code></pre>
+<p>下面这个例子很常见，它在脚本中通过命令替换获得当前日期并用它来生成唯一文件名。</p>
+<pre><code class="language-sh">#!/bin/bash 
+# copy the /usr/bin directory listing to a log file 
+today=$(date +%y%m%d) 
+ls /usr/bin -al &gt; log.$today 
+</code></pre>
+<p>today变量是被赋予格式化后的date命令的输出。这是提取日期信息来生成日志文件名常用的一种技术。+%y%m%d格式告诉date命令将日期显示为两位数的年月日的组合。</p>
+<pre><code class="language-sh">$date +%y%m%d
+180806
+</code></pre>
+<p>这个脚本将日期值赋给一个变量，之后再将其作为文件名的一部分。文件自身含有目录列表的重定向输出。运行该脚本之后，应该能在目录中看到一个新文件。</p>
+<p>目录中出现的日志文件采用$today变量的值作为文件名的一部分。日志文件的内容是/usr/bin目录内容的列表输出。如果脚本在明天运行，日志文件名会是log.140201，就这样为新的一天创建一个新文件。</p>
+<h2 id="5重定向输入和输出">5.重定向输入和输出</h2>
+<p>有些时候你想要保存某个命令的输出而不仅仅只是让它显示在显示器上。bash shell提供了几个操作符，可以将命令的输出重定向到另一个位置（比如文件）。重定向可以用于输入，也可以用于输出，可以将文件重定向到命令输入。本节介绍了如何在shell脚本中使用重定向。</p>
+<h4 id="51输出重定向">5.1输出重定向</h4>
+<p>最基本的重定向将命令的输出发送到一个文件中。bash shell用大于号（&gt;）来完成这项功能：</p>
+<pre><code>command &gt; outputfile
+</code></pre>
+<p>如果输出文件已经存在了，重定向操作符会用新的文件数据覆盖已有文件。<br>
+有时，你可能并不想覆盖文件原有内容，而是想要将命令的输出追加到已有文件中，比如你正在创建一个记录系统上某个操作的日志文件。在这种情况下，可以用双大于号（&gt;&gt;）来追加数据。</p>
+<h4 id="52输入重定向">5.2输入重定向</h4>
+<p>输入重定向和输出重定向正好相反。输入重定向将文件的内容重定向到命令，而非将命令的输出重定向到文件。</p>
+<p>输入重定向符号是小于号（&lt;）：</p>
+<pre><code>command &lt; outputfile
+</code></pre>
+<p>一个简单的记忆方法就是：在命令行上，命令总是在左侧，而重定向符号“指向”数据流动的方向。小于号说明数据正在从输入文件流向命令。<br>
+这里有个和wc命令一起使用输入重定向的例子。</p>
+<pre><code>$ wc &lt; test6 
+      2      11      60
+</code></pre>
+<p>wc命令可以对对数据中的文本进行计数。默认情况下，它会输出3个值：<br>
+ 文本的行数<br>
+ 文本的词数<br>
+ 文本的字节数</p>
+<p>通过将文本文件重定向到wc命令，你立刻就可以得到文件中的行、词和字节的计数。这个例子说明test6文件有2行、11个单词以及60字节。</p>
+<hr>
+<p><strong>这个暂时不知道怎么用，先放着</strong></p>
+<p>还有另外一种输入重定向的方法，称为内联输入重定向（inline input redirection）。这种方法无需使用文件进行重定向，只需要在命令行中指定用于输入重定向的数据就可以了。乍看一眼，这可能有点奇怪，但有些应用会用到这种方式</p>
+<hr>
+<h2 id="6管道">6.管道</h2>
+<p>有时需要将一个命令的输出作为另一个命令的输入。</p>
+<p>在美式键盘上，它通常和反斜线（\）位于同一个键。管道被放在命令之间，将一个命令的输出重定向到另一个命令中：</p>
+<pre><code>command1 | command2 
+</code></pre>
+<p>不要以为由管道串起的两个命令会依次执行。Linux系统实际上会同时运行这两个命令，在系统内部将它们连接起来。在第一个命令产生输出的同时，输出会被立即送给第二个命令。数据传输不会用到任何中间文件或缓冲区。</p>
+<h2 id="7执行数学运算">7.执行数学运算</h2>
+<p>另一个对任何编程语言都很重要的特性是操作数字的能力。遗憾的是，对shell脚本来说，这个处理过程会比较麻烦。在shell脚本中有两种途径来进行数学运算。</p>
+<h4 id="71-expr命令">7.1 expr命令</h4>
+<p>最开始，Bourne shell提供了一个特别的命令用来处理数学表达式。expr命令允许在命令行上处理数学表达式，但是特别笨拙。</p>
+<pre><code>$ expr 1 + 5 
+6 
+</code></pre>
+<p>不常见。不详述！</p>
+<h4 id="72-使用方括号">7.2 使用方括号</h4>
+<p>bash shell为了保持跟Bourne shell的兼容而包含了expr命令，但它同样也提供了一种更简单的方法来执行数学表达式。在bash中，在将一个数学运算结果赋给某个变量时，可以用美元符和方括号（$[ operation ]）将数学表达式围起来。</p>
+<pre><code>$ var1=$[1 + 5] 
+$ echo $var1 
+6 
+$ var2=$[$var1 * 2] 
+$ echo $var2 
+12 
+</code></pre>
+<p>用方括号执行shell数学运算比用expr命令方便很多。这种技术也适用于shell脚本。</p>
+<pre><code>$ cat test7 
+#!/bin/bash 
+var1=100 
+var2=50 
+var3=45 
+var4=$[$var1 * ($var2 - $var3)] 
+echo The final result is $var4
+</code></pre>
+<p>同样，注意在使用方括号来计算公式时，不用担心shell会误解乘号或其他符号。shell知道它不是通配符，因为它在方括号内.</p>
+<p>在bash shell脚本中进行算术运算会有一个主要的限制,bash shell数学运算符只支持整数运算。若要进行任何实际的数学计算，这是一个巨大的限制。</p>
+<h4 id="73-浮点解决方案">7.3 浮点解决方案</h4>
+<p>有几种解决方案能够克服bash中数学运算的整数限制。最常见的方案是用内建的bash计算器，叫作bc。<br>
+暂不详解！！</p>
+<h2 id="8退出脚本">8.退出脚本</h2>
+<p>暂不详解！！</p>
+<h2 id="9小结">9.小结</h2>
+<p>bash shell脚本允许你将多个命令串起来放进脚本中。创建脚本的最基本的方式是将命令行中的多个命令通过分号分开来。shell会按顺序逐个执行命令，在显示器上显示每个命令的输出。</p>
+<p>你也可以创建一个shell脚本文件，将多个命令放进同一个文件，让shell依次执行。shell脚本文件必须定义用于运行脚本的shell。这个可以通过#!符号在脚本文件的第一行指定，后面跟上shell的完整路径。</p>
+<p>在shell脚本内，你可以通过在变量前使用美元符来引用环境变量。也可以定义自己的变量以便在脚本内使用，并对其赋值，甚至还可以通过反引号或$()捕获的某个命令的输出。在脚本中可以通过在变量名前放置一个美元符来使用变量的值。</p>
+<p>bash shell允许你更改命令的标准输入和输出，将其重定向到其他地方。你可以通过大于号将命令输出从显示器屏幕重定向到一个文件中。也可以通过双大于号将输出数据追加到已有文件。小于号用来将输入重定向到命令。你可以将文件内容重定向到某个命令。<br>
+Linux管道命令（断条符号）允许你将命令的输出直接重定向到另一个命令的输入。Linux系统能够同时运行这两条命令，将第一个命令的输出发送给第二个命令的输入，不需要借助任何重定向文件。<br>
+bash shell提供了多种方式在shell脚本中执行数学操作。expr命令是一种进行整数运算的简便方法。在bash shell中，你也可以通过将美元符号放在由方括号包围的表达式之前来执行基本的数学运算。为了执行浮点运算，你需要利用bc计算器命令，将内联数据重定向到输入，然后将输出存储到用户变量中。</p>
+<p>最后，本章讨论了如何在shell脚本中使用退出状态码。shell中运行的每个命令都会产生一个退出状态码。退出状态码是一个0～255的整数值，表明命令是否成功执行；如果没有成功，可能的原因是什么。退出状态码0表明命令成功执行了。你可以在shell脚本中用exit命令来声明一个脚本完成时的退出状态码。</p>
+<p>到目前为止，脚本中的命令都是按照有序的方式一个接着一个处理的。在下章中，你将学习如何用一些逻辑流程控制来更改命令的执行次序。</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/cykUzrlw2">
+            <span class="flex-auto">脚本文件</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/PvD-ng_cF">
+            <span class="flex-auto">shell语言</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-2-shi-yong-jie-gou-hua-ming-ling">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  shell语言脚本构建2-使用结构化命令
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-04-ni-he">
+                <h3 class="post-title">
+                  StatQuest学习笔记04——拟合
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '5debd0dd15fc74854e71',
+    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+    repo: 'wangxf133.github.io',
+    owner: 'wangxf133',
+    admin: ['wangxf133'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js"></script>  
+<script>
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

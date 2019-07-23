@@ -1,0 +1,388 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>想知道柚子的滋味，你就要亲口尝一尝</title>
+<meta name="description" content="东北师范大学-在读博士" />
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1563879475099">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://wangxf133.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://wangxf133.github.io/images/avatar.png?v=1563879475099" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">想知道柚子的滋味，你就要亲口尝一尝</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E8%9B%8B%E7%99%BD%E7%BB%84%E5%85%AC%E5%85%B1%E6%95%B0%E6%8D%AE%E5%BA%93">蛋白组公共数据库</a></li>
+<li><a href="#%E5%A4%84%E7%90%86ms%E6%95%B0%E6%8D%AE">处理MS数据</a></li>
+<li><a href="#%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90">统计分析</a></li>
+<li><a href="#%E5%90%8E%E7%BB%AD">后续</a></li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by Gridea</div>
+    <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Bioconductor的质谱蛋白组学数据分析</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-27 / 2 min read
+        </div>
+        
+        <div class="post-content yue">
+          <!--more-->
+<p>这篇主要简单的记录下如何基于bioconductor的R包对蛋白组质谱数据进行分析。在看到这篇biocondutor官网文档<a href="http://master.bioconductor.org/packages/release/workflows/html/proteomics.html">Mass spectrometry and proteomics data analysis</a>之前，我一直以为质谱数据的分析过程就是用一些商业化软件或者开源软件将谱图转化为肽段/蛋白的表达谱，由于蛋白组应用未如NGS数据那般广泛及热门，所以就未去搜索过是否能用R包来对质谱数据进行一定程度的分析。</p>
+<h1 id="安装">安装</h1>
+<p>首先是这篇教程相关R包的安装，以常规的bioconductor包安装方式即可，PS.记得换源（如中科大），不然会比较慢，然后加载</p>
+<pre><code>source(&quot;https://bioconductor.org/biocLite.R&quot;)
+biocLite(&quot;proteomics&quot;)
+</code></pre>
+<pre><code>library(&quot;mzR&quot;)
+library(&quot;mzID&quot;)
+library(&quot;MSnID&quot;)
+library(&quot;MSnbase&quot;)
+library(&quot;rpx&quot;)
+library(&quot;MLInterfaces&quot;)
+library(&quot;pRoloc&quot;)
+library(&quot;pRolocdata&quot;)
+library(&quot;MSGFplus&quot;)
+library(&quot;rols&quot;)
+library(&quot;hpar&quot;)
+</code></pre>
+<p>如果遇到报错：/bin/bash: nc-config: 未找到命令，则：</p>
+<pre><code>sudo apt-get install netcdf-bin
+</code></pre>
+<p>如果继续报错：rnetCDF.h:1:20: fatal error: netcdf.h: 没有那个文件或目录，则：</p>
+<pre><code>sudo apt-get install libnetcdf-dev
+sudo apt-get install libudunits2-dev
+sudo apt-get install udunits-bin
+</code></pre>
+<p><strong>在Bioconudtor3.5版本下，已经有94个蛋白组相关R包，64个质谱相关R包以及17个质谱实验数据相关R包，虽然跟NGS相比还是比较少的，但是也蛮可观了。现在Biocondutor已经3.6版本了，可能也有新的R包收录了</strong></p>
+<h1 id="蛋白组公共数据库">蛋白组公共数据库</h1>
+<p>对于NGS以及芯片数据，我们一般首选会去GEO/SRA/TCGA等数据库下载公共数据库。而对于蛋白组数据，我们可以选择ProteomeXchange数据库，一些研究论文的原始数据会上传到这个PX上，可供下载研究。我们除了可以去其官网 http://proteomexchange.org/ 下载公共数据，还可以通过rpx包进行下载，只需要知道PX号即可，如</p>
+<pre><code>px &lt;- PXDataset(&quot;PXD000001&quot;)
+pxfiles(px)
+# [1] &quot;F063721.dat&quot;
+# [2] &quot;F063721.dat-mztab.txt&quot;
+# [3] &quot;PRIDE_Exp_Complete_Ac_22134.xml.gz&quot;
+# [4] &quot;PRIDE_Exp_mzData_Ac_22134.xml.gz&quot;
+# [5] &quot;PXD000001_mztab.txt&quot;
+# [6] &quot;README.txt&quot;
+# [7] &quot;TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01-20141210.mzML&quot;
+# [8] &quot;TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01-20141210.mzXML&quot;
+# [9] &quot;TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01.mzXML&quot;
+# [10] &quot;TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01.raw&quot;
+# [11] &quot;erwinia_carotovora.fasta&quot;
+# [12] &quot;generated&quot;
+</code></pre>
+<p>如果想看看最新ProteomeXchange发布的数据有哪些，可以用pxannounced()函数</p>
+<h1 id="处理ms数据">处理MS数据</h1>
+<p>我们可以从ProteomeXchange选择下载<code>mzXL</code>格式的MS原始数据，用<code>pxget</code>函数</p>
+<pre><code>fn &lt;- &quot;TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01-20141210.mzML&quot;
+mzf &lt;- pxget(px, fn)
+</code></pre>
+<p>然后用mzR包对raw MS data进行处理，PS.mzR包不仅能读入mzML格式，还可以处理mzXML，netCDF以及mzData等数据，常用的函数有：读入数据的<code>openMSfile</code>，提取数据矩阵的<code>header</code>以及提取峰图谱的<code>peaks</code></p>
+<pre><code>ms &lt;- openMSfile(mzf)
+hd &lt;- header(ms)
+head(peaks(ms, 1000))
+plot(peaks(ms, 1000), type = &quot;h&quot;)
+</code></pre>
+<p>如果对于查库后的数据（也就是identification data），可以用<code>mzID</code>包来读取数据并处理，并且<code>mzR</code>包也可以</p>
+<pre><code>##加载临时数据（identification data）
+f &lt;- dir(system.file(&quot;extdata&quot;, package = &quot;RforProteomics&quot;),
+     pattern = &quot;mzid&quot;, full.names=TRUE)
+basename(f)
+## [1] &quot;TMT_Erwinia.mzid.gz&quot;
+
+##mzID包
+id &lt;- mzID(f)
+id
+
+##mzR包
+id1 &lt;- openIDfile(f)
+fid1 &lt;- mzR::psms(id1)
+head(fid1)
+</code></pre>
+<p>至于如何查库，一般会用一些专门用于查库的软件，如：PD，Maxquant等。但现在一些开源软件也整合在一些R包中了，如:<strong>X!Tandem的rTANDEM包</strong>，<strong>MSGF+的MSGFplus包</strong>。对于后者这教程还简单介绍了其用法，具体可去Mass spectrometry and proteomics data analysis中查看</p>
+<p>对于查库后的分析，则可以使用MSnID包，主要用于查库后的过滤等操作，输入格式可以是data.frame或者mzIdenML文件，一般这步会整合在查库的软件（一些比较完善的软件）中，由于没用过蛋白查库软件，所以在这也不细说了，大致上就是一些过滤的指标。。。</p>
+<p>其实biocondutor包中有一个MSnbase包，将上述从raw MS data到identification results做了个整合，类似于表达谱芯片分析的软件。 MSnbase包将输入文件转化成MSnExp类，然后经过一定的数据处理后，变成MSnSet类用于下游定量分析；跟芯片分析类似，也有pData和fData等函数，可以说就是芯片分析的’翻版’，从而使整个流程标准化，文档以iTRAQ数据作为例子进行了演示说明：从查库到定量</p>
+<p>一些非常规格式的蛋白组质谱数据怎么处理呢，如mzTab格式文件，那么可以使用readMSnSet2函数</p>
+<p>对于质谱raw数据的处理，MSnbase包有一整套流程，如：clean，smooth，pickPeaks，removePeaks以及trimMz，都是在MSnExp类基础上进行的。此外MALDIquant包和xcms包也有各自预处理方法</p>
+<p>除了预处理外，根据定量数据的不同形式，也有属于各自的标准化方法，还有补空的算法，当然最后还需要将肽段数据整合为蛋白水平的数据，这里就因数据而异了</p>
+<h1 id="统计分析">统计分析</h1>
+<p>当定量数据转化为蛋白水平后，我就可以根据蛋白的表达谱数据进行差异蛋白筛选等下游分析，这里biocondutor给出3个R包可供选择</p>
+<ul>
+<li>MSstats: A set of tools for statistical relative protein significance analysis in DDA, SRM and DIA experiments. Data stored in data.frame or MSnSet objects can be used as input</li>
+<li>msmsTests: Statistical tests for label-free LC-MS/MS data by spectral counts, to discover differentially expressed proteins between two biological conditions. Three tests are available: Poisson GLM regression, quasi-likelihood GLM regression, and the negative binomial of the edgeR package. All can be readily applied on MSnSet instances produced, for example by MSnID</li>
+<li>isobar also provides dedicated infrastructure for the statistical analysis of isobaric data</li>
+</ul>
+<p>个人对msmsTests包比较感兴趣，刚好可以跟我最近的一篇博文<a href="http://www.bioinfo-scrounger.com/archives/493">Differential expression in proteomics</a>比较验证下，至于isobar包则是专门用来处理iTRAQ数据的</p>
+<h1 id="后续">后续</h1>
+<p>Biocondutor还在下游分析中的Machine learning、Annotation等方面给出了建议，个人觉得这些可以类似于RNA-Seq数据来处理蛋白组质谱数据，反正都是基于表达谱，只是RNA-seq是转录本/基因水平的，而蛋白组质谱是蛋白水平的</p>
+<p>最后还给了一些其他相关分析方法所对应的包，有需求时可以看看</p>
+<ul>
+<li>Analysis of post translational modification with isobar</li>
+<li>Analysis of label-free data from a Synapt G2 (including ion mobility) with synapter</li>
+<li>Analysis of spatial proteomics data with pRoloc</li>
+<li>Analysis of MALDI data with the MALDIquant package</li>
+<li>Access to the Proteomics Standard Initiative Common QUery InterfaCe with the PSICQUIC package</li>
+</ul>
+<p>以上所有内容及代码均来自Biocondutor官方的文档Mass spectrometry and proteomics data analysis，如要了解具体内容，推荐参看其文档原文，更加详细及全面！</p>
+<p>参考：</p>
+<ul>
+<li>
+<p><code>http://www.bioinfo-scrounger.com/archives/499</code></p>
+</li>
+<li>
+<p><code>http://bioconductor.org/packages/release/data/experiment/html/RforProteomics.html</code></p>
+</li>
+<li>
+<p><code>http://master.bioconductor.org/packages/release/workflows/html/proteomics.html</code></p>
+</li>
+<li>
+<p><code>http://bioconductor.org/packages/release/bioc/html/isobar.html</code></p>
+</li>
+<li>
+<p>http://master.bioconductor.org/packages/release/workflows/vignettes/proteomics/inst/doc/proteomics.html</p>
+</li>
+<li>
+<p>http://master.bioconductor.org/packages/release/workflows/vignettes/proteomics/inst/doc/proteomics.R</p>
+</li>
+</ul>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/6iQrV6R7j">
+            <span class="flex-auto">R</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/ANs9W6M5C">
+            <span class="flex-auto">Bioconductor</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/YGungpbx0">
+            <span class="flex-auto">proteomics</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/AjyIGPhWv">
+            <span class="flex-auto">蛋白组</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-01-tong-ji-xue-fen-bu-ji-chou-yang">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  StatQuest学习笔记01——统计学分布及抽样
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://wangxf133.github.io/post/zhi-huan-jian-yan-permutation-test">
+                <h3 class="post-title">
+                  置换检验(Permutation Test)
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '5debd0dd15fc74854e71',
+    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+    repo: 'wangxf133.github.io',
+    owner: 'wangxf133',
+    admin: ['wangxf133'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js"></script>  
+<script>
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

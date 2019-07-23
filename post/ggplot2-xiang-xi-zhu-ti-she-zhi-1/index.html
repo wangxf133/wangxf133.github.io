@@ -1,0 +1,419 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>想知道柚子的滋味，你就要亲口尝一尝</title>
+<meta name="description" content="东北师范大学-在读博士" />
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1563879475099">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://wangxf133.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://wangxf133.github.io/images/avatar.png?v=1563879475099" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">想知道柚子的滋味，你就要亲口尝一尝</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%BB%E9%A2%98theme%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE">主题theme参数设置</a>
+<ul>
+<li><a href="#%E5%9B%BE%E7%89%87%E5%8C%BA%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE">图片区参数设置</a></li>
+<li><a href="#%E7%BB%98%E5%9B%BE%E5%8C%BA%E8%BD%B4%E7%BA%BF%E5%9B%B4%E5%9F%8E%E7%9A%84%E5%8C%BA%E5%9F%9F%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE">绘图区（轴线围城的区域）参数设置</a></li>
+<li><a href="#%E5%9D%90%E6%A0%87%E8%BD%B4%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE">坐标轴参数设置</a></li>
+<li><a href="#%E5%9B%BE%E4%BE%8B%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE">图例参数设置</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by Gridea</div>
+    <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">ggplot2详细主题设置(1)</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-27 / 2 min read
+        </div>
+        
+        <div class="post-content yue">
+          <!--more-->
+<p>参考文章： http://www.rpubs.com/lihaoyi/156592</p>
+<pre><code># install.packages('ggplot2') 安装ggplot2包
+
+# install.packages('gcookbook') 安装gcookbook包
+library(ggplot2)  #加载ggplot2包
+library(gcookbook)  #加载本书的数据包
+</code></pre>
+<h1 id="主题theme参数设置">主题theme参数设置</h1>
+<p>改变字体类型、大小，图例、坐标轴、背景等各种元素，可通过theme()函数来完成</p>
+<pre><code>library(ggplot2)
+library(grid)  #为了使用unit函数
+p0 &lt;- ggplot(data = mpg, aes(x = displ, fill = factor(cyl))) + geom_bar(colour = 1, 
+    binwidth = 0.2) + labs(title = &quot;plot title&quot;)
+p0  #基础图
+</code></pre>
+<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3ceevs97fj20qo0ao0sm.jpg" alt=""></p>
+<h2 id="图片区参数设置">图片区参数设置</h2>
+<ul>
+<li>plot.background： 图片区背景设置</li>
+<li>plot.title： 图片标题设置</li>
+<li>plot.margin： 图片区边缘距离设置</li>
+</ul>
+<p>将图片区背景填充色设置为lightblue，边框颜色设置为黑色，宽度设置为3，线型设置为虚线，图标题的字体颜色为黑色，粗体，字体大小30，顶部对齐，同时设置图边沿距离</p>
+<pre><code>p0 + theme(plot.background = element_rect(colour = &quot;black&quot;, size = 3, linetype = 4, 
+    fill = &quot;lightblue&quot;), plot.title = element_text(colour = &quot;black&quot;, face = &quot;bold&quot;, 
+    size = 30, vjust = 1), plot.margin = unit(c(0.2, 0.2, 0.2, 0.2), &quot;inches&quot;))
+</code></pre>
+<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cef1ii2xj20qo0ao746.jpg" alt=""></p>
+<h2 id="绘图区轴线围城的区域参数设置">绘图区（轴线围城的区域）参数设置</h2>
+<ul>
+<li>panel.background： 绘图区背景色，colour可以设置边框颜色，fill为填充色</li>
+<li>panel.border： 绘图区边框</li>
+<li>panel.grid： 网格线</li>
+<li>panel.grid.major： 主要网格线</li>
+<li>panel.grid.minor： 次要网格线</li>
+<li>panel.grid.major.x： x轴主要网格线</li>
+<li>panel.grid.major.y： y轴主要网格线</li>
+<li>panel.grid.minor.x： x轴次要网格线</li>
+<li>panel.grid.minor.y： y轴次要网格线</li>
+</ul>
+<pre><code>p0
+</code></pre>
+<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cefdjafvj20qo0ao0sm.jpg" alt=""></p>
+<pre><code>p0 + theme(panel.background = element_rect(fill = &quot;lightblue&quot;))  #将图片区的背景色设置为lightblue
+</code></pre>
+<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cefjl7tuj20qo0ao0sm.jpg" alt=""></p>
+<pre><code>p0 + theme(panel.background = element_rect(fill = &quot;lightblue&quot;, colour = &quot;red&quot;, 
+    size = 3))  #将图片区的背景色设置为lightblue，边框颜色为红色，边框宽度为3
+</code></pre>
+<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cefo0hoaj20qo0aomx1.jpg" alt=""></p>
+<h2 id="坐标轴参数设置">坐标轴参数设置</h2>
+<ul>
+<li>axis.title： 轴标题</li>
+<li>axis.title.x： x轴标题</li>
+<li>axis.title.y： y轴标题</li>
+<li>axis.text： 轴刻度值</li>
+<li>axis.text.x： x轴刻度值</li>
+<li>axis.text.y： y轴刻度值</li>
+<li>axis.ticks： 轴刻度线</li>
+<li>axis.ticks.x： x轴刻度线</li>
+<li>axis.ticks.y： y轴刻度线</li>
+<li>axis.ticks.length： 轴刻度线长度，负值向里</li>
+<li>axis.ticks.margin： 轴刻度线与轴刻度值的距离</li>
+<li>axis.line： 轴线</li>
+<li>axis.line.x： x轴线</li>
+<li>axis.line.y： y轴线</li>
+</ul>
+<pre><code>p0
+</code></pre>
+<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cefurvyzj20qo0ao0sm.jpg" alt=""></p>
+<pre><code>axis_theme&lt;-theme(
+  axis.title=element_text(
+    #family=NULL,
+    face = &quot;bold&quot;, #字体(&quot;plain&quot;, &quot;italic&quot;, &quot;bold&quot;, &quot;bold.italic&quot;)
+    colour = &quot;red&quot;, #字体颜色
+    size = 25,#字体大小
+    hjust = .5, #调整轴标题1：纵轴靠上，横轴靠右；0.5居中；0：纵轴靠下，横轴靠左
+    vjust = .5, #1：靠图边框；0靠近轴线；.5居中
+    angle = 0 #为什么只对横轴标题有作用？
+ ),
+  axis.title.x=element_text(colour=&quot;blue&quot;),#x轴标题设置，优先级高于axis.title
+  axis.title.y=element_text(colour=&quot;orange&quot;),#同上
+  axis.text=element_text(colour=&quot;red&quot;),#设置坐标轴刻度数字
+  axis.text.x=element_text(colour=&quot;blue&quot;),#优先级高于aixis.text
+  axis.text.y=element_text(colour=&quot;orange&quot;),#同上
+  axis.ticks=element_line(#坐标轴刻度线的设置
+    colour=&quot;red&quot;,
+    size=.5,
+    linetype=1,
+    lineend=1),
+  axis.ticks.x=element_line(colour=&quot;blue&quot;),#优先级高于axis.ticks
+  axis.ticks.y=element_line(colour=&quot;orange&quot;),#同上
+  axis.ticks.length=unit(.4,&quot;lines&quot;),#设置刻度线的高度
+  axis.ticks.margin=unit(.4,&quot;cm&quot;),#设置刻度数字与刻度线的距离
+  axis.line=element_line(#设置轴线
+    colour=&quot;red&quot;),
+  axis.line.x=element_line(colour=&quot;blue&quot;),#设置x轴线，优先于axis.line
+  axis.line.y=element_line(colour=&quot;orange&quot;))#类似axis.line.x
+
+p0+axis_theme
+</code></pre>
+<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3ceg1oorsj20qo0ao0sm.jpg" alt=""></p>
+<h2 id="图例参数设置">图例参数设置</h2>
+<ul>
+<li>legend.background： 图例背景色</li>
+<li>legend.margin： 图例边界</li>
+<li>legend.key： 图例分类标识底部背景颜色</li>
+<li>legend.key.size： 图例标识大小</li>
+<li>legend.key.height： 图例标识的高度</li>
+<li>legend.key.width： 图例标识的宽度</li>
+<li>legend.text： 图例分类标签</li>
+<li>legend.text.align： 图例分类标签对齐方式</li>
+<li>legend.title： 图例标题</li>
+<li>legend.title.align： 图例标题的对齐方式</li>
+<li>legend.position： 图例位置</li>
+<li>legend.direction： 图例类别排列方向</li>
+<li>legend.justification： 图例位置的偏移调整</li>
+<li>legend.box： 有多个图例时的排列方式</li>
+</ul>
+<pre><code>p0
+</code></pre>
+<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3ceg6jtzvj20qo0ao0sm.jpg" alt=""></p>
+<pre><code>legend_theme&lt;-theme(
+  legend.background=element_rect(
+    colour=NA,#图例边框颜色
+    fill=&quot;lightblue&quot;),#图例背景填充色
+  legend.margin=unit(.2,&quot;inches&quot;),#图例与图片区边缘的距离
+  legend.key=element_rect(fill=&quot;yellow&quot;),
+  legend.key.size=unit(.2,&quot;inches&quot;),#图例分类符号的大小
+  legend.key.height=unit(.5,&quot;inches&quot;),#图例分类符号高度
+  legend.key.width=unit(.5,&quot;inches&quot;),#图例符号的宽度
+  legend.text=element_text(colour=&quot;red&quot;,size=20),#图例分类标签设置
+  legend.text.align=0,#0左，1右，0.5居中， 图例分类标签的对齐方式
+  legend.title=element_text(colour=&quot;blue&quot;,size=20),#图例标题设置
+  legend.title.align=1,#图例标题对齐方式
+  legend.position=c(0.6,.7),#&quot;none&quot;,&quot;left&quot;,&quot;right&quot;,&quot;bottom&quot;,&quot;top&quot;,or 
+  # two-element numeric vector,(0,0)-(1,1)
+  legend.direction=&quot;horizontal&quot;,#&quot;vertical&quot; 图例排列方向
+  legend.justification=c(.4,.4),#&quot;center&quot; or two-element numeric vector
+  legend.box=&quot;vertical&quot;,#&quot;horizontal&quot;,对图例的排列方式
+  legend.box.just=&quot;top&quot;#多图例的居中方式
+)
+
+p0+legend_theme
+</code></pre>
+<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cega6j84j20qo0ao0sn.jpg" alt=""></p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/ovnnE52Bd">
+            <span class="flex-auto">ggplot2</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/aiZkRmWBa">
+            <span class="flex-auto">主题设置</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/fS-UqDGwf">
+            <span class="flex-auto">详细参数</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/6iQrV6R7j">
+            <span class="flex-auto">R</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-2">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  ggplot2详细主题设置(2)
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://wangxf133.github.io/post/circos-pei-zhi-wen-jian">
+                <h3 class="post-title">
+                  Circos配置文件
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '5debd0dd15fc74854e71',
+    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+    repo: 'wangxf133.github.io',
+    owner: 'wangxf133',
+    admin: ['wangxf133'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js"></script>  
+<script>
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

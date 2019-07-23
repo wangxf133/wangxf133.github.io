@@ -1,0 +1,485 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>想知道柚子的滋味，你就要亲口尝一尝</title>
+<meta name="description" content="东北师范大学-在读博士" />
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1563879475099">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://wangxf133.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://wangxf133.github.io/images/avatar.png?v=1563879475099" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">想知道柚子的滋味，你就要亲口尝一尝</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82">配置要求</a><br>
+*<br>
+*<br>
+* <a href="#%E6%9F%A5%E7%9C%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%AD%89">查看自己的配置文件等</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85interproscan5">安装interproscan5</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8interproscan">使用interproscan</a>
+<ul>
+<li><a href="#%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">报错解决方法</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by Gridea</div>
+    <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">interproscan的安装及使用</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-27 / 5 min read
+        </div>
+        
+        <div class="post-content yue">
+          <!--more-->
+<h1 id="简介">简介</h1>
+<p>Interpro是一个数据库，它里面有蛋白功能，蛋白家族等信息。而Interproscan就是可以将你的蛋白序列跟这个这个数据比对，从而给你的序列功能注释。 Interproscan5新增了一些功能Phobius用来预测跨膜和信号肽可以把结果map到上传的数据上寻找蛋白可能的生物学代谢途径新的输出格式XML和GFF3.0提升了图形界面</p>
+<p>参考博客<br>
+http://qinqianshan.com/interproscan-installation-and-usage<br>
+http://blog.sina.com.cn/s/blog_670445240101khmr.html<br>
+http://blog.sina.com.cn/s/blog_670445240101iy3d.html</p>
+<h1 id="配置要求">配置要求</h1>
+<p>至少2 cores and 4 GB of RAM, 这样才能同时分析5 – 10 sequences</p>
+<p>软件要求: Linux, 32 bit or 64 bit (64 bit recommended). Perl (default on most Linux distributions) Oracle’s Java JDK/JRE version 6u4 and higher (which also includes Java 7) Environment variables set JAVA_HOME should point to the location of the JVM $JAVA_HOME/bin should be added to the CLASSPATH</p>
+<h4 id="查看自己的配置文件等">查看自己的配置文件等</h4>
+<p>1.系统配置</p>
+<pre><code>xiaofei@DESKTOP-U55QOF8:~$ uname -a
+Linux DESKTOP-U55QOF8 4.4.0-43-Microsoft #1-Microsoft Wed Dec 31 14:42:53 PST 2014 x86_64 x86_64 x86_64 GNU/Linux
+
+</code></pre>
+<p>其中x86_64代表64 Bit，如果是686代表的是32 Bit</p>
+<p>2.perl版本</p>
+<pre><code>xiaofei@DESKTOP-U55QOF8:~$ perl -version
+
+This is perl 5, version 22, subversion 0 (v5.22.0) built for x86_64-linux-thread-multi
+
+</code></pre>
+<p>3.java的版本</p>
+<pre><code>sam@sam-Precision-WorkStation-T7500[sam] java -version                              [
+java version &quot;1.8.0_171&quot;
+Java(TM) SE Runtime Environment (build 1.8.0_171-b11)
+Java HotSpot(TM) 64-Bit Server VM (build 25.171-b11, mixed mode)
+    现在仅仅支持 version1.6 or 1.7
+(这里是建议用Oracle  JDK ，如果你的是OpenJDK。可以根据我之前的博客中安装java: http://blog.sina.com.cn/s/blog_670445240101iy3d.html)
+
+</code></pre>
+<p>**我的就是openjava版本，所以需要安装Oracle JDK 按照上述博客里的方法安装（不成功），下面是安装的具体流程（自己以前琢磨出来的），新版本的interproscan支持 version1.8，所以我们下载1.8 的版本</p>
+<p>3.1 Oracle JDK 1.8 安装方法 3.1.1 下载软件</p>
+<pre><code>下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html（官网的是1.8版本的）
+
+</code></pre>
+<p>3.2 将软件上传到服务器</p>
+<pre><code>将jdk-8u171-linux-x64.tar.gz上传到服务器任一位置上
+
+</code></pre>
+<p>3.3 登录Linux，切换到root用户</p>
+<pre><code> sudo -i 不需要root密码直接切换成root（需要当前用户密码）
+
+</code></pre>
+<p>3.4 将软件压缩包转移到 /usr/lib 并最终解压</p>
+<pre><code>将  jdk-8u171-linux-x64.tar.gz  移动到 /usr/lib 中
+cp ***/jdk-8u171-linux-x64.tar.gz /usr/lib
+并解压文件
+tar -xzvf jdk-8u171-linux-x64.tar.gz
+
+</code></pre>
+<p>3.5 编辑环境变量 然后在/etc/profile 编辑加上如下</p>
+<pre><code># set Java environment
+JAVA_HOME=/usr/lib/jdk1.8.0_171
+PATH=$JAVA_HOME/bin:$PATH
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export JAVA_HOME
+export PATH
+export CLASSPATH
+
+</code></pre>
+<p>3.1.6 最终</p>
+<pre><code>再source /etc/profile
+测试是否安装成功:Java -version 测试成功
+注意以上都是root用户进行的，有超级权限
+
+</code></pre>
+<p><strong>有个问题是 需要每次都source /etc/profile 才能运行成功</strong> 不算解决的解决方法1： 在root 用户下的.bashrc中同样添加上面的那段代码。 个人用户的.bashrc中同样加入上段代码</p>
+<p>不算解决的解决方法2： 在root 用户下的.bashrc中同样添加 source /etc/profile 个人用户的.bashrc中同样加入 source /etc/profile</p>
+<p>解决方法3 在第六步后面加上 update-alternatives --install /usr/bin/java java /usr/lib/jdk1.8.0_161/bin/java 300 这样就安装好这个jre了，然而可能系统中有多个jre，那么系统究竟判断用那一个来作为默认的jre呢，就需要使用如下的命令来配置： sudo update-alternatives --config java</p>
+<p>然后根据提示选择jre就可以了，(这里只有一个)： 至此，jre安装完毕！</p>
+<h1 id="安装interproscan5">安装interproscan5</h1>
+<p>1、获得InterProScan software core(针对我的64位机)</p>
+<pre><code>mkdir interproscan;
+cd interproscan;
+wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.28-67.0/interproscan-5.28-67.0-64-bit.tar.gz
+wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.28-67.0/interproscan-5.28-67.0-64-bit.tar.gz
+
+# Recommended checksum to confirm the download was successful:
+md5sum -c interproscan-5.28-67.0-64-bit.tar.gz.md5
+# Must return *interproscan-5.28-67.0-64-bit.tar.gz: OK*
+# If not - try downloading the file again as it may be a corrupted copy.
+因为文件比较大，所以用md5值检验了下载是否完整。
+
+解压缩
+tar -pxvzf interproscan-5.28-67.0-64-bit.tar.gz
+ # where:
+ # p = preserve the file permissions
+ # x = extract files from an archive
+ # v = verbosely list the files processed
+ # z = filter the archive through gzip
+ # f = use archive file
+
+</code></pre>
+<p>2、安装Panther Models</p>
+<pre><code>下载Panther Models到刚解压缩的文件的子目录/data下面
+ cd /mnt/e/Interproscan/interproscan-5.28-67.0/data
+ wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-8.1.tar.gz
+ wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-8.1.tar.gz.md5
+ 这个文件大小大概为12 GB，下载结束后需要检查一下MD5
+ md5sum -c panther-data-8.1.tar.gz.md5
+ 出现# This must return *panther-data-8.1.tar.gz:OK*证明下载的没问题，否则重新下载
+ 解压缩
+ tar -pxvzf panther-data-8.1.tar.gz
+ 如果想把这个放在其他的文件的话，可以修改[InterProScan5 home]/interproscan.properties 文件，改下面的东西
+ panther.models.dir.8.1=PATH_TO/panther/8.1/model
+
+</code></pre>
+<p>3、使用Pre-calculated Match Lookup 服务器</p>
+<pre><code>The pre-calculated match lookup网页服务器能够提供超过3千万蛋白序列的比对，包括所有的UniProtKB蛋白序列.
+InterProScan 5使用这个服务器能够加速本地服务器的速度。
+这是这个版本的特低昂要想使用这个服务器的话，需要电脑能上网：http://www.ebi.ac.uk to use it.
+ 如果你的电脑防火墙阻止访问这个网站，你可以下载本地化的InterProScan 5 lookup service（https://code.google.com/p/interproscan/wiki/LocalLookupService）
+或者关掉这个功能关掉这个功能的时候，你可以在命令行加入-dp 或者修改interproscan.properties
+在前面加一个#注释掉即可
+ precalculated.match.lookup.service.url=http://www.ebi.ac.uk/interpro/match-lookup
+
+</code></pre>
+<h1 id="使用interproscan">使用interproscan</h1>
+<p>可以运行其提供的例子： ./interproscan.sh -i test_proteins.fasta -f tsv 会得到tsv格式的结果，里面包含了很多数据库Gene3d, PIRSF，PRINTS,PANTHER,SUPERFAMILY,PFAM,TIGERFAM等比对的结果。</p>
+<h2 id="报错解决方法">报错解决方法</h2>
+<p>注意读报错内容<br>
+1.需要在Python2.7的环境下进行<br>
+2.还会遇到一些rpsblast的报错<br>
+参考网站 <a href="https://github.com/ebi-pf-team/interproscan/issues/44">https://github.com/ebi-pf-team/interproscan/issues/44</a><br>
+<a href="https://qiita.com/okuman/items/73bebfd711d3f955c167">https://qiita.com/okuman/items/73bebfd711d3f955c167</a><br>
+目前的一个解决方法：</p>
+<pre><code>I had the same error using Ubuntu 16.04. I was able to get it running by downloading a fresh copy of precompiled blast and copy rpsblast to the binary folder in interproscan.
+
+wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.6.0/ncbi-blast-2.6.0+-x64-linux.tar.gz
+tar xvf ncbi-blast-2.6.0+-x64-linux.tar.gz
+
+# backup original version
+cp bin/blast/ncbi-blast-2.6.0+/rpsblast bin/blast/ncbi-blast-2.6.0+/rpsblast.bak
+
+# copy the new version to the binary folder
+cp ncbi-blast-2.6.0+/bin/rpsblast bin/blast/ncbi-blast-2.6.0+/rpsblast
+
+</code></pre>
+<p>参数说明</p>
+<pre><code>-appl 单独分析，没有这个的话，所有的结果都将呈现
+ 指定数据库，可以不加数据库的版本
+ ./interproscan.sh -appl PfamA -i /path/to/sequences.fasta
+ If you wish to specifically run two or more analyses you can include multiple -appl arguments:
+ 也可以指定多个数据库
+ ./interproscan.sh -appl PfamA-27.0 -appl PRINTS-42.0 -i /path/to/sequences.fasta
+ or you can use a single -appl option with a comma-separated list of analyses:
+ 或者可以通过,把多个数据放在一起。
+ ./interproscan.sh -appl PfamA,PRINTS -i /path/to/sequences.fasta
+ A list of all available analyses is in the section &quot;Included Analyses&quot;
+ -b base output filename指定生成文件路径，跟-o效果一样，如果不加，默认的名字和路径。自动往生成文件名加指定文件后缀。
+ -d output directory, 跟-b ,-o互斥，
+ -dp 关闭precalculated match lookup service，默认的是开启。根据md5值来快速检验这上传的数据是否已经被注释了，如果是已经注释了就直接出结果。节省时间。
+ -f 输出文件的格式，支持的格式为TSV, XML, GFF3, HTML and SVG。蛋白默认的格式为
+ TSV, XML 和 GFF3, 核酸的格式之前为GFF3 和XML，现在都可以了哦。
+ ./interproscan.sh -f XML -f HTML -i /path/to/sequences.fasta -b /path/to/output_file
+ or
+ ./interproscan.sh -f XML, HTML -i /path/to/sequences.fasta -b /path/to/output_file
+ 集中输出格式的区别：https://code.google.com/p/interproscan/wiki/OutputFormats
+ -i 输入的为fasta格式文件。
+ -goterms开启GO注释，但前面要加上-iprlookup参数
+ -iprlookup开启interpro注释
+ -ms 最小核酸ORF的大小，如果设置的小的话，花的时间会长。
+ -o 跟前面的-b.-d不能同时出现，如果设置了这个，就必须设置-f
+ -pa 开启可能的代谢注释
+ -T 默认的临时文件在/tmp,这个是可以设置临时文件的位置
+ -t 输入序列的类型。默认的是蛋白， 可以为dna或者为rna
+
+</code></pre>
+<p><strong>自己使用的代码：</strong></p>
+<pre><code>./interproscan.sh -appl PANTHER-12.0 -i all_protein.fasta –o ./ –goterms –iprlookup –pa -f xml
+
+</code></pre>
+<p>把输出地址和文件都写清楚，不知道咋了，不然无法写入</p>
+<pre><code>./interproscan.sh -i test_proteins.fasta -o ./test_proteins.xml -goterms -iprlookup -pa -f xml
+
+</code></pre>
+<p>涉及到的数据库：</p>
+<p>可以直接用的。</p>
+<p>TIGRFAM-XX.X : TIGRFAMs基于隐马尔可夫模型的蛋白家族库</p>
+<p>ProDom-XXXX.X: ProDom 是由UniProt Knowledge Database自动生成的蛋白域家族。</p>
+<p>Panther-X.X : The PANTHER (Protein ANalysis THrough Evolutionary Relationships)是一个独立的根据功能来分类平台，使用已公布的实验证据和进化关系来预测没有直接实验证据的基因的功能，</p>
+<p>SMART-X.X : SMART 可以用来鉴别和分析基于隐马尔可夫模型的域构架</p>
+<p>PrositeProfiles-XX.XX : PROSITE 包含描述蛋白域，家族，功能位点和关系的入口文件，用来区别这些蛋白的编号。</p>
+<p>PrositePatterns-XX.X.XX :同上</p>
+<p>SuperFamily-X.XX : SUPERFAMILY可以给核酸和蛋白做功能和结果注释的数据库。</p>
+<p>PRINTS-XX.X : A fingerprint是一个保守的模型用来描述蛋白家族。</p>
+<p>Gene3d-X.X.X :通过使用 CATH域结构数据库来对全基因和基因组进行结构分析</p>
+<p>PIRSF-X.XX : The PIRSF是用来但做一个指导把UniProtKB序列进行无重叠和深度分类，来反映他们进化关系</p>
+<p>PfamA-XX.X : 一大类蛋白家族，每一个代表对序列比对和隐马尔可夫的结果。</p>
+<p>HAMAP-XXXXXX.XX : High-quality Automated and Manual Annotation of Microbial Proteomes高质量自动注释和手工注释微生物的蛋白组 Coils-X.X :对蛋白组卷曲螺旋区域的预测</p>
+<p>无效的分析:</p>
+<p>SignalP-GRAM_NEGATIVE-X.X : Analysis SignalP-GRAM_NEGATIVE-X.X is deactivated, because the following parameters are not set in the interproscan.properties file: binary.signalp.X.X.path</p>
+<p>SignalP-GRAM_POSITIVE-X.X : Analysis SignalP-GRAM_POSITIVE-X.X is deactivated, because the following parameters are not set in the interproscan.properties file: binary.signalp.X.X.path</p>
+<p>SignalP-EUK-X.X : Analysis SignalP-EUK-X.X is deactivated, because the following parameters are not set in the interproscan.properties file: binary.signalp.X.X.path</p>
+<p>Phobius-X.XX : Analysis Phobius-X.XX is deactivated, because the following parameters are not set in the interproscan.properties file: binary.phobius.pl.path.X.XX</p>
+<p>TMHMM-X.Xc : Analysis TMHMM-X.Xc is deactivated, because the following parameters are not set in the interproscan.properties file: binary.tmhmm.path</p>
+<p>核酸序列的扫描</p>
+<p>Emboss getorf.是内嵌在interproscan中的基因预测的软件，如果你想本地安装这个软件的话，<a href="http://xn--interproscan-w19s778oldruo1q.sh">必须修改interproscan.sh</a> script</p>
+<pre><code>*set environment variables for getorf
+export EMBOSS_ACDROOT=bin/nucleotide
+export EMBOSS_DATA=bin/nucleotide
+
+</code></pre>
+<p>如果输入的是核酸序列，在运行命令的时候需要加入-t这个参数</p>
+<pre><code>./interproscan.sh -t n -i /path/to/nucleic_acid_sequences.fasta
+
+</code></pre>
+<p>格式转换 可以将xml转化为其他的格式，注意哦，仅仅是转化xml格式</p>
+<pre><code>./interproscan.sh -mode convert -f tsv,gff3,svg -i /path/to/impact.xml -o /path/to/output_file_basename
+
+</code></pre>
+<p>参考资料： 官网：<a href="https://github.com/ebi-pf-team/interproscan">https://github.com/ebi-pf-team/interproscan</a></p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/IgAIZc71w">
+            <span class="flex-auto">蛋白家族和亚家族分类</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/hqGgnkDg_">
+            <span class="flex-auto">interproscan</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/ROxmRxPnV">
+            <span class="flex-auto">panther</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://wangxf133.github.io/post/snakemake-de-an-zhuang-ji-shi-yong">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  snakemake的安装及使用
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-liu-pian-material-zhu-ti-an-zhuang-he-pei-zhi-xiang-qing">
+                <h3 class="post-title">
+                  (构建个人博客第六篇)Material-主题安装和配置详情
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '5debd0dd15fc74854e71',
+    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+    repo: 'wangxf133.github.io',
+    owner: 'wangxf133',
+    admin: ['wangxf133'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js"></script>  
+<script>
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

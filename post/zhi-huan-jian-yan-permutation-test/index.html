@@ -1,0 +1,364 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>想知道柚子的滋味，你就要亲口尝一尝</title>
+<meta name="description" content="东北师范大学-在读博士" />
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1563879475099">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://wangxf133.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://wangxf133.github.io/images/avatar.png?v=1563879475099" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">想知道柚子的滋味，你就要亲口尝一尝</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by Gridea</div>
+    <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">置换检验(Permutation Test)</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-27 / 1 min read
+        </div>
+        
+        <div class="post-content yue">
+          <!--more-->
+<p>我们一般平时较为常用的检验要属有参检验，但是其要求样本必须满足近似正态，无离群点，数据量大等要求；而有些时候其实很难都满足以上前提条件，则这时需要使用无参检验，其只关注数据的秩，但是无参检验有时也无法处理一些样本数较少的情况，这时则可以使用置换检验</p>
+<p>置换检验，是Fisher提出的一种基于大量计算（computationally intensive），利用样本数据的随机排列（置换检验的核心思想，故名Permutation test），进行统计推断的方法。因其对总体分布自由，特别适合用于总体分布未知的小样本数据，以及一些常规方法难以使用的假设检验情况。</p>
+<p>置换检验的思路简单的说如下：</p>
+<blockquote>
+<ol>
+<li>提出原假设，比如XX处理后结果没有变化</li>
+<li>计算统计量，如两组的均值之差，记作t0</li>
+<li>将所有样本放在一起，然后随机排序进行分组，再计算其统计量t1</li>
+<li>重复第3步骤，直至所有排序可能性都齐全（比如有A组有n样本，B组有m样本，则总重复次数相当于从n+m中随机抽取n个的次数），得到一系列的统计量（t1-tn）</li>
+<li>最后将这些统计量按照从小到大排序，构成抽样分布，再看t0是否落在分布的置信区间内（如95%置信区间），这时候可计算一个P值（如果抽样总体1000次统计量中大于t0的有10个，则估计的P值为10/1000=0.01），落在置信区间外则拒绝原假设</li>
+<li>如果第3步骤是将所有可能性都计算了的话，则是精确检验；如果只取了计算了部分组合，则是近似结果，这时一般用蒙特卡罗模拟（Monte Carlo simulation）的方法进行置换检验</li>
+<li>置换检验和参数检验都计算了统计量，但是前者是跟置换观测数据后获得的经验分布进行比较，后者则是跟理论分布进行比较</li>
+</ol>
+</blockquote>
+<p>具体实例示范可参照文章 https://www.plob.org/article/3176.html</p>
+<p>从上述可看出，置换检验的原假设很强：</p>
+<blockquote>
+<ul>
+<li>它假设对于所有个体 ，是否得到处理对于其结果变量 没有任何影响：H0：Y1i=Y0i，i=1..n；其中，根据 “潜在结果”（potential outcomes）的术语， 为个体 接受处理的结果变量取值，而 为个体 未接受处理的结果变量取值。这种原假设被称为 “尖锐原假设”（sharp null hypothesis）</li>
+<li>传统统计检验的Neyman-Pearson 原假设则仅关心平均效应是否相等：H0：E(Y1)=E(Y0)；显然，如果尖锐原假设成立，则只要在等式 两边同时求期望，即可得到传统的 Neyman-Pearson 原假设；故前者比后者更强</li>
+</ul>
+</blockquote>
+<p>置换检验在GSEA的算法思路中是一个重要的组成部分：</p>
+<ol>
+<li>比如当我们将Permutation type参数设置为1000后，就想相当于我们从原始所有样本中随机抽取1000个置换后的样本。</li>
+<li>接着作者先计算这1000个置换样本的signal to noise scores（也可以是log2_Ratio_of_Classes等），然后再计算每个置换样本的在每个gene sets下的ES值，这个ES值就是置换检验中的统计量。</li>
+<li>最后根据这1000个ES的经验分布，计算原始样本的ES值在这分布中的位置，也就是P值，来确定是否能推翻原假设</li>
+</ol>
+<p>基于置换检验是将统计量与经验分布进行比较，然后根据统计量的极端性来判断是否有足够理由拒绝零假设，这种思路可以延伸到大部分经典统计检验和线性模型上.</p>
+<blockquote>
+<p>如R语言中的coin包对于独立性问题提供了一个非常全面的置换检验的框架</p>
+</blockquote>
+<p>按照其说法，coin包可以解决如下几个问题：</p>
+<ul>
+<li>响应值与组的分配独立吗？</li>
+<li>两个数值变量独立吗？</li>
+<li>两个类别型变量独立吗？</li>
+</ul>
+<p>总是其提供了相对于经典统计检验的置换检验函数，具体函数的使用可参考书籍R语言实战或者文章 https://blog.csdn.net/wukong1981/article/details/72820049</p>
+<p>而还有一个lmPerm包则可用来处理线性模型的置换检验，如对传统的lm和aov()而修改的置换检验版lmp()和aovp</p>
+<p>以上内容本文参考 http://www.bioinfo-scrounger.com/archives/564</p>
+<p>R语言——置换检验</p>
+<ol>
+<li>定义<br>
+置换检验(Permutation Tests)也称为随机试验，属于统计显著性检验的一种，基于假设检验，以原假设为条件，假定二组没有差别，由此将二组样本合并，从中以无放回方式进行抽样，分别归入两个组再计算统计量，反复进行由此得到置换分布（构造新的经验分布），在此基础上进行显著性检验推断是否拒绝原假设。例如：如果要判断两个样本集是否来源于同一分布，那么原假设就是二者来自于同一分布，所以如果将两个样本集进行顺序上的置换，多次重新做无放回抽样后，对分布的参数统计量的估计与置换前的统计量估计应保持大致相同（“大致”的程度则通过P值来说明）。置换检验是一种不同于Bootstrap的重采样方法，不同之处在于置换检验再抽样过程中是无放回抽样。</li>
+</ol>
+<p>这里引用<a href="https://cosx.org/">统计之都</a>上关于<a href="https://cosx.org/tags/%E7%BD%AE%E6%8D%A2%E6%A3%80%E9%AA%8C/">置换检验</a>的一段解释：</p>
+<blockquote>
+<p>置换检验的场景是，一次试验中，我们为试验单元随机分配不同的处理（treatment），假设这里只有两种处理水平A和B，我们想知道两种处理在试验单元的某项指标上是否有显著差异。逻辑是这样：假设处理毫无效果，那么某一个试验对象的指标将不受处理影响，不管我们给老鼠嗑的是A药还是B药，结果都一样，那么我们可以把处理的标签随机打乱（某些A、B随机互换），打乱后A组和B组的差异<strong>不应该</strong>会和原来的<strong>差异很不一样</strong>（因为药不管用嘛），否则，我们恐怕得说，药还是管用的。就这样，我们随机打乱标签很多次，形成一个“人工生成”的AB差异分布（因为我们生成了很多个差异值），看原来的差异在这个分布的什么位置上，如果在很靠近尾巴的位置上，那么就认为P值很小。</p>
+</blockquote>
+<ol start="2">
+<li>置换分布<br>
+对置换检验熟悉的人是否有想过，好像我们一直没谈到什么分布的假设，那这个概率值（P值）是从哪里生出来的？</li>
+</ol>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq43dgycaj20mt0j4tc9.jpg" alt="置换分布"></p>
+<ol start="3">
+<li>
+<p>一般步骤<br>
+<img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq44k53cyj20i2083dgr.jpg" alt="一般步骤"></p>
+</li>
+<li>
+<p>实例</p>
+</li>
+</ol>
+<p>下面通过一个例子来说明Permutation Tests的计算过程</p>
+<p>假设我们想知道大豆(soybean)与亚麻籽(linseed)两种种子重量是否一致，如果二者都服从同方差的正态分布，我们可以通过双样本T检验来检测二者重量的均值是否有差异来证明。但是，我们不清楚这两个随机变量服从那种分布，所以需要采用非参数估计的假设检验方法来证明二者重量是否一致，即采用置换检验。通过执行下面的代码我们可以发现随机变量X(大豆)和随机变量Y(亚麻籽)的样本量分别为14和12，但如果采用置换检验其组合方式一共有9,657,700种可能。所以即使对于小样本量而言，置换检验的计算代价仍然很高，我们这里则需要随机抽样B次(其中26≪B≪9,657,70026≪B≪9,657,700)来近似估计统计量。</p>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq461ug05j20ck023t8k.jpg" alt="公式"></p>
+<pre><code>#读取数据
+attach(chickwts)
+x &lt;- sort(as.vector(weight[feed == &quot;soybean&quot;]))
+y &lt;- sort(as.vector(weight[feed == &quot;linseed&quot;]))
+detach(chickwts)
+print(x)
+print(y)
+</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq47ug8k9j20rv06etba.jpg" alt=""></p>
+<p>接下来我们采用置换检验来判断大豆与亚麻籽两种种子重量是否一致，R代码如下：</p>
+<pre><code>#对x和y进行t检验
+t0 &lt;- t.test(x,y)$p.value
+
+#置换检验
+R &lt;- 888
+z &lt;- c(x,y)
+K &lt;- 1:(length(x) + length(y))
+reps &lt;- numeric(R)
+
+for (i in 1:R){
+  #产生抽样样本
+  k &lt;- sample(K, size=length(x), replace=FALSE)
+  x1 &lt;- z[k]
+  y1 &lt;- z[-k]
+  #t检验
+  reps[i] &lt;- t.test(x1, y1)
+}
+#计算p-value
+p &lt;- mean(c(t0, reps) &gt;= t0)
+sprintf(&quot;随机变量X和Y的T检验结果为%g,置换检验的P-value为%g&quot;, t0, p)
+
+hist(unlist(reps), main=&quot;置换检验&quot;, freq=FALSE, xlab=&quot;T (p)&quot;,
+     breaks = &quot;scott&quot;)
+points(t0, 0, cex=1, pch=16)
+</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq48jc3qrj20qe0dtn3p.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq492145ij20q80lognk.jpg" alt=""></p>
+<p>此部分内容参考 http://www.hanlongfei.com/statistical%20computing%20with%20r/2014/12/23/permutationtest/</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/pL2GYYN0e">
+            <span class="flex-auto">统计学习</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/GK8vdhtkl">
+            <span class="flex-auto">置换检验</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/m29Zf0LCY">
+            <span class="flex-auto">R系列</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://wangxf133.github.io/post/bioconductor-de-zhi-pu-dan-bai-zu-xue-shu-ju-fen-xi">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  Bioconductor的质谱蛋白组学数据分析
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://wangxf133.github.io/post/snakemake-de-an-zhuang-ji-shi-yong">
+                <h3 class="post-title">
+                  snakemake的安装及使用
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '5debd0dd15fc74854e71',
+    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+    repo: 'wangxf133.github.io',
+    owner: 'wangxf133',
+    admin: ['wangxf133'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js"></script>  
+<script>
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

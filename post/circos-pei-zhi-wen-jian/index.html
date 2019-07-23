@@ -1,0 +1,709 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>想知道柚子的滋味，你就要亲口尝一尝</title>
+<meta name="description" content="东北师范大学-在读博士" />
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1563879475099">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://wangxf133.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://wangxf133.github.io/images/avatar.png?v=1563879475099" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">想知道柚子的滋味，你就要亲口尝一尝</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#circos%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%87%86%E5%A4%87">Circos的配置文件准备</a>
+<ul>
+<li><a href="#%E8%AE%BE%E7%BD%AE%E7%94%9F%E6%88%90%E7%9A%84%E5%9B%BE%E7%89%87%E5%8F%82%E6%95%B0">设置生成的图片参数</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E4%B8%8Edebug%E5%8F%82%E6%95%B0">系统与debug参数</a></li>
+</ul>
+</li>
+<li><a href="#circos%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%82%E6%95%B0">Circos的使用参数</a></li>
+<li><a href="#circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3">Circos配置文件详解</a>
+<ul>
+<li><a href="#ideogram-block%E6%98%BE%E7%A4%BA%E6%9F%93%E8%89%B2%E4%BD%93">ideogram block显示染色体</a></li>
+<li><a href="#ticks-block%E4%BB%A5%E5%88%BB%E5%BA%A6%E5%BD%A2%E5%BC%8F%E6%98%BE%E7%A4%BA%E6%9F%93%E8%89%B2%E4%BD%93%E5%A4%A7%E5%B0%8F">ticks block以刻度形式显示染色体大小</a></li>
+<li><a href="#links-block%E4%BB%A5%E6%9B%B2%E7%BA%BF%E8%BF%9E%E6%8E%A5%E6%98%BE%E7%A4%BA%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%86%85%E9%83%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%81%94%E7%B3%BB">links block以曲线连接显示基因组内部之间的联系</a></li>
+<li><a href="#plots-block%E4%BB%A5%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%BD%A2%E5%BC%8F%E5%B1%95%E7%A4%BA%E6%95%B0%E6%8D%AE">plots block以直方图形式展示数据</a></li>
+<li><a href="#plots-block%E4%BB%A5%E7%83%AD%E5%9B%BE%E5%BD%A2%E5%BC%8F%E6%98%BE%E7%A4%BA%E6%95%B0%E6%8D%AE">plots block以热图形式显示数据</a></li>
+<li><a href="#plots-block%E4%BB%A5%E6%96%87%E6%9C%AC%E5%BD%A2%E5%BC%8F%E6%98%BE%E7%A4%BA%E6%95%B0%E6%8D%AE">plots block以文本形式显示数据</a></li>
+<li><a href="#rules-block%E6%94%BE%E7%BD%AE%E5%B8%B8%E7%94%A8%E7%9A%84%E8%A7%84%E5%88%99%E9%85%8D%E7%BD%AE">rules block放置常用的规则配置</a></li>
+<li><a href="#%E4%B8%BB%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">主配置文件</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8circos%E5%91%BD%E4%BB%A4%E7%BB%98%E5%9B%BE">使用Circos命令绘图</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by Gridea</div>
+    <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Circos配置文件</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-27 / 5 min read
+        </div>
+        
+        <div class="post-content yue">
+          <!--more-->
+<p>主要参考博客：http://ytlogos.coding.me/</p>
+<h1 id="circos的配置文件准备">Circos的配置文件准备</h1>
+<p>Circos的使用主要通过输入一个配置文件，改配置文件的主要内容以各种区块表示，大区块中可以包含小区快。区块中以”变量=值”的方式来进行参数的设定：</p>
+<pre><code>&lt;links&gt;
+&lt;link&gt;
+  file = data/set1.txt
+  color = black
+  ...
+&lt;/link&gt;
+&lt;link&gt;
+  file = data/set2.txt
+  color = red
+  ...
+&lt;/link&gt;
+&lt;/links&gt;
+</code></pre>
+<blockquote>
+<p>有些配置文件不需要改动，比如颜色、字体等，一般将这类信息保存到一个独立的配置文件中。只需要在主配置文件中声明包含这些独立的配置文件名及其路径，即表示使用这些配置信息。最常用的放置到主配置文件尾部的数行</p>
+</blockquote>
+<h2 id="设置生成的图片参数">设置生成的图片参数</h2>
+<pre><code>&lt;image&gt;
+&lt;&lt;include etc/image.conf&gt;&gt;
+&lt;/image&gt;
+</code></pre>
+<p>##设置颜色、字体、填充模式的配置信息、</p>
+<pre><code>&lt;&lt;include etc/colors_fonts_patterns.conf&gt;&gt;
+</code></pre>
+<h2 id="系统与debug参数">系统与debug参数</h2>
+<pre><code>&lt;&lt;include etc/housekeeping.conf&gt;&gt;
+</code></pre>
+<h1 id="circos的使用参数">Circos的使用参数</h1>
+<pre><code>-version
+查询Circos版本
+-modules
+检测perl模块
+-conf &lt;string&gt;
+输入主文件配置
+-outputdir &lt;string&gt;
+设置输出文件名，该参数的值以.png为后缀
+-svg
+生成svg结果文件
+-nosvg
+不生成svg结果文件
+</code></pre>
+<h1 id="circos配置文件详解">Circos配置文件详解</h1>
+<h2 id="ideogram-block显示染色体">ideogram block显示染色体</h2>
+<p>将染色体在圈图上展示出来，代表每个染色体的图形，称为ideogram。将以下配置信息放入一个单独的配置文件中，命名为ideogram.conf</p>
+<pre><code>&lt;ideogram&gt;
+##设定ideogram之间的间隙
+  &lt;spacing&gt;
+  #设置圈图染色体之间的间隙大小，以下设置为每个间隙大小为周长的0.5%
+  default = 0.005r
+#也可以设置指定的两条染色体之间的间隙
+  #&lt;pairwise chrA01;chrA02&gt;
+  #以下设定为两条染色体之间的间隙为圆的20度角
+  #spacing = 20r
+  #&lt;/pairwise&gt;
+&lt;/spacing&gt;
+##设定ideogram
+#设定ideogram的位置，一下设定为ideograms在图离圆心的90%处
+radius = 0.90r
+#设定ideograms是否填充颜色。填充的颜色取决于karyotype指定的文件的最后一列
+fill = yes
+#设定ideograms轮廓的颜色及其厚度。如果没有该参数或设定其厚度为0，则表示没有轮廓
+stroke_color = dgrey
+stroke_thickness = 2p
+## 设定label的显示信息
+#设定是否显示label，label对应着karyotype文件的第四列，如果其值为yes，则必须要有label_radius参数来设定label的位置，否则会报错无法生成结果
+show_label = yes
+# 设定label的字体
+label_font = default
+# 设定label字体大小
+label_size = 40
+# 设定label的字体方向，yes是易于浏览的方向
+label_parallel = yes
+&lt;/ideogram&gt;
+</code></pre>
+<h2 id="ticks-block以刻度形式显示染色体大小">ticks block以刻度形式显示染色体大小</h2>
+<p>将染色体的大小以刻度的形式在圈图上展示出来，将以下配置信息放入到一个独立的配置文件中，命名为ticks.conf</p>
+<pre><code>#是否显示ticks
+show_ticks = yes
+#是否显示ticks的labels
+show_ticks_labels = yes
+#设定ticks
+&lt;ticks&gt;
+##ticks的设置
+#设定ticks的位置
+radius = 1r
+#设置ticks的颜色
+color = black
+#设置ticks的厚度
+thickness = 2p
+#设置ticks'label的值的计算，将改刻度对应的值*multiplier得到展示到圈图上的label值
+multiplier = 1e-6
+#label值的格式化方法，%d表示结果为整数；%f表示结果为浮点数；%.nf表示结果保留小数点后n位
+format = %d
+## 以下设置了2个ticks，前者是小刻度，后者是大刻度
+&lt;tick&gt;
+#设置每个刻度代表的长度，若其单位为u，则必须要设置chromosome_units参数，比如设置chromosome_units=1000000,则如下5u表示每个刻度代表5M长度的基因组序列
+spacing = 5u
+#设置tick的长度
+size = 10p
+&lt;/tick&gt;
+&lt;tick&gt;
+spacing = 25u
+size = 15p
+#由于设置的是大刻度，以下用于设置展示ticks'label
+show_label = yes
+#设置ticks'label字体大小
+label_size= 20p
+#设置ticks'label离ticks的距离
+label_offset = 10p
+format = %d
+&lt;/tick&gt;
+&lt;/ticks&gt;
+</code></pre>
+<h2 id="links-block以曲线连接显示基因组内部之间的联系">links block以曲线连接显示基因组内部之间的联系</h2>
+<p>基因组内部不同的序列区域之间有联系，将之使用线条进行连接，从而展示到圈图上，常见的是重复序列之间的连接，将以下配置信息放入到一个独立的配置文件中，命名为links.conf</p>
+<pre><code>&lt;links&gt;
+&lt;link&gt;
+#指定link文件的路径，其文件格式为：
+# chr1 start end chr2 start end
+# chrA01 1 10 chrC01 10 45
+#表明这两条染色体区域有联系，例如这个区域的序列长度&gt;1kb且序列相似性&gt;=90%
+file = data/segdup.txt
+#设置link曲线的半径
+radius = 0.8r
+#设置贝塞尔曲线半径，该值越大曲线越扁平，不好看
+bezier_radius = 0r
+#设置link曲线的颜色
+color = black_a4
+#设置link曲线的厚度
+thickness = 2
+&lt;rules&gt;
+#以下可以设置多个rule，用来对link文件的每一行进行过滤或展示进行设定。每个rule都有一个condition参数，如果该condition为真，执行该block的内容，除非flow=continue，则不执行，检测下一个rule
+#下面如果link文件中该行数据是染色体内部的link，则不进行展示
+&lt;rule&gt;
+condition = var(intrachr)
+show = no
+&lt;/rule&gt;
+#设置link曲线的颜色与ideogram的颜色一致，否则为统一的颜色
+&lt;rule&gt;
+#若condition为真，则执行该block的内容
+condition = 1
+#设置link曲线的颜色为第二条染色体的颜色，对应着link文件中第四列数据对应的染色体的名称
+color = eval(var(chrC02))
+#虽然condition为真，但依然检测下一个rule
+flow = continue
+&lt;/rule&gt;
+#如果link起始于chrA01，则其link曲线半径为0.99r
+&lt;rule&gt;
+contidition = from(chrA01)
+radius1 = 0.99r
+&lt;/rule&gt;
+#如果link结束于chrC01，则其link曲线半径为0.99r
+&lt;rule&gt;
+condition = to(chrC01)
+radius2 = 0.99r
+&lt;/rule&gt;
+&lt;/rules&gt;
+&lt;/link&gt;
+&lt;/links&gt;
+</code></pre>
+<h2 id="plots-block以直方图形式展示数据">plots block以直方图形式展示数据</h2>
+<pre><code>&lt;plot&gt;
+#设定直方图
+type = histogram
+#数据文件路径，4列
+#chromosome start end data
+# chrA01 0 2000000 155.0000
+file = data/Bna1234.hist.txt
+#设置直方图的位置，r1要比r0大，直方图的方向默许为向外
+r1 = 0.88r
+r0 = 0.81r
+#直方图的填充颜色
+fill_color = vdgrey
+#默认下直方图轮廓厚度为1px，若不需要轮廓，将其设置为9，或者直接在etc/tracks/histogram.conf中修改
+thickness = 0p
+#直方图是由bins所构成的，若bins在坐标轴上不相连，最好设置不要将其bins连接到一起，例如：
+# chrA01 10 20 0.5
+# chrA01 30 40 0.25
+#上述数据设置值为yes和no时，图形是不一样的
+extend_bin = no
+#以下添加rule，不在chrA01上添加直方图
+&lt;rules&gt;
+&lt;&lt;include exclude.chrA01.rule&gt;&gt;
+&lt;/rules&gt;
+#设置直方图的背景颜色
+&lt;backgrounds&gt;
+show = data
+&lt;background&gt;
+color = vvlgrey
+&lt;/background&gt;
+&lt;background&gt;
+color = vlgrey
+y0 = 0.2r
+y1 = 0.5r
+&lt;/background&gt;
+&lt;background&gt;
+color = lgrey
+y0 = 0.5r
+y1 = 0.8r
+&lt;/background&gt;
+&lt;background&gt;
+color = grey
+y0 = 0.8r
+&lt;/background&gt;
+&lt;/backgrounds&gt;
+&lt;/plot&gt;
+&lt;plot&gt;
+type = histogram
+#此处直方图的数据文件第4列是由多个由逗号分隔的数值，需要制作叠加的直方图
+file = data/Bna.stacked.txt
+r1 = 0.99r
+r0 = 0.92r
+#给4个值按顺序填充不同的颜色
+fill_color = chrA01,chrA02,chrA03,chrA04
+thickness = 0p
+orientation = in
+extend_bin = no
+&lt;rules&gt;
+&lt;&lt;include exclude.chrA01.rule&gt;&gt;
+&lt;/rules&gt;
+#在直方图中添加坐标网格线
+&lt;axes&gt;
+show = data
+thickness = 1
+color = lgrey
+&lt;axis&gt;
+spacing = 0.1r
+&lt;/axis&gt;
+&lt;axis&gt;
+spacing = 0.2r
+color = grey
+&lt;/axis&gt;
+&lt;axis&gt;
+position = 0.5r
+color = red
+&lt;/axis&gt;
+&lt;axis&gt;
+position = 0.85r
+color = green
+thickness = 2
+&lt;/axis&gt;
+&lt;/axes&gt;
+&lt;/plot&gt;
+</code></pre>
+<h2 id="plots-block以热图形式显示数据">plots block以热图形式显示数据</h2>
+<p>基因组一个区域内有多组数据时，适合以热图的形式显示数据，比如基因表达量，将以下配置信息放入一个单独的配置文件中，命名为plots_heatmap.conf</p>
+<pre><code>&lt;plot&gt;
+#绘制heatmap
+type = haetmap
+#设置数据文件路径，文件有5列
+# chrID start end data class
+# chrA01 0 1999999 113.0000 id=chrA01
+# chrA01 0 1999999 40.0000 id=chrA04
+# chrA01 0 1999999 20.0000 id=chrA02
+# chrA01 0 1999999 7.0000 id=chrA03
+file = data/Bna.heatmap.txt
+#设置图形所处位置
+r1 = 0.89r
+r0 = 0.88r
+#设置热图的颜色，颜色为chrA01，以及相应带不同透明程度的5中颜色
+color = chrA01_a5,chrA01_a4,chrA01_a3,chrA01_a2,chrA01_a1,chrA01
+#设定scale_log_base参数，计算颜色的方法如下：
+# f = (value - min)/(max - min)热图中每个方块代表着一个值，并给予相应的颜色标示，一系列的值[min,max]对应一系列的颜色c[n],i=0..N
+#n=N*f**(1/scale_log_base)
+#若scale_log_base = 1，则数值与颜色的变化是线性的
+#若scale_log_base &gt; 1，则颜色向小方向靠近
+#若scale_log_base &lt; 1，则颜色向大方向靠近
+scale_log_base = 5
+&lt;rules&gt;
+&lt;&lt;include exclude.chrA01.rule&gt;&gt;
+#仅显示id = chrA01的数据
+&lt;rule&gt;
+condition = var(id) ne &quot;chrA01&quot;
+show = no
+&lt;/rule&gt;
+&lt;/rules&gt;
+&lt;plot&gt;
+ type = heatmap
+ file = data/Bna.heatmap.txt
+ r1 = 0.90r
+ r0 = 0.89r
+ color = chrA02_a5,chrA02_a4,chrA02_a3,chrA02_a2,chrA02_a1,chrA02
+ scale_log_base = 5
+&lt;rules&gt;
+ &lt;&lt;include exclude.chrA01.rule&gt;&gt;
+&lt;rule&gt;
+ condition = var(id) ne &quot;chrA02&quot;
+ show = no
+ &lt;/rule&gt;
+&lt;/rules&gt;
+&lt;/plot&gt;
+&lt;plot&gt;
+ type = heatmap
+ file = data/Bna.heatmap.txt
+ r1 = 0.91r
+ r0 = 0.90r
+ color = chrA03_a5,chrA03_a4,chrA03_a3,chrA03_a2,chrA03_a1,chrA03
+ scale_log_base = 5
+&lt;rules&gt;
+ &lt;&lt;include exclude.chrA01.rule&gt;&gt;
+&lt;rule&gt;
+ condition = var(id) ne &quot;chrA03&quot;
+ show = no
+ &lt;/rule&gt;
+&lt;/rules&gt;
+&lt;/plot&gt;
+&lt;plot&gt;
+ type = heatmap
+ file = data/Bna.heatmap.txt
+ r1 = 0.92r
+ r0 = 0.91r
+ color = chrA04_a5,chrA04_a4,chrA04_a3,chrA04_a2,chrA04_a1,chrA04
+ scale_log_base = 5
+&lt;rules&gt;
+ &lt;&lt;include exclude.chrA01.rule&gt;&gt;
+&lt;rule&gt;
+ condition = var(id) ne &quot;chrA04&quot;
+ show = no
+ &lt;/rule&gt;
+&lt;/rules&gt;
+&lt;/plot&gt;
+</code></pre>
+<h2 id="plots-block以文本形式显示数据">plots block以文本形式显示数据</h2>
+<p>若需要在圈图上显示基因名称，需要以文本形式展示，将以下配置信息放入到一个单独的配置文件中，命名为plots_text.conf</p>
+<pre><code>&lt;plot&gt;
+#表示文字
+type = text
+#数据文件路径
+file = data/Bnagene.labels.txt
+#显示在图形中的位置
+r1 = 0.8r
+r0 = 0.6r
+#标签的字体
+label_font = light
+#标签大小
+label_size = 12p 
+#文字边缘的大小，设置较小则不同单词就可能会连在一块
+#padding - text margin in angular direction
+#rpadding - text margin in radial direction
+rpadding = 5p
+#设置是否需要在label前加一条线用来指出label的位置
+show_links = no
+link_dims = 0p,2p,5p,2p,2p
+link_thickness = 2p
+link_color = black
+&lt;rules&gt;
+&lt;&lt;include exclude.chrA01.rule&gt;&gt;
+#设置rule，对label中含有字母a或b的特异性显示
+&lt;rule&gt;
+condition = var(value) =~ /a/i
+label_font = bold
+flow = continue
+&lt;/rule&gt;
+&lt;rule&gt;
+condition = var(value) =~ /b/i
+color = blue
+&lt;/rule&gt;
+&lt;/rules&gt;
+&lt;/plot&gt;
+</code></pre>
+<h2 id="rules-block放置常用的规则配置">rules block放置常用的规则配置</h2>
+<p>上述配置文件中，很多track没有在1号染色体上展示，需要设置如下规则信息，将之写入到文件exclude.chrA01.rule中</p>
+<pre><code>&lt;rule&gt;
+condition = on(chrA01)
+show = no
+&lt;/rule&gt;
+</code></pre>
+<h2 id="主配置文件">主配置文件</h2>
+<p>在主配置文件circos.conf中，包含以上所有需要的配置文件信息，则可以会出所需要的track，此外，可以设置一些全局设置。</p>
+<pre><code>#指定染色体组型的文件，该文件有7列：
+#chr - ID LABEL START END COLOR
+#chr - chrA01 1 0 2154635789 chr1
+#chr - chrA02 2 0 2451545665 chr2
+karyotype = data/karyotype/karyotype.Bna.txt
+#设置长度单位，以下设置表示1M长度的序列代表为1u
+chromosomes_units = 1000000
+#默认设置下是将karyotype文件中所有染色体都展示出来，当然也可以根据需要仅展示指定的染色体，使用如下的参数设置：
+chromosomes_display_default = no
+#以下参数设置指定的chromosome用于展示到圈图中，//中是一个正则表达式，匹配的chromosomes用于展示到圈图中，其匹配的对象是karyotype文件中的第3列，也可以直接列出需要展示的chromosomes，例如：chrA01;chrA02;chrA03;chrA04;chrA05
+chromosomes = /chrA0[1-5]$/
+#以下设置各个ideograms的大小，其总长度为1，chrA01的长度为0.5，chrA02,chrA03,chrA04这三条染色体的总长度为0.5，并且这三条染色体的长度是均匀分布的，注意前者的单位是r，后者使用了正则表达式匹配多条染色体，其单位于是为rn
+chromosomes_scale = chrA01=0.5r,/chrA0[234]/=0.5rn
+#使chrA02、chrA03和chrA04在圈图上展示的方向是相反的
+chromosomes_reverse = /chrA0[234]/
+#设置各个ideograms的颜色
+chromosomes_color= chrA01=red,chrA02=orange,chrA03=green,chrA04=blue
+#默认下在ideogram block中统一shezhileideograms的位置，可以使用此参数调整指定ideograms的位置
+chromosomes_radius = chrA04:0.9r
+#chromosomes_radius = chrA02:0.9r;chrA03:0.8r;chrA04:0.7r
+#karyotype文件最后一行指定了各个chromosomes的颜色，而使用chromosomes_color参数也能修改颜色。使用如下方法进行颜色修改则更加直观，以下方式是对颜色重新定义。chr1,chr2,chr3,chr4对应着karyotype文件最后一行的值，代表着颜色的类型。此处使用color block来对其进行重新定义。注意重新定义的时候需要加符号*
+&lt;colors&gt;
+chr1* = red
+chr2* = orange
+chr3* = green
+chr4* = blue
+&lt;/colors&gt;
+###绘制plot图,将上述设置好的配置文件添加进来
+&lt;plots&gt;
+&lt;&lt;include plots_histogram.conf&gt;&gt;
+&lt;&lt;include plots_heatmap.conf&gt;&gt;
+&lt;&lt;include plots_text.conf&gt;&gt;
+&lt;/plots&gt;
+&lt;&lt;include ideogram.conf&gt;&gt;
+&lt;&lt;inlcude ticks.conf&gt;&gt;
+&lt;&lt;include links.conf&gt;&gt;
+#########################################################
+#插入必须的但不常修改的标准参数
+&lt;image&gt;
+&lt;&lt;include etc/image.conf&gt;&gt;
+&lt;/image&gt;
+&lt;&lt;include etc/color_fonts_pattern.conf&gt;&gt;
+&lt;&lt;include etc/housekeeping.conf&gt;&gt;
+</code></pre>
+<h2 id="使用circos命令绘图">使用Circos命令绘图</h2>
+<p>先安装</p>
+<pre><code>##第一步先去官网下载最新版本
+$ cd circos
+$ tar zxf circos-tutorials-0.66.tgz
+$ mv data data.bak
+$ mv circos-tutorials-0.66/data/ ./
+</code></pre>
+<p>所有文件包括配置文件、数据文件等放置于当前目录文件夹中，运行circos绘图</p>
+<pre><code>$ ./bin/circos -conf circos.conf
+</code></pre>
+<p>这篇文章主要来自于<a href="http://ytlogos.coding.me/2018/07/20/Circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/#more">Circos配置文件</a>和<a href="https://www.plob.org/article/8424.html">Circos的安装和简单使用</a>,可以说是十分详细了。当然最好的文档还是官方提供的<a href="http://circos.ca/">文档Circos</a>。</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/C1YHz8Eqm">
+            <span class="flex-auto">配置文件</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/JDZBXA3No">
+            <span class="flex-auto">Circos</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/We7V91z05">
+            <span class="flex-auto">基因组</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-1">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  ggplot2详细主题设置(1)
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://wangxf133.github.io/post/science-chong-bang-orli-shi-13-nian-liu-bei-ti-xiao-mai-ji-yin-zu-tu-pu-zhong-wan-cheng-xiang-xi-jie-du">
+                <h3 class="post-title">
+                  Science重磅|历时13年六倍体小麦基因组图谱终完成（详细解读）
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '5debd0dd15fc74854e71',
+    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+    repo: 'wangxf133.github.io',
+    owner: 'wangxf133',
+    admin: ['wangxf133'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js"></script>  
+<script>
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
