@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wangxf133.github.io</id>
     <title>想知道柚子的滋味，你就要亲口尝一尝</title>
-    <updated>2019-07-23T11:02:59.791Z</updated>
+    <updated>2019-07-23T11:07:55.693Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangxf133.github.io"/>
     <link rel="self" href="https://wangxf133.github.io/atom.xml"/>
@@ -2734,9 +2734,9 @@ Visit beautiful Georgia
 <h4 id="15更改字段分隔符-懂了但是还没运行成功仍需找bug">1.5更改字段分隔符 (懂了，但是还没运行成功，仍需找bug)</h4>
 <p>造成这个问题的原因是特殊的环境变量IFS，叫作内部字段分隔符（internal field separator）。IFS环境变量定义了bash shell用作字段分隔符的一系列字符。默认情况下，bash shell会将下列字符当作字段分隔符：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-762192"><label class="task-list-item-label" for="task-item-762192"> 空格</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9818440"><label class="task-list-item-label" for="task-item-9818440"> 制表符</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8120743"><label class="task-list-item-label" for="task-item-8120743"> 换行符</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5510032"><label class="task-list-item-label" for="task-item-5510032"> 空格</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9774078"><label class="task-list-item-label" for="task-item-9774078"> 制表符</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-87805"><label class="task-list-item-label" for="task-item-87805"> 换行符</label></li>
 </ul>
 <p>如果bash shell在数据中看到了这些字符中的任意一个，它就会假定这表明了列表中一个新数据字段的开始。在处理可能含有空格的数据（比如文件名）时，这会非常麻烦，就像你在上一个脚本示例中看到的。</p>
 <p>要解决这个问题，可以在shell脚本中临时更改IFS环境变量的值来限制被bash shell当作字段分隔符的字符。例如，如果你想修改IFS的值，使其只能识别换行符，那就必须这么做：</p>
@@ -2867,9 +2867,9 @@ $
 </code></pre>
 <p>注意，有些部分并没有遵循bash shell标准的for命令：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3790402"><label class="task-list-item-label" for="task-item-3790402"> 变量赋值可以有空格；</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1472762"><label class="task-list-item-label" for="task-item-1472762"> 条件中的变量不以美元符开头；</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1658795"><label class="task-list-item-label" for="task-item-1658795"> 迭代过程的算式未用expr命令格式。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6208090"><label class="task-list-item-label" for="task-item-6208090"> 变量赋值可以有空格；</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8495174"><label class="task-list-item-label" for="task-item-8495174"> 条件中的变量不以美元符开头；</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8939070"><label class="task-list-item-label" for="task-item-8939070"> 迭代过程的算式未用expr命令格式。</label></li>
 </ul>
 <p>shell开发人员创建了这种格式以更贴切地模仿C语言风格的for命令。这虽然对C语言程序员来说很好，但也会把专家级的shell程序员弄得一头雾水。在脚本中使用C语言风格的for循环时要小心。</p>
 <p>以下例子是在bash shell程序中使用C语言风格的for命令。</p>

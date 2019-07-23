@@ -1,115 +1,136 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>想知道柚子的滋味，你就要亲口尝一尝</title>
+<meta name="description" content="东北师范大学-在读博士" />
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1563880070537">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-<title>shell语言脚本构建2-使用结构化命令 | 想知道柚子的滋味，你就要亲口尝一尝</title>
-<meta name="description" content="东北师范大学-在读博士">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1563879771471">
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
-
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://wangxf133.github.io">
-        <img src="https://wangxf133.github.io/images/avatar.png?v=1563879771471" class="site-logo">
-        <h1 class="site-title">想知道柚子的滋味，你就要亲口尝一尝</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://wangxf133.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://wangxf133.github.io/images/avatar.png?v=1563880070537" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">想知道柚子的滋味，你就要亲口尝一尝</h1>
       </div>
-    </div>
-    <div>
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8-if-then%E8%AF%AD%E5%8F%A5">使用 if-then语句</a></li>
+<li><a href="#if-then-else%E8%AF%AD%E5%8F%A5">if-then-else语句</a></li>
+<li><a href="#%E5%B5%8C%E5%A5%97-if">嵌套 if</a></li>
+<li><a href="#test%E5%91%BD%E4%BB%A4">test命令</a><br>
+*
+<ul>
+<li><a href="#%E6%95%B0%E5%80%BC%E6%AF%94%E8%BE%83">数值比较</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83">字符串比较</a>
+<ul>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E7%AD%89%E6%80%A7">字符串相等性</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A1%BA%E5%BA%8F">字符串顺序</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%A7%E5%B0%8F">字符串大小</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E4%BB%B6%E6%AF%94%E8%BE%83">文件比较</a>
+<ul>
+<li><a href="#%E6%A3%80%E6%9F%A5%E7%9B%AE%E5%BD%95">检查目录</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8">检查对象是否存在</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5%E6%96%87%E4%BB%B6">检查文件</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%8F%AF%E8%AF%BB">检查是否可读</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5%E7%A9%BA%E6%96%87%E4%BB%B6">检查空文件</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%8F%AF%E5%86%99">检查是否可写</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E6%89%A7%E8%A1%8C">检查文件是否可以执行</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5%E6%89%80%E5%B1%9E%E5%85%B3%E7%B3%BB">检查所属关系</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5%E9%BB%98%E8%AE%A4%E5%B1%9E%E7%BB%84%E5%85%B3%E7%B3%BB">检查默认属组关系</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5%E6%96%87%E4%BB%B6%E6%97%A5%E6%9C%9F">检查文件日期</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%A4%8D%E5%90%88%E6%9D%A1%E4%BB%B6%E6%B5%8B%E8%AF%95">复合条件测试</a></li>
+<li><a href="#if-then%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7">if-then的高级特性</a><br>
+*
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%8F%8C%E6%8B%AC%E5%8F%B7">使用双括号</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%8F%8C%E6%96%B9%E6%8B%AC%E5%8F%B7">使用双方括号</a></li>
+</ul>
+</li>
+<li><a href="#case%E5%91%BD%E4%BB%A4">case命令</a></li>
+<li><a href="#%E5%B0%8F%E7%BB%93">小结</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-          <a class="social-link" href="wangxf133@nenu.edu.cn" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        
-      
-        
-      
-        
-      
-        
-          <a class="social-link" href="https://www.zhihu.com/people/wang-xiao-fei-66-3/activities" target="_blank">
-            <i class="fab fa-zhihu"></i>
-          </a>
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      东北师范大学-在读博士
-    </div>
-    <div class="site-footer">
-      Powered by Gridea
     </div>
   </div>
 </div>
 
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">shell语言脚本构建2-使用结构化命令</h2>
-            <div class="post-date">2019-03-27</div>
-            
-            <div class="post-content">
-              <!--more-->
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by Gridea</div>
+    <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">shell语言脚本构建2-使用结构化命令</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-27 / 17 min read
+        </div>
+        
+        <div class="post-content yue">
+          <!--more-->
 <p>许多程序要求对shell脚本中的命令施加一些逻辑流程控制。有一类命令会根据条件使脚本跳过某些命令。这样的命令通常称为结构化命令（structured command）。</p>
 <p>结构化命令允许你改变程序执行的顺序。在bash shell中有不少结构化命令，我们会逐个研究。</p>
 <p>本章来看一下if-then和case语句。</p>
@@ -1153,87 +1174,170 @@ $
 <li>最后，本章讨论了case命令。该命令是执行多个if-then-else命令的简便方式，它会参照一个值列表来检查单个变量的值。</li>
 </ul>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://wangxf133.github.io/tag/cykUzrlw2" class="tag">
-                    脚本文件
-                  </a>
-                
-                  <a href="https://wangxf133.github.io/tag/PvD-ng_cF" class="tag">
-                    shell语言
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-1-shell-gou-jian-ji-ben-jiao-ben">
-                  <h3 class="post-title">
-                    shell语言脚本构建1-shell构建基本脚本
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-                <div id="gitalk-container" data-aos="fade-in"></div>
-              
-
-              
-            
-
-          </div>
-
         </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/cykUzrlw2">
+            <span class="flex-auto">脚本文件</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/PvD-ng_cF">
+            <span class="flex-auto">shell语言</span>
+          </a>
+        
 
-<script type="application/javascript">
 
-AOS.init();
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-3-geng-duo-de-jie-gou-hua-ming-ling">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  shell语言脚本构建3-更多的结构化命令
+                </h3>
+              </a>
+            </div>
+          
 
-hljs.initHighlightingOnLoad()
+          
+            <div class="next-post">
+              <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-1-shell-gou-jian-ji-ben-jiao-ben">
+                <h3 class="post-title">
+                  shell语言脚本构建1-shell构建基本脚本
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '5debd0dd15fc74854e71',
+    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+    repo: 'wangxf133.github.io',
+    owner: 'wangxf133',
+    admin: ['wangxf133'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
 
 </script>
 
+          
 
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js"></script>  
+<script>
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
   
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-
-      var gitalk = new Gitalk({
-        clientID: '5debd0dd15fc74854e71',
-        clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
-        repo: 'wangxf133.github.io',
-        owner: 'wangxf133',
-        admin: ['wangxf133'],
-        id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
-    </script>
-  
-
-  
-
-
-
-
   </body>
 </html>
