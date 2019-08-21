@@ -1,95 +1,138 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
- <head>
-     <meta charset="utf-8" />
-  <title>(构建个人博客第六篇)Material-主题安装和配置详情 | 想知道柚子的滋味，你就要亲口尝一尝</title>
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-  <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-   <script src="https://cdn.staticfile.org/highlight.js/9.15.9/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
- </head>
- <body>
-     <div class="sidebar animated fadeInDown">
-   <div class="logo-title">
-    <div class="title">
-     <img src="https://wangxf133.github.io/images/avatar.png?v=1566384086492" style="width:127px;" />
+<html>
 
-     <h3 title=""><a href="/">Xiaofei</a></h3>
-
-     <div class="description">
-      <p>东北师范大学-在读博士</p>
-     </div>
-    </div>
-   </div>
-   <ul class="social-links">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    (构建个人博客第六篇)Material-主题安装和配置详情 | 生信学渣
+</title>
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1566386097670">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://wangxf133.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-    
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                
 
-    
+                    
+                            
+</head>
 
-    
-
-    <li><a href="https://github.com/wangxf133"><i class="fa fa-github"></i></a></li>
- 
-    
-
-    
-
-    
-
-    
-
-    <li><a href="https://weibo.com/u/1934409632/home?wvr=5&amp;lf=reg"><i class="fa fa-weibo"></i></a></li>
- 
-    
-
-    <li><a href="https://www.zhihu.com/people/wang-xiao-fei-66-3/activities"><i class="fa fa-qq"></i></a></li>
- 
-    
-
-    
-
-   </ul>
-   <div class="footer">
-    <div class="by_farbox">
-   Powered by Gridea
-    </div>
-    
-
-    </div>
-   </div>
-  </div>
-  <div class="main">
-     <div class="page-top animated fadeInDown">
+<body>
+    <div class="main">
+        <div class="header">
     <div class="nav">
-    
-     <li><a  href="/">首页</a></li>
-
-     <li><a  href="/archives">归档</a></li>
-
-     <li><a  href="/tags">标签</a></li>
-
-     <li><a  href="/post/about">关于</a></li>
-
+        <div class="logo">
+            <a href="https://wangxf133.github.io">
+                <img class="avatar" src="https://wangxf133.github.io/images/avatar.png?v=1566386097670" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    生信学渣
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div class="information">
-     <div class="back_btn">
-      <li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li>
-     </div>
-    </div>
-   </div>
-   <div class="autopagerize_page_element">
-    <div class="content">
-     <div class="post-page">
-      <div class="post animated fadeInDown">
-       <div class="post-title">
-        <h3><a>(构建个人博客第六篇)Material-主题安装和配置详情</a></h3>
-       </div>
-       <div class="post-content">
-        <!--more-->
-<p>Material-主题安装和配置详情</p>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            (构建个人博客第六篇)Material-主题安装和配置详情
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-03-27</time>
+                            
+                                <a href="https://wangxf133.github.io/tag/X18mylG5_" class="post-tag i-tag
+                            i-tag-info">
+                            #Themes
+                        </a>
+                                
+                                <a href="https://wangxf133.github.io/tag/vwoRVO2Sd" class="post-tag i-tag
+                            i-tag-other_1">
+                            #hexo
+                        </a>
+                                
+                                <a href="https://wangxf133.github.io/tag/o8fsYfj4R" class="post-tag i-tag
+                            i-tag-info">
+                            #blog
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://camo.githubusercontent.com/37b53729880a3100607f3b16f7ec4619b33b9d63/68747470733a2f2f692e6c6f6c692e6e65742f323031372f30392f32382f353963636362306232353532302e706e67')"></div>
+                            
+                                <div class="post-content">
+                                    <p>Material-主题安装和配置详情</p>
+<!--more-->
 <h1 id="1开始使用">1.开始使用</h1>
 <h2 id="安装material">安装「Material」</h2>
 <p>Hexo 安装主题的方式非常简单，只需要将主题文件放置于站点目录的 <strong>themes</strong> 目录下，然后修改下配置文件即可。 你可以从 Github 上及时得获得<a href="https://github.com/viosey/hexo-theme-material/releases">稳定的发布版本</a>。</p>
@@ -553,79 +596,187 @@ layout: timeline
 </blockquote>
 <p>如果想添加「标签云」页面的入口，请参考 独立页面。</p>
 
-       </div>
-       <div class="post-footer">
-        <div class="meta">
-         <div class="info">
-          <i class="fa fa-sun-o"></i>
-          <span class="date">2019-03-27</span>
-          <i class="fa fa-tag"></i>
-          
-          <a class="tag" href="https://wangxf133.github.io/tag/X18mylG5_" title="Themes">Themes </a>
-          
-          <a class="tag" href="https://wangxf133.github.io/tag/vwoRVO2Sd" title="hexo">hexo </a>
-          
-          <a class="tag" href="https://wangxf133.github.io/tag/o8fsYfj4R" title="blog">blog </a>
-          
-         </div>
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-wu-pian-miho-zhu-ti-an-zhuang-he-pei-zhi-xiang-qing">
+                                <h3 class="post-title">
+                                    (构建个人博客第五篇)MiHo-主题安装和配置详情
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li><a href="#1%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8">1.开始使用</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85material">安装「Material」</a></li>
+<li><a href="#%E5%90%AF%E7%94%A8material">启用「Material」</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0material">更新「Material」</a></li>
+</ul>
+</li>
+<li><a href="#2%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE">2.主题配置</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E8%AE%BE%E5%AE%9A">基本设定</a>
+<ul>
+<li><a href="#language">Language</a></li>
+<li><a href="#site-information">Site Information</a>
+<ul>
+<li><a href="#head">head</a></li>
+<li><a href="#url">url</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%A0%B7%E5%BC%8F%E8%AE%BE%E5%AE%9A">样式设定</a>
+<ul>
+<li><a href="#scheme">scheme</a></li>
+<li><a href="#nexus%E5%BC%80%E5%8F%91%E4%B8%AD">Nexus（开发中）</a></li>
+<li><a href="#paradox">Paradox</a></li>
+<li><a href="#isolation">Isolation</a></li>
+<li><a href="#uiux">uiux</a></li>
+<li><a href="#js_effect">js_effect</a></li>
+<li><a href="#reading">reading</a></li>
+<li><a href="#thumbnail">thumbnail</a></li>
+<li><a href="#background">background</a></li>
+<li><a href="#img">img</a></li>
+<li><a href="#fonts">fonts</a></li>
+<li><a href="#card_elevation">card_elevation</a></li>
+</ul>
+</li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89">自定义</a>
+<ul>
+<li><a href="#copyright_since">copyright_since</a></li>
+<li><a href="#footer_text">footer_text</a></li>
+<li><a href="#code">Code</a></li>
+<li><a href="#post-license">Post License</a></li>
+<li><a href="#qrcode">Qrcode</a></li>
+</ul>
+</li>
+<li><a href="#%E8%8F%9C%E5%8D%95%E9%85%8D%E7%BD%AE">菜单配置</a>
+<ul>
+<li><a href="#toc">toc</a></li>
+<li><a href="#sns">sns</a></li>
+<li><a href="#sns_share">sns_share</a></li>
+<li><a href="#sidebar">sidebar</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%9C%8D%E5%8A%A1">第三方服务</a>
+<ul>
+<li><a href="#rss">RSS</a></li>
+<li><a href="#toppost">topPost</a></li>
+<li><a href="#%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F">评论系统</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8">进阶使用</a>
+<ul>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BB%A3%E7%A0%81">添加自定义代码</a></li>
+<li><a href="#material-%E5%9B%BE%E6%A0%87">Material 图标</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%A0%B7%E5%BC%8F">代码高亮样式</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-cdn">使用 CDN</a></li>
+</ul>
+</li>
+<li><a href="#%E7%8B%AC%E7%AB%8B%E9%A1%B5%E9%9D%A2">独立页面</a>
+<ul>
+<li><a href="#%E5%88%9B%E5%BB%BA%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5%E9%9D%A2">创建「友情链接」页面</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E5%9B%BE%E5%BA%93%E9%A1%B5%E9%9D%A2">创建「图库」页面</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E6%A0%87%E7%AD%BE%E4%BA%91%E9%A1%B5%E9%9D%A2">创建「标签云」页面</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4%E8%BD%B4%E9%A1%B5%E9%9D%A2">创建「时间轴」页面</a></li>
+</ul>
+</li>
+</ul>
+
         </div>
-       </div>
-      </div>
-      <div class="share">
-       <div class="evernote">
-        <a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a>
-       </div>
-       <div class="weibo">
-        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a>
-       </div>
-       <div class="twitter">
-        <a class="fa fa-twitter" href="http://twitter.com/home?status=,https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-liu-pian-material-zhu-ti-an-zhuang-he-pei-zhi-xiang-qing,;"></a>
-       </div>
-      </div>
-      <div class="pagination">
-       <ul class="clearfix">
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
 
-        <li class="pre pagbuttons"><a class="btn" role="navigation" href="https://wangxf133.github.io/post/interproscan-de-an-zhuang-ji-shi-yong" title="interproscan的安装及使用">上一篇</a></li>
-         
-        
-        <li class="next pagbuttons"><a class="btn" role="navigation" href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-wu-pian-miho-zhu-ti-an-zhuang-he-pei-zhi-xiang-qing" title=" (构建个人博客第五篇)MiHo-主题安装和配置详情">下一篇</a></li>
-        
-       </ul>
-      </div>
-        
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                </div>
 
-<div id="gitalk-container"></div>
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by Gridea | 
+  <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
+</div>
 
 <script>
-
-  var gitalk = new Gitalk({
-    clientID: '5debd0dd15fc74854e71',
-    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
-    repo: 'wangxf133.github.io',
-    owner: 'wangxf133',
-    admin: ['wangxf133'],
-    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
+  hljs.initHighlightingOnLoad()
 </script>
 
-          
-          
-        
-     </div>
+
     </div>
-   </div>
-  </div>
-  <script src="https://wangxf133.github.io/media/scripts/jquery.js"></script>
-  <script src="https://wangxf133.github.io/media/scripts/jquery-migrate-1.2.1.min.js"></script>
-  <script src="https://wangxf133.github.io/media/scripts/jquery.appear.js"></script>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+    
+        
+            <script>
+    window.onload = function() {
+        var gitalk = new Gitalk({
+            clientID: '5debd0dd15fc74854e71',
+            clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+            repo: 'wangxf133.github.io',
+            owner: 'wangxf133',
+            admin: ['wangxf133'],
+            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+        })
 
+        gitalk.render('gitalk-container')
+    }
+</script>
+                
 
- </body>
+                    
+                                
+</body>
+
 </html>

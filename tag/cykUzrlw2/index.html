@@ -1,218 +1,344 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
- <head>
+<html>
+
+<head>
     <meta charset="utf-8" />
-  <title>脚本文件 | 想知道柚子的滋味，你就要亲口尝一尝</title>
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-  <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-   <script src="https://cdn.staticfile.org/highlight.js/9.15.9/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
- </head>
- <body>
-     <div class="sidebar animated fadeInDown">
-   <div class="logo-title">
-    <div class="title">
-     <img src="https://wangxf133.github.io/images/avatar.png?v=1566384086492" style="width:127px;" />
-
-     <h3 title=""><a href="/">Xiaofei</a></h3>
-
-     <div class="description">
-      <p>东北师范大学-在读博士</p>
-     </div>
-    </div>
-   </div>
-   <ul class="social-links">
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    脚本文件 | 生信学渣
+</title>
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1566386097670">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://wangxf133.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-    
+</head>
 
-    
-
-    
-
-    <li><a href="https://github.com/wangxf133"><i class="fa fa-github"></i></a></li>
- 
-    
-
-    
-
-    
-
-    
-
-    <li><a href="https://weibo.com/u/1934409632/home?wvr=5&amp;lf=reg"><i class="fa fa-weibo"></i></a></li>
- 
-    
-
-    <li><a href="https://www.zhihu.com/people/wang-xiao-fei-66-3/activities"><i class="fa fa-qq"></i></a></li>
- 
-    
-
-    
-
-   </ul>
-   <div class="footer">
-    <div class="by_farbox">
-   Powered by Gridea
-    </div>
-    
-
-    </div>
-   </div>
-  </div>
-  <div class="main">
-      <div class="page-top animated fadeInDown">
+<body>
+    <div class="main">
+        <div class="header">
     <div class="nav">
-
-     <li><a  href="/">首页</a></li>
-
-     <li><a  href="/archives">归档</a></li>
-
-     <li><a  href="/tags">标签</a></li>
-
-     <li><a  href="/post/about">关于</a></li>
-
-
+        <div class="logo">
+            <a href="https://wangxf133.github.io">
+                <img class="avatar" src="https://wangxf133.github.io/images/avatar.png?v=1566386097670" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    生信学渣
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div class="information">
-     <div class="back_btn">
-      <li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li>
-     </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        脚本文件</b>
     </div>
-   </div>
-   <div class="autopagerize_page_element">
-    <div class="content">
-              
-     <div class="post animated fadeInDown">
-      <div class="post-title">
-       <h3><a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-5-cheng-xian-shu-ju-yu-jie-guo-shu-chu">shell语言脚本构建5-呈现数据与结果输出</a></h3>
-      </div>
-      <div class="post-content">
-       <p></p>
-      </div>
-      <div class="post-footer">
-       <div class="meta">
-        <div class="info">
-         <i class="fa fa-sun-o"></i>
-         <span class="date">2019-03-27</span>
-         <i class="fa fa-tag"></i>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/cykUzrlw2" title="脚本文件">脚本文件 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/PvD-ng_cF" title="shell语言">shell语言 </a>
-         
-        </div>
-       </div>
-      </div>
-     </div>
-       
-     <div class="post animated fadeInDown">
-      <div class="post-title">
-       <h3><a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-4-chu-li-yong-hu-shu-ru">shell语言脚本构建4-处理用户输入</a></h3>
-      </div>
-      <div class="post-content">
-       <p></p>
-      </div>
-      <div class="post-footer">
-       <div class="meta">
-        <div class="info">
-         <i class="fa fa-sun-o"></i>
-         <span class="date">2019-03-27</span>
-         <i class="fa fa-tag"></i>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/cykUzrlw2" title="脚本文件">脚本文件 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/PvD-ng_cF" title="shell语言">shell语言 </a>
-         
-        </div>
-       </div>
-      </div>
-     </div>
-       
-     <div class="post animated fadeInDown">
-      <div class="post-title">
-       <h3><a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-3-geng-duo-de-jie-gou-hua-ming-ling">shell语言脚本构建3-更多的结构化命令</a></h3>
-      </div>
-      <div class="post-content">
-       <p></p>
-      </div>
-      <div class="post-footer">
-       <div class="meta">
-        <div class="info">
-         <i class="fa fa-sun-o"></i>
-         <span class="date">2019-03-27</span>
-         <i class="fa fa-tag"></i>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/cykUzrlw2" title="脚本文件">脚本文件 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/PvD-ng_cF" title="shell语言">shell语言 </a>
-         
-        </div>
-       </div>
-      </div>
-     </div>
-       
-     <div class="post animated fadeInDown">
-      <div class="post-title">
-       <h3><a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-2-shi-yong-jie-gou-hua-ming-ling">shell语言脚本构建2-使用结构化命令</a></h3>
-      </div>
-      <div class="post-content">
-       <p></p>
-      </div>
-      <div class="post-footer">
-       <div class="meta">
-        <div class="info">
-         <i class="fa fa-sun-o"></i>
-         <span class="date">2019-03-27</span>
-         <i class="fa fa-tag"></i>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/cykUzrlw2" title="脚本文件">脚本文件 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/PvD-ng_cF" title="shell语言">shell语言 </a>
-         
-        </div>
-       </div>
-      </div>
-     </div>
-       
-     <div class="post animated fadeInDown">
-      <div class="post-title">
-       <h3><a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-1-shell-gou-jian-ji-ben-jiao-ben">shell语言脚本构建1-shell构建基本脚本</a></h3>
-      </div>
-      <div class="post-content">
-       <p></p>
-      </div>
-      <div class="post-footer">
-       <div class="meta">
-        <div class="info">
-         <i class="fa fa-sun-o"></i>
-         <span class="date">2019-03-27</span>
-         <i class="fa fa-tag"></i>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/cykUzrlw2" title="脚本文件">脚本文件 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/PvD-ng_cF" title="shell语言">shell语言 </a>
-         
-        </div>
-       </div>
-      </div>
-     </div>
-     
-     <div class="pagination">
-      <ul class="clearfix">
-            
+    
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-5-cheng-xian-shu-ju-yu-jie-guo-shu-chu">
+                        shell语言脚本构建5-呈现数据与结果输出
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-27</time>
+                    
+                        <a href="https://wangxf133.github.io/tag/cykUzrlw2" class="post-tag i-tag
+                            i-tag-info">
+            #脚本文件
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/PvD-ng_cF" class="post-tag i-tag
+                            i-tag-other_2">
+            #shell语言
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <p>到目前为止，本系列出现的脚本都是通过将数据打印在屏幕上或将数据重定向到文件中来显示信息。本文将会展开这个主题，演示如何将脚本的输出重定向到Linux系统的不同位置。</p>
 
-      </ul>
-     </div>
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-5-cheng-xian-shu-ju-yu-jie-guo-shu-chu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-4-chu-li-yong-hu-shu-ru">
+                        shell语言脚本构建4-处理用户输入
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-27</time>
+                    
+                        <a href="https://wangxf133.github.io/tag/cykUzrlw2" class="post-tag i-tag
+                            i-tag-info">
+            #脚本文件
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/PvD-ng_cF" class="post-tag i-tag
+                            i-tag-info">
+            #shell语言
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <p>目前为止，你已经看到了如何编写脚本，处理数据、变量和Linux系统上的文件。有时，你编写的脚本还得能够与使用者进行交互。bash shell提供了一些不同的方法来从用户处获得数据，包括命令行参数（添加在命令后的数据）、命令行选项（可修改命令行为的单个字母）以及直接从键盘读取输入的能力。本章将会讨论如何在你的bash shell脚本运用这些方法来从脚本用户处获得数据。</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-4-chu-li-yong-hu-shu-ru">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-3-geng-duo-de-jie-gou-hua-ming-ling">
+                        shell语言脚本构建3-更多的结构化命令
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-27</time>
+                    
+                        <a href="https://wangxf133.github.io/tag/cykUzrlw2" class="post-tag i-tag
+                            i-tag-other_2">
+            #脚本文件
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/PvD-ng_cF" class="post-tag i-tag
+                            i-tag-other_2">
+            #shell语言
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <p>继续学习能够控制shell脚本流程的结构化命令。了解如何重复一些过程和命令，也就是循环执行一组命令直至达到了某个特定条件。本节将会讨论和演示bash shell的循环命令for、while和until。</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-3-geng-duo-de-jie-gou-hua-ming-ling">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-2-shi-yong-jie-gou-hua-ming-ling">
+                        shell语言脚本构建2-使用结构化命令
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-27</time>
+                    
+                        <a href="https://wangxf133.github.io/tag/cykUzrlw2" class="post-tag i-tag
+                            i-tag-other_2">
+            #脚本文件
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/PvD-ng_cF" class="post-tag i-tag
+                            i-tag-error">
+            #shell语言
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <p>许多程序要求对shell脚本中的命令施加一些逻辑流程控制。有一类命令会根据条件使脚本跳过某些命令。这样的命令通常称为结构化命令（structured command）。</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-2-shi-yong-jie-gou-hua-ming-ling">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-1-shell-gou-jian-ji-ben-jiao-ben">
+                        shell语言脚本构建1-shell构建基本脚本
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-27</time>
+                    
+                        <a href="https://wangxf133.github.io/tag/cykUzrlw2" class="post-tag i-tag
+                            i-tag-banana">
+            #脚本文件
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/PvD-ng_cF" class="post-tag i-tag
+                            i-tag-warning">
+            #shell语言
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <h2 id="1使用多个命令">1.使用多个命令</h2>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-1-shell-gou-jian-ji-ben-jiao-ben">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://wangxf133.github.io/images/avatar.png?v=1566386097670)">
+        </div>
+        <h1 class="id_card-title">
+            生信学渣
+        </h1>
+        <h2 class="id_card-description">
+            学习 记录 成长
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/wangxf133" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://www.zhihu.com/people/wang-xiao-fei-66-3/activities" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/1934409632/home?wvr=5" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+
+        </div>
     </div>
-   </div>
-  </div>
-  <script src="https://wangxf133.github.io/media/scripts/jquery.js"></script>
-  <script src="https://wangxf133.github.io/media/scripts/jquery-migrate-1.2.1.min.js"></script>
-  <script src="https://wangxf133.github.io/media/scripts/jquery.appear.js"></script>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
 
 
- </body>
+
+            <div class="site-footer">
+  Powered by Gridea | 
+  <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
 </html>

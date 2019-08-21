@@ -1,203 +1,335 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
- <head>
+<html>
+
+<head>
     <meta charset="utf-8" />
-  <title>统计学 | 想知道柚子的滋味，你就要亲口尝一尝</title>
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-  <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-   <script src="https://cdn.staticfile.org/highlight.js/9.15.9/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
- </head>
- <body>
-     <div class="sidebar animated fadeInDown">
-   <div class="logo-title">
-    <div class="title">
-     <img src="https://wangxf133.github.io/images/avatar.png?v=1566384086492" style="width:127px;" />
-
-     <h3 title=""><a href="/">Xiaofei</a></h3>
-
-     <div class="description">
-      <p>东北师范大学-在读博士</p>
-     </div>
-    </div>
-   </div>
-   <ul class="social-links">
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    统计学 | 生信学渣
+</title>
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1566386097670">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://wangxf133.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-    
+</head>
 
-    
-
-    
-
-    <li><a href="https://github.com/wangxf133"><i class="fa fa-github"></i></a></li>
- 
-    
-
-    
-
-    
-
-    
-
-    <li><a href="https://weibo.com/u/1934409632/home?wvr=5&amp;lf=reg"><i class="fa fa-weibo"></i></a></li>
- 
-    
-
-    <li><a href="https://www.zhihu.com/people/wang-xiao-fei-66-3/activities"><i class="fa fa-qq"></i></a></li>
- 
-    
-
-    
-
-   </ul>
-   <div class="footer">
-    <div class="by_farbox">
-   Powered by Gridea
-    </div>
-    
-
-    </div>
-   </div>
-  </div>
-  <div class="main">
-      <div class="page-top animated fadeInDown">
+<body>
+    <div class="main">
+        <div class="header">
     <div class="nav">
-
-     <li><a  href="/">首页</a></li>
-
-     <li><a  href="/archives">归档</a></li>
-
-     <li><a  href="/tags">标签</a></li>
-
-     <li><a  href="/post/about">关于</a></li>
-
-
+        <div class="logo">
+            <a href="https://wangxf133.github.io">
+                <img class="avatar" src="https://wangxf133.github.io/images/avatar.png?v=1566386097670" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    生信学渣
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div class="information">
-     <div class="back_btn">
-      <li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li>
-     </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        统计学</b>
     </div>
-   </div>
-   <div class="autopagerize_page_element">
-    <div class="content">
-              
-     <div class="post animated fadeInDown">
-      <div class="post-title">
-       <h3><a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-04-ni-he">StatQuest学习笔记04——拟合</a></h3>
-      </div>
-      <div class="post-content">
-       <p></p>
-      </div>
-      <div class="post-footer">
-       <div class="meta">
-        <div class="info">
-         <i class="fa fa-sun-o"></i>
-         <span class="date">2019-03-27</span>
-         <i class="fa fa-tag"></i>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/gkCUFXxT1" title="统计基础">统计基础 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/JNSPoGdBU" title="统计学">统计学 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/Dz5lYxdVx" title="StatQuest">StatQuest </a>
-         
-        </div>
-       </div>
-      </div>
-     </div>
-       
-     <div class="post animated fadeInDown">
-      <div class="post-title">
-       <h3><a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-03-biao-zhun-chai-biao-zhun-yu-zhi-xin-qu-jian">StatQuest学习笔记03——标准差、标准与置信区间</a></h3>
-      </div>
-      <div class="post-content">
-       <p></p>
-      </div>
-      <div class="post-footer">
-       <div class="meta">
-        <div class="info">
-         <i class="fa fa-sun-o"></i>
-         <span class="date">2019-03-27</span>
-         <i class="fa fa-tag"></i>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/gkCUFXxT1" title="统计基础">统计基础 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/JNSPoGdBU" title="统计学">统计学 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/Dz5lYxdVx" title="StatQuest">StatQuest </a>
-         
-        </div>
-       </div>
-      </div>
-     </div>
-       
-     <div class="post animated fadeInDown">
-      <div class="post-title">
-       <h3><a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-02-yang-ben-liang-yu-chong-fu">StatQuest学习笔记02——样本量与重复</a></h3>
-      </div>
-      <div class="post-content">
-       <p></p>
-      </div>
-      <div class="post-footer">
-       <div class="meta">
-        <div class="info">
-         <i class="fa fa-sun-o"></i>
-         <span class="date">2019-03-27</span>
-         <i class="fa fa-tag"></i>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/gkCUFXxT1" title="统计基础">统计基础 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/JNSPoGdBU" title="统计学">统计学 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/Dz5lYxdVx" title="StatQuest">StatQuest </a>
-         
-        </div>
-       </div>
-      </div>
-     </div>
-       
-     <div class="post animated fadeInDown">
-      <div class="post-title">
-       <h3><a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-01-tong-ji-xue-fen-bu-ji-chou-yang">StatQuest学习笔记01——统计学分布及抽样</a></h3>
-      </div>
-      <div class="post-content">
-       <p></p>
-      </div>
-      <div class="post-footer">
-       <div class="meta">
-        <div class="info">
-         <i class="fa fa-sun-o"></i>
-         <span class="date">2019-03-27</span>
-         <i class="fa fa-tag"></i>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/gkCUFXxT1" title="统计基础">统计基础 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/JNSPoGdBU" title="统计学">统计学 </a>
-         
-         <a class="tag" href="https://wangxf133.github.io/tag/Dz5lYxdVx" title="StatQuest">StatQuest </a>
-         
-        </div>
-       </div>
-      </div>
-     </div>
-     
-     <div class="pagination">
-      <ul class="clearfix">
-            
+    
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-04-ni-he">
+                        StatQuest学习笔记04——拟合
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-27</time>
+                    
+                        <a href="https://wangxf133.github.io/tag/gkCUFXxT1" class="post-tag i-tag
+                            i-tag-other_4">
+            #统计基础
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/JNSPoGdBU" class="post-tag i-tag
+                            i-tag-warning">
+            #统计学
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/Dz5lYxdVx" class="post-tag i-tag
+                            i-tag-info">
+            #StatQuest
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <h2 id="前言">前言</h2>
+<p>这篇笔记是StatQuest视频的第13到第15，文件13内容是拟合度；文件14是内容是线性回归；文件15是局部加权最小二乘法。</p>
 
-      </ul>
-     </div>
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-04-ni-he">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-03-biao-zhun-chai-biao-zhun-yu-zhi-xin-qu-jian">
+                        StatQuest学习笔记03——标准差、标准与置信区间
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-27</time>
+                    
+                        <a href="https://wangxf133.github.io/tag/gkCUFXxT1" class="post-tag i-tag
+                            i-tag-primary">
+            #统计基础
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/JNSPoGdBU" class="post-tag i-tag
+                            i-tag-warning">
+            #统计学
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/Dz5lYxdVx" class="post-tag i-tag
+                            i-tag-primary">
+            #StatQuest
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <h2 id="前言">前言</h2>
+<p>这是StatQuest视频教程的第8-12个。</p>
+<p>第8个视频的内容为标准差，标准误，第9个视频是柱状图与饼状图；第10个视频是对数转换以及对数的运算，这个非常简单；第11个视频为置信区间；第12个视频内容为The Standard Error（标准错误）</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-03-biao-zhun-chai-biao-zhun-yu-zhi-xin-qu-jian">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-02-yang-ben-liang-yu-chong-fu">
+                        StatQuest学习笔记02——样本量与重复
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-27</time>
+                    
+                        <a href="https://wangxf133.github.io/tag/gkCUFXxT1" class="post-tag i-tag
+                            i-tag-error">
+            #统计基础
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/JNSPoGdBU" class="post-tag i-tag
+                            i-tag-banana">
+            #统计学
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/Dz5lYxdVx" class="post-tag i-tag
+                            i-tag-success">
+            #StatQuest
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <h2 id="前言">前言</h2>
+<p>这是StatQuest视频教程的第6、7个。</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-02-yang-ben-liang-yu-chong-fu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-01-tong-ji-xue-fen-bu-ji-chou-yang">
+                        StatQuest学习笔记01——统计学分布及抽样
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-27</time>
+                    
+                        <a href="https://wangxf133.github.io/tag/gkCUFXxT1" class="post-tag i-tag
+                            i-tag-other_2">
+            #统计基础
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/JNSPoGdBU" class="post-tag i-tag
+                            i-tag-primary">
+            #统计学
+        </a>
+                        
+                        <a href="https://wangxf133.github.io/tag/Dz5lYxdVx" class="post-tag i-tag
+                            i-tag-other_4">
+            #StatQuest
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <h2 id="前言">前言</h2>
+<p>这个系列的笔记是StatQuest视频的学习笔记，此篇笔记是基础知识，视频教程的1-5。</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-01-tong-ji-xue-fen-bu-ji-chou-yang">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://wangxf133.github.io/images/avatar.png?v=1566386097670)">
+        </div>
+        <h1 class="id_card-title">
+            生信学渣
+        </h1>
+        <h2 class="id_card-description">
+            学习 记录 成长
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/wangxf133" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://www.zhihu.com/people/wang-xiao-fei-66-3/activities" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                <a href="https://weibo.com/u/1934409632/home?wvr=5" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-weibo"></i></a>
+                                
+                                    <!-- facebook -->
+                                    
+
+        </div>
     </div>
-   </div>
-  </div>
-  <script src="https://wangxf133.github.io/media/scripts/jquery.js"></script>
-  <script src="https://wangxf133.github.io/media/scripts/jquery-migrate-1.2.1.min.js"></script>
-  <script src="https://wangxf133.github.io/media/scripts/jquery.appear.js"></script>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
 
 
- </body>
+
+            <div class="site-footer">
+  Powered by Gridea | 
+  <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
 </html>

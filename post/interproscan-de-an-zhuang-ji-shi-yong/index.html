@@ -1,96 +1,139 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
- <head>
-     <meta charset="utf-8" />
-  <title>interproscan的安装及使用 | 想知道柚子的滋味，你就要亲口尝一尝</title>
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-  <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-   <script src="https://cdn.staticfile.org/highlight.js/9.15.9/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
- </head>
- <body>
-     <div class="sidebar animated fadeInDown">
-   <div class="logo-title">
-    <div class="title">
-     <img src="https://wangxf133.github.io/images/avatar.png?v=1566384086492" style="width:127px;" />
+<html>
 
-     <h3 title=""><a href="/">Xiaofei</a></h3>
-
-     <div class="description">
-      <p>东北师范大学-在读博士</p>
-     </div>
-    </div>
-   </div>
-   <ul class="social-links">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    interproscan的安装及使用 | 生信学渣
+</title>
+<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1566386097670">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://wangxf133.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-    
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                
 
-    
+                    
+                            
+</head>
 
-    
-
-    <li><a href="https://github.com/wangxf133"><i class="fa fa-github"></i></a></li>
- 
-    
-
-    
-
-    
-
-    
-
-    <li><a href="https://weibo.com/u/1934409632/home?wvr=5&amp;lf=reg"><i class="fa fa-weibo"></i></a></li>
- 
-    
-
-    <li><a href="https://www.zhihu.com/people/wang-xiao-fei-66-3/activities"><i class="fa fa-qq"></i></a></li>
- 
-    
-
-    
-
-   </ul>
-   <div class="footer">
-    <div class="by_farbox">
-   Powered by Gridea
-    </div>
-    
-
-    </div>
-   </div>
-  </div>
-  <div class="main">
-     <div class="page-top animated fadeInDown">
+<body>
+    <div class="main">
+        <div class="header">
     <div class="nav">
-    
-     <li><a  href="/">首页</a></li>
-
-     <li><a  href="/archives">归档</a></li>
-
-     <li><a  href="/tags">标签</a></li>
-
-     <li><a  href="/post/about">关于</a></li>
-
+        <div class="logo">
+            <a href="https://wangxf133.github.io">
+                <img class="avatar" src="https://wangxf133.github.io/images/avatar.png?v=1566386097670" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    生信学渣
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div class="information">
-     <div class="back_btn">
-      <li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li>
-     </div>
-    </div>
-   </div>
-   <div class="autopagerize_page_element">
-    <div class="content">
-     <div class="post-page">
-      <div class="post animated fadeInDown">
-       <div class="post-title">
-        <h3><a>interproscan的安装及使用</a></h3>
-       </div>
-       <div class="post-content">
-        <!--more-->
-<h1 id="简介">简介</h1>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            interproscan的安装及使用
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-03-27</time>
+                            
+                                <a href="https://wangxf133.github.io/tag/IgAIZc71w" class="post-tag i-tag
+                            i-tag-other_1">
+                            #蛋白家族和亚家族分类
+                        </a>
+                                
+                                <a href="https://wangxf133.github.io/tag/hqGgnkDg_" class="post-tag i-tag
+                            i-tag-banana">
+                            #interproscan
+                        </a>
+                                
+                                <a href="https://wangxf133.github.io/tag/ROxmRxPnV" class="post-tag i-tag
+                            i-tag-other_2">
+                            #panther
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('http://ww1.sinaimg.cn/large/734cbfa0ly1g67id5j8dgj21cq0f07fi.jpg')"></div>
+                            
+                                <div class="post-content">
+                                    <h1 id="简介">简介</h1>
 <p>Interpro是一个数据库，它里面有蛋白功能，蛋白家族等信息。而Interproscan就是可以将你的蛋白序列跟这个这个数据比对，从而给你的序列功能注释。 Interproscan5新增了一些功能Phobius用来预测跨膜和信号肽可以把结果map到上传的数据上寻找蛋白可能的生物学代谢途径新的输出格式XML和GFF3.0提升了图形界面</p>
+<!--more-->
 <p>参考博客<br>
 http://qinqianshan.com/interproscan-installation-and-usage<br>
 http://blog.sina.com.cn/s/blog_670445240101khmr.html<br>
@@ -161,6 +204,7 @@ export CLASSPATH
 <p>解决方法3 在第六步后面加上 update-alternatives --install /usr/bin/java java /usr/lib/jdk1.8.0_161/bin/java 300 这样就安装好这个jre了，然而可能系统中有多个jre，那么系统究竟判断用那一个来作为默认的jre呢，就需要使用如下的命令来配置： sudo update-alternatives --config java</p>
 <p>然后根据提示选择jre就可以了，(这里只有一个)： 至此，jre安装完毕！</p>
 <h1 id="安装interproscan5">安装interproscan5</h1>
+<p>官网地址：https://www.ebi.ac.uk/interpro/beta/download/</p>
 <p>1、获得InterProScan software core(针对我的64位机)</p>
 <pre><code>mkdir interproscan;
 cd interproscan;
@@ -303,79 +347,120 @@ export EMBOSS_DATA=bin/nucleotide
 </code></pre>
 <p>参考资料： 官网：<a href="https://github.com/ebi-pf-team/interproscan">https://github.com/ebi-pf-team/interproscan</a></p>
 
-       </div>
-       <div class="post-footer">
-        <div class="meta">
-         <div class="info">
-          <i class="fa fa-sun-o"></i>
-          <span class="date">2019-03-27</span>
-          <i class="fa fa-tag"></i>
-          
-          <a class="tag" href="https://wangxf133.github.io/tag/IgAIZc71w" title="蛋白家族和亚家族分类">蛋白家族和亚家族分类 </a>
-          
-          <a class="tag" href="https://wangxf133.github.io/tag/hqGgnkDg_" title="interproscan">interproscan </a>
-          
-          <a class="tag" href="https://wangxf133.github.io/tag/ROxmRxPnV" title="panther">panther </a>
-          
-         </div>
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-liu-pian-material-zhu-ti-an-zhuang-he-pei-zhi-xiang-qing">
+                                <h3 class="post-title">
+                                    (构建个人博客第六篇)Material-主题安装和配置详情
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82">配置要求</a><br>
+*<br>
+*<br>
+* <a href="#%E6%9F%A5%E7%9C%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%AD%89">查看自己的配置文件等</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85interproscan5">安装interproscan5</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8interproscan">使用interproscan</a>
+<ul>
+<li><a href="#%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">报错解决方法</a></li>
+</ul>
+</li>
+</ul>
+
         </div>
-       </div>
-      </div>
-      <div class="share">
-       <div class="evernote">
-        <a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a>
-       </div>
-       <div class="weibo">
-        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a>
-       </div>
-       <div class="twitter">
-        <a class="fa fa-twitter" href="http://twitter.com/home?status=,https://wangxf133.github.io/post/interproscan-de-an-zhuang-ji-shi-yong,;"></a>
-       </div>
-      </div>
-      <div class="pagination">
-       <ul class="clearfix">
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
 
-        <li class="pre pagbuttons"><a class="btn" role="navigation" href="https://wangxf133.github.io/post/snakemake-de-an-zhuang-ji-shi-yong" title="snakemake的安装及使用">上一篇</a></li>
-         
-        
-        <li class="next pagbuttons"><a class="btn" role="navigation" href="https://wangxf133.github.io/post/gou-jian-ge-ren-bo-ke-di-liu-pian-material-zhu-ti-an-zhuang-he-pei-zhi-xiang-qing" title=" (构建个人博客第六篇)Material-主题安装和配置详情">下一篇</a></li>
-        
-       </ul>
-      </div>
-        
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                </div>
 
-<div id="gitalk-container"></div>
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by Gridea | 
+  <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
+</div>
 
 <script>
-
-  var gitalk = new Gitalk({
-    clientID: '5debd0dd15fc74854e71',
-    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
-    repo: 'wangxf133.github.io',
-    owner: 'wangxf133',
-    admin: ['wangxf133'],
-    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
+  hljs.initHighlightingOnLoad()
 </script>
 
-          
-          
-        
-     </div>
+
     </div>
-   </div>
-  </div>
-  <script src="https://wangxf133.github.io/media/scripts/jquery.js"></script>
-  <script src="https://wangxf133.github.io/media/scripts/jquery-migrate-1.2.1.min.js"></script>
-  <script src="https://wangxf133.github.io/media/scripts/jquery.appear.js"></script>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+    
+        
+            <script>
+    window.onload = function() {
+        var gitalk = new Gitalk({
+            clientID: '5debd0dd15fc74854e71',
+            clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+            repo: 'wangxf133.github.io',
+            owner: 'wangxf133',
+            admin: ['wangxf133'],
+            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+        })
 
+        gitalk.render('gitalk-container')
+    }
+</script>
+                
 
- </body>
+                    
+                                
+</body>
+
 </html>
