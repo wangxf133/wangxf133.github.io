@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wangxf133.github.io</id>
     <title>想知道柚子的滋味，你就要亲口尝一尝</title>
-    <updated>2019-08-20T13:28:44.612Z</updated>
+    <updated>2019-08-21T10:24:58.474Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangxf133.github.io"/>
     <link rel="self" href="https://wangxf133.github.io/atom.xml"/>
@@ -16,14 +16,9 @@
         <link href="https://wangxf133.github.io/post/biao-guan-yi-chuan-jian-jie-xue-xi">
         </link>
         <updated>2019-08-20T13:26:04.000Z</updated>
-        <summary type="html"><![CDATA[<p>[TOC]</p>
-<h2 id="当我们在讨论表观遗传的遗传时我们究竟在讨论什么2万字长文">当我们在讨论表观遗传的遗传时，我们究竟在讨论什么？（2万字长文）</h2>
-<p>转载 [Epigenetics表观遗传学](javascript:void(0);)</p>
-]]></summary>
         <content type="html"><![CDATA[<p>[TOC]</p>
 <h2 id="当我们在讨论表观遗传的遗传时我们究竟在讨论什么2万字长文">当我们在讨论表观遗传的遗传时，我们究竟在讨论什么？（2万字长文）</h2>
 <p>转载 [Epigenetics表观遗传学](javascript:void(0);)</p>
-<!-- more -->
 <p>本文根据 2016 年 8 月清华大学颉伟研究员在复旦大学「表观基因组学暑期国际讲习班」中的报告整理而成，本文采用第一人称叙述，文中的“我”皆指颉伟研究员。报告原视频详见：<a href="http://mp.weixin.qq.com/s?__biz=MzIxMjA0NzU0OA==&amp;mid=2650982206&amp;idx=1&amp;sn=f73a76d14ba395b54dc8597a95aeac9b&amp;chksm=8cba64edbbcdedfbc4243e4830f36abbba0341dfe40278879e76f6edcac2e76384a3991224f7&amp;scene=21#wechat_redirect">系列视频5 | 清华颉伟：表观遗传的遗传与重编程</a>，视频全长约 2h30min，文字约 2 万字（不含提问）。且听颉伟教授由浅入深，娓娓道来。</p>
 <p>本文正确打开方式：阅读 2 万字长文确实需要花点时间，不过本文语言通俗，逻辑严密，建议收藏当成小说读，花半天或更多的时间慢慢消化。想要全面了解一个研究方向，这点时间还是要舍得花的。如果嫌文字太枯燥，可以看视频，并结合文字来消化。</p>
 <p>颉伟研究员，青年千人，求是杰出青年学者，HHMI 国际研究学者。2003 年本科毕业于北大，2008 年博士毕业于加州大学洛杉矶分校，博士期间同时取得了统计学硕士学位，2008~2009 年在加州大学洛杉矶分校进行博士后训练，2009~2013 年在美国圣地亚哥 Ludwig 肿瘤研究所、加州大学圣地亚哥分校任兵教授实验室进行博士后训练，2013 年加入清华大学，任清华大学生命科学学院研究员、清华北大生命科学联合中心研究员。</p>
@@ -3005,9 +3000,9 @@ Visit beautiful Georgia
 <h4 id="15更改字段分隔符-懂了但是还没运行成功仍需找bug">1.5更改字段分隔符 (懂了，但是还没运行成功，仍需找bug)</h4>
 <p>造成这个问题的原因是特殊的环境变量IFS，叫作内部字段分隔符（internal field separator）。IFS环境变量定义了bash shell用作字段分隔符的一系列字符。默认情况下，bash shell会将下列字符当作字段分隔符：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9188314"><label class="task-list-item-label" for="task-item-9188314"> 空格</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8288459"><label class="task-list-item-label" for="task-item-8288459"> 制表符</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7282111"><label class="task-list-item-label" for="task-item-7282111"> 换行符</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4070205"><label class="task-list-item-label" for="task-item-4070205"> 空格</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4457572"><label class="task-list-item-label" for="task-item-4457572"> 制表符</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5173050"><label class="task-list-item-label" for="task-item-5173050"> 换行符</label></li>
 </ul>
 <p>如果bash shell在数据中看到了这些字符中的任意一个，它就会假定这表明了列表中一个新数据字段的开始。在处理可能含有空格的数据（比如文件名）时，这会非常麻烦，就像你在上一个脚本示例中看到的。</p>
 <p>要解决这个问题，可以在shell脚本中临时更改IFS环境变量的值来限制被bash shell当作字段分隔符的字符。例如，如果你想修改IFS的值，使其只能识别换行符，那就必须这么做：</p>
@@ -3138,9 +3133,9 @@ $
 </code></pre>
 <p>注意，有些部分并没有遵循bash shell标准的for命令：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4743852"><label class="task-list-item-label" for="task-item-4743852"> 变量赋值可以有空格；</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9135829"><label class="task-list-item-label" for="task-item-9135829"> 条件中的变量不以美元符开头；</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1837217"><label class="task-list-item-label" for="task-item-1837217"> 迭代过程的算式未用expr命令格式。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2870597"><label class="task-list-item-label" for="task-item-2870597"> 变量赋值可以有空格；</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4134819"><label class="task-list-item-label" for="task-item-4134819"> 条件中的变量不以美元符开头；</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2182455"><label class="task-list-item-label" for="task-item-2182455"> 迭代过程的算式未用expr命令格式。</label></li>
 </ul>
 <p>shell开发人员创建了这种格式以更贴切地模仿C语言风格的for命令。这虽然对C语言程序员来说很好，但也会把专家级的shell程序员弄得一头雾水。在脚本中使用C语言风格的for循环时要小心。</p>
 <p>以下例子是在bash shell程序中使用C语言风格的for命令。</p>
