@@ -1,125 +1,94 @@
-<html>
-  <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>想知道柚子的滋味，你就要亲口尝一尝</title>
-<meta name="description" content="东北师范大学-在读博士" />
-<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1566383086630">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<!DOCTYPE html>
+<html lang="zh-CN">
+ <head>
+     <meta charset="utf-8" />
+  <title>shell语言脚本构建1-shell构建基本脚本 | 想知道柚子的滋味，你就要亲口尝一尝</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+   <script src="https://cdn.staticfile.org/highlight.js/9.15.9/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+ </head>
+ <body>
+     <div class="sidebar animated fadeInDown">
+   <div class="logo-title">
+    <div class="title">
+     <img src="https://wangxf133.github.io/images/avatar.png?v=1566384086492" style="width:127px;" />
 
-<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+     <h3 title=""><a href="/">Xiaofei</a></h3>
 
-
-
-  </head>
-  <body>
-    <div id="app" class="main px-4 flex flex-col lg:flex-row">
-      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
-  <div class="lg:sticky top-0">
-    <div class="sidebar-content">
-      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
-        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://wangxf133.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://wangxf133.github.io/images/avatar.png?v=1566383086630" alt="">
-        </a>
-        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">想知道柚子的滋味，你就要亲口尝一尝</h1>
-      </div>
-      
-        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
-          <p class="my-4 text-gray-600 font-light hidden lg:block">
-            文章目录
-          </p>
-          <div class="toc-container hidden lg:block">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#1%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AA%E5%91%BD%E4%BB%A4">1.使用多个命令</a></li>
-<li><a href="#2%E5%88%9B%E5%BB%BAshell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6">2.创建shell脚本文件</a></li>
-<li><a href="#3%E6%98%BE%E7%A4%BA%E6%B6%88%E6%81%AF">3.显示消息</a></li>
-<li><a href="#4%E4%BD%BF%E7%94%A8%E5%8F%98%E9%87%8F">4.使用变量</a><br>
-*
-<ul>
-<li><a href="#41-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">4.1 环境变量</a></li>
-<li><a href="#42-%E7%94%A8%E6%88%B7%E5%8F%98%E9%87%8F">4.2 用户变量</a></li>
-<li><a href="#43-%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2">4.3 命令替换</a></li>
-</ul>
-</li>
-<li><a href="#5%E9%87%8D%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA">5.重定向输入和输出</a><br>
-*
-<ul>
-<li><a href="#51%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91">5.1输出重定向</a></li>
-<li><a href="#52%E8%BE%93%E5%85%A5%E9%87%8D%E5%AE%9A%E5%90%91">5.2输入重定向</a></li>
-</ul>
-</li>
-<li><a href="#6%E7%AE%A1%E9%81%93">6.管道</a></li>
-<li><a href="#7%E6%89%A7%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97">7.执行数学运算</a><br>
-*
-<ul>
-<li><a href="#71-expr%E5%91%BD%E4%BB%A4">7.1 expr命令</a></li>
-<li><a href="#72-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%8B%AC%E5%8F%B7">7.2 使用方括号</a></li>
-<li><a href="#73-%E6%B5%AE%E7%82%B9%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">7.3 浮点解决方案</a></li>
-</ul>
-</li>
-<li><a href="#8%E9%80%80%E5%87%BA%E8%84%9A%E6%9C%AC">8.退出脚本</a></li>
-<li><a href="#9%E5%B0%8F%E7%BB%93">9.小结</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      
+     <div class="description">
+      <p>东北师范大学-在读博士</p>
+     </div>
     </div>
-  </div>
-</div>
+   </div>
+   <ul class="social-links">
 
-<div class="menu-container">
-  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
-  <div>
+
     
-      
-        <a href="/" class="menu" style="animation-delay: 0s">
-          首页
-        </a>
-      
+
     
-      
-        <a href="/archives" class="menu" style="animation-delay: 0.2s">
-          归档
-        </a>
-      
+
     
-      
-        <a href="/tags" class="menu" style="animation-delay: 0.4s">
-          标签
-        </a>
-      
+
+    <li><a href="https://github.com/wangxf133"><i class="fa fa-github"></i></a></li>
+ 
     
-      
-        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
-          关于
-        </a>
-      
+
     
+
+    
+
+    
+
+    <li><a href="https://weibo.com/u/1934409632/home?wvr=5&amp;lf=reg"><i class="fa fa-weibo"></i></a></li>
+ 
+    
+
+    <li><a href="https://www.zhihu.com/people/wang-xiao-fei-66-3/activities"><i class="fa fa-qq"></i></a></li>
+ 
+    
+
+    
+
+   </ul>
+   <div class="footer">
+    <div class="by_farbox">
+   Powered by Gridea
+    </div>
+    
+
+    </div>
+   </div>
   </div>
-  <div class="site-footer">
-    <div class="py-4 text-gray-700">Powered by Gridea</div>
-    <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-<div class="mask" onclick="closeMenu()">
-</div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">shell语言脚本构建1-shell构建基本脚本</h1>
-        <div class="text-sm text-gray-700 lg:my-8">
-          2019-03-27 / 4 min read
-        </div>
-        
-        <div class="post-content yue">
-          <!-- more -->
+  <div class="main">
+     <div class="page-top animated fadeInDown">
+    <div class="nav">
+    
+     <li><a  href="/">首页</a></li>
+
+     <li><a  href="/archives">归档</a></li>
+
+     <li><a  href="/tags">标签</a></li>
+
+     <li><a  href="/post/about">关于</a></li>
+
+    </div>
+    <div class="information">
+     <div class="back_btn">
+      <li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li>
+     </div>
+    </div>
+   </div>
+   <div class="autopagerize_page_element">
+    <div class="content">
+     <div class="post-page">
+      <div class="post animated fadeInDown">
+       <div class="post-title">
+        <h3><a>shell语言脚本构建1-shell构建基本脚本</a></h3>
+       </div>
+       <div class="post-content">
+        <!-- more -->
 <h2 id="1使用多个命令">1.使用多个命令</h2>
 <p>shell允许只使用一步就将多个命令串联起来使用。如果要两个命令一起运行，可在同一提示行输入他们，<strong>用分号分隔开 ；</strong></p>
 <pre><code>[xiaofei@DESKTOP-U55QOF8 ~]$date ; pwd
@@ -379,43 +348,43 @@ bash shell提供了多种方式在shell脚本中执行数学操作。expr命令�
 <p>最后，本章讨论了如何在shell脚本中使用退出状态码。shell中运行的每个命令都会产生一个退出状态码。退出状态码是一个0～255的整数值，表明命令是否成功执行；如果没有成功，可能的原因是什么。退出状态码0表明命令成功执行了。你可以在shell脚本中用exit命令来声明一个脚本完成时的退出状态码。</p>
 <p>到目前为止，脚本中的命令都是按照有序的方式一个接着一个处理的。在下章中，你将学习如何用一些逻辑流程控制来更改命令的执行次序。</p>
 
+       </div>
+       <div class="post-footer">
+        <div class="meta">
+         <div class="info">
+          <i class="fa fa-sun-o"></i>
+          <span class="date">2019-03-27</span>
+          <i class="fa fa-tag"></i>
+          
+          <a class="tag" href="https://wangxf133.github.io/tag/cykUzrlw2" title="脚本文件">脚本文件 </a>
+          
+          <a class="tag" href="https://wangxf133.github.io/tag/PvD-ng_cF" title="shell语言">shell语言 </a>
+          
+         </div>
         </div>
+       </div>
+      </div>
+      <div class="share">
+       <div class="evernote">
+        <a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a>
+       </div>
+       <div class="weibo">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a>
+       </div>
+       <div class="twitter">
+        <a class="fa fa-twitter" href="http://twitter.com/home?status=,https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-1-shell-gou-jian-ji-ben-jiao-ben,;"></a>
+       </div>
+      </div>
+      <div class="pagination">
+       <ul class="clearfix">
 
+        <li class="pre pagbuttons"><a class="btn" role="navigation" href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-2-shi-yong-jie-gou-hua-ming-ling" title="shell语言脚本构建2-使用结构化命令">上一篇</a></li>
+         
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/cykUzrlw2">
-            <span class="flex-auto">脚本文件</span>
-          </a>
+        <li class="next pagbuttons"><a class="btn" role="navigation" href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-04-ni-he" title=" StatQuest学习笔记04——拟合">下一篇</a></li>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wangxf133.github.io/tag/PvD-ng_cF">
-            <span class="flex-auto">shell语言</span>
-          </a>
-        
-
-
-        <div class="flex justify-between py-8">
-          
-            <div class="prev-post">
-              <a href="https://wangxf133.github.io/post/shell-yu-yan-jiao-ben-gou-jian-2-shi-yong-jie-gou-hua-ming-ling">
-                <h3 class="post-title">
-                  <i class="remixicon-arrow-left-line"></i>
-                  shell语言脚本构建2-使用结构化命令
-                </h3>
-              </a>
-            </div>
-          
-
-          
-            <div class="next-post">
-              <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-04-ni-he">
-                <h3 class="post-title">
-                  StatQuest学习笔记04——拟合
-                  <i class="remixicon-arrow-right-line"></i>
-                </h3>
-              </a>
-            </div>
-          
-        </div>
-
+       </ul>
+      </div>
         
           
             <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -440,109 +409,16 @@ bash shell提供了多种方式在shell脚本中执行数学操作。expr命令�
 </script>
 
           
-
           
         
-
-      </div>
+     </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js"></script>  
-<script>
-
-let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-// This should probably be throttled.
-// Especially because it triggers during smooth scrolling.
-// https://lodash.com/docs/4.17.10#throttle
-// You could do like...
-// window.addEventListener("scroll", () => {
-//    _.throttle(doThatStuff, 100);
-// });
-// Only not doing it here to keep this Pen dependency-free.
-
-window.addEventListener("scroll", event => {
-  let fromTop = window.scrollY;
-
-  mainNavLinks.forEach((link, index) => {
-    let section = document.getElementById(decodeURI(link.hash).substring(1));
-    let nextSection = null
-    if (mainNavLinks[index + 1]) {
-      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-    }
-    if (section.offsetTop <= fromTop) {
-      if (nextSection) {
-        if (nextSection.offsetTop > fromTop) {
-          link.classList.add("current");
-        } else {
-          link.classList.remove("current");    
-        }
-      } else {
-        link.classList.add("current");
-      }
-    } else {
-      link.classList.remove("current");
-    }
-  });
-});
+   </div>
+  </div>
+  <script src="https://wangxf133.github.io/media/scripts/jquery.js"></script>
+  <script src="https://wangxf133.github.io/media/scripts/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://wangxf133.github.io/media/scripts/jquery.appear.js"></script>
 
 
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          let lazyImage = entry.target
-          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
-          lazyImage.classList.remove("lazy")
-          lazyImageObserver.unobserve(lazyImage)
-        }
-      });
-    });
-
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage)
-    })
-  } else {
-    // Possibly fall back to a more compatible method here
-  }
-});
-
-const menuContainer = document.querySelector('.menu-container')
-const menus = document.querySelectorAll('.menu-container .menu')
-const mask = document.querySelector('.mask')
-const contentWrapper = document.querySelector('.content-wrapper')
-const latestArticle = document.querySelector('.latest-article')
-const readMore = document.querySelector('.read-more')
-const indexPage = document.querySelector('.index-page')
-
-const isHome = location.pathname === '/'
-if (latestArticle) {
-  latestArticle.style.display = isHome ? 'block' : 'none'
-  readMore.style.display = isHome ? 'block' : 'none'
-  indexPage.style.display = isHome ? 'none' : 'block'
-}
-
-const openMenu = () => {
-  menuContainer.classList.add('open')
-  menus.forEach(menu => {
-    menu.classList.add('animated', 'fadeInLeft')
-  })
-  mask.classList.add('open')
-  contentWrapper.classList.add('is-second')
-}
-
-const closeMenu = () => {
-  menuContainer.classList.remove('open')
-  menus.forEach(menu => {
-    menu.classList.remove('animated', 'fadeInLeft')
-  })
-  mask.classList.remove('open')
-  contentWrapper.classList.remove('is-second')
-}
-</script>
-  
-  </body>
+ </body>
 </html>
