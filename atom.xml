@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wangxf133.github.io</id>
     <title>生信学渣</title>
-    <updated>2019-08-21T11:18:39.494Z</updated>
+    <updated>2019-08-22T12:25:28.005Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangxf133.github.io"/>
     <link rel="self" href="https://wangxf133.github.io/atom.xml"/>
@@ -16,14 +16,6 @@
         <link href="https://wangxf133.github.io/post/biao-guan-yi-chuan-jian-jie-xue-xi">
         </link>
         <updated>2019-08-20T13:26:04.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="当我们在讨论表观遗传的遗传时我们究竟在讨论什么2万字长文">当我们在讨论表观遗传的遗传时，我们究竟在讨论什么？（2万字长文）</h2>
-<p>转载 <a href="https://mp.weixin.qq.com/s?__biz=MzIxMjA0NzU0OA==&amp;mid=2650983210&amp;idx=1&amp;sn=437f9f588fdf79b41830e9d9dcb8a028&amp;chksm=8cba68f9bbcde1ef099a6e809acfca1f7c8a0de3b3d842c2f61490f94ddf4fbe93c272a1a69d&amp;mpshare=1&amp;scene=23&amp;srcid=0820OQtOraT8PlksCRb45qO4&amp;sharer_sharetime=1566304072750&amp;sharer_shareid=1c176ef32af67fe28d74fba59478e17d#rd">Epigenetics表观遗传学</a></p>
-<p>本文根据 2016 年 8 月清华大学颉伟研究员在复旦大学「表观基因组学暑期国际讲习班」中的报告整理而成，本文采用第一人称叙述，文中的“我”皆指颉伟研究员。报告原视频详见：<a href="http://mp.weixin.qq.com/s?__biz=MzIxMjA0NzU0OA==&amp;mid=2650982206&amp;idx=1&amp;sn=f73a76d14ba395b54dc8597a95aeac9b&amp;chksm=8cba64edbbcdedfbc4243e4830f36abbba0341dfe40278879e76f6edcac2e76384a3991224f7&amp;scene=21#wechat_redirect">系列视频5 | 清华颉伟：表观遗传的遗传与重编程</a>，视频全长约 2h30min，文字约 2 万字（不含提问）。且听颉伟教授由浅入深，娓娓道来。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="当我们在讨论表观遗传的遗传时我们究竟在讨论什么2万字长文">当我们在讨论表观遗传的遗传时，我们究竟在讨论什么？（2万字长文）</h2>
-<p>转载 <a href="https://mp.weixin.qq.com/s?__biz=MzIxMjA0NzU0OA==&amp;mid=2650983210&amp;idx=1&amp;sn=437f9f588fdf79b41830e9d9dcb8a028&amp;chksm=8cba68f9bbcde1ef099a6e809acfca1f7c8a0de3b3d842c2f61490f94ddf4fbe93c272a1a69d&amp;mpshare=1&amp;scene=23&amp;srcid=0820OQtOraT8PlksCRb45qO4&amp;sharer_sharetime=1566304072750&amp;sharer_shareid=1c176ef32af67fe28d74fba59478e17d#rd">Epigenetics表观遗传学</a></p>
-<p>本文根据 2016 年 8 月清华大学颉伟研究员在复旦大学「表观基因组学暑期国际讲习班」中的报告整理而成，本文采用第一人称叙述，文中的“我”皆指颉伟研究员。报告原视频详见：<a href="http://mp.weixin.qq.com/s?__biz=MzIxMjA0NzU0OA==&amp;mid=2650982206&amp;idx=1&amp;sn=f73a76d14ba395b54dc8597a95aeac9b&amp;chksm=8cba64edbbcdedfbc4243e4830f36abbba0341dfe40278879e76f6edcac2e76384a3991224f7&amp;scene=21#wechat_redirect">系列视频5 | 清华颉伟：表观遗传的遗传与重编程</a>，视频全长约 2h30min，文字约 2 万字（不含提问）。且听颉伟教授由浅入深，娓娓道来。</p>
-]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[ggplot2详细主题设置(2)]]></title>
