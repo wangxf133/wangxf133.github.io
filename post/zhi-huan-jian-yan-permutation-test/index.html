@@ -1,135 +1,110 @@
-<html>
 
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    置换检验(Permutation Test) | 生信学渣
-</title>
-<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1566923921620">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+ 	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<title>置换检验(Permutation Test) | 生信学渣</title>	
+</style>
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://wangxf133.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/jquery.js'></script>
+<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/script.js'></script>
 
+<style type="text/css">
+header {
+    text-align: center;
+    padding: 120px 0px 40px 0px;
+    background: #515865 center no-repeat;
+    font-size: 16px;
+    color: #fff;
+    background-size: cover;
+    background-image:url();
+}
+		</style>
 
-        
-            
-                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-                
-
-                    
-                            
+ 	
 </head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+        
+			
+		<header id="header ddq" class="site-header" 
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://wangxf133.github.io" rel="home">生信学渣</a></h1>
+										
+					<h2 class="site-description">学习 记录 成长</h2>
+										
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div><!-- /nav-toggle -->
+					<div class="clear"></div>
+					<ul id="" class="vtmenu">
+		 
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/"> 首页</a></li>
+	
+    
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/archives"> 归档</a></li>
+	
+    
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/tags"> 标签</a></li>
+	
+    
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/post/about"> 关于</a></li>
+	
+    
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://wangxf133.github.io">
-                <img class="avatar" src="https://wangxf133.github.io/images/avatar.png?v=1566923921620" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    生信学渣
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
-    </div>
-</div>
+</ul>
+</li>		
+		
+</ul>				</div>
+			</nav><!-- #navigation -->
+        </header><!-- #masthead -->
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+				
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-detail main-container">
-                <!-- left -->
-                <div id="content" class="main-container-left">
-                    <article class="post i-card">
-                        <h2 class="post-title">
-                            置换检验(Permutation Test)
-                        </h2>
-                        <div class="post-info">
-                            <time class="post-time">2019-03-27</time>
-                            
-                                <a href="https://wangxf133.github.io/tag/pL2GYYN0e" class="post-tag i-tag
-                            i-tag-other_1">
-                            #统计学习
-                        </a>
-                                
-                                <a href="https://wangxf133.github.io/tag/GK8vdhtkl" class="post-tag i-tag
-                            i-tag-info">
-                            #置换检验
-                        </a>
-                                
-                                <a href="https://wangxf133.github.io/tag/m29Zf0LCY" class="post-tag i-tag
-                            i-tag-banana">
-                            #R系列
-                        </a>
-                                
-                        </div>
-                        
-                                <div class="post-content">
-                                    <p>我们一般平时较为常用的检验要属有参检验，但是其要求样本必须满足近似正态，无离群点，数据量大等要求；而有些时候其实很难都满足以上前提条件，则这时需要使用无参检验，其只关注数据的秩，但是无参检验有时也无法处理一些样本数较少的情况，这时则可以使用置换检验</p>
+	
+	                      
+		<div class="entry-content">
+			<h1 class="entry-title">置换检验(Permutation Test)</h1>
+<div class="entry-meta">
+	
+	           <a href="https://wangxf133.github.io/post/zhi-huan-jian-yan-permutation-test">
+							 <i class="fa fa-paint-brush"> 
+							</i> 2019-03-27</a> 
+			
+</span>
+													 
+		</div>
+                  
+			<div class="entry-summary">
+				<p><p>我们一般平时较为常用的检验要属有参检验，但是其要求样本必须满足近似正态，无离群点，数据量大等要求；而有些时候其实很难都满足以上前提条件，则这时需要使用无参检验，其只关注数据的秩，但是无参检验有时也无法处理一些样本数较少的情况，这时则可以使用置换检验</p>
 <p>置换检验，是Fisher提出的一种基于大量计算（computationally intensive），利用样本数据的随机排列（置换检验的核心思想，故名Permutation test），进行统计推断的方法。因其对总体分布自由，特别适合用于总体分布未知的小样本数据，以及一些常规方法难以使用的假设检验情况。</p>
 <!--more-->
 <p>置换检验的思路简单的说如下：</p>
@@ -235,110 +210,176 @@ points(t0, 0, cex=1, pch=16)
 <p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq48jc3qrj20qe0dtn3p.jpg" alt=""></p>
 <p><img src="https://ws1.sinaimg.cn/large/734cbfa0ly1frq492145ij20q80lognk.jpg" alt=""></p>
 <p>此部分内容参考 http://www.hanlongfei.com/statistical%20computing%20with%20r/2014/12/23/permutationtest/</p>
+</p>
+							</div>
+	<div class="vt-post-tags">
+ 
+				<a href="https://wangxf133.github.io/tag/pL2GYYN0e" rel="tag">统计学习</a>	
+				 
+				<a href="https://wangxf133.github.io/tag/GK8vdhtkl" rel="tag">置换检验</a>	
+				 
+				<a href="https://wangxf133.github.io/tag/m29Zf0LCY" rel="tag">R系列</a>	
+				 
+					</div>						
+<nav class="navigation3 post-navigation3" role="navigation">
+		
+		<div class="nav-links3">
+      
+		<div class="nav-previous3"><a href="https://wangxf133.github.io/post/bioconductor-de-zhi-pu-dan-bai-zu-xue-shu-ju-fen-xi" rel="prev"> Bioconductor的质谱蛋白组学数据分析</a></div>
+		 
+		 
+		<div class="nav-next3"><a href="https://wangxf133.github.io/post/snakemake-de-an-zhuang-ji-shi-yong" rel="next"> snakemake的安装及使用</a></div>
+		
+		</div>
+	</nav>
+		</div>
+		
+ 
+		
+</article>
 
-                                </div>
-                    </article>
-                    <!--  -->
-                    
-                        <div class="next-post">
-                            <div class="next">下一篇</div>
-                            <a href="https://wangxf133.github.io/post/snakemake-de-an-zhuang-ji-shi-yong">
-                                <h3 class="post-title">
-                                    snakemake的安装及使用
-                                </h3>
-                            </a>
-                        </div>
-                        
-                            <div id="disqus_thread"></div>
-                            <div id="gitalk-container"></div>
-                </div>
-                <!-- middle -->
-                <div class="main-container-middle"></div>
-                <!-- right -->
-                <div id="sidebar" class="main-container-right">
-                    
-                                <!-- id-card -->
-                                
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://wangxf133.github.io/images/avatar.png?v=1566923921620)">
-        </div>
-        <h1 class="id_card-title">
-            生信学渣
-        </h1>
-        <h2 class="id_card-description">
-            学习 记录 成长
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/wangxf133" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                        <a href="https://www.zhihu.com/people/wang-xiao-fei-66-3/activities" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-twitter"></i></a>
-                        
-                            <!-- weibo -->
-                            
-                                <a href="https://weibo.com/u/1934409632/home?wvr=5" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-weibo"></i></a>
-                                
-                                    <!-- facebook -->
-                                    
+<div id="marlin_lite_about_widget-2" class="widget marlin_lite_about_widget">
+			<h4 class="widget-title">评论</h4>	
 
-        </div>
-    </div>
-    
-                                    
+			 
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
-                </div>
-
-
-
-
-            </div>
-
-
-            <div class="site-footer">
-  Powered by Gridea | 
-  <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
-</div>
+<div id="gitalk-container"></div>
 
 <script>
-  hljs.initHighlightingOnLoad()
+
+  var gitalk = new Gitalk({
+    clientID: '5debd0dd15fc74854e71',
+    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+    repo: 'wangxf133.github.io',
+    owner: 'wangxf133',
+    admin: ['wangxf133'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
 </script>
 
-
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-    
+          
+          
         
-            <script>
-    window.onload = function() {
-        var gitalk = new Gitalk({
-            clientID: '5debd0dd15fc74854e71',
-            clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
-            repo: 'wangxf133.github.io',
-            owner: 'wangxf133',
-            admin: ['wangxf133'],
-            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
-            distractionFreeMode: false // Facebook-like distraction free mode
-        })
+   
+  
+ 
 
-        gitalk.render('gitalk-container')
-    }
-</script>
+		</div>
+
+			</div>
+			
+
+
+<div class="col l3 hide-on-med-and-down">
+	
+        <div class="toc-widget">
+			
+            <div class="toc-title"></div>
+			
+            <div id="toc-content">
+			
+			
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>										 
+
+ 
+       
+
+
+			</div>
+		</div>
+
+		
+		 	<footer id="colophon" class="site-footer">
+
+			<div class="container">
+	
+				<div class="copyright">Powered by Gridea<br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan/tree/master" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div><!-- .container -->
+		
+		</footer><!-- #colophon -->
+
+</div>
+
+<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/fitvids.js'></script>
+<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/marlin-scripts.js'></script>
+
+		<script data-no-instant>
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $('.navigation:eq(0)').remove();
+                $("").attr("rel" , "external");
+                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+                $("a.vi").attr("rel" , "");
+                $.viewImage({
+                    'target'  : 'img',
+                    'exclude' : '.vsmile-icons img,.gallery img',
+                    'delay'   : 300
+                });
+                $.lately({
+                    'target' : '.commentmetadata a,.infos time,.post-list time'
+                });
+                prettyPrint();
                 
+                $('ul.links li a').each(function(){
+                    if($(this).parent().find('.bg').length==0){
+                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+                    }
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
 
-                    
-                                
 </body>
-
 </html>

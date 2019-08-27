@@ -1,135 +1,110 @@
-<html>
 
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    snakemake的安装及使用 | 生信学渣
-</title>
-<link rel="shortcut icon" href="https://wangxf133.github.io/favicon.ico?v=1566923921620">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+ 	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<title>snakemake的安装及使用 | 生信学渣</title>	
+</style>
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://wangxf133.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/jquery.js'></script>
+<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/script.js'></script>
 
+<style type="text/css">
+header {
+    text-align: center;
+    padding: 120px 0px 40px 0px;
+    background: #515865 center no-repeat;
+    font-size: 16px;
+    color: #fff;
+    background-size: cover;
+    background-image:url();
+}
+		</style>
 
-        
-            
-                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-                
-
-                    
-                            
+ 	
 </head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+        
+			
+		<header id="header ddq" class="site-header" 
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://wangxf133.github.io" rel="home">生信学渣</a></h1>
+										
+					<h2 class="site-description">学习 记录 成长</h2>
+										
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div><!-- /nav-toggle -->
+					<div class="clear"></div>
+					<ul id="" class="vtmenu">
+		 
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/"> 首页</a></li>
+	
+    
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/archives"> 归档</a></li>
+	
+    
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/tags"> 标签</a></li>
+	
+    
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/post/about"> 关于</a></li>
+	
+    
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://wangxf133.github.io">
-                <img class="avatar" src="https://wangxf133.github.io/images/avatar.png?v=1566923921620" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    生信学渣
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
-    </div>
-</div>
+</ul>
+</li>		
+		
+</ul>				</div>
+			</nav><!-- #navigation -->
+        </header><!-- #masthead -->
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+				
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-detail main-container">
-                <!-- left -->
-                <div id="content" class="main-container-left">
-                    <article class="post i-card">
-                        <h2 class="post-title">
-                            snakemake的安装及使用
-                        </h2>
-                        <div class="post-info">
-                            <time class="post-time">2019-03-27</time>
-                            
-                                <a href="https://wangxf133.github.io/tag/ycuDIRf0A" class="post-tag i-tag
-                            i-tag-other_1">
-                            #pepline
-                        </a>
-                                
-                                <a href="https://wangxf133.github.io/tag/d7UQHOaSj" class="post-tag i-tag
-                            i-tag-warning">
-                            #snakemake
-                        </a>
-                                
-                                <a href="https://wangxf133.github.io/tag/c7TZoHjAr" class="post-tag i-tag
-                            i-tag-other_3">
-                            #流程软件
-                        </a>
-                                
-                        </div>
-                        
-                                <div class="post-content">
-                                    <h5 id="snakemake是一个用来编写任务流程的工具用python编写的因此其执行的流程脚本也比较通俗易懂易于理解">snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。</h5>
+	
+	                      
+		<div class="entry-content">
+			<h1 class="entry-title">snakemake的安装及使用</h1>
+<div class="entry-meta">
+	
+	           <a href="https://wangxf133.github.io/post/snakemake-de-an-zhuang-ji-shi-yong">
+							 <i class="fa fa-paint-brush"> 
+							</i> 2019-03-27</a> 
+			
+</span>
+													 
+		</div>
+                  
+			<div class="entry-summary">
+				<p><h5 id="snakemake是一个用来编写任务流程的工具用python编写的因此其执行的流程脚本也比较通俗易懂易于理解">snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。</h5>
 <!-- more -->
 <p>这里为大家提供snakemake工作流管理软件。Snakemake是用Python3写的一个工具，模仿makefile的格式（makefile就是我们安装软件 make make install时，使用的各种编译规则，不明白也没关系），处理流程中各步骤的依赖关系，这样就知道哪一步分析先运行，哪一步后运行，各个分析步骤就形成了一个有向无环图（DAG，就是GO分析里面的DOG喽），引用文档里面的一个图：</p>
 <p>官网文档：http://snakemake.readthedocs.io/en/latest/index.html</p>
@@ -377,177 +352,176 @@ expand(&quot;sorted_reads/{sample}.{replicate}.bam&quot;, sample=SAMPLES, replic
 <ol start="2">
 <li>wildcards.sample??</li>
 </ol>
+</p>
+							</div>
+	<div class="vt-post-tags">
+ 
+				<a href="https://wangxf133.github.io/tag/ycuDIRf0A" rel="tag">pepline</a>	
+				 
+				<a href="https://wangxf133.github.io/tag/d7UQHOaSj" rel="tag">snakemake</a>	
+				 
+				<a href="https://wangxf133.github.io/tag/c7TZoHjAr" rel="tag">流程软件</a>	
+				 
+					</div>						
+<nav class="navigation3 post-navigation3" role="navigation">
+		
+		<div class="nav-links3">
+      
+		<div class="nav-previous3"><a href="https://wangxf133.github.io/post/zhi-huan-jian-yan-permutation-test" rel="prev"> 置换检验(Permutation Test)</a></div>
+		 
+		 
+		<div class="nav-next3"><a href="https://wangxf133.github.io/post/interproscan-de-an-zhuang-ji-shi-yong" rel="next"> interproscan的安装及使用</a></div>
+		
+		</div>
+	</nav>
+		</div>
+		
+ 
+		
+</article>
 
-                                </div>
-                    </article>
-                    <!--  -->
-                    
-                        <div class="next-post">
-                            <div class="next">下一篇</div>
-                            <a href="https://wangxf133.github.io/post/interproscan-de-an-zhuang-ji-shi-yong">
-                                <h3 class="post-title">
-                                    interproscan的安装及使用
-                                </h3>
-                            </a>
-                        </div>
-                        
-                            <div id="disqus_thread"></div>
-                            <div id="gitalk-container"></div>
-                </div>
-                <!-- middle -->
-                <div class="main-container-middle"></div>
-                <!-- right -->
-                <div id="sidebar" class="main-container-right">
-                    
-                        <!-- toc -->
-                        
-    <div class="toc-card i-card ">
-        <div class="toc-title i-card-title">目录</div>
-        <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#snakemake%E6%98%AF%E4%B8%80%E4%B8%AA%E7%94%A8%E6%9D%A5%E7%BC%96%E5%86%99%E4%BB%BB%E5%8A%A1%E6%B5%81%E7%A8%8B%E7%9A%84%E5%B7%A5%E5%85%B7%E7%94%A8python%E7%BC%96%E5%86%99%E7%9A%84%E5%9B%A0%E6%AD%A4%E5%85%B6%E6%89%A7%E8%A1%8C%E7%9A%84%E6%B5%81%E7%A8%8B%E8%84%9A%E6%9C%AC%E4%B9%9F%E6%AF%94%E8%BE%83%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E6%98%93%E4%BA%8E%E7%90%86%E8%A7%A3">snakemake是一个用来编写任务流程的工具，用python编写的，因此其执行的流程脚本也比较通俗易懂，易于理解。</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E4%B8%80-%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90%E5%BC%80%E5%A7%8B">一、从一个简单的例子开始</a><br>
-*
-<ul>
-<li><a href="#1%E5%AE%89%E8%A3%85snakemake">1.安装snakemake</a></li>
-<li><a href="#2-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">2 使用说明</a><br>
-*
-<ul>
-<li><a href="#21-%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84snakemake%E8%84%9A%E6%9C%AC">2.1 一个简单的snakemake脚本</a></li>
-<li><a href="#22-%E5%8F%A6%E4%B8%80%E4%B8%AAsnakemake%E8%84%9A%E6%9C%AC">2.2 另一个snakemake脚本</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E4%BA%8C-snakemake%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4%E4%B8%8E%E8%A7%84%E5%88%99">二、snakemake中的一些命令与规则</a>
-<ul>
-<li><a href="#rule">rule</a><br>
-*<br>
-*<br>
-* <a href="#1-rule-all-%E4%B8%8D%E5%90%8C%E4%BA%8E%E5%85%B6%E4%BB%96%E7%9A%84rule%E5%9C%A8rule-all%E9%87%8C%E9%9D%A2%E4%B8%80%E8%88%AC%E4%B8%8D%E4%BC%9A%E5%8E%BB%E5%AE%9A%E4%B9%89%E8%A6%81%E6%89%A7%E8%A1%8C%E7%9A%84%E5%91%BD%E4%BB%A4%E4%BB%96%E4%B8%80%E8%88%AC%E7%94%A8%E6%9D%A5%E5%AE%9A%E4%B9%89%E6%9C%80%E5%90%8E%E7%9A%84%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C%E6%96%87%E4%BB%B6-%E9%99%A4%E4%BA%86rule-all%E4%B8%AD%E5%AE%9A%E4%B9%89%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%96%E6%9C%80%E5%90%8E%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C%E4%B8%8D%E4%BC%9A%E4%BF%9D%E5%AD%98%E4%BB%BB%E4%BD%95%E4%B8%AD%E9%97%B4%E6%96%87%E4%BB%B6-%E4%BE%8B%E5%A6%82%E5%B0%86%E4%B8%8A%E9%9D%A2%E7%9A%84%E8%84%9A%E6%9C%AC%E6%94%B9%E6%88%90%E5%A6%82%E4%B8%8B%E6%96%87%E4%BB%B6%E5%88%99%E6%B2%A1%E6%9C%89%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C">1、rule all。不同于其他的rule，在rule all里面一般不会去定义要执行的命令，他一般用来定义最后的输出结果文件。除了rule all中定义的文件外最后输出结果不会保存任何中间文件。例如将上面的脚本改成如下文件则没有输出结果：</a><br>
-* <a href="#2-wildcards-%E7%94%A8%E6%9D%A5%E8%8E%B7%E5%8F%96%E9%80%9A%E9%85%8D%E7%AC%A6%E5%8C%B9%E9%85%8D%E5%88%B0%E7%9A%84%E9%83%A8%E5%88%86%E4%BE%8B%E5%A6%82%E5%AF%B9%E4%BA%8E%E9%80%9A%E9%85%8D%E7%AC%A6datasetfilegrouptxt%E5%8C%B9%E9%85%8D%E5%88%B0%E6%96%87%E4%BB%B6101fileatxt%E5%88%99wildcardsdataset%E5%B0%B1%E6%98%AF101wildcardsgroup%E5%B0%B1%E6%98%AFa">2、wildcards。用来获取通配符匹配到的部分，例如对于通配符&quot;{dataset}/file.{group}.txt&quot;匹配到文件101/file.A.txt，则{wildcards.dataset}就是101，{wildcards.group}就是A。</a><br>
-* <a href="#3-threads-%E9%80%9A%E8%BF%87%E5%9C%A8rule%E9%87%8C%E9%9D%A2%E6%8C%87%E5%AE%9Athreads%E5%8F%82%E6%95%B0%E6%9D%A5%E6%8C%87%E5%AE%9A%E5%88%86%E9%85%8D%E7%BB%99%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%95%B0egthreads-8">3、threads。通过在rule里面指定threads参数来指定分配给程序的线程数，egthreads: 8。</a><br>
-* <a href="#4-resources-%E5%8F%AF%E7%94%A8%E6%9D%A5%E6%8C%87%E5%AE%9A%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E7%9A%84%E5%86%85%E5%AD%98eg-resources-mem_mb800">4、resources。可用来指定程序运行的内存，eg. resources: mem_mb=800。</a><br>
-* <a href="#5-message-%E4%BD%BF%E7%94%A8message%E5%8F%82%E6%95%B0%E5%8F%AF%E4%BB%A5%E6%8C%87%E5%AE%9A%E6%AF%8F%E8%BF%90%E8%A1%8C%E5%88%B0%E4%B8%80%E4%B8%AArule%E6%97%B6%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%B8%AD%E7%BB%99%E5%87%BA%E6%8F%90%E7%A4%BA%E4%BF%A1%E6%81%AFegmessage-starting-mapping">5、message。使用message参数可以指定每运行到一个rule时，在终端中给出提示信息，eg.message: &quot;starting mapping ...&quot;。</a><br>
-* <a href="#6-priority-%E5%8F%AF%E7%94%A8%E6%9D%A5%E6%8C%87%E5%AE%9A%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%E9%BB%98%E8%AE%A4%E4%B8%BA0egpriority-20">6、priority。可用来指定程序运行的优先级，默认为0，eg.priority: 20。</a><br>
-* <a href="#7-log-%E7%94%A8%E6%9D%A5%E6%8C%87%E5%AE%9A%E7%94%9F%E6%88%90%E7%9A%84%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6eglog-logsconcatlog">7、log。用来指定生成的日志文件，eg.log: &quot;logs/concat.log&quot;。</a><br>
-* <a href="#8-params-%E6%8C%87%E5%AE%9A%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E7%9A%84%E5%8F%82%E6%95%B0egparams-cat-n%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95%E4%B8%BAparamscat">8、params。指定程序运行的参数，eg.params: cat=&quot;-n&quot;,调用方法为{params.cat}。</a><br>
-* <a href="#9-run-%E5%9C%A8run%E7%9A%84%E7%BC%A9%E8%BF%9B%E5%8C%BA%E5%9F%9F%E9%87%8C%E9%9D%A2%E5%8F%AF%E4%BB%A5%E8%BE%93%E5%85%A5%E5%B9%B6%E6%89%A7%E8%A1%8Cpython%E4%BB%A3%E7%A0%81">9、run。在run的缩进区域里面可以输入并执行python代码。</a><br>
-* <a href="#10-scripts-%E7%94%A8%E6%9D%A5%E6%89%A7%E8%A1%8C%E6%8C%87%E5%AE%9A%E8%84%9A%E6%9C%ACegscripts-rm_duppy">10、scripts。用来执行指定脚本，eg.scripts: &quot;rm_dup.py&quot;</a><br>
-* <a href="#11-temp-%E9%80%9A%E8%BF%87temp%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E5%9C%A8%E6%89%80%E6%9C%89rule%E8%BF%90%E8%A1%8C%E5%AE%8C%E5%90%8E%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E7%9A%84%E4%B8%AD%E9%97%B4%E6%96%87%E4%BB%B6egoutput-tempf1bam">11、temp。通过temp方法可以在所有rule运行完后删除指定的中间文件，eg.output: temp(&quot;f1.bam&quot;)。</a><br>
-* <a href="#12-protected-%E7%94%A8%E6%9D%A5%E6%8C%87%E5%AE%9A%E6%9F%90%E4%BA%9B%E4%B8%AD%E9%97%B4%E6%96%87%E4%BB%B6%E6%98%AF%E9%9C%80%E8%A6%81%E4%BF%9D%E7%95%99%E7%9A%84egoutput-protectedf1bam">12、protected。用来指定某些中间文件是需要保留的，eg.output: protected(&quot;f1.bam&quot;)。</a><br>
-* <a href="#13-ancient-%E9%87%8D%E5%A4%8D%E8%BF%90%E8%A1%8C%E6%89%A7%E8%A1%8C%E6%9F%90%E4%B8%AAsnakefile%E6%97%B6snakemake%E4%BC%9A%E9%80%9A%E8%BF%87%E6%AF%94%E8%BE%83%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E9%97%B4%E6%88%B3%E6%98%AF%E5%90%A6%E6%9B%B4%E6%94%B9%E6%AF%94%E5%8E%9F%E6%9D%A5%E7%9A%84%E6%96%B0%E6%9D%A5%E5%86%B3%E5%AE%9A%E6%98%AF%E5%90%A6%E9%87%8D%E6%96%B0%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%94%9F%E6%88%90%E6%96%87%E4%BB%B6%E4%BD%BF%E7%94%A8ancient%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E5%BC%BA%E5%88%B6%E4%BD%BF%E5%BE%97%E7%BB%93%E6%9E%9C%E6%96%87%E4%BB%B6%E4%B8%80%E6%97%A6%E7%94%9F%E6%88%90%E5%B0%B1%E4%B8%8D%E4%BC%9A%E5%86%8D%E6%AC%A1%E9%87%8D%E6%96%B0%E7%94%9F%E6%88%90%E8%A6%86%E7%9B%96%E5%8D%B3%E4%BE%BF%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E6%97%B6%E9%97%B4%E6%88%B3%E5%B7%B2%E7%BB%8F%E6%9B%B4%E6%96%B0eginput-ancientf1fastq">13、ancient。重复运行执行某个Snakefile时，snakemake会通过比较输入文件的时间戳是否更改(比原来的新)来决定是否重新执行程序生成文件，使用ancient方法可以强制使得结果文件一旦生成就不会再次重新生成覆盖，即便输入文件时间戳已经更新，eg.input: ancient(&quot;f1.fastq&quot;)。</a><br>
-* <a href="#14-rule-dependencies-%E5%8F%AF%E9%80%9A%E8%BF%87%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E6%8C%87%E5%AE%9A%E5%89%8D%E4%B8%80%E4%B8%AArule%E7%9A%84%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E4%B8%BA%E6%AD%A4rule%E7%9A%84%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6">14、Rule Dependencies。可通过快捷方式指定前一个rule的输出文件为此rule的输入文件：</a><br>
-* <a href="#15-report-%E4%BD%BF%E7%94%A8snakemake%E5%AE%9A%E4%B9%89%E7%9A%84report%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E6%96%B9%E4%BE%BF%E7%9A%84%E5%B0%86%E7%BB%93%E6%9E%9C%E5%B5%8C%E5%85%A5%E5%88%B0%E4%B8%80%E4%B8%AAhtml%E6%96%87%E4%BB%B6%E4%B8%AD%E8%BF%9B%E8%A1%8C%E6%9F%A5%E7%9C%8B">15、report。使用snakemake定义的report函数可以方便的将结果嵌入到一个HTML文件中进行查看。</a></li>
-<li><a href="#configuration">configuration</a></li>
-<li><a href="#glob_wildcards%E7%9A%84%E4%BD%BF%E7%94%A8">glob_wildcards的使用</a></li>
-</ul>
-</li>
-<li><a href="#%E4%B8%89-snakemake%E7%9A%84%E6%89%A7%E8%A1%8C">三、snakemake的执行</a></li>
-<li><a href="#%E5%86%8D%E6%9C%89%E4%B8%AA%E8%BE%83%E9%9A%BE%E7%9A%84%E4%BE%8B%E5%AD%90">再有个较难的例子</a>
-<ul>
-<li><a href="#%E4%BE%8B%E5%AD%90">例子</a><br>
-*<br>
-*<br>
-* <a href="#1-%E9%A6%96%E5%85%88%E5%9C%A8snakefile%E6%9C%80%E5%89%8D%E9%9D%A2%E5%86%99%E4%BA%86%E4%B8%80%E4%B8%AAsamples%E7%9A%84%E5%88%97%E8%A1%A8%E9%87%8C%E9%9D%A2%E4%BF%9D%E5%AD%98%E4%BA%862%E4%B8%AA%E6%A0%B7%E5%93%81%E5%90%8D">1、首先在snakefile最前面写了一个SAMPLES的列表，里面保存了2个样品名</a><br>
-* <a href="#2-all%E4%B8%AD%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E8%BF%99%E4%B8%AA%E6%96%87%E4%BB%B6%E5%88%97%E8%A1%A8%E7%94%B1%E8%A1%A8%E8%BE%BE%E5%BC%8F-expandsampletxt-samplesamples%E7%94%9F%E6%88%90-expand%E7%9A%84%E7%94%A8%E6%B3%95%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83%E4%B8%8B%E9%9D%A2%E8%BF%99%E9%87%8C%E6%9C%80%E7%BB%88%E7%94%9F%E6%88%90%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF-sample1txt-sample2txt%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6">2、all中需要输入文件，这个文件列表由表达式 expand('{sample}.txt', sample=SAMPLES)生成， expand的用法可以参考下面，这里最终生成的结果是 [Sample1.txt, Sample2.txt]两个文件</a><br>
-* <a href="#3-%E5%A6%82%E6%9E%9C-all%E4%B8%AD%E4%B8%A4%E4%B8%AA%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E8%AF%9Dsnakemake%E8%BF%98%E4%BC%9A%E4%BB%8E%E5%85%B6%E4%BB%96rule%E9%87%8C%E9%9D%A2%E8%BF%9B%E8%A1%8C%E6%9F%A5%E6%89%BE%E7%9C%8B%E7%9C%8B%E6%9C%89%E6%B2%A1%E6%9C%89%E5%85%B6%E4%BB%96%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%8C%B9%E9%85%8D%E8%BF%99%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6-%E5%88%9A%E5%A5%BD%E5%9C%A8-quantify_genes%E4%B8%AD%E7%9A%84%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6snakemake%E7%9B%AE%E5%89%8D%E6%8A%8A%E8%80%83%E8%99%91-quantify_genes%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E5%86%85%E5%AE%B9">3、如果 all中两个输入文件不存在的话，Snakemake还会从其他rule里面进行查找，看看有没有其他输出文件匹配这两个文件。刚好在 quantify_genes中的输出文件就是这两个文件，Snakemake目前把考虑 quantify_genes中的具体内容</a><br>
-* <a href="#4-%E5%9C%A8-quantify_genes%E4%B8%AD%E8%A6%81%E6%83%B3%E7%94%9F%E6%88%90%E6%9C%80%E7%BB%88%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E8%BF%98%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E8%87%AA%E5%B7%B1%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E5%88%9A%E5%A5%BD%E8%BF%99%E9%87%8C%E4%B9%9F%E5%AE%9A%E4%B9%89%E4%BA%86%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF%E8%BF%99%E9%87%8C%E5%AE%9A%E4%B9%89%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E7%9A%84%E6%A0%BC%E5%BC%8F%E4%B8%8E%E4%B8%8A%E9%9D%A2%E7%9A%84%E8%BF%98%E4%B8%8D%E4%B8%80%E6%A0%B7%E9%87%87%E7%94%A8%E4%BA%86%E9%94%AE%E5%80%BC%E5%AF%B9%E7%9A%84%E5%BD%A2%E5%BC%8F%E8%BF%9B%E8%A1%8C%E8%AE%BE%E7%BD%AE%E8%80%8C%E4%B8%94%E5%9C%A8%E5%90%8E%E9%9D%A2%E4%BD%BF%E7%94%A8%E7%9A%84%E6%97%B6%E5%80%99%E4%B9%9F%E6%98%AF%E9%87%87%E7%94%A8%E4%BA%86%E7%B1%BB%E4%BC%BCpython%E5%B1%9E%E6%80%A7%E8%B0%83%E7%94%A8%E7%9A%84%E5%BD%A2%E5%BC%8F%E6%88%96%E8%80%85%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%E4%B9%9F%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%9A%84-input0%E4%BD%86%E5%8F%AF%E8%AF%BB%E6%80%A7%E4%B8%8D%E5%A5%BD%E9%87%8C%E9%9D%A2%E7%9A%84sample%E5%8F%98%E9%87%8F%E5%BA%94%E8%AF%A5%E5%92%8C%E5%89%8D%E9%9D%A2-all%E4%B8%AD%E7%9A%84sample%E6%9D%A5%E6%BA%90%E4%B8%8D%E4%B8%80%E6%A0%B7snakemake%E4%BC%9A%E6%A0%B9%E6%8D%AE-fastq%E7%9B%AE%E5%BD%95%E4%B8%AD%E5%AD%98%E5%9C%A8%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%8C%B9%E9%85%8D%E5%8C%B9%E9%85%8D%E7%9A%84%E6%9C%80%E7%BB%88%E4%B9%9F%E4%BC%9A%E5%BE%97%E5%88%B0-sample1-sample2%E6%9C%80%E5%90%8E%E7%9A%84shell%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B9%9F%E5%8F%AA%E6%98%AF%E5%BE%88%E7%AE%80%E5%8D%95%E7%9A%84-echo%E8%AF%AD%E5%8F%A5">4、在 quantify_genes中要想生成最终两个文件，还需要考虑自己需要哪些输入文件，刚好这里也定义了输入文件信息，这里定义输入文件的格式与上面的还不一样，采用了键值对的形式进行设置，而且在后面使用的时候，也是采用了类似Python属性调用的形式（或者使用索引也是可以的 input[0]，但可读性不好），里面的{sample}变量应该和前面 all中的{sample}来源不一样，Snakemake会根据 fastq目录中存在的文件进行匹配，匹配的最终也会得到 ['Sample1', 'Sample2']，最后的shell执行过程也只是很简单的 echo语句</a></li>
-</ul>
-</li>
-<li><a href="#%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0">视频笔记</a></li>
-</ul>
+<div id="marlin_lite_about_widget-2" class="widget marlin_lite_about_widget">
+			<h4 class="widget-title">评论</h4>	
 
-        </div>
-        <script>
-            function locateCatelogList() {
-                /*获取文章目录集合,可通过:header过滤器*/
-                var alis = $('.post-content :header');
-                /*获取侧边栏目录列表集合**/
-                var sidebar_alis = $('.markdownIt-TOC a');
-                /*获取滚动条到顶部的距离*/
-                var scroll_height = $(window).scrollTop();
-                for (var i = 0; i < alis.length; i++) {
-                    /*获取锚点集合中的元素分别到顶点的距离*/
-                    var a_height = $(alis[i]).offset().top;
-                    if (a_height < scroll_height) {
-                        /*高亮显示*/
-                        sidebar_alis.removeClass('on');
-                        $(sidebar_alis[i]).addClass('on');
-                    }
-                }
-            }
-            $(function() {
-                /*绑定滚动事件 */
-                $(window).bind('scroll', locateCatelogList);
-            });
-        </script>
-    </div>
-    
-                            
+			 
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
-                </div>
-
-
-
-
-            </div>
-
-
-            <div class="site-footer">
-  Powered by Gridea | 
-  <a class="rss" href="https://wangxf133.github.io/atom.xml" target="_blank">RSS</a>
-</div>
+<div id="gitalk-container"></div>
 
 <script>
-  hljs.initHighlightingOnLoad()
+
+  var gitalk = new Gitalk({
+    clientID: '5debd0dd15fc74854e71',
+    clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
+    repo: 'wangxf133.github.io',
+    owner: 'wangxf133',
+    admin: ['wangxf133'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
 </script>
 
-
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-    
+          
+          
         
-            <script>
-    window.onload = function() {
-        var gitalk = new Gitalk({
-            clientID: '5debd0dd15fc74854e71',
-            clientSecret: '45d803fcebed7f8b06629f3f1626d55f24a79c4f',
-            repo: 'wangxf133.github.io',
-            owner: 'wangxf133',
-            admin: ['wangxf133'],
-            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
-            distractionFreeMode: false // Facebook-like distraction free mode
-        })
+   
+  
+ 
 
-        gitalk.render('gitalk-container')
-    }
-</script>
+		</div>
+
+			</div>
+			
+
+
+<div class="col l3 hide-on-med-and-down">
+	
+        <div class="toc-widget">
+			
+            <div class="toc-title"></div>
+			
+            <div id="toc-content">
+			
+			
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>										 
+
+ 
+       
+
+
+			</div>
+		</div>
+
+		
+		 	<footer id="colophon" class="site-footer">
+
+			<div class="container">
+	
+				<div class="copyright">Powered by Gridea<br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan/tree/master" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div><!-- .container -->
+		
+		</footer><!-- #colophon -->
+
+</div>
+
+<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/fitvids.js'></script>
+<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/marlin-scripts.js'></script>
+
+		<script data-no-instant>
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $('.navigation:eq(0)').remove();
+                $("").attr("rel" , "external");
+                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+                $("a.vi").attr("rel" , "");
+                $.viewImage({
+                    'target'  : 'img',
+                    'exclude' : '.vsmile-icons img,.gallery img',
+                    'delay'   : 300
+                });
+                $.lately({
+                    'target' : '.commentmetadata a,.infos time,.post-list time'
+                });
+                prettyPrint();
                 
+                $('ul.links li a').each(function(){
+                    if($(this).parent().find('.bg').length==0){
+                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+                    }
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
 
-                    
-                                
 </body>
-
 </html>
