@@ -1,116 +1,104 @@
-
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
- 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="profile" href="http://gmpg.org/xfn/11" />
-	<title>StatQuest学习笔记03——标准差、标准与置信区间 | 生信学渣</title>	
-</style>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title></title>
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
-<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/jquery.js'></script>
-<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/script.js'></script>
+<script src="https://wangxf133.github.io/media/script.js"></script>
 
-<style type="text/css">
-header {
-    text-align: center;
-    padding: 120px 0px 40px 0px;
-    background: #515865 center no-repeat;
-    font-size: 16px;
-    color: #fff;
-    background-size: cover;
-    background-image:url();
-}
-		</style>
+    
 
- 	
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title></title>
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+<script src="https://wangxf133.github.io/media/script.js"></script>
+
+    
+
+  <script src="https://wangxf133.github.io/media/prism.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 </head>
-<body class="post-template-default single single-post postid-70 single-format-standard">
-    <div id="wrapper">
+<body>
+  <div class="antialiased">
+    <div class="max-w-5xl mx-auto px-6 md:px-8">
+      <div class="flex justify-between items-center mt-10">
+  <h1 class="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-900 font-medium md:font-normal leading-none">
+    <a href="https://wangxf133.github.io">生信学渣</a>
+  </h1>
+  <div class="block lg:hidden" id="thumb-menu">
+    <button id="thumb-open" type="button" class="block">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6H22V7H2V6ZM2 12H22V13H2V12ZM22 18H2V19H22V18Z" class="fill-current text-gray-900"></path></svg>
+    </button>
+    <button id="thumb-close" type="button" class="hidden">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L20 20M20 4L4 20" class="" stroke="#1A202C"></path></svg>
+    </button>
+  </div>
+</div>
+<div id="nav-list" class="lg:block hidden">
+  <div class="w-full block lg:flex lg:justify-between lg:border-b lg:border-gray-400 mt-10 text-gray-700 font-medium lg:text-lg">
+    <div class="lg:flex -mb-px">
+      
         
-			
-		<header id="header ddq" class="site-header" 
-		
-		>
-			<div class="site-branding">
-									<h1 class="site-title"><a href="https://wangxf133.github.io" rel="home">生信学渣</a></h1>
-										
-					<h2 class="site-description">学习 记录 成长</h2>
-										
-							</div>
-			<nav id="nav-wrapper">
-				<div class="container">
-					<div class="nav-toggle">
-						<div class="bars">
-							<div class="bar"></div>
-							<div class="bar"></div>
-							<div class="bar"></div>
-						</div>
-					</div><!-- /nav-toggle -->
-					<div class="clear"></div>
-					<ul id="" class="vtmenu">
-		 
-     			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
-	 
-	<a  href="/"> 首页</a></li>
-	
-    
-     			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
-	 
-	<a  href="/archives"> 归档</a></li>
-	
-    
-     			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
-	 
-	<a  href="/tags"> 标签</a></li>
-	
-    
-     			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
-	 
-	<a  href="/post/about"> 关于</a></li>
-	
-    
-
-</ul>
-</li>		
-		
-</ul>				</div>
-			</nav><!-- #navigation -->
-        </header><!-- #masthead -->
-
-		<div id="content" class="container">
-			<div class="row">
-	<div class="col-md-8 site-main">
-				
-<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
-
-	
-	                      
-		<div class="entry-content">
-			<h1 class="entry-title">StatQuest学习笔记03——标准差、标准与置信区间</h1>
-<div class="entry-meta">
-	
-	           <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-03-biao-zhun-chai-biao-zhun-yu-zhi-xin-qu-jian">
-							 <i class="fa fa-paint-brush"> 
-							</i> 2019-03-27</a> 
-			
-</span>
-													 
-		</div>
-                  
-			<div class="entry-summary">
-				<p><h2 id="前言">前言</h2>
+          <a href="/" class="nav-link">首页</a>
+        
+      
+        
+          <a href="/archives" class="nav-link">归档</a>
+        
+      
+        
+          <a href="/tags" class="nav-link">标签</a>
+        
+      
+        
+          <a href="/post/about" class="nav-link">关于</a>
+        
+      
+    </div>
+    <div class="lg:flex">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="https://wangxf133.github.io/atom.xml" class="block mt-6 lg:mt-0 lg:ml-8 flex align-center hover:text-gray-900" target="_blank">
+        <div>RSS</div>
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-1 -mt-px"><path d="M16.5 13V18.5H6.5V8.5H12" stroke="#4A5568"></path> <path d="M10 15L18.5 6.5" stroke="#4A5568"></path> <path d="M14 6.5H18.5V11" stroke="#4A5568"></path></svg>
+      </a>
+    </div>
+  </div>
+</div>
+      <div class="mb-20 md:flex mt-10 lg:mt-6 md:border-t md:border-gray-400 md:pt-2 lg:border-t-0 lg:pt-0">
+        <div class="w-full md:w-2/3 mt-6">
+          <h1 class="text-4xl">StatQuest学习笔记03——标准差、标准与置信区间</h1>
+          
+          <div class="mt-6 lg:mt-10 post-content">
+            <h2 id="前言">前言</h2>
 <p>这是StatQuest视频教程的第8-12个。</p>
 <p>第8个视频的内容为标准差，标准误，第9个视频是柱状图与饼状图；第10个视频是对数转换以及对数的运算，这个非常简单；第11个视频为置信区间；第12个视频内容为The Standard Error（标准错误）</p>
 <!--more-->
 <h2 id="标准差与标准误">标准差与标准误</h2>
 <p>看下面的案例，这5个点是5只小鼠的体重，其中红色竖线是均值，红色横线就是标准差（standard deviation），它表示的是数据的分布情况，如下所示：</p>
-<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/BCF6eHaj20.png?imageslim" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/BCF6eHaj20.png?imageslim" alt=""></figure>
 <blockquote>
 <p><strong>标准差（Standard Deviation）</strong>，在概率统计中最常使用作为统计分布程度（statistical dispersion）上的测量。标准差定义是总体各单位标准值与其平均数离差平方的算术平均数的平方根。它反映组内个体间的离散程度。测量到分布程度的结果，原则上具有两种性质：<br>
 为非负数值， 与测量资料具有相同单位。一个总量的标准差或一个随机变量的标准差，及一个子集合样品数的标准差之间，有所差别。<br>
@@ -165,7 +153,7 @@ header {
 另外，在对转录组数据进行分析时，也通常使用对数，对于差异基因的结果，通常也是对数表示的，正数表示基因表达上调，反之，下调。</p>
 <h2 id="置信区间confidence-intervals">置信区间（confidence intervals）</h2>
 <p>先看一个场景，下图是我们检测了一批雌性小鼠（12只）的体重，其中红色竖线是这次数据的均值：</p>
-<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/89hkG8j5kb.png?imageslim" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/89hkG8j5kb.png?imageslim" alt=""></figure>
 <p>此时，我们从这批小鼠中自举（bootstrap）一些样本，例如我们随机选取12只（肯定有重复挑中的小鼠，这个没有关系），如下所示：<br>
 <img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/lG74dJm6jh.png?imageslim" alt=""></p>
 <p>关于自举：</p>
@@ -174,58 +162,30 @@ header {
 从给定训练集中有放回的均匀抽样，也就是说，每当选中一个样本，它等可能地被再次选中并被再次添加到训练集中。从初始样本重复随机替换抽样，生成一个或一系列待检验统计量的经验分布。 无需假设一个特定的理论分布，便可生成统计量的置信区间，并能检验统计假设。</p>
 </blockquote>
 <p>自举后，计算这次抽样的均数，然后再自举，再算均数，这个过程持续很多次（大于1000次），计算出的均数如下所示：</p>
-<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/b45IGE8k1E.png?imageslim" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/b45IGE8k1E.png?imageslim" alt=""></figure>
 <p>此时我们计算置信区间，如下所示：<br>
 <img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/Illf8bdDE2.png?imageslim" alt=""></p>
 <p>这个95%的置信区间就是指，它覆盖了这次自举所有数据的95%均值范围。由于这个置信区间覆盖了95%的均值，那么我们就知道，均数在这个区间之外的概率是不到5%（0.05只是一个界限）。那也就是说，任何在这个区间之外的数字的概率p值是小于0.05的（也就是说有显著意义）。</p>
 <h2 id="置信区间的用处">置信区间的用处</h2>
-<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/iGbemGdE30.png?imageslim" alt=""></p>
+<figure data-type="image" tabindex="4"><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/iGbemGdE30.png?imageslim" alt=""></figure>
 <p>先看置信区间的示意图：</p>
-<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/Cm49lc46b1.png?imageslim" alt=""></p>
+<figure data-type="image" tabindex="5"><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/Cm49lc46b1.png?imageslim" alt=""></figure>
 <p>均值是对“真实”值的估计（真实值是无法知道的，只能通过不断地测量一步一步接近）。</p>
 <p>它有95%的可能落在95%的置信区间内，下图的绿色椭圆的范围是在95%的置信区间之外，它的最右边是20，我们可以发现，在这个绿色椭圆之内也有一个均值（是通过自举法计算的），也就是说这个均值落在了这个绿色的椭圆之内，那么均值落在它里面的概率是多少？这个概率我们通常用p值来表示。从图形上可以看出来，这个绿色椭圆的范围是在95%的置信区间之外，因此我们就可以推断出此时p值是小于0.05的（这只是一种非常粗糙的推断，具体的推导过程可以看相关的数学书），因此我们就可以下结论：“真实”值出现在95%区间以外的概率不到5%（也就是说p值小于0.05时有统计学意义）。</p>
-<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/KhHLl4jgJB.png?imageslim" alt=""></p>
+<figure data-type="image" tabindex="6"><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/KhHLl4jgJB.png?imageslim" alt=""></figure>
 <h2 id="两个数据集的比较">两个数据集的比较</h2>
 <p>再看一个案例，下图是雌性小鼠与在雄性小鼠体重的测量结果，如下所示：<br>
 <img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/AIibFKF7jL.png?imageslim" alt=""></p>
 <p>其中，上图的黑色横线表示的是各自的95%置信区间。从图片上我们就可以直接看出，这两组数据的95%置信区间并不重复，它是有统计学意义的，也就是说我们可以直接看出来p值是小于0.05的（在实际运用中不可以这么做，还是要通过t检验进行计算）。但是，如果它们的95%置信区间有部分重合，就像下面的这个样子：</p>
-<p><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/bB89CE917d.png?imageslim" alt=""></p>
+<figure data-type="image" tabindex="7"><img src="http://ortxpw68f.bkt.clouddn.com/professional/180605/bB89CE917d.png?imageslim" alt=""></figure>
 <p>此时就要进行t检验了。</p>
 <p>参考： http://rvdsd.top/2018/06/03/BioStatistics/%E7%94%9F%E7%89%A9%E7%BB%9F%E8%AE%A1-StatQuest%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B003-%E6%A0%87%E5%87%86%E5%B7%AE%E3%80%81%E6%A0%87%E5%87%86%E4%B8%8E%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4/</p>
-</p>
-							</div>
-	<div class="vt-post-tags">
- 
-				<a href="https://wangxf133.github.io/tag/gkCUFXxT1" rel="tag">统计基础</a>	
-				 
-				<a href="https://wangxf133.github.io/tag/JNSPoGdBU" rel="tag">统计学</a>	
-				 
-				<a href="https://wangxf133.github.io/tag/Dz5lYxdVx" rel="tag">StatQuest</a>	
-				 
-					</div>						
-<nav class="navigation3 post-navigation3" role="navigation">
-		
-		<div class="nav-links3">
-      
-		<div class="nav-previous3"><a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-04-ni-he" rel="prev"> StatQuest学习笔记04——拟合</a></div>
-		 
-		 
-		<div class="nav-next3"><a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-02-yang-ben-liang-yu-chong-fu" rel="next"> StatQuest学习笔记02——样本量与重复</a></div>
-		
-		</div>
-	</nav>
-		</div>
-		
- 
-		
-</article>
 
-<div id="marlin_lite_about_widget-2" class="widget marlin_lite_about_widget">
-			<h4 class="widget-title">评论</h4>	
-
-			 
+          </div>
           
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+            
+              <div class="mt-6">
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 <div id="gitalk-container"></div>
@@ -246,122 +206,293 @@ header {
 
 </script>
 
-          
-          
-        
-   
+              </div>
+            
   
- 
-
-		</div>
-
-			</div>
-			
-
-
-<div class="col l3 hide-on-med-and-down">
-	
-        <div class="toc-widget">
-			
-            <div class="toc-title"></div>
-			
-            <div id="toc-content">
-			
-			
-			</div>
+            
+          
         </div>
-    </div>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '.entry-summary',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            // headingsOffset: -205,
-            headingSelector: 'h2, h3, h4'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('.entry-summary').children('h2, h3, h4').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-    });
-</script>										 
-
- 
-       
-
-
-			</div>
-		</div>
-
-		
-		 	<footer id="colophon" class="site-footer">
-
-			<div class="container">
-	
-				<div class="copyright">Powered by Gridea<br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan/tree/master" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
-			</div><!-- .container -->
-		
-		</footer><!-- #colophon -->
-
-</div>
-
-<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/fitvids.js'></script>
-<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/marlin-scripts.js'></script>
-
-		<script data-no-instant>
-    (function ($) {
-        $.extend({
-            adamsOverload: function () {
-                $('.navigation:eq(0)').remove();
-                $("").attr("rel" , "external");
-                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
-                $("a.vi").attr("rel" , "");
-                $.viewImage({
-                    'target'  : 'img',
-                    'exclude' : '.vsmile-icons img,.gallery img',
-                    'delay'   : 300
-                });
-                $.lately({
-                    'target' : '.commentmetadata a,.infos time,.post-list time'
-                });
-                prettyPrint();
+        
+          <div class="w-full md:w-1/3">
+            <div class="mt-6 md:pl-8">
+              <h4 class="text-base font-thin text-gray-700 mb-2">发布时间</h4>
+              <div class="text-lg mb-6">2019-03-27</div>
+              <h4 class="text-base font-thin text-gray-700 mb-2">标签</h4>
+              <div class="mb-6">
                 
-                $('ul.links li a').each(function(){
-                    if($(this).parent().find('.bg').length==0){
-                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
-                    }
-                });
-            }
-        });
-    })(jQuery);
-    jQuery.adamsOverload();
-</script>
+                  <a href="https://wangxf133.github.io/tag/gkCUFXxT1" class="py-1 px-4 border-gray-300 border text-sm inline-block text-gray-700 hover:text-gray-900 rounded mr-2 mb-2">统计基础</a>
+                
+                  <a href="https://wangxf133.github.io/tag/JNSPoGdBU" class="py-1 px-4 border-gray-300 border text-sm inline-block text-gray-700 hover:text-gray-900 rounded mr-2 mb-2">统计学</a>
+                
+                  <a href="https://wangxf133.github.io/tag/Dz5lYxdVx" class="py-1 px-4 border-gray-300 border text-sm inline-block text-gray-700 hover:text-gray-900 rounded mr-2 mb-2">StatQuest</a>
+                
+              </div>
+              <h4 class="text-base font-thin text-gray-700 mb-2">阅读时间</h4>
+              <div class="text-lg mb-6">10 min read</div>
+              <h4 class="text-base font-thin text-gray-700 mb-2">相关阅读</h4>
+              <div class="border-b border-gray-400">
+                
 
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+        
+        <div class="border-t border-gray-400 py-6">
+          <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-04-ni-he" class="text-lg hover:underline my-2 inline-block">StatQuest学习笔记04——拟合</a>
+        </div>
+      
+    
+      
+        
+        <div class="border-t border-gray-400 py-6">
+          <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-04-ni-he" class="text-lg hover:underline my-2 inline-block">StatQuest学习笔记04——拟合</a>
+        </div>
+      
+    
+      
+        
+        <div class="border-t border-gray-400 py-6">
+          <a href="https://wangxf133.github.io/post/statquest-xue-xi-bi-ji-04-ni-he" class="text-lg hover:underline my-2 inline-block">StatQuest学习笔记04——拟合</a>
+        </div>
+      
+    
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+
+              </div>
+            </div>
+          </div>
+        
+      </div>
+      <div class="footer border-gray-400 border-t pt-6 mt-6 sm:mt-8 md:mt-10 mb-20 text-gray-700 text-sm sm:text-base lg:text-lg">
+  Powered by Gridea
+</div>
+    </div>
+  </div>
+  <script>
+    Prism.highlightAll()
+  </script>
 </body>
 </html>

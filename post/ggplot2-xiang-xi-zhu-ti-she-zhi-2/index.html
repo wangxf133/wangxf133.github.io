@@ -1,113 +1,101 @@
-
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
- 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="profile" href="http://gmpg.org/xfn/11" />
-	<title>ggplot2详细主题设置(2) | 生信学渣</title>	
-</style>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title></title>
 <link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
-<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/jquery.js'></script>
-<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/script.js'></script>
+<script src="https://wangxf133.github.io/media/script.js"></script>
 
-<style type="text/css">
-header {
-    text-align: center;
-    padding: 120px 0px 40px 0px;
-    background: #515865 center no-repeat;
-    font-size: 16px;
-    color: #fff;
-    background-size: cover;
-    background-image:url();
-}
-		</style>
+    
 
- 	
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title></title>
+<link rel="stylesheet" href="https://wangxf133.github.io/styles/main.css">
+<script src="https://wangxf133.github.io/media/script.js"></script>
+
+    
+
+  <script src="https://wangxf133.github.io/media/prism.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 </head>
-<body class="post-template-default single single-post postid-70 single-format-standard">
-    <div id="wrapper">
+<body>
+  <div class="antialiased">
+    <div class="max-w-5xl mx-auto px-6 md:px-8">
+      <div class="flex justify-between items-center mt-10">
+  <h1 class="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-900 font-medium md:font-normal leading-none">
+    <a href="https://wangxf133.github.io">生信学渣</a>
+  </h1>
+  <div class="block lg:hidden" id="thumb-menu">
+    <button id="thumb-open" type="button" class="block">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6H22V7H2V6ZM2 12H22V13H2V12ZM22 18H2V19H22V18Z" class="fill-current text-gray-900"></path></svg>
+    </button>
+    <button id="thumb-close" type="button" class="hidden">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4L20 20M20 4L4 20" class="" stroke="#1A202C"></path></svg>
+    </button>
+  </div>
+</div>
+<div id="nav-list" class="lg:block hidden">
+  <div class="w-full block lg:flex lg:justify-between lg:border-b lg:border-gray-400 mt-10 text-gray-700 font-medium lg:text-lg">
+    <div class="lg:flex -mb-px">
+      
         
-			
-		<header id="header ddq" class="site-header" 
-		
-		>
-			<div class="site-branding">
-									<h1 class="site-title"><a href="https://wangxf133.github.io" rel="home">生信学渣</a></h1>
-										
-					<h2 class="site-description">学习 记录 成长</h2>
-										
-							</div>
-			<nav id="nav-wrapper">
-				<div class="container">
-					<div class="nav-toggle">
-						<div class="bars">
-							<div class="bar"></div>
-							<div class="bar"></div>
-							<div class="bar"></div>
-						</div>
-					</div><!-- /nav-toggle -->
-					<div class="clear"></div>
-					<ul id="" class="vtmenu">
-		 
-     			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
-	 
-	<a  href="/"> 首页</a></li>
-	
-    
-     			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
-	 
-	<a  href="/archives"> 归档</a></li>
-	
-    
-     			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
-	 
-	<a  href="/tags"> 标签</a></li>
-	
-    
-     			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
-	 
-	<a  href="/post/about"> 关于</a></li>
-	
-    
-
-</ul>
-</li>		
-		
-</ul>				</div>
-			</nav><!-- #navigation -->
-        </header><!-- #masthead -->
-
-		<div id="content" class="container">
-			<div class="row">
-	<div class="col-md-8 site-main">
-				
-<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
-
-	
-	                      
-		<div class="entry-content">
-			<h1 class="entry-title">ggplot2详细主题设置(2)</h1>
-<div class="entry-meta">
-	
-	           <a href="https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-2">
-							 <i class="fa fa-paint-brush"> 
-							</i> 2019-03-27</a> 
-			
-</span>
-													 
-		</div>
-                  
-			<div class="entry-summary">
-				<p><p><strong>theme()</strong>,本文将专门讲解一下。凡是与数据无关的图形设置可以归为主题类，ggplot2中主题设置十分多，根本不可能讲解完，只能稍微讲点皮毛，灵活运用才是关键，本文只是总体上略作介绍。正如R语言大神Hadley Wickham所讲的，ggplot2只是提供了一个平台，可以根据自己的需要无限创造。理论上来讲，只要能想到的图形，ggplot2都能实现。</p>
+          <a href="/" class="nav-link">首页</a>
+        
+      
+        
+          <a href="/archives" class="nav-link">归档</a>
+        
+      
+        
+          <a href="/tags" class="nav-link">标签</a>
+        
+      
+        
+          <a href="/post/about" class="nav-link">关于</a>
+        
+      
+    </div>
+    <div class="lg:flex">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="https://wangxf133.github.io/atom.xml" class="block mt-6 lg:mt-0 lg:ml-8 flex align-center hover:text-gray-900" target="_blank">
+        <div>RSS</div>
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-1 -mt-px"><path d="M16.5 13V18.5H6.5V8.5H12" stroke="#4A5568"></path> <path d="M10 15L18.5 6.5" stroke="#4A5568"></path> <path d="M14 6.5H18.5V11" stroke="#4A5568"></path></svg>
+      </a>
+    </div>
+  </div>
+</div>
+      <div class="mb-20 md:flex mt-10 lg:mt-6 md:border-t md:border-gray-400 md:pt-2 lg:border-t-0 lg:pt-0">
+        <div class="w-full md:w-2/3 mt-6">
+          <h1 class="text-4xl">ggplot2详细主题设置(2)</h1>
+          
+          <div class="mt-6 lg:mt-10 post-content">
+            <p><strong>theme()</strong>,本文将专门讲解一下。凡是与数据无关的图形设置可以归为主题类，ggplot2中主题设置十分多，根本不可能讲解完，只能稍微讲点皮毛，灵活运用才是关键，本文只是总体上略作介绍。正如R语言大神Hadley Wickham所讲的，ggplot2只是提供了一个平台，可以根据自己的需要无限创造。理论上来讲，只要能想到的图形，ggplot2都能实现。</p>
 <!--more-->
 <p>参考文章： <a href="http://ytlogos.coding.me/2017/06/25/ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98%EF%BC%88theme%EF%BC%89%E8%AE%BE%E7%BD%AE/">Logos的博客</a></p>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cei9jzdvj20yg0om74d.jpg" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cei9jzdvj20yg0om74d.jpg" alt=""></figure>
 <pre><code>library(ggplot2)
 #我们先来看看ggplot2默认的主题设置函数theme_gray()的源代码
 theme_gray#函数名不加括号可获得函数源代码
@@ -171,49 +159,49 @@ p&lt;- ggplot(data=mtcars, aes(x=wt, y=mpg))+
 geom_point(aes(color=factor(cyl)))#先试试图例修改
 p+theme(legend.position = &quot;none&quot;)#无图例
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cej78cwjj20uu0gujrr.jpg" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cej78cwjj20uu0gujrr.jpg" alt=""></figure>
 <pre><code>p+theme(legend.position = &quot;bottom&quot;)#图例在底部
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cejd86jtj20qn0gr3z0.jpg" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cejd86jtj20qn0gr3z0.jpg" alt=""></figure>
 <p>#也可以自定义</p>
 <pre><code>p+theme(legend.position = c(0.5, 0.7))
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cejjwu4nj20sv0guq3g.jpg" alt=""></p>
+<figure data-type="image" tabindex="4"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cejjwu4nj20sv0guq3g.jpg" alt=""></figure>
 <pre><code>#为图例加边界
 p+theme(legend.background = element_rect(color=&quot;red&quot;))
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cejq3p82j20pu0gywez.jpg" alt=""></p>
+<figure data-type="image" tabindex="5"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cejq3p82j20pu0gywez.jpg" alt=""></figure>
 <pre><code>#或者为图例中的每个元素进行设置，如加边界
 p+theme(legend.key =element_rect(color=&quot;red&quot;))
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cejv8e6gj20yg0omaa5.jpg" alt=""></p>
+<figure data-type="image" tabindex="6"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cejv8e6gj20yg0omaa5.jpg" alt=""></figure>
 <pre><code>#进行填充
 p+theme(legend.key = element_rect(fill=&quot;yellow&quot;))
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cek0lb3wj20yg0omjrg.jpg" alt=""></p>
+<figure data-type="image" tabindex="7"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cek0lb3wj20yg0omjrg.jpg" alt=""></figure>
 <pre><code>#图例内容字体大小、颜色、角度等设置
 p+theme(legend.text = element_text(size=25, color=&quot;darkred&quot;, angle=45))
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cek5umidj20q80h0wf3.jpg" alt=""></p>
+<figure data-type="image" tabindex="8"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cek5umidj20q80h0wf3.jpg" alt=""></figure>
 <pre><code>#为图例标题设置字体、颜色、大小等
 p+theme(legend.title = element_text(face=&quot;italic&quot;, size=25, color=&quot;red&quot;))
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cekd0l39j20oj0gwmxs.jpg" alt=""></p>
+<figure data-type="image" tabindex="9"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cekd0l39j20oj0gwmxs.jpg" alt=""></figure>
 <p>接下来是坐标以及网格等的自定义</p>
 <pre><code>#修改背景颜色
 p+theme(panel.background = element_rect(fill=&quot;black&quot;))
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3ceklgogtj20r60gzaam.jpg" alt=""></p>
+<figure data-type="image" tabindex="10"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3ceklgogtj20r60gzaam.jpg" alt=""></figure>
 <pre><code>#修改边界线类型、颜色
 p+theme(panel.border = element_rect(linetype = &quot;dashed&quot;, color=&quot;red&quot;))
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cektm6uqj20yg0omjrc.jpg" alt=""></p>
+<figure data-type="image" tabindex="11"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cektm6uqj20yg0omjrc.jpg" alt=""></figure>
 <pre><code>#修改网格线p+theme(panel.grid.major = element_line(color=&quot;blue&quot;, size= 3))
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cel0cukej20q50h0q3h.jpg" alt=""></p>
+<figure data-type="image" tabindex="12"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cel0cukej20q50h0q3h.jpg" alt=""></figure>
 <pre><code>p+theme(panel.grid.minor = element_line(linetype = &quot;dotted&quot;, color=&quot;red&quot;))
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cel72cigj20qr0h0mxz.jpg" alt=""></p>
+<figure data-type="image" tabindex="13"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3cel72cigj20qr0h0mxz.jpg" alt=""></figure>
 <blockquote>
 <p>还可以修改x、y轴等，这里懒得讲了，有兴趣的可以自己捣鼓捣鼓</p>
 </blockquote>
@@ -261,50 +249,20 @@ geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;)+
 ggtitle(&quot;自定义主题theme并应用实践&quot;))+
 xlab(&quot;随便定义了个x&quot;)+ylab(&quot;随机数&quot;)
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3celisf60j20py0h6mxt.jpg" alt=""></p>
+<figure data-type="image" tabindex="14"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3celisf60j20py0h6mxt.jpg" alt=""></figure>
 <pre><code>p1+mytheme
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3celnnf2aj20yg0omglp.jpg" alt=""></p>
+<figure data-type="image" tabindex="15"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3celnnf2aj20yg0omglp.jpg" alt=""></figure>
 <pre><code>p1+mytheme+mycolor_7
 </code></pre>
-<p><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3celsy7kzj20yg0om74d.jpg" alt=""></p>
+<figure data-type="image" tabindex="16"><img src="http://ww1.sinaimg.cn/large/734cbfa0ly1g3celsy7kzj20yg0om74d.jpg" alt=""></figure>
 <p>还有线图、饼图等有兴趣的也可以自己刷一刷，你会发现ggplot2的魅力所在就是它拥有无穷的可能性。</p>
-</p>
-							</div>
-	<div class="vt-post-tags">
- 
-				<a href="https://wangxf133.github.io/tag/ovnnE52Bd" rel="tag">ggplot2</a>	
-				 
-				<a href="https://wangxf133.github.io/tag/aiZkRmWBa" rel="tag">主题设置</a>	
-				 
-				<a href="https://wangxf133.github.io/tag/fS-UqDGwf" rel="tag">详细参数</a>	
-				 
-				<a href="https://wangxf133.github.io/tag/6iQrV6R7j" rel="tag">R</a>	
-				 
-					</div>						
-<nav class="navigation3 post-navigation3" role="navigation">
-		
-		<div class="nav-links3">
-      
-		<div class="nav-previous3"><a href="https://wangxf133.github.io/post/biao-guan-yi-chuan-jian-jie-xue-xi" rel="prev"> 表观遗传--简介学习</a></div>
-		 
-		 
-		<div class="nav-next3"><a href="https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-1" rel="next"> ggplot2详细主题设置(1)</a></div>
-		
-		</div>
-	</nav>
-		</div>
-		
- 
-		
-</article>
 
-<div id="marlin_lite_about_widget-2" class="widget marlin_lite_about_widget">
-			<h4 class="widget-title">评论</h4>	
-
-			 
+          </div>
           
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+            
+              <div class="mt-6">
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 <div id="gitalk-container"></div>
@@ -325,122 +283,341 @@ xlab(&quot;随便定义了个x&quot;)+ylab(&quot;随机数&quot;)
 
 </script>
 
-          
-          
-        
-   
+              </div>
+            
   
- 
-
-		</div>
-
-			</div>
-			
-
-
-<div class="col l3 hide-on-med-and-down">
-	
-        <div class="toc-widget">
-			
-            <div class="toc-title"></div>
-			
-            <div id="toc-content">
-			
-			
-			</div>
+            
+          
         </div>
-    </div>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '.entry-summary',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            // headingsOffset: -205,
-            headingSelector: 'h2, h3, h4'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('.entry-summary').children('h2, h3, h4').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-    });
-</script>										 
-
- 
-       
-
-
-			</div>
-		</div>
-
-		
-		 	<footer id="colophon" class="site-footer">
-
-			<div class="container">
-	
-				<div class="copyright">Powered by Gridea<br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan/tree/master" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
-			</div><!-- .container -->
-		
-		</footer><!-- #colophon -->
-
-</div>
-
-<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/fitvids.js'></script>
-<script type='text/javascript' src='https://wangxf133.github.io/media/scripts/marlin-scripts.js'></script>
-
-		<script data-no-instant>
-    (function ($) {
-        $.extend({
-            adamsOverload: function () {
-                $('.navigation:eq(0)').remove();
-                $("").attr("rel" , "external");
-                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
-                $("a.vi").attr("rel" , "");
-                $.viewImage({
-                    'target'  : 'img',
-                    'exclude' : '.vsmile-icons img,.gallery img',
-                    'delay'   : 300
-                });
-                $.lately({
-                    'target' : '.commentmetadata a,.infos time,.post-list time'
-                });
-                prettyPrint();
+        
+          <div class="w-full md:w-1/3">
+            <div class="mt-6 md:pl-8">
+              <h4 class="text-base font-thin text-gray-700 mb-2">发布时间</h4>
+              <div class="text-lg mb-6">2019-03-27</div>
+              <h4 class="text-base font-thin text-gray-700 mb-2">标签</h4>
+              <div class="mb-6">
                 
-                $('ul.links li a').each(function(){
-                    if($(this).parent().find('.bg').length==0){
-                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
-                    }
-                });
-            }
-        });
-    })(jQuery);
-    jQuery.adamsOverload();
-</script>
+                  <a href="https://wangxf133.github.io/tag/ovnnE52Bd" class="py-1 px-4 border-gray-300 border text-sm inline-block text-gray-700 hover:text-gray-900 rounded mr-2 mb-2">ggplot2</a>
+                
+                  <a href="https://wangxf133.github.io/tag/aiZkRmWBa" class="py-1 px-4 border-gray-300 border text-sm inline-block text-gray-700 hover:text-gray-900 rounded mr-2 mb-2">主题设置</a>
+                
+                  <a href="https://wangxf133.github.io/tag/fS-UqDGwf" class="py-1 px-4 border-gray-300 border text-sm inline-block text-gray-700 hover:text-gray-900 rounded mr-2 mb-2">详细参数</a>
+                
+                  <a href="https://wangxf133.github.io/tag/6iQrV6R7j" class="py-1 px-4 border-gray-300 border text-sm inline-block text-gray-700 hover:text-gray-900 rounded mr-2 mb-2">R</a>
+                
+              </div>
+              <h4 class="text-base font-thin text-gray-700 mb-2">阅读时间</h4>
+              <div class="text-lg mb-6">9 min read</div>
+              <h4 class="text-base font-thin text-gray-700 mb-2">相关阅读</h4>
+              <div class="border-b border-gray-400">
+                
 
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+
+  
+    
+      
+        
+        <div class="border-t border-gray-400 py-6">
+          <a href="https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-1" class="text-lg hover:underline my-2 inline-block">ggplot2详细主题设置(1)</a>
+        </div>
+      
+    
+      
+        
+        <div class="border-t border-gray-400 py-6">
+          <a href="https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-1" class="text-lg hover:underline my-2 inline-block">ggplot2详细主题设置(1)</a>
+        </div>
+      
+    
+      
+        
+        <div class="border-t border-gray-400 py-6">
+          <a href="https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-1" class="text-lg hover:underline my-2 inline-block">ggplot2详细主题设置(1)</a>
+        </div>
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+
+              </div>
+            </div>
+          </div>
+        
+      </div>
+      <div class="footer border-gray-400 border-t pt-6 mt-6 sm:mt-8 md:mt-10 mb-20 text-gray-700 text-sm sm:text-base lg:text-lg">
+  Powered by Gridea
+</div>
+    </div>
+  </div>
+  <script>
+    Prism.highlightAll()
+  </script>
 </body>
 </html>
