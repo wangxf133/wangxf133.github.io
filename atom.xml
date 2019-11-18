@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wangxf133.github.io</id>
     <title>生信学渣</title>
-    <updated>2019-11-17T11:43:39.156Z</updated>
+    <updated>2019-11-18T12:30:59.760Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangxf133.github.io"/>
     <link rel="self" href="https://wangxf133.github.io/atom.xml"/>
@@ -16,28 +16,6 @@
         <link href="https://wangxf133.github.io/post/biao-guan-yi-chuan-jian-jie-xue-xi">
         </link>
         <updated>2019-08-20T13:26:04.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ggplot2详细主题设置(2)]]></title>
-        <id>https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-2</id>
-        <link href="https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-2">
-        </link>
-        <updated>2019-03-27T11:45:32.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>theme()</strong>,本文将专门讲解一下。凡是与数据无关的图形设置可以归为主题类，ggplot2中主题设置十分多，根本不可能讲解完，只能稍微讲点皮毛，灵活运用才是关键，本文只是总体上略作介绍。正如R语言大神Hadley Wickham所讲的，ggplot2只是提供了一个平台，可以根据自己的需要无限创造。理论上来讲，只要能想到的图形，ggplot2都能实现。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p><strong>theme()</strong>,本文将专门讲解一下。凡是与数据无关的图形设置可以归为主题类，ggplot2中主题设置十分多，根本不可能讲解完，只能稍微讲点皮毛，灵活运用才是关键，本文只是总体上略作介绍。正如R语言大神Hadley Wickham所讲的，ggplot2只是提供了一个平台，可以根据自己的需要无限创造。理论上来讲，只要能想到的图形，ggplot2都能实现。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ggplot2详细主题设置(1)]]></title>
-        <id>https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-1</id>
-        <link href="https://wangxf133.github.io/post/ggplot2-xiang-xi-zhu-ti-she-zhi-1">
-        </link>
-        <updated>2019-03-27T11:44:47.000Z</updated>
-        <summary type="html"><![CDATA[<p>参考文章： http://www.rpubs.com/lihaoyi/156592</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>参考文章： http://www.rpubs.com/lihaoyi/156592</p>
-]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Circos配置文件]]></title>
@@ -116,6 +94,30 @@
         <summary type="html"><![CDATA[<h2 id="1使用多个命令">1.使用多个命令</h2>
 ]]></summary>
         <content type="html"><![CDATA[<h2 id="1使用多个命令">1.使用多个命令</h2>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Bioconductor的质谱蛋白组学数据分析]]></title>
+        <id>https://wangxf133.github.io/post/bioconductor-de-zhi-pu-dan-bai-zu-xue-shu-ju-fen-xi</id>
+        <link href="https://wangxf133.github.io/post/bioconductor-de-zhi-pu-dan-bai-zu-xue-shu-ju-fen-xi">
+        </link>
+        <updated>2019-03-27T11:12:02.000Z</updated>
+        <summary type="html"><![CDATA[<p>这篇主要简单的记录下如何基于bioconductor的R包对蛋白组质谱数据进行分析。在看到这篇biocondutor官网文档<a href="http://master.bioconductor.org/packages/release/workflows/html/proteomics.html">Mass spectrometry and proteomics data analysis</a>之前，我一直以为质谱数据的分析过程就是用一些商业化软件或者开源软件将谱图转化为肽段/蛋白的表达谱，由于蛋白组应用未如NGS数据那般广泛及热门，所以就未去搜索过是否能用R包来对质谱数据进行一定程度的分析。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>这篇主要简单的记录下如何基于bioconductor的R包对蛋白组质谱数据进行分析。在看到这篇biocondutor官网文档<a href="http://master.bioconductor.org/packages/release/workflows/html/proteomics.html">Mass spectrometry and proteomics data analysis</a>之前，我一直以为质谱数据的分析过程就是用一些商业化软件或者开源软件将谱图转化为肽段/蛋白的表达谱，由于蛋白组应用未如NGS数据那般广泛及热门，所以就未去搜索过是否能用R包来对质谱数据进行一定程度的分析。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[置换检验(Permutation Test)]]></title>
+        <id>https://wangxf133.github.io/post/zhi-huan-jian-yan-permutation-test</id>
+        <link href="https://wangxf133.github.io/post/zhi-huan-jian-yan-permutation-test">
+        </link>
+        <updated>2019-03-27T11:09:45.000Z</updated>
+        <summary type="html"><![CDATA[<p>我们一般平时较为常用的检验要属有参检验，但是其要求样本必须满足近似正态，无离群点，数据量大等要求；而有些时候其实很难都满足以上前提条件，则这时需要使用无参检验，其只关注数据的秩，但是无参检验有时也无法处理一些样本数较少的情况，这时则可以使用置换检验</p>
+<p>置换检验，是Fisher提出的一种基于大量计算（computationally intensive），利用样本数据的随机排列（置换检验的核心思想，故名Permutation test），进行统计推断的方法。因其对总体分布自由，特别适合用于总体分布未知的小样本数据，以及一些常规方法难以使用的假设检验情况。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>我们一般平时较为常用的检验要属有参检验，但是其要求样本必须满足近似正态，无离群点，数据量大等要求；而有些时候其实很难都满足以上前提条件，则这时需要使用无参检验，其只关注数据的秩，但是无参检验有时也无法处理一些样本数较少的情况，这时则可以使用置换检验</p>
+<p>置换检验，是Fisher提出的一种基于大量计算（computationally intensive），利用样本数据的随机排列（置换检验的核心思想，故名Permutation test），进行统计推断的方法。因其对总体分布自由，特别适合用于总体分布未知的小样本数据，以及一些常规方法难以使用的假设检验情况。</p>
 ]]></content>
     </entry>
 </feed>
