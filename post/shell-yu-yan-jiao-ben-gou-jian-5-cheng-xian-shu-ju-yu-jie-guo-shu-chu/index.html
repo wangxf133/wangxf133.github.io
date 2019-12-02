@@ -487,7 +487,7 @@ $
 <p>你能用的文件描述符只有9个，你可能会觉得这没什么复杂的。但有时要记住哪个文件描述符被重定向到了哪里很难。为了帮助你理清条理，bash shell提供了lsof命令。</p>
 <p>lsof命令会列出整个Linux系统打开的所有文件描述符。这是个有争议的功能，因为它会向非系统管理员用户提供Linux系统的信息。鉴于此，许多Linux系统隐藏了该命令，这样用户就不会一不小心就发现了。</p>
 <p>在很多Linux系统中（如Fedora），lsof命令位于/usr/sbin目录。要想以普通用户账户来运行它，必须通过全路径名来引用：</p>
-<pre><code>$ /usr/sbin/lsof
+<pre><code class="language-shell">$ /usr/sbin/lsof
 </code></pre>
 <p>该命令会产生大量的输出。它会显示当前Linux系统上打开的每个文件的有关信息。这包括后台运行的所有进程以及登录到系统的任何用户。</p>
 <p>有大量的命令行选项和参数可以用来帮助过滤lsof的输出。最常用的有-p和-d，前者允许指定进程ID（PID），后者允许指定要显示的文件描述符编号。</p>
@@ -670,7 +670,7 @@ This is a test line of data for temp.SQslb7
 <h2 id="8-记录消息">8. 记录消息 ***</h2>
 <p>将输出同时发送到显示器和日志文件，这种做法有时候能够派上用场。你不用将输出重定向两次，只要用特殊的tee命令就行。</p>
 <p>tee命令相当于管道的一个T型接头。它将从STDIN过来的数据同时发往两处。一处是STDOUT，另一处是tee命令行所指定的文件名：</p>
-<pre><code>tee filename 
+<pre><code class="language-shell">tee filename 
 </code></pre>
 <p>由于tee会重定向来自STDIN的数据，你可以用它配合管道命令来重定向命令输出。</p>
 <pre><code class="language-sh">$ date | tee testfile 
@@ -680,7 +680,7 @@ Sun Oct 19 18:56:21 EDT 2014
 $
 </code></pre>
 <p>输出出现在了STDOUT中，同时也写入了指定的文件中。注意，默认情况下，tee命令会在每次使用时覆盖输出文件内容。</p>
-<pre><code>$ who | tee testfile 
+<pre><code class="language-shell">$ who | tee testfile 
 rich     pts/0        2014-10-17 18:41 (192.168.1.2) 
 $ cat testfile 
 rich     pts/0        2014-10-17 18:41 (192.168.1.2) 
